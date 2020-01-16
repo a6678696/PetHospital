@@ -1,0 +1,187 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8"/>
+    <title>后台登录-LeDao医院后台管理系统</title>
+    <meta name="author" content="DeathGhost"/>
+    <link rel="stylesheet" type="text/css" href="static/css/style.css"/>
+    <style>
+        body {
+            height: 100%;
+            background: #16a085;
+            overflow: hidden;
+        }
+
+        canvas {
+            z-index: -1;
+            position: absolute;
+        }
+
+        .black_overlay {
+            display: none;
+            position: absolute;
+            top: 0%;
+            left: 0%;
+            width: 100%;
+            height: 100%;
+            background-color: black;
+            z-index: 1001;
+            -moz-opacity: 0.8;
+            opacity: .80;
+            filter: alpha(opacity=80);
+        }
+
+        .white_content {
+            display: none;
+            position: absolute;
+            top: 25%;
+            left: 35%;
+            width: 25%;
+            height: 15%;
+            padding: 16px;
+            border: solid black;
+            background-color: white;
+            z-index: 1002;
+            overflow: auto;
+        }
+    </style>
+    <script src="static/js/jquery.js"></script>
+    <script src="static/js/verifyCode.js"></script>
+    <script src="static/js/Particleground.js"></script>
+    <style>
+        body {
+            height: 100%;
+            background: #16a085;
+            overflow: hidden;
+        }
+
+        canvas {
+            z-index: -1;
+            position: absolute;
+        }
+
+        .black_overlay {
+            display: none;
+            position: absolute;
+            top: 0%;
+            left: 0%;
+            width: 100%;
+            height: 100%;
+            background-color: black;
+            z-index: 1001;
+            -moz-opacity: 0.8;
+            opacity: .80;
+            filter: alpha(opacity=80);
+        }
+
+        .white_content {
+            display: none;
+            position: absolute;
+            top: 25%;
+            left: 35%;
+            width: 25%;
+            height: 15%;
+            padding: 16px;
+            border: solid black;
+            background-color: white;
+            z-index: 1002;
+            overflow: auto;
+        }
+    </style>
+    <script src="static/js/jquery.js"></script>
+    <script src="static/js/verifyCode.js"></script>
+    <script src="static/js/Particleground.js"></script>
+    <script>
+
+        $(document).ready(function () {
+            //粒子背景特效
+            $('body').particleground({
+                dotColor: '#5cbdaa',
+                lineColor: '#5cbdaa'
+            });
+
+            $("#loginBtn").click(function () {
+
+                $.post("/user/login", {
+                    userName: $("#userName").val(),
+                    password: $("#password").val(),
+                    "imageCode": $("#imageCode").val()
+                }, function (result) {
+                    if (result.success) {
+                        //登录成功后的用户只能以一种身份进入后台
+                        //当用户的身份只有一种时直接进入后台
+                        if (result.roleSize == 1) {
+                            var roleId = result.roleList[0].id;
+                            $.post("/user/saveRole", {roleId: roleId}, function (result) {
+                                if (result.success) {
+                                    window.location.href = "/main.html";
+                                }
+                            });
+                        } else {
+                            $("#roleList").empty();
+                            var roles = result.roleList;
+                            for (var i = 0; i < roles.length; i++) {
+                                if (i == 0) {
+                                    //选择第一个单选框
+                                    $("#roleList").append("<input type='radio' checked=true name='role' value='" + roles[i].id + "'/>" + roles[i].name + "&nbsp;&nbsp;");
+                                } else {
+                                    $("#roleList").append("<input type='radio' name='role' value='" + roles[i].id + "'/>" + roles[i].name + "&nbsp;&nbsp;");
+                                }
+                                document.getElementById("light").style.display = "block";
+                                document.getElementById("fade").style.display = "block";
+                            }
+                        }
+                    } else {
+                        alert(result.errorInfo);
+                    }
+                });
+            });
+        });
+
+        function saveRole() {
+            var roleId = $("input[name='role']:checked").val();
+            $.post("/user/saveRole", {roleId: roleId}, function (result) {
+                if (result.success) {
+                    window.location.href = "/main.html";
+                }
+            });
+        }
+    </script>
+</head>
+<body>
+<dl class="admin_login">
+    <dt>
+        <strong>LeDao医院后台管理系统</strong>
+        <em>LeDao Hospital Back Office Management System</em>
+    </dt>
+    <dd class="user_icon">
+        <input type="text" id="userName" placeholder="账号" class="login_txtbx"/>
+    </dd>
+    <dd class="pwd_icon">
+        <input type="password" id="password" placeholder="密码" class="login_txtbx"/>
+    </dd>
+    <dd class="val_icon">
+        <div class="checkcode">
+            <input type="text" id="imageCode" name="imageCode" placeholder="验证码" maxlength="4" class="login_txtbx">
+            <img id="imgObj" title="看不清，换一张" src="/drawImage" onclick="changeImg()"/>
+        </div>
+    </dd>
+    <dd>
+        <input type="button" id="loginBtn" value="立即登陆" class="submit_btn"/>
+    </dd>
+    <dd>
+        <p>© 1500330333ztl 版权所有</p>
+    </dd>
+</dl>
+<div id="light" class="white_content">
+    <p>请选择一个角色登录系统</p>
+    <br/>
+    <div id="roleList">
+    </div>
+    <br/>
+    <input type="button" value="提交" onclick="saveRole()"/>
+</div>
+<div id="fade" class="black_overlay">
+</div>
+</body>
+</html>

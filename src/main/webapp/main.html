@@ -1,0 +1,287 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>后台管理-LeDao医院后台管理系统</title>
+    <link rel="stylesheet" type="text/css" href="/static/jquery-easyui-1.7.0/themes/metro-blue/easyui.css">
+    <link rel="stylesheet" type="text/css" href="/static/jquery-easyui-1.7.0/themes/icon.css">
+    <script type="text/javascript" src="/static/jquery-easyui-1.7.0/jquery.min.js"></script>
+    <script type="text/javascript" src="/static/jquery-easyui-1.7.0/jquery.easyui.min.js"></script>
+    <script type="text/javascript" src="/static/jquery-easyui-1.7.0/locale/easyui-lang-zh_CN.js"></script>
+    <style type="text/css">
+        .clock {
+            float: right;
+            width: 300px;
+            height: 30px;
+            padding-left: 20px;
+            color: rgb(0, 76, 126);
+            background: url(/static/images/clock.gif) no-repeat;
+            font-size: 15px;
+        }
+
+        .userInfo {
+            float: left;
+            padding-left: 20px;
+            padding-top: 30px;
+            font-size: 15px;
+        }
+    </style>
+    <script type="text/javascript">
+        if (window.name != "refresh") {
+            location.reload();
+            window.name = "refresh";
+        } else {
+            window.name = "";
+        }
+
+        function showTime() {
+            var date = new Date();
+            this.year = date.getFullYear();
+            this.month = date.getMonth() + 1;
+            this.date = date.getDate();
+            this.day = new Array("星期日", "星期一", "星期二", "星期三", "星期四", "星期五", "星期六")[date.getDay()];
+            this.hour = date.getHours() < 10 ? "0" + date.getHours() : date.getHours();
+            this.minute = date.getMinutes() < 10 ? "0" + date.getMinutes() : date.getMinutes();
+            this.second = date.getSeconds() < 10 ? "0" + date.getSeconds() : date.getSeconds();
+
+            $("#clock").text("现在是:" + this.year + "年" + this.month + "月" + this.date + "日 " + this.hour + ":" + this.minute + ":" + this.second + " " + this.day);
+        }
+
+        $(document).ready(function () {
+
+            window.setInterval("showTime()", 1000);
+
+            $("#userInfo").load("/user/loadUserInfo"); // 加载用户信息
+
+            var content = "<iframe frameborder=0 scrolling='auto' style='width:100%;height:99%' src='/common/stockSearch.html'></iframe>";
+
+            $("#tabs").tabs("add", {
+                title: "首页",
+                iconCls: "menu-25",
+                closable: false,
+                content: content
+            });
+
+            $("#tree").tree({
+                lines: true,
+                url: '/user/loadMenuInfo?parentId=-1',
+                onLoadSuccess: function () {
+                    $("#tree").tree("expandAll");
+                },
+                onClick: function (node) {
+                    if (node.id == 6040) {
+                        openPasswordModifyDialog();
+                    } else if (node.id == 6050) {
+                        logout();
+                    } else if (node.attributes.url) {
+                        openTab(node);
+                    }
+                }
+            });
+            // 监听右键事件，创建右键菜单
+            $('#tabs').tabs({
+                onContextMenu: function (e, title, index) {
+                    e.preventDefault();
+                    if (index > 0) {
+                        $('#menu').menu('show', {
+                            left: e.pageX,
+                            top: e.pageY
+                        }).data("tabTitle", title);
+                    }
+                }
+            });
+
+            // 右键菜单click
+            $("#menu").menu({
+                onClick: function (item) {
+                    closeTab(this, item.name);
+                }
+            });
+
+            function closeTab(menu, type) {
+                var allTabs = $("#tabs").tabs('tabs');
+                var allTabtitle = [];
+                $.each(allTabs, function (i, n) {
+                    var opt = $(n).panel('options');
+                    if (opt.closable)
+                        allTabtitle.push(opt.title);
+                });
+                var curTabTitle = $(menu).data("tabTitle");
+                var curTabIndex = $("#tabs").tabs("getTabIndex", $("#tabs").tabs("getTab", curTabTitle));
+                switch (type) {
+                    case "1": // 刷新当前标签页
+                        var currentTab = $('#tabs').tabs('getSelected');
+                        var url = $(currentTab.panel('options')).attr('href');
+                        $('#tabs').tabs('update', {
+                            tab: currentTab,
+                            options: {
+                                href: url
+                            }
+                        });
+                        currentTab.panel('refresh');
+                        // var panel = $("#tabs").tabs("getTab", curTabTitle).panel("refresh");
+                        break;
+                    case "2": // 关闭当前标签页
+                        $("#tabs").tabs("close", curTabIndex);
+                        return false;
+                        break;
+                    case "3": // 关闭全部标签页
+                        for (var i = 0; i < allTabtitle.length; i++) {
+                            $('#tabs').tabs('close', allTabtitle[i]);
+                        }
+                        break;
+                    case "4": // 关闭其他标签页
+                        for (var i = 0; i < allTabtitle.length; i++) {
+                            if (curTabTitle != allTabtitle[i])
+                                $('#tabs').tabs('close', allTabtitle[i]);
+                        }
+                        $('#tabs').tabs('select', curTabTitle);
+                        break;
+                    case "5": // 关闭右侧标签页
+                        for (var i = curTabIndex; i < allTabtitle.length; i++) {
+                            $('#tabs').tabs('close', allTabtitle[i]);
+                        }
+                        $('#tabs').tabs('select', curTabTitle);
+                        break;
+                    case "6": // 关闭左侧标签页
+                        for (var i = 0; i < curTabIndex - 1; i++) {
+                            $('#tabs').tabs('close', allTabtitle[i]);
+                        }
+                        $('#tabs').tabs('select', curTabTitle);
+                        break;
+
+                }
+
+            }
+
+            function openTab(node) {
+                if ($("#tabs").tabs("exists", node.text)) {
+                    $("#tabs").tabs("select", node.text)
+                } else {
+                    var content = "<iframe frameborder=0 scrolling='auto' style='width:100%;height:99%' src='" + node.attributes.url + "'></iframe>";
+
+                    $("#tabs").tabs("add", {
+                        title: node.text,
+                        iconCls: node.iconCls,
+                        closable: true,
+                        content: content
+                    });
+                }
+            }
+        });
+
+        function openPasswordModifyDialog() {
+            $("#dlg").dialog("open").dialog("setTitle", "修改密码");
+            url = "/admin/user/modifyPassword";
+        }
+
+        function modifyPassword() {
+            $("#fm").form("submit", {
+                url: url,
+                onSubmit: function () {
+                    let newPassword = $("#newPassword").val();
+                    let newPassword2 = $("#newPassword2").val();
+                    if (!$(this).form("validate")) {
+                        return false;
+                    }
+                    if (newPassword != newPassword2) {
+                        $.messager.alert("系统提示", "确认新密码输入错误!");
+                        return false;
+                    }
+                    return true;
+                },
+                success: function (result) {
+                    var result = eval('(' + result + ')');
+                    if (result.success) {
+                        $.messager.alert("系统提示", "密码修改成功，下一次登录生效！");
+                        resetValue();
+                        $("#dlg").dialog("close");
+                    } else {
+                        $.messager.alert("系统提示", "密码修改失败，请联系管理员！");
+                    }
+                }
+            });
+        }
+
+        function logout() {
+            $.messager.confirm("系统提示", "您确定要退出系统吗?", function (r) {
+                if (r) {
+                    window.location.href = "/admin/user/logout";
+                }
+            });
+        }
+
+        function closePasswordModifyDialog() {
+            resetValue();
+            $("#dlg").dialog("close");
+        }
+
+        function resetValue() {
+            $("#newPassword").val("");
+            $("#newPassword2").val("");
+        }
+    </script>
+</head>
+<body class="easyui-layout">
+<div region="north" style="height: 72px;">
+    <table width="100%" height="100%" border="0" cellspacing="0" cellpadding="0">
+        <tr>
+            <td width="381px" style="background:url(/static/images/top_left.jpg)">
+            </td>
+            <td style="background:url(/static/images/top_center.jpg)">
+                <div id="userInfo" class="userInfo"></div>
+            </td>
+            <td valign="bottom" width="544px" style="background:url(/static/images/top_right.jpg)">
+                <div id="clock" class="clock"></div>
+            </td>
+        </tr>
+    </table>
+</div>
+
+<div region="center">
+    <div id="tabs" class="easyui-tabs" fit="true" border="false"></div>
+</div>
+
+<div region="west" style="width: 200px;background-color: #daeef5" title="导航菜单" split="true" iconCls="icon-navigation">
+    <ul id="tree" class="easyui-tree" style="padding: 10px"></ul>
+</div>
+
+<div region="south" style="height: 30px;padding: 5px;background-color: #daeef5" align="center">
+    Copyright © 1500330333ztl 版权所有
+</div>
+<div id="dlg" class="easyui-dialog" style="width: 400px;height: 180px;padding: 10px 20px" closed="true"
+     buttons="#dlg-buttons" data-options="onClose:function(){resetValue()}">
+    <form id="fm" method="post">
+        <table cellspacing="8px">
+            <tr>
+                <td>新密码:</td>
+                <td>
+                    <input type="password" id="newPassword" name="newPassword" class="easyui-validatebox"
+                           required="true" style="width: 200px">
+                </td>
+            </tr>
+            <tr>
+                <td>确认新密码:</td>
+                <td>
+                    <input type="password" id="newPassword2" name="newPassword2" class="easyui-validatebox"
+                           required="true" style="width: 200px">
+                </td>
+            </tr>
+        </table>
+    </form>
+</div>
+<div id="dlg-buttons">
+    <a href="javascript:modifyPassword()" class="easyui-linkbutton" iconCls="icon-ok">保存</a>
+    <a href="javascript:closePasswordModifyDialog()" class="easyui-linkbutton" iconCls="icon-cancel">关闭</a>
+</div>
+<div id="menu" class="easyui-menu">
+    <div id="mm-tabrefresh" data-options="name:'1',iconCls:'icon-refresh'"> 刷新当前标签页</div>
+    <div class="menu-sep"></div>
+    <div id="mm-tabclose" data-options="name:'2',iconCls:'icon-closetab'">关闭当前标签页</div>
+    <div id="mm-tabcloseall" data-options="name:'3',iconCls:'icon-closealltab'">关闭全部标签页</div>
+    <div id="mm-tabcloseother" data-options="name:'4',iconCls:'icon-closeothertab'">关闭其他标签页</div>
+    <div id="mm-tabcloseright" data-options="name:'5',iconCls:'icon-closerighttab'">关闭右侧标签页</div>
+    <div id="mm-tabcloseleft" data-options="name:'6',iconCls:'icon-closelefttab'">关闭左侧标签页</div>
+</div>
+</body>
+</html>
