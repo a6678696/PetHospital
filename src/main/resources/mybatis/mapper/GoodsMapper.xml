@@ -1,0 +1,147 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.ledao.mapper.GoodsMapper">
+
+    <resultMap id="GoodsResult" type="Goods">
+        <result property="id" column="id"/>
+        <result property="code" column="code"/>
+        <result property="name" column="name"/>
+        <result property="model" column="model"/>
+        <result property="unit" column="unit"/>
+        <result property="lastPurchasingPrice" column="lastPurchasingPrice"/>
+        <result property="purchasingPrice" column="purchasingPrice"/>
+        <result property="sellingPrice" column="sellingPrice"/>
+        <result property="inventoryQuantity" column="inventoryQuantity"/>
+        <result property="minNum" column="minNum"/>
+        <result property="state" column="state"/>
+        <result property="producer" column="producer"/>
+        <result property="remarks" column="remarks"/>
+        <association property="type" column="typeId" select="com.ledao.mapper.GoodsTypeMapper.findById"></association>
+    </resultMap>
+    <select id="findByTypeId" parameterType="integer" resultMap="GoodsResult">
+        select * from t_goods where typeId=#{typeId}
+    </select>
+    <select id="getMaxGoodsCode" resultType="java.lang.String">
+        select max(code) from t_goods
+    </select>
+    <select id="listAlarm" resultMap="GoodsResult">
+        select * from t_goods where inventoryQuantity &lt; minNum
+    </select>
+    <select id="list" parameterType="map" resultMap="GoodsResult">
+        select * from t_goods
+        <where>
+            <if test="name!=null and name!=''">
+                and name like #{name}
+            </if>
+            <if test="typeId!=null">
+                and typeId = #{typeId}
+            </if>
+            <if test="code!=null and code!=''">
+                and code like #{code}
+            </if>
+        </where>
+        <if test="start!=null and size!=null ">
+            limit #{start},#{size}
+        </if>
+    </select>
+    <select id="getCount" resultType="java.lang.Long">
+        select count(*) from t_goods
+        <where>
+            <if test="name!=null and name!=''">
+                and name like #{name}
+            </if>
+            <if test="typeId!=null">
+                and typeId = #{typeId}
+            </if>
+            <if test="code!=null and code!=''">
+                and code like #{code}
+            </if>
+        </where>
+    </select>
+    <select id="listNoInventoryQuantityByCodeOrName" parameterType="string" resultMap="GoodsResult">
+        select * from t_goods
+        where 1=1
+        <if test="_parameter!='' and _parameter!=null">
+            and concat(`code`, `name`) like concat('%',#{_parameter},'%')
+        </if>
+        and inventoryQuantity &lt;1
+    </select>
+    <select id="getCountNoInventoryQuantityByCodeOrName" parameterType="string" resultType="java.lang.Long">
+        select count(*) from t_goods
+        where 1=1
+        <if test="_parameter != null and _parameter != ''">
+            and concat(`code`, `name`) like concat('%',#{_parameter},'%')
+        </if>
+        and inventoryQuantity &lt;1
+    </select>
+    <select id="listHasInventoryQuantityByCodeOrName" parameterType="string" resultMap="GoodsResult">
+        select * from t_goods
+        where 1=1
+        <if test="_parameter!='' and _parameter!=null">
+            and concat(`code`, `name`) like concat('%',#{_parameter},'%')
+        </if>
+        and inventoryQuantity &gt;1
+    </select>
+    <select id="getCountHasInventoryQuantityByCodeOrName" parameterType="string" resultType="java.lang.Long">
+        select count(*) from t_goods
+        where 1=1
+        <if test="_parameter!='' and _parameter!=null">
+            and concat(`code`, `name`) like concat('%',#{_parameter},'%')
+        </if>
+        and inventoryQuantity &gt;1
+    </select>
+    <delete id="delete" parameterType="integer">
+        delete from t_goods where id=#{id}
+    </delete>
+    <select id="findById" parameterType="integer" resultMap="GoodsResult">
+        select * from t_goods where id=#{id}
+    </select>
+    <insert id="add" parameterType="Goods">
+        insert into t_goods (code, inventoryQuantity, lastPurchasingPrice, minNum, model, name, producer, purchasingPrice, remarks, sellingPrice, state, unit, typeId)
+        values (#{code},#{inventoryQuantity},#{lastPurchasingPrice},#{minNum},#{model},#{name},#{producer},#{purchasingPrice},#{remarks},#{sellingPrice},#{state},#{unit},#{type.id});
+    </insert>
+    <update id="update" parameterType="Goods">
+        update t_goods
+        <set>
+            <if test="code != null and code != ''">
+                code=#{code},
+            </if>
+            <if test="inventoryQuantity != null">
+                inventoryQuantity=#{inventoryQuantity},
+            </if>
+            <if test="lastPurchasingPrice != null">
+                lastPurchasingPrice=#{lastPurchasingPrice},
+            </if>
+            <if test="minNum != null">
+                minNum=#{minNum},
+            </if>
+            <if test="model != null and model != ''">
+                model=#{model},
+            </if>
+            <if test="name != null and name != ''">
+                name=#{name},
+            </if>
+            <if test="producer != null and producer != ''">
+                producer=#{producer},
+            </if>
+            <if test="purchasingPrice != null">
+                purchasingPrice=#{purchasingPrice},
+            </if>
+            <if test="remarks != null and remarks != ''">
+                remarks=#{remarks},
+            </if>
+            <if test="sellingPrice != null">
+                sellingPrice=#{sellingPrice},
+            </if>
+            <if test="state != null">
+                state=#{state},
+            </if>
+            <if test="unit != null and unit != ''">
+                unit=#{unit},
+            </if>
+            <if test="type.id!=null">
+                typeId=#{type.id},
+            </if>
+        </set>
+    </update>
+</mapper>

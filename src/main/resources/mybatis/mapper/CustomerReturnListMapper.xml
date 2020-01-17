@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.ledao.mapper.CustomerReturnListMapper">
+
+    <resultMap id="CustomerReturnListResult" type="CustomerReturnList">
+        <result property="id" column="id"/>
+        <result property="customerReturnNumber" column="customerReturnNumber"/>
+        <result property="customerReturnDate" column="customerReturnDate"/>
+        <result property="amountPayable" column="amountPayable"/>
+        <result property="amountPaid" column="amountPaid"/>
+        <result property="state" column="state"/>
+        <result property="remarks" column="remarks"/>
+        <association property="customer" column="customerId" select="com.ledao.mapper.CustomerMapper.findById"></association>
+        <association property="user" column="userId" select="com.ledao.mapper.UserMapper.findById"></association>
+    </resultMap>
+    <select id="getTodayMaxCustomerReturnNumber" resultType="java.lang.String">
+        select max(customerReturnNumber) from t_customer_return_list where to_days(customerReturnDate)=to_days(now())
+    </select>
+    <select id="findById" parameterType="integer" resultMap="CustomerReturnListResult">
+        select * from t_customer_return_list where id=#{id}
+    </select>
+    <insert id="add" parameterType="CustomerReturnList">
+        insert into t_customer_return_list (amountPaid, amountPayable, customerReturnDate, customerReturnNumber, remarks, state, customerId, userId) values (#{amountPaid},#{amountPayable},#{customerReturnDate},#{customerReturnNumber},#{remarks},#{state},#{customer.id},#{user.id});
+    </insert>
+    <update id="update" parameterType="CustomerReturnList">
+        update t_customer_return_list
+        <set>
+            <if test="customerReturnNumber != null and customerReturnNumber != ''">
+                customerReturnNumber=#{customerReturnNumber},
+            </if>
+            <if test="customerReturnDate != null">
+                customerReturnDate=#{customerReturnDate},
+            </if>
+            <if test="amountPayable != null">
+                amountPayable=#{amountPayable},
+            </if>
+            <if test="amountPaid != null">
+                amountPaid=#{amountPaid},
+            </if>
+            <if test="state != null">
+                state=#{state},
+            </if>
+            <if test="remarks != null and remarks != ''">
+                remarks=#{remarks},
+            </if>
+            <if test="customer.id != null">
+                customerId=#{customer.id},
+            </if>
+            <if test="user.id != null">
+                userId=#{user.id},
+            </if>
+        </set>
+    </update>
+    <select id="list" parameterType="map" resultMap="CustomerReturnListResult">
+        select * from t_customer_return_list
+        <where>
+            <if test="customerReturnNumber!=null and customerReturnNumber!=''">
+                and customerReturnNumber like #{customerReturnNumber}
+            </if>
+            <if test="customerId!=null">
+                and customerId =#{customerId}
+            </if>
+            <if test="state!=null ">
+                and state=#{state}
+            </if>
+            <if test="bCustomerReturnDate!=null and bCustomerReturnDate!=''">
+                and date_format(customerReturnDate,'%Y-%m-%d') &gt;= '#{bCustomerReturnDate}'
+            </if>
+            <if test="eCustomerReturnDate!=null and eCustomerReturnDate!=''">
+                and date_format(customerReturnDate,'%Y-%m-%d') &lt;= '#{eCustomerReturnDate}'
+            </if>
+        </where>
+    </select>
+    <delete id="delete" parameterType="integer">
+        delete from t_customer_return_list where id#{id}
+    </delete>
+
+</mapper>

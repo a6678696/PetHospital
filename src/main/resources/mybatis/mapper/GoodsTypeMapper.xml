@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.ledao.mapper.GoodsTypeMapper">
+
+    <resultMap id="GoodsTypeResult" type="GoodsType">
+        <result property="id" column="id"/>
+        <result property="name" column="name"/>
+        <result property="state" column="state"/>
+        <result property="icon" column="icon"/>
+        <result property="pId" column="pId"/>
+    </resultMap>
+
+    <select id="findByParentId" parameterType="integer" resultMap="GoodsTypeResult">
+        select * from t_goodstype where pId=#{parentId}
+    </select>
+
+    <insert id="add" parameterType="GoodsType">
+        insert into t_goodstype (icon, name, pId, state) values (#{icon},#{name},#{pId},#{state});
+    </insert>
+
+    <update id="update" parameterType="GoodsType">
+        update t_goodstype
+        <set>
+            <if test="name != null and name != ''">
+                name=#{name},
+            </if>
+            <if test="icon != null and icon != ''">
+                icon=#{icon},
+            </if>
+            <if test="pId != null">
+                pId=#{pId},
+            </if>
+            <if test="state != null">
+                state=#{state},
+            </if>
+        </set>
+        where id=#{id}
+    </update>
+
+    <delete id="delete" parameterType="integer">
+        delete from t_goodstype where id=#{id}
+    </delete>
+
+    <select id="findById" parameterType="integer" resultMap="GoodsTypeResult">
+        select * from t_goodstype where id=#{id}
+    </select>
+
+</mapper>

@@ -50,4 +50,12 @@ public class CustomerReturnList {
      * 交易状态 1 已付 2 未付
      */
     private Integer state;
+    /**
+     * 操作员
+     */
+    private User user;
+    /**
+     * 备注
+     */
+    private String remarks;
 }
