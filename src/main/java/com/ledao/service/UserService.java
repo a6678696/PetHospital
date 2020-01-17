@@ -61,4 +61,12 @@ public interface UserService {
      * @return
      */
     Integer delete(Integer id);
+
+    /**
+     * 根据id查询实体
+     *
+     * @param id
+     * @return
+     */
+    User findById(Integer id);
 }

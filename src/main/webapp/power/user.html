@@ -11,100 +11,141 @@
     <script type="text/javascript">
         var url;
 
-        function formatEdit(val, row) {
-            return "<a href=''><img style='margin-top:4px' src='/static/images/edit.gif'/></a>";
+        function formatEdit(val,row){
+            return "<a href=\"javascript:openRoleChooseDialog('"+row.roles+"',"+row.id+")\"><img style='margin-top:4px' src='/static/images/edit.gif'/></a>";
         }
 
-        function searchUser() {
-            $("#dg").datagrid('load', {
-                "userName": $("#s_userName").val()
+        function openRoleChooseDialog(roles,userId){
+            var rolesArr=roles.split(",");
+            $("#dlg2").dialog("open").dialog("setTitle","选择角色");
+            $("#dg2").datagrid({
+                url:'/admin/role/listAll',
+                onLoadSuccess:function(data){
+                    var allRows=$("#dg2").datagrid("getRows");
+                    for(var i=0;i<allRows.length;i++){
+                        var name=allRows[i].name;
+                        if($.inArray(name,rolesArr)>=0){
+                            $("#dg2").datagrid("checkRow",i);
+                        }
+                    }
+                }
+            });
+            $("#userId").val(userId);
+        }
+
+        function searchUser(){
+            $("#dg").datagrid('load',{
+                "userName":$("#s_userName").val()
             });
         }
 
-        function resetValue() {
+        function resetValue(){
             $("#userName").val("");
             $("#password").val("");
             $("#trueName").val("");
             $("#remarks").val("");
         }
 
-        function closeUserDialog() {
+        function closeUserDialog(){
             $("#dlg").dialog("close");
             resetValue();
         }
 
-        function saveUser() {
-            $("#fm").form("submit", {
-                url: url,
-                onSubmit: function () {
+        function saveUser(){
+            $("#fm").form("submit",{
+                url:url,
+                onSubmit:function(){
                     return $(this).form("validate");
                 },
-                success: function (result) {
-                    var result = eval('(' + result + ')');
-                    if (result.success) {
-                        $.messager.alert("系统提示", "保存成功！");
+                success:function(result){
+                    var result=eval('('+result+')');
+                    if(result.success){
+                        $.messager.alert("系统提示","保存成功！");
                         resetValue();
                         $("#dlg").dialog("close");
                         $("#dg").datagrid("reload");
-                    } else {
-                        $.messager.alert("系统提示", result.errorInfo);
+                    }else{
+                        $.messager.alert("系统提示",result.errorInfo);
                     }
                 }
             });
         }
 
-        function openUserAddDialog() {
+        function openUserAddDialog(){
             $("#userName").removeAttr("readonly");
-            $("#dlg").dialog("open").dialog("setTitle", "添加用户信息");
-            url = "/admin/user/save";
+            $("#dlg").dialog("open").dialog("setTitle","添加用户信息");
+            url="/admin/user/save";
         }
 
-        function openUserModifyDialog() {
-            var selectedRows = $("#dg").datagrid("getSelections");
-            if (selectedRows.length != 1) {
-                $.messager.alert("系统提示", "请选择一条要修改的数据！");
+        function openUserModifyDialog(){
+            var selectedRows=$("#dg").datagrid("getSelections");
+            if(selectedRows.length!=1){
+                $.messager.alert("系统提示","请选择一条要修改的数据！");
                 return;
             }
-            var row = selectedRows[0];
-            $("#dlg").dialog("open").dialog("setTitle", "修改用户信息");
-            $("#fm").form("load", row);
-            $("#userName").attr("readonly", "readonly");
-            url = "/admin/user/save?id=" + row.id;
+            var row=selectedRows[0];
+            $("#dlg").dialog("open").dialog("setTitle","修改用户信息");
+            $("#fm").form("load",row);
+            $("#userName").attr("readonly","readonly");
+            url="/admin/user/save?id="+row.id;
         }
 
-        function deleteUser() {
-            var selectedRows = $("#dg").datagrid("getSelections");
-            if (selectedRows.length != 1) {
-                $.messager.alert("系统提示", "请选择一条要删除的数据！");
+        function deleteUser(){
+            var selectedRows=$("#dg").datagrid("getSelections");
+            if(selectedRows.length!=1){
+                $.messager.alert("系统提示","请选择一条要删除的数据！");
                 return;
             }
-            var id = selectedRows[0].id;
-            $.messager.confirm("系统提示", "您确定要删除这条数据吗?", function (r) {
-                if (r) {
-                    $.post("/admin/user/delete", {id: id}, function (result) {
-                        if (result.success) {
-                            $.messager.alert("系统提示", "数据已成功删除！");
+            var id=selectedRows[0].id;
+            $.messager.confirm("系统提示","您确定要删除这条数据吗?",function(r){
+                if(r){
+                    $.post("/admin/user/delete",{id:id},function(result){
+                        if(result.success){
+                            $.messager.alert("系统提示","数据已成功删除！");
                             $("#dg").datagrid("reload");
-                        } else {
-                            $.messager.alert("系统提示", result.errorInfo);
+                        }else{
+                            $.messager.alert("系统提示",result.errorInfo);
                         }
-                    }, "json");
+                    },"json");
                 }
             });
         }
 
-        $(document).ready(function () {
+        $(document).ready(function() {
 
             $("#dg").datagrid({
-                onDblClickRow: function (index, row) {
-                    $("#dlg").dialog("open").dialog("setTitle", "修改用户信息");
-                    $("#fm").form("load", row);
-                    $("#userName").attr("readonly", "readonly");
-                    url = "/admin/user/save?id=" + row.id;
+                onDblClickRow:function(index,row){
+                    $("#dlg").dialog("open").dialog("setTitle","修改用户信息");
+                    $("#fm").form("load",row);
+                    $("#userName").attr("readonly","readonly");
+                    url="/admin/user/save?id="+row.id;
                 }
             });
 
         });
+
+
+        function saveRoleSet(){
+            var userId=$("#userId").val();
+            var selectedRows=$("#dg2").datagrid("getSelections");
+            var strRoleIds=[];
+            for(var i=0;i<selectedRows.length;i++){
+                strRoleIds.push(selectedRows[i].id);
+            }
+            var roleIds=strRoleIds.join(",");
+            $.post("/admin/user/saveRoleSet",{roleIds:roleIds,userId:userId},function(result){
+                if(result.success){
+                    closeRoleSetDialog();
+                    $("#dg").datagrid("reload");
+                }else{
+                    $.messager.alert("系统提示","提交失败，请联系管理员！");
+                }
+            },"json");
+        }
+
+        function closeRoleSetDialog(){
+            $("#dlg2").dialog("close");
+        }
     </script>
 </head>
 <body style="margin: 1px">
@@ -135,7 +176,7 @@
 </div>
 
 
-<div id="dlg" class="easyui-dialog" style="width: 450px;height: 320px;padding: 10px 20px"
+<div id="dlg" class="easyui-dialog" style="width: 450px;height: 300px;padding: 10px 20px"
      closed="true" buttons="#dlg-buttons" data-options="onClose:function(){resetValue()}">
     <form id="fm" method="post">
         <table cellspacing="8px">
@@ -148,15 +189,13 @@
             <tr>
                 <td>密码：</td>
                 <td>
-                    <input type="text" id="password" name="password" class="easyui-validatebox" required="true"
-                           style="width: 250px"/>
+                    <input type="text" id="password" name="password" class="easyui-validatebox" required="true" style="width: 250px"/>
                 </td>
             </tr>
             <tr>
                 <td>真实姓名：</td>
                 <td>
-                    <input type="text" id="trueName" name="trueName" class="easyui-validatebox" required="true"
-                           style="width: 250px"/>
+                    <input type="text" id="trueName" name="trueName" class="easyui-validatebox" required="true" style="width: 250px"/>
                 </td>
             </tr>
             <tr>
@@ -170,8 +209,27 @@
 </div>
 
 <div id="dlg-buttons">
-    <a href="javascript:saveUser()" class="easyui-linkbutton" iconCls="icon-ok">保存</a>
-    <a href="javascript:closeUserDialog()" class="easyui-linkbutton" iconCls="icon-cancel">关闭</a>
+    <a href="javascript:saveUser()" class="easyui-linkbutton" iconCls="icon-ok" >保存</a>
+    <a href="javascript:closeUserDialog()" class="easyui-linkbutton" iconCls="icon-cancel" >关闭</a>
+</div>
+
+
+<div id="dlg2" class="easyui-dialog" style="width: 500px;height: 350px;"
+     closed="true" buttons="#dlg-buttons2">
+    <input type="hidden" id="userId" name="userId"/>
+    <table id="dg2"  class="easyui-datagrid" fitColumns="true" fit="true">
+        <thead>
+        <th field="cb" checkbox="true" align="center"></th>
+        <th field="id" width="20" align="left" hidden="true">编号</th>
+        <th field="name" width="100" align="left">角色名称</th>
+        <th field="remarks" width="200" align="left">备注</th>
+        </thead>
+    </table>
+</div>
+
+<div id="dlg-buttons2">
+    <a href="javascript:saveRoleSet()" class="easyui-linkbutton" iconCls="icon-ok" >保存</a>
+    <a href="javascript:closeRoleSetDialog()" class="easyui-linkbutton" iconCls="icon-cancel" >关闭</a>
 </div>
 </body>
 </html>

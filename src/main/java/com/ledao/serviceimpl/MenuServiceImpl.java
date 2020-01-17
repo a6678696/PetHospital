@@ -25,4 +25,19 @@ public class MenuServiceImpl implements MenuService {
     public List<Menu> findByParentIdAndRoleId(Integer parentId, Integer roleId) {
         return menuMapper.findByParentIdAndRoleId(parentId, roleId);
     }
+
+    @Override
+    public List<Menu> findByRoleId(Integer roleId) {
+        return menuMapper.findByRoleId(roleId);
+    }
+
+    @Override
+    public Menu findById(Integer id) {
+        return menuMapper.findById(id);
+    }
+
+    @Override
+    public List<Menu> findByParentId(Integer parentId) {
+        return menuMapper.findByParentId(parentId);
+    }
 }

@@ -1,5 +1,7 @@
 package com.ledao.mapper;
 
+import com.ledao.entity.UserRole;
+
 /**
  * 用户角色关联mapper接口
  *
@@ -16,4 +18,21 @@ public interface UserRoleMapper {
      * @return
      */
     Integer deleteByUserId(Integer userId);
+
+    /**
+     * 添加用户角色关联
+     *
+     * @param roleId
+     * @param userId
+     * @return
+     */
+    Integer add(Integer roleId, Integer userId);
+
+    /**
+     * 根据角色id删除用户角色关联
+     *
+     * @param roleId
+     * @return
+     */
+    Integer deleteByRoleId(Integer roleId);
 }

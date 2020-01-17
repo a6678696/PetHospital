@@ -1,5 +1,6 @@
 package com.ledao.serviceimpl;
 
+import com.ledao.entity.UserRole;
 import com.ledao.mapper.UserRoleMapper;
 import com.ledao.service.UserRoleService;
 import org.springframework.stereotype.Service;
@@ -22,5 +23,15 @@ public class UserRoleServiceImpl implements UserRoleService {
     @Override
     public Integer deleteByUserId(Integer userId) {
         return userRoleMapper.deleteByUserId(userId);
+    }
+
+    @Override
+    public Integer add(Integer roleId, Integer userId) {
+        return userRoleMapper.add(roleId, userId);
+    }
+
+    @Override
+    public Integer deleteByRoleId(Integer roleId) {
+        return userRoleMapper.deleteByRoleId(roleId);
     }
 }

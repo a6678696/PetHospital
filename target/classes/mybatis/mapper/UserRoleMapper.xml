@@ -12,4 +12,12 @@
         delete from t_user_role where userId=#{userId}
     </delete>
 
+    <insert id="add" parameterType="UserRole">
+        insert into t_user_role values (null,#{param1},#{param2});
+    </insert>
+
+    <delete id="deleteByRoleId" parameterType="integer">
+        delete from t_user_role where roleId=#{roleId}
+    </delete>
+
 </mapper>

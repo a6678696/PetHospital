@@ -15,5 +15,17 @@
         select * from t_menu where pId=#{param1} and id in(select menuId from t_role_menu where roleId=#{param2})
     </select>
 
+    <select id="findByRoleId" parameterType="integer" resultMap="MenuResult">
+        select m.* from t_role r,t_role_menu rm,t_menu m where rm.roleId=r.id and rm.menuId=m.id and r.id=#{roleId}
+    </select>
+
+    <select id="findById" parameterType="integer" resultMap="MenuResult">
+        select * from t_menu where id=#{id}
+    </select>
+
+    <select id="findByParentId" parameterType="integer" resultMap="MenuResult">
+        select * from t_menu where pId=#{parentId}
+    </select>
+
 
 </mapper>
