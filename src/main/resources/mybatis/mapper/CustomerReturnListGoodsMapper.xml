@@ -4,16 +4,16 @@
 
     <resultMap id="CustomerReturnListGoodsResult" type="CustomerReturnListGoods">
         <result property="id" column="id"/>
-        <association property="customerReturnList" column="customerReturnListId" select="com.ledao.mapper.customerReturnListMapper.findById"></association>
         <result property="code" column="code"/>
         <result property="name" column="name"/>
         <result property="model" column="model"/>
-        <association property="type" column="typeId" select="com.ledao.mapper.GoodsTypeMapper.findById"></association>
         <result property="goodsId" column="goodsId"/>
         <result property="unit" column="unit"/>
         <result property="price" column="price"/>
         <result property="num" column="num"/>
         <result property="total" column="total"/>
+        <association property="customerReturnList" column="customerReturnListId" select="com.ledao.mapper.CustomerReturnListMapper.findById"></association>
+        <association property="type" column="typeId" select="com.ledao.mapper.GoodsTypeMapper.findById"></association>
     </resultMap>
 
     <select id="listByCustomerReturnListId" parameterType="integer" resultMap="CustomerReturnListGoodsResult">
