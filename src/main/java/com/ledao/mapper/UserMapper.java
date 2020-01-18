@@ -23,6 +23,14 @@ public interface UserMapper {
     User findByUserName(String userName);
 
     /**
+     * 根据真实姓名查找用户实体
+     *
+     * @param trueName
+     * @return
+     */
+    User findByTrueName(String trueName);
+
+    /**
      * 分页查询用户
      *
      * @param map

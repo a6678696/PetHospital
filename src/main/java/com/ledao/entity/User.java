@@ -45,4 +45,15 @@ public class User {
      *所拥有的角色
      */
     private String roles;
+
+    @Override
+    public String toString() {
+        return "--{" +
+                "编号=" + id +
+                ", 用户名='" + userName + '\'' +
+                ", 密码='" + password + '\'' +
+                ", 真实姓名='" + trueName + '\'' +
+                ", 备注='" + remarks + '\'' +
+                '}';
+    }
 }

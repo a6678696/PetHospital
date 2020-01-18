@@ -70,4 +70,8 @@
     select * from t_user where id=#{id}
   </select>
 
+    <select id="findByTrueName" parameterType="string" resultMap="BaseResultMap">
+        select * from t_user where trueName=#{trueName}
+    </select>
+
 </mapper>

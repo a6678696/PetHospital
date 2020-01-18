@@ -2,7 +2,9 @@ package com.ledao.serviceimpl;
 
 import com.ledao.entity.Log;
 import com.ledao.mapper.LogMapper;
+import com.ledao.mapper.UserMapper;
 import com.ledao.service.LogService;
+import org.apache.shiro.SecurityUtils;
 import org.springframework.stereotype.Service;
 
 import javax.annotation.Resource;
@@ -22,8 +24,12 @@ public class LogServiceImpl implements LogService {
     @Resource
     private LogMapper logMapper;
 
+    @Resource
+    private UserMapper userMapper;
+
     @Override
     public Integer add(Log log) {
+        log.setUser(userMapper.findByUserName(SecurityUtils.getSubject().getPrincipal().toString()));
         return logMapper.add(log);
     }
 

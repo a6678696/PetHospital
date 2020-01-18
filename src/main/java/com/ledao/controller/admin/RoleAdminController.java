@@ -2,14 +2,8 @@ package com.ledao.controller.admin;
 
 import com.google.gson.JsonArray;
 import com.google.gson.JsonObject;
-import com.ledao.entity.Menu;
-import com.ledao.entity.PageBean;
-import com.ledao.entity.Role;
-import com.ledao.entity.RoleMenu;
-import com.ledao.service.MenuService;
-import com.ledao.service.RoleMenuService;
-import com.ledao.service.RoleService;
-import com.ledao.service.UserRoleService;
+import com.ledao.entity.*;
+import com.ledao.service.*;
 import com.ledao.util.StringUtil;
 import org.apache.shiro.authz.annotation.Logical;
 import org.apache.shiro.authz.annotation.RequiresPermissions;
@@ -46,6 +40,9 @@ public class RoleAdminController {
     @Resource
     private RoleMenuService roleMenuService;
 
+    @Resource
+    private LogService logService;
+
     /**
      * 查询所有角色
      *
@@ -56,6 +53,7 @@ public class RoleAdminController {
     public Map<String, Object> listAll() {
         Map<String, Object> resultMap = new HashMap<>(16);
         resultMap.put("rows", roleService.listAll());
+        logService.add(new Log(Log.SEARCH_ACTION,"查询所有角色信息"));
         return resultMap;
     }
 
@@ -81,6 +79,7 @@ public class RoleAdminController {
         Long total = roleService.getCount(map);
         resultMap.put("rows", roleList);
         resultMap.put("total", total);
+        logService.add(new Log(Log.SEARCH_ACTION,"查询角色信息"));
         return resultMap;
     }
 
@@ -103,8 +102,10 @@ public class RoleAdminController {
                 return resultMap;
             }
             key = roleService.add(role);
+            logService.add(new Log(Log.ADD_ACTION,"添加角色信息"+role));
         } else {
             key = roleService.update(role);
+            logService.add(new Log(Log.UPDATE_ACTION,"修改角色信息"+role));
         }
         if (key > 0) {
             resultMap.put("success", true);
@@ -124,6 +125,7 @@ public class RoleAdminController {
     @RequestMapping("/delete")
     @RequiresPermissions(value = "角色管理")
     public Map<String, Object> delete(Integer id) {
+        logService.add(new Log(Log.DELETE_ACTION,"删除角色信息"+roleService.findById(id)));
         Map<String, Object> resultMap = new HashMap<>(16);
         roleMenuService.deleteByRoleId(id);
         userRoleService.deleteByRoleId(id);

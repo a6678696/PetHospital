@@ -30,6 +30,11 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
+    public User findByTrueName(String trueName) {
+        return userMapper.findByTrueName(trueName);
+    }
+
+    @Override
     public List<User> list(Map<String, Object> map) {
         return userMapper.list(map);
     }

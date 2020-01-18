@@ -36,4 +36,15 @@ public class Customer {
      * 备注
      */
     private String remarks;
+
+    @Override
+    public String toString() {
+        return "客户{" +
+                "id=" + id +
+                ", 客户名称='" + name + '\'' +
+                ", 联系人='" + contact + '\'' +
+                ", 联系电话='" + number + '\'' +
+                ", 联系地址='" + address + '\'' +
+                '}';
+    }
 }

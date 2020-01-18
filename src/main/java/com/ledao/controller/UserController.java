@@ -2,9 +2,11 @@ package com.ledao.controller;
 
 import com.google.gson.JsonArray;
 import com.google.gson.JsonObject;
+import com.ledao.entity.Log;
 import com.ledao.entity.Menu;
 import com.ledao.entity.Role;
 import com.ledao.entity.User;
+import com.ledao.service.LogService;
 import com.ledao.service.MenuService;
 import com.ledao.service.RoleService;
 import com.ledao.service.UserService;
@@ -44,6 +46,9 @@ public class UserController {
     @Resource
     private MenuService menuService;
 
+    @Resource
+    private LogService logService;
+
     @RequestMapping("/login")
     public Map<String, Object> login(String imageCode, @Valid User user, BindingResult bindingResult, HttpSession session) {
         Map<String, Object> resultMap = new HashMap<>(16);
@@ -73,6 +78,7 @@ public class UserController {
             resultMap.put("roleList", roleList);
             resultMap.put("roleSize", roleList.size());
             resultMap.put("success", true);
+            logService.add(new Log(Log.LOGIN_ACTION, "用户登录"));
             return resultMap;
         } catch (Exception e) {
             e.printStackTrace();

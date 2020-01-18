@@ -5,61 +5,30 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="0a04dcdb-703f-4bd2-b3be-43a82c777491" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/ledao/mapper/DamageListGoodsMapper.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/ledao/mapper/DamageListMapper.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/ledao/mapper/GoodsUnitMapper.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/ledao/mapper/LogMapper.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/ledao/mapper/OverflowListGoodsMapper.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/ledao/mapper/OverflowListMapper.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/ledao/mapper/PurchaseListGoodsMapper.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/ledao/mapper/PurchaseListMapper.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/ledao/mapper/ReturnListGoodsMapper.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/ledao/mapper/ReturnListMapper.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/ledao/mapper/SaleListGoodsMapper.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/ledao/mapper/SaleListMapper.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/ledao/mapper/SupplierMapper.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/ledao/service/DamageListGoodsService.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/ledao/service/DamageListService.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/ledao/service/GoodsUnitService.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/ledao/service/LogService.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/ledao/service/OverflowListGoodsService.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/ledao/service/OverflowListService.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/ledao/service/PurchaseListGoodsService.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/ledao/service/PurchaseListService.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/ledao/service/ReturnListGoodsService.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/ledao/service/ReturnListService.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/ledao/service/SaleListGoodsService.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/ledao/service/SaleListService.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/ledao/service/SupplierService.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/ledao/serviceimpl/DamageListGoodsServiceImpl.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/ledao/serviceimpl/DamageListServiceImpl.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/ledao/serviceimpl/GoodsUnitServiceImpl.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/ledao/serviceimpl/LogServiceImpl.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/ledao/serviceimpl/OverflowListGoodsServiceImpl.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/ledao/serviceimpl/OverflowListServiceImpl.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/ledao/serviceimpl/PurchaseListGoodsServiceImpl.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/ledao/serviceimpl/PurchaseListServiceImpl.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/ledao/serviceimpl/ReturnListGoodsServiceImpl.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/ledao/serviceimpl/ReturnListServiceImpl.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/ledao/serviceimpl/SaleListGoodsServiceImpl.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/ledao/serviceimpl/SaleListServiceImpl.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/ledao/serviceimpl/SupplierServiceImpl.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/mybatis/mapper/DamageListGoodsMapper.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/mybatis/mapper/DamageListMapper.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/mybatis/mapper/GoodsUnitMapper.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/mybatis/mapper/LogMapper.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/mybatis/mapper/OverflowListGoodsMapper.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/mybatis/mapper/OverflowListMapper.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/mybatis/mapper/PurchaseListGoodsMapper.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/mybatis/mapper/PurchaseListMapper.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/mybatis/mapper/ReturnListGoodsMapper.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/mybatis/mapper/ReturnListMapper.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/mybatis/mapper/SaleListGoodsMapper.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/mybatis/mapper/SaleListMapper.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/mybatis/mapper/SupplierMapper.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/dataSources/3f17d22d-fd6c-438d-aade-dee31a9e9b2d.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dataSources/3f17d22d-fd6c-438d-aade-dee31a9e9b2d.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/ledao/controller/admin/CustomerAdminController.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/ledao/controller/admin/LogAdminController.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/webapp/basicData/customer.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/webapp/power/log.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/mybatis/mapper/CustomerReturnListGoodsMapper.xml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/mybatis/mapper/CustomerReturnListGoodsMapper.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/ledao/controller/UserController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/ledao/controller/UserController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/ledao/controller/admin/RoleAdminController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/ledao/controller/admin/RoleAdminController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/ledao/controller/admin/UserAdminController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/ledao/controller/admin/UserAdminController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/ledao/entity/Customer.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/ledao/entity/Customer.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/ledao/entity/Log.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/ledao/entity/Log.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/ledao/entity/User.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/ledao/entity/User.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/ledao/mapper/UserMapper.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/ledao/mapper/UserMapper.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/ledao/service/UserService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/ledao/service/UserService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/ledao/serviceimpl/LogServiceImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/ledao/serviceimpl/LogServiceImpl.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/ledao/serviceimpl/UserServiceImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/ledao/serviceimpl/UserServiceImpl.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/mybatis/mapper/LogMapper.xml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/mybatis/mapper/LogMapper.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/mybatis/mapper/UserMapper.xml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/mybatis/mapper/UserMapper.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/webapp/static/images/top_left.jpg" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/static/images/top_left.jpg" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/ledao/controller/UserController.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/ledao/controller/UserController.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/ledao/controller/admin/UserAdminController.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/ledao/controller/admin/UserAdminController.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/ledao/mapper/UserMapper.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/ledao/mapper/UserMapper.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/ledao/service/UserService.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/ledao/service/UserService.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/ledao/serviceimpl/UserServiceImpl.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/ledao/serviceimpl/UserServiceImpl.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/mybatis/mapper/UserMapper.xml" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/mybatis/mapper/UserMapper.xml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -100,10 +69,10 @@
     <option name="RECENT_TEMPLATES">
       <list>
         <option value="FxmlFile" />
-        <option value="HTML File" />
         <option value="Interface" />
-        <option value="Class" />
         <option value="mybatis" />
+        <option value="HTML File" />
+        <option value="Class" />
       </list>
     </option>
   </component>
@@ -144,20 +113,21 @@
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="aspect.path.notification.shown" value="true" />
-    <property name="last_opened_file_path" value="E:/百度云盘下载/JAVA1234/实战视频/进销存视频教程/[www.java1234.com]《SpringBoot打造企业级进销存》第五十讲源码及文档/11/JXC" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/src/main/webapp/static/images" />
     <property name="project.structure.last.edited" value="Modules" />
     <property name="project.structure.proportion" value="0.15" />
     <property name="project.structure.side.proportion" value="0.2" />
-    <property name="settings.editor.selected.configurable" value="editing.templates" />
+    <property name="settings.editor.selected.configurable" value="Errors" />
   </component>
   <component name="RecentsManager">
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="F:\idea workspase for Actual combat\PetHospital\src\main\resources\mybatis" />
+    </key>
     <key name="CopyFile.RECENT_KEYS">
+      <recent name="F:\idea workspase for Actual combat\PetHospital\src\main\webapp\static\images" />
       <recent name="F:\idea workspase for Actual combat\PetHospital\src\main\webapp" />
       <recent name="F:\idea workspase for Actual combat\PetHospital\src\main\resources" />
       <recent name="F:\idea workspase for Actual combat\PetHospital\src\main\resources\mybatis.config" />
-    </key>
-    <key name="MoveFile.RECENT_KEYS">
-      <recent name="F:\idea workspase for Actual combat\PetHospital\src\main\resources\mybatis" />
     </key>
   </component>
   <component name="RunManager">
@@ -185,7 +155,7 @@
               <path>
                 <item name="services root" type="e789fda9:ObjectUtils$Sentinel" />
                 <item name="root:db_pethospital@localhost" type="7427dc5b:ServiceModel$ServiceGroupNode" />
-                <item name="com.intellij.database.console.session.MessageBusSession@5b3a64df" type="9fbbdea:ServiceModel$ServiceNode" />
+                <item name="com.intellij.database.console.session.MessageBusSession@6c10510b" type="9fbbdea:ServiceModel$ServiceNode" />
               </path>
             </expand>
             <select />
@@ -211,7 +181,8 @@
       <workItem from="1579192224935" duration="1440000" />
       <workItem from="1579225243556" duration="14092000" />
       <workItem from="1579248150469" duration="23850000" />
-      <workItem from="1579316174982" duration="20041000" />
+      <workItem from="1579316174982" duration="20925000" />
+      <workItem from="1579343510723" duration="18873000" />
     </task>
     <task id="LOCAL-00001" summary="LeDao宠物医院管理系统">
       <created>1579192730886</created>
@@ -262,7 +233,14 @@
       <option name="project" value="LOCAL" />
       <updated>1579281837523</updated>
     </task>
-    <option name="localTasksCounter" value="8" />
+    <task id="LOCAL-00008" summary="LeDao宠物医院管理系统">
+      <created>1579338102766</created>
+      <option name="number" value="00008" />
+      <option name="presentableId" value="LOCAL-00008" />
+      <option name="project" value="LOCAL" />
+      <updated>1579338102766</updated>
+    </task>
+    <option name="localTasksCounter" value="9" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -281,14 +259,14 @@
       <screen x="0" y="0" width="1536" height="824" />
     </state>
     <state x="361" y="71" key="#Project_Structure/0.0.1536.824@0.0.1536.824" timestamp="1579317616963" />
-    <state x="361" y="71" key="#com.intellij.execution.impl.EditConfigurationsDialog" timestamp="1579179023575">
+    <state x="361" y="71" key="#com.intellij.execution.impl.EditConfigurationsDialog" timestamp="1579360049373">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state x="361" y="71" key="#com.intellij.execution.impl.EditConfigurationsDialog/0.0.1536.824@0.0.1536.824" timestamp="1579179023575" />
-    <state x="574" y="122" key="#com.intellij.ide.util.MemberChooser" timestamp="1579336858411">
+    <state x="361" y="71" key="#com.intellij.execution.impl.EditConfigurationsDialog/0.0.1536.824@0.0.1536.824" timestamp="1579360049373" />
+    <state x="574" y="122" key="#com.intellij.ide.util.MemberChooser" timestamp="1579367753024">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state x="574" y="122" key="#com.intellij.ide.util.MemberChooser/0.0.1536.824@0.0.1536.824" timestamp="1579336858411" />
+    <state x="574" y="122" key="#com.intellij.ide.util.MemberChooser/0.0.1536.824@0.0.1536.824" timestamp="1579367753024" />
     <state x="516" y="164" key="#com.intellij.ide.util.PackageChooserDialog" timestamp="1579150006221">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
@@ -305,14 +283,14 @@
       <screen x="0" y="0" width="1536" height="824" />
     </state>
     <state x="499" y="159" key="#com.intellij.refactoring.safeDelete.UnsafeUsagesDialog/0.0.1536.824@0.0.1536.824" timestamp="1579172113914" />
-    <state x="334" y="0" key="CommitChangelistDialog2" timestamp="1579281835468">
+    <state x="334" y="0" key="CommitChangelistDialog2" timestamp="1579338097926">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state x="334" y="0" key="CommitChangelistDialog2/0.0.1536.824@0.0.1536.824" timestamp="1579281835468" />
-    <state width="738" height="466" key="DebuggerActiveHint" timestamp="1579239292074">
+    <state x="334" y="0" key="CommitChangelistDialog2/0.0.1536.824@0.0.1536.824" timestamp="1579338097926" />
+    <state width="911" height="466" key="DebuggerActiveHint" timestamp="1579368094908">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state width="738" height="466" key="DebuggerActiveHint/0.0.1536.824@0.0.1536.824" timestamp="1579239292074" />
+    <state width="911" height="466" key="DebuggerActiveHint/0.0.1536.824@0.0.1536.824" timestamp="1579368094908" />
     <state x="147" y="71" key="DiffContextDialog" timestamp="1579193275073">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
@@ -325,66 +303,70 @@
       <screen x="0" y="0" width="1536" height="824" />
     </state>
     <state x="589" y="326" width="382" height="172" key="Github.CreateGistDialog/0.0.1536.824@0.0.1536.824" timestamp="1579192359130" />
-    <state width="1024" height="168" key="GridCell.Tab.0.bottom" timestamp="1579337948483">
+    <state width="1493" height="175" key="GridCell.Tab.0.bottom" timestamp="1579368160464">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state width="1024" height="168" key="GridCell.Tab.0.bottom/0.0.1536.824@0.0.1536.824" timestamp="1579337948483" />
-    <state width="1024" height="168" key="GridCell.Tab.0.center" timestamp="1579337948483">
+    <state width="1493" height="175" key="GridCell.Tab.0.bottom/0.0.1536.824@0.0.1536.824" timestamp="1579368160464" />
+    <state width="1493" height="175" key="GridCell.Tab.0.center" timestamp="1579368160464">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state width="1024" height="168" key="GridCell.Tab.0.center/0.0.1536.824@0.0.1536.824" timestamp="1579337948483" />
-    <state width="1024" height="168" key="GridCell.Tab.0.left" timestamp="1579337948483">
+    <state width="1493" height="175" key="GridCell.Tab.0.center/0.0.1536.824@0.0.1536.824" timestamp="1579368160464" />
+    <state width="1493" height="175" key="GridCell.Tab.0.left" timestamp="1579368160464">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state width="1024" height="168" key="GridCell.Tab.0.left/0.0.1536.824@0.0.1536.824" timestamp="1579337948483" />
-    <state width="1024" height="168" key="GridCell.Tab.0.right" timestamp="1579337948483">
+    <state width="1493" height="175" key="GridCell.Tab.0.left/0.0.1536.824@0.0.1536.824" timestamp="1579368160464" />
+    <state width="1493" height="175" key="GridCell.Tab.0.right" timestamp="1579368160464">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state width="1024" height="168" key="GridCell.Tab.0.right/0.0.1536.824@0.0.1536.824" timestamp="1579337948483" />
-    <state width="1493" height="135" key="GridCell.Tab.1.bottom" timestamp="1579248124185">
+    <state width="1493" height="175" key="GridCell.Tab.0.right/0.0.1536.824@0.0.1536.824" timestamp="1579368160464" />
+    <state width="1493" height="175" key="GridCell.Tab.1.bottom" timestamp="1579368160464">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state width="1493" height="135" key="GridCell.Tab.1.bottom/0.0.1536.824@0.0.1536.824" timestamp="1579248124185" />
-    <state width="1493" height="135" key="GridCell.Tab.1.center" timestamp="1579248124185">
+    <state width="1493" height="175" key="GridCell.Tab.1.bottom/0.0.1536.824@0.0.1536.824" timestamp="1579368160464" />
+    <state width="1493" height="175" key="GridCell.Tab.1.center" timestamp="1579368160464">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state width="1493" height="135" key="GridCell.Tab.1.center/0.0.1536.824@0.0.1536.824" timestamp="1579248124185" />
-    <state width="1493" height="135" key="GridCell.Tab.1.left" timestamp="1579248124185">
+    <state width="1493" height="175" key="GridCell.Tab.1.center/0.0.1536.824@0.0.1536.824" timestamp="1579368160464" />
+    <state width="1493" height="175" key="GridCell.Tab.1.left" timestamp="1579368160464">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state width="1493" height="135" key="GridCell.Tab.1.left/0.0.1536.824@0.0.1536.824" timestamp="1579248124185" />
-    <state width="1493" height="135" key="GridCell.Tab.1.right" timestamp="1579248124185">
+    <state width="1493" height="175" key="GridCell.Tab.1.left/0.0.1536.824@0.0.1536.824" timestamp="1579368160464" />
+    <state width="1493" height="175" key="GridCell.Tab.1.right" timestamp="1579368160464">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state width="1493" height="135" key="GridCell.Tab.1.right/0.0.1536.824@0.0.1536.824" timestamp="1579248124185" />
-    <state width="1493" height="135" key="GridCell.Tab.2.bottom" timestamp="1579248124185">
+    <state width="1493" height="175" key="GridCell.Tab.1.right/0.0.1536.824@0.0.1536.824" timestamp="1579368160464" />
+    <state width="1493" height="175" key="GridCell.Tab.2.bottom" timestamp="1579368160464">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state width="1493" height="135" key="GridCell.Tab.2.bottom/0.0.1536.824@0.0.1536.824" timestamp="1579248124185" />
-    <state width="1493" height="135" key="GridCell.Tab.2.center" timestamp="1579248124185">
+    <state width="1493" height="175" key="GridCell.Tab.2.bottom/0.0.1536.824@0.0.1536.824" timestamp="1579368160464" />
+    <state width="1493" height="175" key="GridCell.Tab.2.center" timestamp="1579368160464">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state width="1493" height="135" key="GridCell.Tab.2.center/0.0.1536.824@0.0.1536.824" timestamp="1579248124185" />
-    <state width="1493" height="135" key="GridCell.Tab.2.left" timestamp="1579248124185">
+    <state width="1493" height="175" key="GridCell.Tab.2.center/0.0.1536.824@0.0.1536.824" timestamp="1579368160464" />
+    <state width="1493" height="175" key="GridCell.Tab.2.left" timestamp="1579368160464">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state width="1493" height="135" key="GridCell.Tab.2.left/0.0.1536.824@0.0.1536.824" timestamp="1579248124185" />
-    <state width="1493" height="135" key="GridCell.Tab.2.right" timestamp="1579248124185">
+    <state width="1493" height="175" key="GridCell.Tab.2.left/0.0.1536.824@0.0.1536.824" timestamp="1579368160464" />
+    <state width="1493" height="175" key="GridCell.Tab.2.right" timestamp="1579368160464">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state width="1493" height="135" key="GridCell.Tab.2.right/0.0.1536.824@0.0.1536.824" timestamp="1579248124185" />
+    <state width="1493" height="175" key="GridCell.Tab.2.right/0.0.1536.824@0.0.1536.824" timestamp="1579368160464" />
     <state x="299" y="68" key="Maven.ArtifactSearchDialog" timestamp="1579332741235">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
     <state x="299" y="68" key="Maven.ArtifactSearchDialog/0.0.1536.824@0.0.1536.824" timestamp="1579332741235" />
-    <state x="270" y="0" key="SettingsEditor" timestamp="1579275221488">
+    <state x="270" y="0" key="SettingsEditor" timestamp="1579367426753">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state x="270" y="0" key="SettingsEditor/0.0.1536.824@0.0.1536.824" timestamp="1579275221488" />
-    <state x="361" y="146" key="Vcs.Push.Dialog.v2" timestamp="1579281839766">
+    <state x="270" y="0" key="SettingsEditor/0.0.1536.824@0.0.1536.824" timestamp="1579367426753" />
+    <state x="361" y="146" key="Vcs.Push.Dialog.v2" timestamp="1579338107226">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state x="361" y="146" key="Vcs.Push.Dialog.v2/0.0.1536.824@0.0.1536.824" timestamp="1579281839766" />
+    <state x="361" y="146" key="Vcs.Push.Dialog.v2/0.0.1536.824@0.0.1536.824" timestamp="1579338107226" />
+    <state width="775" height="419" key="XDebugger.FullValuePopup" timestamp="1579358514956">
+      <screen x="0" y="0" width="1536" height="824" />
+    </state>
+    <state width="775" height="419" key="XDebugger.FullValuePopup/0.0.1536.824@0.0.1536.824" timestamp="1579358514956" />
     <state x="630" y="270" width="340" height="284" key="com.intellij.database.actions.DdlActions$DeleteProvider2$1" timestamp="1579113392825">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
@@ -397,17 +379,17 @@
       <screen x="0" y="0" width="1536" height="824" />
     </state>
     <state x="562" y="330" key="com.intellij.openapi.vcs.update.UpdateOrStatusOptionsDialogupdate-v2/0.0.1536.824@0.0.1536.824" timestamp="1579193123784" />
-    <state x="447" y="145" width="969" height="534" key="find.popup" timestamp="1579337944846">
+    <state x="447" y="145" width="969" height="534" key="find.popup" timestamp="1579366524677">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state x="447" y="145" width="969" height="534" key="find.popup/0.0.1536.824@0.0.1536.824" timestamp="1579337944846" />
+    <state x="447" y="145" width="969" height="534" key="find.popup/0.0.1536.824@0.0.1536.824" timestamp="1579366524677" />
     <state x="521" y="204" key="git4idea.merge.GitPullDialog" timestamp="1579193188401">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
     <state x="521" y="204" key="git4idea.merge.GitPullDialog/0.0.1536.824@0.0.1536.824" timestamp="1579193188401" />
-    <state x="431" y="145" width="672" height="678" key="search.everywhere.popup" timestamp="1579321065726">
+    <state x="431" y="145" width="672" height="678" key="search.everywhere.popup" timestamp="1579367840154">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state x="431" y="145" width="672" height="678" key="search.everywhere.popup/0.0.1536.824@0.0.1536.824" timestamp="1579321065726" />
+    <state x="431" y="145" width="672" height="678" key="search.everywhere.popup/0.0.1536.824@0.0.1536.824" timestamp="1579367840154" />
   </component>
 </project>
