@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.ledao.mapper.OverflowListMapper">
+
+    <resultMap id="OverflowListResult" type="OverflowList">
+        <result property="id" column="id"/>
+        <result property="overflowNumber" column="overflowNumber"/>
+        <result property="overflowDate" column="overflowDate"/>
+        <result property="remarks" column="remarks"/>
+        <association property="user" column="userId" select="com.ledao.mapper.UserMapper.findById"></association>
+    </resultMap>
+    <select id="getTodayMaxOverflowNumber" resultType="java.lang.String">
+        select max(overflowNumber) from t_overflow_list where to_days(overflowDate)=to_days(now())
+    </select>
+    <select id="findById" parameterType="integer" resultMap="OverflowListResult">
+        select * from t_overflow_list where id=#{id}
+    </select>
+    <insert id="add" parameterType="OverflowList">
+        insert into t_overflow_list (overflowDate, overflowNumber, remarks, userId) values (#{overflowDate},#{overflowNumber},#{remarks},#{user.id});
+    </insert>
+    <update id="update" parameterType="OverflowList">
+        update t_overflow_list
+        <set>
+            <if test="overflowDate != null">
+                overflowDate=#{overflowDate},
+            </if>
+            <if test="overflowNumber != null and overflowNumber != ''">
+                overflowNumber=#{overflowNumber},
+            </if>
+            <if test="remarks != null and remarks != ''">
+                remarks=#{remarks},
+            </if>
+            <if test="user.id != null">
+                userId=#{user.id},
+            </if>
+        </set>
+        where id=#{id}
+    </update>
+    <select id="list" parameterType="map" resultMap="OverflowListResult">
+        select * from t_overflow_list
+        <where>
+            <if test="bOverflowDate!=null and bOverflowDate!=''">
+                and date_format(overflowDate,'%Y-%m-%d') &gt;= '#{bOverflowDate}'
+            </if>
+            <if test="eOverflowDate!=null and eOverflowDate!=''">
+                and date_format(overflowDate,'%Y-%m-%d') &lt;= '#{eOverflowDate}'
+            </if>
+        </where>
+    </select>
+
+</mapper>

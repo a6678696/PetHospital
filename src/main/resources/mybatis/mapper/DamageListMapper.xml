@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.ledao.mapper.DamageListMapper">
+
+    <resultMap id="DamageListResult" type="DamageList">
+        <result property="id" column="id"/>
+        <result property="damageNumber" column="damageNumber"/>
+        <result property="damageDate" column="damageDate"/>
+        <result property="remarks" column="remarks"/>
+        <association property="user" column="userId" select="com.ledao.mapper.UserMapper.findById"></association>
+    </resultMap>
+    <select id="getTodayMaxDamageNumber" resultType="java.lang.String">
+        select max(damageNumber) from t_damage_list where to_days(damageDate)=to_days(now())
+    </select>
+    <select id="findById" parameterType="DamageList" resultMap="DamageListResult">
+        select * from t_damage_list where id=#{id}
+    </select>
+    <insert id="add" parameterType="DamageList">
+        insert into t_damage_list (damageDate, damageNumber, remarks, userId) values (#{damageDate},#{damageNumber},#{remarks},#{user.id});
+    </insert>
+    <update id="update" parameterType="DamageList">
+        update t_damage_list
+        <set>
+            <if test="damageDate != null">
+                damageDate=##{damageDate},
+            </if>
+            <if test="damageNumber != null and damageNumber != ''">
+                damageNumber=#{damageNumber},
+            </if>
+            <if test="remarks != null and remarks != ''">
+                remarks=#{remarks},
+            </if>
+            <if test="user.id != null">
+                userId=#{user.id},
+            </if>
+        </set>
+        where id=#{id}
+    </update>
+    <select id="list" parameterType="map" resultMap="DamageListResult">
+        select * from t_damage_list
+        <where>
+            <if test="bDamageDate!=null and bDamageDate!=''">
+                and date_format(damageDate,'%Y-%m-%d') &gt;= '#{bDamageDate}'
+            </if>
+            <if test="eDamageDate!=null and eDamageDate!=''">
+                and date_format(damageDate,'%Y-%m-%d') &lt;= '#{eDamageDate}'
+            </if>
+        </where>
+    </select>
+
+</mapper>

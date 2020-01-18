@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.ledao.mapper.ReturnListMapper">
+
+    <resultMap id="ReturnListResult" type="ReturnList">
+        <result property="id" column="id"/>
+        <result property="returnNumber" column="returnNumber"/>
+        <result property="returnDate" column="returnDate"/>
+        <result property="amountPayable" column="amountPayable"/>
+        <result property="amountPaid" column="amountPaid"/>
+        <result property="state" column="state"/>
+        <result property="remarks" column="remarks"/>
+        <association property="supplier" column="supplierId" select="com.ledao.mapper.SupplierMapper.findById"></association>
+        <association property="user" column="userId" select="com.ledao.mapper.UserMapper.findById"></association>
+    </resultMap>
+    <select id="getTodayMaxReturnNumber" resultType="java.lang.String">
+        select max(returnNumber) from t_return_list where to_days(returnDate)=to_days(now())
+    </select>
+    <select id="list" resultType="com.ledao.entity.ReturnList">
+        select * from t_return_list
+        <where>
+            <if test="returnNumber!=null and returnNumber!=''">
+                and returnNumber like #{returnNumber}
+            </if>
+            <if test="supplier.id">
+                and supplierId=#{supplier.id}
+            </if>
+            <if test="state!=null ">
+                and state=#{state}
+            </if>
+            <if test="bReturnDate!=null and bReturnDate!=''">
+                and date_format(returnDate,'%Y-%m-%d') &gt;= '#{bReturnDate}'
+            </if>
+            <if test="eReturnDate!=null and eReturnDate!=''">
+                and date_format(returnDate,'%Y-%m-%d') &lt;= '#{eReturnDate}'
+            </if>
+        </where>
+    </select>
+    <insert id="add" parameterType="ReturnList">
+        insert into t_return_list (amountPaid, amountPayable, remarks, returnDate, returnNumber, state, supplierId, userId) values (#{amountPaid},#{amountPayable},#{remarks},#{returnDate},#{returnNumber},#{state},#{supplier.id},#{user.id});
+    </insert>
+    <update id="update" parameterType="ReturnList">
+        update t_return_list
+        <set>
+            <if test="amountPaid != null">
+                amountPaid=#{amountPaid},
+            </if>
+            <if test="amountPayable != null">
+                amountPayable=#{amountPayable},
+            </if>
+            <if test="remarks != null and remarks != ''">
+                remarks=#{remarks},
+            </if>
+            <if test="returnDate != null">
+                returnDate=#{returnDate},
+            </if>
+            <if test="returnNumber != null and returnNumber != ''">
+                returnNumber=#{returnNumber},
+            </if>
+            <if test="state != null">
+                state=#{state},
+            </if>
+            <if test="supplier.id != null">
+                supplierId=#{supplier.id},
+            </if>
+            <if test="user.id != null">
+                userId=#{user.id},
+            </if>
+        </set>
+        where id=#{id}
+    </update>
+    <select id="findById" parameterType="integer" resultMap="ReturnListResult">
+        select * from t_return_list where id=#{id}
+    </select>
+    <delete id="delete" parameterType="integer">
+        delete from t_return_list where id=#{id}
+    </delete>
+
+</mapper>

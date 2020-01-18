@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
-<mapper namespace="com.ledao.mapper.CustomerReturnListGoodsMapper">
+<mapper namespace="com.ledao.mapper.SaleListGoodsMapper">
 
-    <resultMap id="CustomerReturnListGoodsResult" type="CustomerReturnListGoods">
+    <resultMap id="SaleListGoodsResult" type="SaleListGoods">
         <result property="id" column="id"/>
         <result property="code" column="code"/>
         <result property="name" column="name"/>
@@ -12,24 +12,21 @@
         <result property="price" column="price"/>
         <result property="num" column="num"/>
         <result property="total" column="total"/>
-        <association property="customerReturnList" column="customerReturnListId" select="com.ledao.mapper.CustomerReturnListMapper.findById"></association>
+        <association property="saleList" column="saleListId"
+                     select="com.ledao.mapper.SaleListMapper.findById"></association>
         <association property="type" column="typeId" select="com.ledao.mapper.GoodsTypeMapper.findById"></association>
     </resultMap>
-
-    <select id="listByCustomerReturnListId" parameterType="integer" resultMap="CustomerReturnListGoodsResult">
-        select * from t_customer_return_list_goods where customerReturnListId=#{customerReturnListId}
+    <select id="listBySaleListId" parameterType="integer" resultMap="SaleListGoodsResult">
+        select * from t_sale_list_goods where saleListId=#{saleListId}
     </select>
-
-    <delete id="deleteByCustomerReturnListId" parameterType="integer">
-        delete from t_customer_return_list_goods where customerReturnListId=#{customerReturnListId}
+    <delete id="deleteBySaleListId" parameterType="integer">
+        delete from t_sale_list_goods where saleListId=#{saleListId}
     </delete>
-
-    <select id="getTotalByGoodsId" resultType="java.lang.Long">
-        select sum(num) as total from t_customer_return_list_goods where goodsId=#{goodsId}
+    <select id="getTotalByGoodsId" resultType="java.lang.Integer">
+        select count(num) as total from t_sale_list_goods where goodsId=#{goodsId}
     </select>
-
-    <select id="list" parameterType="map" resultMap="CustomerReturnListGoodsResult">
-        select * from t_customer_return_list_goods
+    <select id="list" parameterType="map" resultMap="SaleListGoodsResult">
+        select * from t_sale_list_goods
         where 1=1
         <if test="type.id!=null ">
             and typeId=#{type.id}

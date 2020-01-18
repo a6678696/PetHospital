@@ -1,0 +1,85 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.ledao.mapper.SaleListMapper">
+
+    <resultMap id="SaleListResult" type="SaleList">
+        <result property="id" column="id"/>
+        <result property="saleNumber" column="saleNumber"/>
+        <result property="saleDate" column="saleDate"/>
+        <result property="amountPayable" column="amountPayable"/>
+        <result property="amountPaid" column="amountPaid"/>
+        <result property="state" column="state"/>
+        <result property="remarks" column="remarks"/>
+        <association property="customer" column="customerId" select="com.ledao.mapper.CustomerMapper.findById"></association>
+        <association property="user" column="userId" select="com.ledao.mapper.UserMapper.findById"></association>
+    </resultMap>
+    <select id="getTodayMaxSaleNumber" resultType="java.lang.String">
+        select max(saleNumber) from t_sale_list where to_days(saleDate)=to_days(now())
+    </select>
+    <select id="countSaleByDay" parameterType="string" resultType="java.lang.Object">
+        select sum(t3.purchasingPrice*t1.num) as amountCost,sum(t1.price*t1.num) as amountSale,t2.saleDate as saleDate from  t_sale_list_goods t1 left join t_sale_list t2 ON t1.saleListId=t2.id left join t_goods t3 on t3.id=t1.goodsId where t2.saleDate between #{param1} and #{param2} group by t2.saleDate
+    </select>
+    <select id="countSaleByMonth" parameterType="string" resultType="java.lang.Object">
+        SELECT SUM(t3.purchasingPrice*t1.num) AS amountCost,SUM(t1.price*t1.num) AS amountSale,DATE_FORMAT(t2.saleDate,'%Y-%m') AS saleDate FROM  t_sale_list_goods t1 LEFT JOIN t_sale_list t2 ON t1.saleListId=t2.`id` LEFT JOIN t_goods t3 ON t3.`id`=t1.goodsId WHERE DATE_FORMAT(t2.saleDate,'%Y-%m') BETWEEN #{param1} AND #{param2} GROUP BY DATE_FORMAT(t2.`saleDate`,'%Y-%m')
+    </select>
+    <select id="findById" parameterType="integer" resultMap="SaleListResult">
+        select * from t_sale_list where id=#{id}
+    </select>
+    <insert id="add" parameterType="SaleList">
+        insert into t_sale_list (amountPaid, amountPayable, remarks, saleDate, saleNumber, state, customerId, userId) values (#{amountPaid},#{amountPayable},#{remarks},#{saleDate},#{saleNumber},#{state},#{customer.id},#{user.id});
+    </insert>
+    <update id="update" parameterType="SaleList">
+        update t_sale_list
+        <set>
+            <if test="amountPaid != null">
+                amountPaid=#{amountPaid},
+            </if>
+            <if test="amountPayable != null">
+                amountPayable=#{amountPayable},
+            </if>
+            <if test="remarks != null and remarks != ''">
+                remarks=#{remarks},
+            </if>
+            <if test="saleDate != null">
+                saleDate=#{saleDate},
+            </if>
+            <if test="saleNumber != null and saleNumber != ''">
+                saleNumber=#{saleNumber},
+            </if>
+            <if test="state != null">
+                state=#{state},
+            </if>
+            <if test="customer.id != null">
+                customerId=#{customer.id},
+            </if>
+            <if test="user.id != null">
+                userId=#{user.id},
+            </if>
+        </set>
+        where id=#{id}
+    </update>
+    <select id="list" parameterType="map" resultMap="SaleListResult">
+        select * from t_sale_list
+        <where>
+            <if test="saleNumber!=null and saleNumber!=''">
+                and saleNumber like #{saleNumber}
+            </if>
+            <if test="customer.id!=null ">
+                and customerId=#{customer.id}
+            </if>
+            <if test="state!=null ">
+                and state=#{state}
+            </if>
+            <if test="bSaleDate!=null and bSaleDate!=''">
+                and date_format(saleDate,'%Y-%m-%d') &gt;= '#{bSaleDate}'
+            </if>
+            <if test="eSaleDate!=null and eSaleDate!=''">
+                and date_format(saleDate,'%Y-%m-%d') &lt;= '#{eSaleDate}'
+            </if>
+        </where>
+    </select>
+    <delete id="delete" parameterType="integer">
+        delete from t_sale_list where id=#{id}
+    </delete>
+
+</mapper>

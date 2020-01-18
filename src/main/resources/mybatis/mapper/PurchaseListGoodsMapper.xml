@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.ledao.mapper.PurchaseListGoodsMapper">
+
+    <resultMap id="PurchaseListGoodsResult" type="PurchaseListGoods">
+        <result property="id" column="id"/>
+        <result property="code" column="code"/>
+        <result property="name" column="name"/>
+        <result property="model" column="model"/>
+        <result property="goodsId" column="goodsId"/>
+        <result property="unit" column="unit"/>
+        <result property="price" column="price"/>
+        <result property="num" column="num"/>
+        <result property="total" column="total"/>
+        <association property="purchaseList" column="purchaseListId" select="com.ledao.mapper.PurchaseListMapper.findById"></association>
+        <association property="type" column="typeId" select="com.ledao.mapper.GoodsTypeMapper.findById"></association>
+    </resultMap>
+    <select id="listByPurchaseListId" parameterType="integer" resultMap="PurchaseListGoodsResult">
+        select * from t_purchase_list_goods where purchaseListId=#{purchaseListId}
+    </select>
+    <delete id="deleteByPurchaseListId">
+        delete from t_purchase_list_goods where purchaseListId=#{purchaseListId}
+    </delete>
+    <select id="list" parameterType="map" resultMap="PurchaseListGoodsResult">
+        select * from t_purchase_list_goods
+        <where>
+            <if test="type.id!=null ">
+                and typeId=#{type.id}
+            </if>
+            <if test="codeOrName!='' and codeOrName!=null">
+                and concat(`code`, `name`) like concat('%',#{codeOrName},'%')
+            </if>
+        </where>
+    </select>
+
+</mapper>

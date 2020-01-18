@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.ledao.mapper.LogMapper">
+
+    <resultMap id="LogResult" type="Log">
+        <result property="id" column="id"/>
+        <result property="type" column="type"/>
+        <result property="content" column="content"/>
+        <result property="time" column="time"/>
+        <association property="user" column="userId" select="com.ledao.mapper.UserMapper.findById"></association>
+    </resultMap>
+    <insert id="add" parameterType="Log">
+        insert into t_log (content, time, type, userId) values (#{content},#{time},#{type},#{user.id});
+    </insert>
+    <select id="list" parameterType="map" resultMap="LogResult">
+        select * from t_log t
+        <where>
+            <if test="type!=null and type!=''">
+                and type=#{type}
+            </if>
+            <if test="bTime!=null and bTime!=''">
+                and date_format(t.time,'%Y-%m-%d') &gt;= '#{bTime}'
+            </if>
+            <if test="etime!=null and etime!=''">
+                and date_format(t.time,'%Y-%m-%d') &lt;= '#{etime}'
+            </if>
+        </where>
+    </select>
+    <select id="getCount" parameterType="map" resultType="java.lang.Long">
+        select count(*) from t_log t
+        <where>
+            <if test="type!=null and type!=''">
+                and type=#{type}
+            </if>
+            <if test="bTime!=null and bTime!=''">
+                and date_format(t.time,'%Y-%m-%d') &gt;= '#{bTime}'
+            </if>
+            <if test="etime!=null and etime!=''">
+                and date_format(t.time,'%Y-%m-%d') &lt;= '#{etime}'
+            </if>
+        </where>
+    </select>
+
+</mapper>

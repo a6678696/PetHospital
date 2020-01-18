@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.ledao.mapper.DamageListGoodsMapper">
+
+    <resultMap id="DamageListGoodsResult" type="DamageListGoods">
+        <result property="id" column="id"/>
+        <result property="code" column="code"/>
+        <result property="name" column="name"/>
+        <result property="model" column="model"/>
+        <result property="goodsId" column="goodsId"/>
+        <result property="unit" column="unit"/>
+        <result property="price" column="price"/>
+        <result property="num" column="num"/>
+        <result property="total" column="total"/>
+        <association property="damageList" column="damageListId" select="com.ledao.mapper.DamageListMapper.findById"></association>
+        <association property="type" column="typeId" select="com.ledao.mapper.GoodsTypeMapper.findById"></association>
+    </resultMap>
+    <select id="listByDamageListId" parameterType="integer" resultMap="DamageListGoodsResult">
+        select * from t_damage_list_goods where damageListId=#{damageListId}
+    </select>
+    <delete id="deleteByDamageListId" parameterType="integer">
+        delete from t_damage_list_goods where damageListId=#{damageListId}
+    </delete>
+
+</mapper>

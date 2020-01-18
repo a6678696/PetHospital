@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.ledao.mapper.GoodsUnitMapper">
+
+    <resultMap id="GoodsUnitResult" type="GoodsUnit">
+        <result property="id" column="id"/>
+        <result property="name" column="name"/>
+    </resultMap>
+    <select id="listAll" resultMap="GoodsUnitResult">
+        select * from t_goodsunit
+    </select>
+    <insert id="add" parameterType="GoodsUnit">
+        insert into t_goodsunit (name) values (#{name});
+    </insert>
+    <update id="update" parameterType="GoodsUnit">
+        update t_goodsunit
+        <set>
+            <if test="name != null and name != ''">
+                name=#{name},
+            </if>
+        </set>
+        where id=#{id}
+    </update>
+    <delete id="delete" parameterType="integer">
+        delete from t_goodsunit where id=#{id}
+    </delete>
+    <select id="findById" parameterType="integer" resultMap="GoodsUnitResult">
+        select * from t_goodsunit where id=#{id}
+    </select>
+</mapper>

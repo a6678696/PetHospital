@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.ledao.mapper.PurchaseListMapper">
+
+    <resultMap id="PurchaseListResult" type="PurchaseList">
+        <result property="id" column="id"/>
+        <result property="purchaseNumber" column="purchaseNumber"/>
+        <result property="purchaseDate" column="purchaseDate"/>
+        <result property="amountPayable" column="amountPayable"/>
+        <result property="amountPaid" column="amountPaid"/>
+        <result property="state" column="state"/>
+        <result property="remarks" column="remarks"/>
+        <association property="supplier" column="supplierId" select="com.ledao.mapper.SupplierMapper.findById"></association>
+        <association property="user" column="userId" select="com.ledao.mapper.UserMapper.findById"></association>
+    </resultMap>
+    <select id="getTodayMaxPurchaseNumber" resultType="java.lang.String">
+        select max(purchaseNumber) from t_purchase_list where to_days(purchaseDate)=to_days(now())
+    </select>
+    <select id="findById" parameterType="integer" resultMap="PurchaseListResult">
+        select * from t_purchase_list where id=#{id}
+    </select>
+    <select id="list" parameterType="map" resultMap="PurchaseListResult">
+        select * from t_purchase_list
+        <where>
+            <if test="purchaseNumber!=null and purchaseNumber!=''">
+                and purchaseNumber like #{purchaseNumber}
+            </if>
+            <if test="supplier.id!=null ">
+                and supplierId=#{supplier.id}
+            </if>
+            <if test="state!=null ">
+                and state=#{state}
+            </if>
+            <if test="bPurchaseDate!=null and bPurchaseDate!=''">
+                and date_format(purchaseDate,'%Y-%m-%d') &gt;= '#{bPurchaseDate}'
+            </if>
+            <if test="ePurchaseDate!=null and ePurchaseDate!=''">
+                and date_format(purchaseDate,'%Y-%m-%d') &lt;= '#{ePurchaseDate}'
+            </if>
+        </where>
+    </select>
+    <insert id="add" parameterType="PurchaseList">
+        insert into t_purchase_list (amountPaid, amountPayable, purchaseDate, purchaseNumber, remarks, state, supplierId, userId) values (#{amountPaid},#{amountPayable},#{purchaseDate},#{purchaseNumber},#{remarks},#{state},#{supplier.id},#{user.id});
+    </insert>
+    <update id="update" parameterType="PurchaseList">
+        update t_purchase_list
+        <set>
+            <if test="amountPaid != null">
+                amountPaid=#{amountPaid},
+            </if>
+            <if test="amountPayable != null">
+                amountPayable=#{amountPayable},
+            </if>
+            <if test="purchaseDate != null">
+                purchaseDate=#{purchaseDate},
+            </if>
+            <if test="purchaseNumber != null and purchaseNumber != ''">
+                purchaseNumber=#{purchaseNumber},
+            </if>
+            <if test="remarks != null and remarks != ''">
+                remarks=#{remarks},
+            </if>
+            <if test="state != null">
+                state=#{state},
+            </if>
+            <if test="supplier.id != null">
+                supplierId=#{supplier.id},
+            </if>
+            <if test="user.id != null">
+                userId=#{user.id},
+            </if>
+        </set>
+        where id=#{id}
+    </update>
+    <delete id="delete" parameterType="integer">
+        delete from t_purchase_list where id=#{id}
+    </delete>
+
+</mapper>
