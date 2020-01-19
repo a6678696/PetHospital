@@ -74,4 +74,16 @@ public class Goods {
      * 销售总数
      */
     private int saleTotal;
+
+    @Override
+    public String toString() {
+        return "--{" +
+                "id=" + id +
+                ", 编号='" + code + '\'' +
+                ", 商品名称='" + name + '\'' +
+                ", 上次采购价格=" + lastPurchasingPrice +
+                ", 采购价格=" + purchasingPrice +
+                ", 出售价格=" + sellingPrice +
+                '}';
+    }
 }

@@ -39,7 +39,7 @@ public class Customer {
 
     @Override
     public String toString() {
-        return "客户{" +
+        return "--{" +
                 "id=" + id +
                 ", 客户名称='" + name + '\'' +
                 ", 联系人='" + contact + '\'' +

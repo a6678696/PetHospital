@@ -3,6 +3,7 @@ package com.ledao.serviceimpl;
 import com.ledao.entity.Goods;
 import com.ledao.mapper.GoodsMapper;
 import com.ledao.service.GoodsService;
+import org.springframework.stereotype.Service;
 
 import javax.annotation.Resource;
 import java.util.List;
@@ -15,6 +16,7 @@ import java.util.Map;
  * @company
  * @create 2020-01-17 22:06
  */
+@Service("goodsService")
 public class GoodsServiceImpl implements GoodsService {
 
     @Resource
@@ -46,23 +48,23 @@ public class GoodsServiceImpl implements GoodsService {
     }
 
     @Override
-    public List<Goods> listNoInventoryQuantityByCodeOrName(String codeOrName) {
-        return goodsMapper.listNoInventoryQuantityByCodeOrName(codeOrName);
+    public List<Goods> listNoInventoryQuantityByCodeOrName(Map<String, Object> map) {
+        return goodsMapper.listNoInventoryQuantityByCodeOrName(map);
     }
 
     @Override
-    public Long getCountNoInventoryQuantityByCodeOrName(String codeOrName) {
-        return goodsMapper.getCountNoInventoryQuantityByCodeOrName(codeOrName);
+    public Long getCountNoInventoryQuantityByCodeOrName(Map<String, Object> map) {
+        return goodsMapper.getCountNoInventoryQuantityByCodeOrName(map);
     }
 
     @Override
-    public List<Goods> listHasInventoryQuantityByCodeOrName(String codeOrName) {
-        return goodsMapper.listHasInventoryQuantityByCodeOrName(codeOrName);
+    public List<Goods> listHasInventoryQuantityByCodeOrName(Map<String, Object> map) {
+        return goodsMapper.listHasInventoryQuantityByCodeOrName(map);
     }
 
     @Override
-    public Long getCountHasInventoryQuantityByCodeOrName(String codeOrName) {
-        return goodsMapper.getCountHasInventoryQuantityByCodeOrName(codeOrName);
+    public Long getCountHasInventoryQuantityByCodeOrName(Map<String, Object> map) {
+        return goodsMapper.getCountHasInventoryQuantityByCodeOrName(map);
     }
 
     @Override

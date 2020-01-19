@@ -40,4 +40,9 @@ public class GoodsTypeServiceImpl implements GoodsTypeService {
     public Integer delete(Integer id) {
         return goodsTypeMapper.delete(id);
     }
+
+    @Override
+    public GoodsType findById(Integer id) {
+        return goodsTypeMapper.findById(id);
+    }
 }

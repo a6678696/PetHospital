@@ -32,4 +32,13 @@ public class GoodsType {
      * 父菜单Id
      */
     private Integer pId;
+
+    @Override
+    public String toString() {
+        return "--{" +
+                "编号=" + id +
+                ", 类别名称='" + name + '\'' +
+                ", 父菜单Id=" + pId +
+                '}';
+    }
 }

@@ -44,7 +44,7 @@
             limit #{start},#{size}
         </if>
     </select>
-    <select id="getCount" resultType="java.lang.Long">
+    <select id="getCount" parameterType="map" resultType="java.lang.Long">
         select count(*) from t_goods
         <where>
             <if test="name!=null and name!=''">
@@ -58,19 +58,22 @@
             </if>
         </where>
     </select>
-    <select id="listNoInventoryQuantityByCodeOrName" parameterType="string" resultMap="GoodsResult">
+    <select id="listNoInventoryQuantityByCodeOrName" parameterType="map" resultMap="GoodsResult">
         select * from t_goods
         where 1=1
-        <if test="_parameter!='' and _parameter!=null">
-            and concat(`code`, `name`) like concat('%',#{_parameter},'%')
+        <if test="codeOrName!='' and codeOrName!=null">
+            and concat(`code`, `name`) like concat('%',#{codeOrName},'%')
         </if>
         and inventoryQuantity &lt;1
+        <if test="start!=null and size!=null ">
+            limit #{start},#{size}
+        </if>
     </select>
-    <select id="getCountNoInventoryQuantityByCodeOrName" parameterType="string" resultType="java.lang.Long">
+    <select id="getCountNoInventoryQuantityByCodeOrName" parameterType="map" resultType="java.lang.Long">
         select count(*) from t_goods
         where 1=1
-        <if test="_parameter != null and _parameter != ''">
-            and concat(`code`, `name`) like concat('%',#{_parameter},'%')
+        <if test="codeOrName != null and codeOrName != ''">
+            and concat(`code`, `name`) like concat('%',#{codeOrName},'%')
         </if>
         and inventoryQuantity &lt;1
     </select>
@@ -81,6 +84,9 @@
             and concat(`code`, `name`) like concat('%',#{_parameter},'%')
         </if>
         and inventoryQuantity &gt;1
+        <if test="start!=null and size!=null ">
+            limit #{start},#{size}
+        </if>
     </select>
     <select id="getCountHasInventoryQuantityByCodeOrName" parameterType="string" resultType="java.lang.Long">
         select count(*) from t_goods

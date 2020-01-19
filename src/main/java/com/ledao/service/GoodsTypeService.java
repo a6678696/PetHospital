@@ -44,4 +44,12 @@ public interface GoodsTypeService {
      * @return
      */
     Integer delete(Integer id);
+
+    /**
+     * 根据id查询实体
+     *
+     * @param id
+     * @return
+     */
+    GoodsType findById(Integer id);
 }

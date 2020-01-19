@@ -36,4 +36,15 @@ public class Supplier {
      *备注
      */
     private String remarks;
+
+    @Override
+    public String toString() {
+        return "--{" +
+                "编号=" + id +
+                ", 供应商名称='" + name + '\'' +
+                ", 联系人='" + contact + '\'' +
+                ", 联系电话='" + number + '\'' +
+                ", 联系地址='" + address + '\'' +
+                '}';
+    }
 }

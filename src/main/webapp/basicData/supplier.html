@@ -1,0 +1,181 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>供应商管理</title>
+    <link rel="stylesheet" type="text/css" href="/static/jquery-easyui-1.7.0/themes/metro-blue/easyui.css">
+    <link rel="stylesheet" type="text/css" href="/static/jquery-easyui-1.7.0/themes/icon.css">
+    <script type="text/javascript" src="/static/jquery-easyui-1.7.0/jquery.min.js"></script>
+    <script type="text/javascript" src="/static/jquery-easyui-1.7.0/jquery.easyui.min.js"></script>
+    <script type="text/javascript" src="/static/jquery-easyui-1.7.0/locale/easyui-lang-zh_CN.js"></script>
+    <script type="text/javascript">
+
+        var url;
+
+
+        function searchSupplier() {
+            $("#dg").datagrid('load', {
+                "name": $("#s_name").val()
+            });
+        }
+
+        function resetValue() {
+            $("#name").val("");
+            $("#contact").val("");
+            $("#number").val("");
+            $("#address").val("");
+            $("#remarks").val("");
+        }
+
+        function closeSupplierDialog() {
+            $("#dlg").dialog("close");
+            resetValue();
+        }
+
+        function saveSupplier() {
+            $("#fm").form("submit", {
+                url: url,
+                onSubmit: function () {
+                    return $(this).form("validate");
+                },
+                success: function (result) {
+                    var result = eval('(' + result + ')');
+                    if (result.success) {
+                        $.messager.alert("系统提示", "保存成功！");
+                        resetValue();
+                        $("#dlg").dialog("close");
+                        $("#dg").datagrid("reload");
+                    } else {
+                        $.messager.alert("系统提示", result.errorInfo);
+                    }
+                }
+            });
+        }
+
+        function openSupplierAddDialog() {
+            $("#dlg").dialog("open").dialog("setTitle", "添加供应商信息");
+            url = "/admin/supplier/save";
+        }
+
+        function openSupplierModifyDialog() {
+            var selectedRows = $("#dg").datagrid("getSelections");
+            if (selectedRows.length != 1) {
+                $.messager.alert("系统提示", "请选择一条要修改的数据！");
+                return;
+            }
+            var row = selectedRows[0];
+            $("#dlg").dialog("open").dialog("setTitle", "修改供应商信息");
+            $("#fm").form("load", row);
+            url = "/admin/supplier/save?id=" + row.id;
+        }
+
+        function deleteSupplier() {
+            var selectedRows = $("#dg").datagrid("getSelections");
+            if (selectedRows.length == 0) {
+                $.messager.alert("系统提示", "请选择要删除的数据！");
+                return;
+            }
+            var strIds = [];
+            for (var i = 0; i < selectedRows.length; i++) {
+                strIds.push(selectedRows[i].id);
+            }
+            var ids = strIds.join(",");
+            $.messager.confirm("系统提示", "您确定要删除<span style='color: red'>"+selectedRows.length+"</span>这条数据吗?", function (r) {
+                if (r) {
+                    $.post("/admin/supplier/delete", {ids: ids}, function (result) {
+                        if (result.success) {
+                            $.messager.alert("系统提示", "数据已成功删除！");
+                            $("#dg").datagrid("reload");
+                        } else {
+                            $.messager.alert("系统提示", result.errorInfo);
+                        }
+                    }, "json");
+                }
+            });
+        }
+
+        $(document).ready(function () {
+
+            $("#dg").datagrid({
+                onDblClickRow: function (index, row) {
+                    $("#dlg").dialog("open").dialog("setTitle", "修改供应商信息");
+                    $("#fm").form("load", row);
+                    url = "/admin/supplier/save?id=" + row.id;
+                }
+            });
+
+        });
+    </script>
+</head>
+<body style="margin: 1px">
+<table id="dg" title="供应商管理" class="easyui-datagrid"
+       fitColumns="true" pagination="true" rownumbers="true"
+       url="/admin/supplier/list" fit="true" toolbar="#tb">
+    <thead>
+    <th field="cb" checkbox="true" align="center"></th>
+    <th field="id" width="20" align="center">编号</th>
+    <th field="name" width="100" align="center">供应商名称</th>
+    <th field="contact" width="50" align="center">联系人</th>
+    <th field="number" width="50" align="center">联系电话</th>
+    <th field="address" width="150" align="center">联系地址</th>
+    <th field="remarks" width="150" align="center">备注</th>
+    </thead>
+</table>
+
+<div id="tb">
+    <div>
+        <a href="javascript:openSupplierAddDialog()" class="easyui-linkbutton" iconCls="icon-add" plain="true">添加</a>
+        <a href="javascript:openSupplierModifyDialog()" class="easyui-linkbutton" iconCls="icon-edit" plain="true">修改</a>
+        <a href="javascript:deleteSupplier()" class="easyui-linkbutton" iconCls="icon-remove" plain="true">删除</a>
+    </div>
+    <div>
+        &nbsp;供应商名称：&nbsp;<input type="text" id="s_name" size="20" onkeydown="if(event.keyCode==13) searchSupplier()"/>
+        <a href="javascript:searchSupplier()" class="easyui-linkbutton" iconCls="icon-search" plain="true">搜索</a>
+    </div>
+</div>
+
+
+<div id="dlg" class="easyui-dialog" style="width: 500px;height: 350px;padding: 10px 20px"
+     closed="true" buttons="#dlg-buttons" data-options="onClose:function(){resetValue()}">
+    <form id="fm" method="post">
+        <table cellspacing="8px">
+            <tr>
+                <td>供应商名称：</td>
+                <td>
+                    <input type="text" id="name" name="name" class="easyui-validatebox" required="true" style="width: 250px"/>
+                </td>
+            </tr>
+            <tr>
+                <td>联系人：</td>
+                <td>
+                    <input type="text" id="contact" name="contact" class="easyui-validatebox" required="true" style="width: 250px"/>
+                </td>
+            </tr>
+            <tr>
+                <td>联系电话：</td>
+                <td>
+                    <input type="text" id="number" name="number" class="easyui-validatebox" required="true" style="width: 250px"/>
+                </td>
+            </tr>
+            <tr>
+                <td>联系地址：</td>
+                <td>
+                    <input type="text" id="address" name="address" class="easyui-validatebox" required="true" style="width: 250px"/>
+                </td>
+            </tr>
+            <tr>
+                <td valign="top">备注：</td>
+                <td>
+                    <textarea rows="5" cols="40" id="remarks" name="remarks"></textarea>
+                </td>
+            </tr>
+        </table>
+    </form>
+</div>
+
+<div id="dlg-buttons">
+    <a href="javascript:saveSupplier()" class="easyui-linkbutton" iconCls="icon-ok" >保存</a>
+    <a href="javascript:closeSupplierDialog()" class="easyui-linkbutton" iconCls="icon-cancel" >关闭</a>
+</div>
+</body>
+</html>

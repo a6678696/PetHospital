@@ -55,34 +55,34 @@ public interface GoodsMapper {
     /**
      * 根据商品编码或商品名称条件分页查询没有库存的商品信息
      *
-     * @param codeOrName
+     * @param map
      * @return
      */
-    List<Goods> listNoInventoryQuantityByCodeOrName(String codeOrName);
+    List<Goods> listNoInventoryQuantityByCodeOrName(Map<String, Object> map);
 
     /**
      * 根据商品编码或商品名称条件分页查询没有库存的商品信息的总记录数
      *
-     * @param codeOrName
+     * @param map
      * @return
      */
-    Long getCountNoInventoryQuantityByCodeOrName(String codeOrName);
+    Long getCountNoInventoryQuantityByCodeOrName(Map<String, Object> map);
 
     /**
      * 根据商品编码或商品名称条件分页查询有库存的商品信息
      *
-     * @param codeOrName
+     * @param map
      * @return
      */
-    List<Goods> listHasInventoryQuantityByCodeOrName(String codeOrName);
+    List<Goods> listHasInventoryQuantityByCodeOrName(Map<String, Object> map);
 
     /**
      * 根据商品编码或商品名称条件分页查询有库存的商品信息的总记录数
      *
-     * @param codeOrName
+     * @param map
      * @return
      */
-    Long getCountHasInventoryQuantityByCodeOrName(String codeOrName);
+    Long getCountHasInventoryQuantityByCodeOrName(Map<String, Object> map);
 
     /**
      * 删除商品
