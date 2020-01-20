@@ -65,4 +65,15 @@ public class PurchaseList {
      * 采购单商品集合
      */
     private List<PurchaseListGoods> purchaseListGoodsList=null;
+
+    @Override
+    public String toString() {
+        return "--{" +
+                "编号=" + id +
+                ", 退货单号='" + purchaseNumber + '\'' +
+                ", 供应商=" + supplier.getName() +
+                ", 退货日期=" + purchaseDate +
+                ", 操作员=" + user.getUserName() +
+                '}';
+    }
 }

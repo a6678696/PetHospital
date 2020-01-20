@@ -48,6 +48,11 @@ public class ReturnListServiceImpl implements ReturnListService {
     }
 
     @Override
+    public ReturnList findByReturnNumber(String returnName) {
+        return returnListMapper.findByReturnNumber(returnName);
+    }
+
+    @Override
     public Integer delete(Integer id) {
         return returnListMapper.delete(id);
     }

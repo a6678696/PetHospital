@@ -120,7 +120,7 @@ public class PurchaseListAdminController {
             goods.setState(2);
             goodsService.update(goods);
         }
-        logService.add(new Log(Log.ADD_ACTION, "添加进货单"));
+        logService.add(new Log(Log.ADD_ACTION, "添加进货单"+purchaseList));
         resultMap.put("success", true);
         return resultMap;
     }

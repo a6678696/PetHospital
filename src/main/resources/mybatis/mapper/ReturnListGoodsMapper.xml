@@ -32,5 +32,8 @@
             </if>
         </where>
     </select>
+    <insert id="add" parameterType="ReturnListGoods">
+        insert into t_return_list_goods (code, goodsId, model, name, num, price, total, unit, returnListId, typeId) values (#{code},#{goodsId},#{model},#{name},#{num},#{price},#{total},#{unit},#{returnList.id},#{type.id});
+    </insert>
 
 </mapper>

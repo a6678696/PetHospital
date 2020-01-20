@@ -37,4 +37,12 @@ public interface ReturnListGoodsMapper {
      * @return
      */
     List<ReturnListGoods> list(Map<String, Object> map);
+
+    /**
+     * 添加退货单商品
+     *
+     * @param returnListGoods
+     * @return
+     */
+    Integer add(ReturnListGoods returnListGoods);
 }

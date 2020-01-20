@@ -54,6 +54,14 @@ public interface ReturnListService {
     ReturnList findById(Integer id);
 
     /**
+     * 根据退货单号查询订单
+     *
+     * @param returnName
+     * @return
+     */
+    ReturnList findByReturnNumber(String returnName);
+
+    /**
      * 根据id删除退货单信息
      *
      * @param id

@@ -64,6 +64,10 @@
             return "¥" + (row.inventoryQuantity * row.purchasingPrice).toFixed(2);
         }
 
+        function formatInventoryQuantity(val,row) {
+            return "<span style='color: blue'>" + val + "</span>";
+        }
+
         function formatSaleTotal(val,row) {
             return "<span style='color: red'>" + val + "</span>";
         }
@@ -78,7 +82,7 @@
     <th field="name" width="200" align="left">商品名称</th>
     <th field="typeName" width="40" align="center" formatter="formatGoodsTypeName">类别</th>
     <th field="model" width="60" align="center">型号</th>
-    <th field="inventoryQuantity" width="40" align="center">库存数量</th>
+    <th field="inventoryQuantity" width="40" align="center" formatter="formatInventoryQuantity">库存数量</th>
     <th field="saleTotal" width="40" align="center" formatter="formatSaleTotal">销售总数</th>
     <th field="lastPurchasingPrice" width="40" align="right" formatter="formatLastPurchasingPrice">上次进价</th>
     <th field="purchasingPrice" width="50" align="right" formatter="formatPurchasingPrice">成本均价</th>

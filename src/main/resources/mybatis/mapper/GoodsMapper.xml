@@ -39,6 +39,9 @@
             <if test="code!=null and code!=''">
                 and code like #{code}
             </if>
+            <if test="codeOrName!='' and codeOrName!=null">
+                and concat(`code`, `name`) like concat('%',#{codeOrName},'%')
+            </if>
         </where>
         <if test="start!=null and size!=null ">
             limit #{start},#{size}
@@ -55,6 +58,9 @@
             </if>
             <if test="code!=null and code!=''">
                 and code like #{code}
+            </if>
+            <if test="codeOrName!='' and codeOrName!=null">
+                and concat(`code`, `name`) like concat('%',#{codeOrName},'%')
             </if>
         </where>
     </select>
@@ -154,9 +160,6 @@
     <select id="listInventory" parameterType="map" resultMap="GoodsResult">
         select * from t_goods
         where 1=1
-        <if test="name!=null and name!=''">
-            and name=#{name}
-        </if>
         <if test="typeId!=null ">
             and typeId=#{typeId}
         </if>
@@ -170,9 +173,6 @@
     <select id="getCountInventory" parameterType="map" resultType="java.lang.Long">
         select count(*) from t_goods
         where 1=1
-        <if test="name!=null and name!=''">
-            and name=#{name}
-        </if>
         <if test="typeId!=null ">
             and typeId=#{typeId}
         </if>

@@ -36,4 +36,9 @@ public class ReturnListGoodsServiceImpl implements ReturnListGoodsService {
     public List<ReturnListGoods> list(Map<String, Object> map) {
         return returnListGoodsMapper.list(map);
     }
+
+    @Override
+    public Integer add(ReturnListGoods returnListGoods) {
+        return returnListGoodsMapper.add(returnListGoods);
+    }
 }

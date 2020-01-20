@@ -16,7 +16,7 @@
     <select id="getTodayMaxReturnNumber" resultType="java.lang.String">
         select max(returnNumber) from t_return_list where to_days(returnDate)=to_days(now())
     </select>
-    <select id="list" resultType="com.ledao.entity.ReturnList">
+    <select id="list" parameterType="map" resultMap="ReturnListResult">
         select * from t_return_list
         <where>
             <if test="returnNumber!=null and returnNumber!=''">
@@ -28,13 +28,14 @@
             <if test="state!=null ">
                 and state=#{state}
             </if>
-            <if test="bReturnDate!=null and bReturnDate!=''">
-                and date_format(returnDate,'%Y-%m-%d') &gt;= '#{bReturnDate}'
+            <if test="bReturnDate!=null">
+                and date_format(returnDate,'%Y-%m-%d %H:%i:%S') &gt;= date_format(#{bReturnDate},'%Y-%m-%d %H:%i:%S')
             </if>
-            <if test="eReturnDate!=null and eReturnDate!=''">
-                and date_format(returnDate,'%Y-%m-%d') &lt;= '#{eReturnDate}'
+            <if test="eReturnDate!=null">
+                and date_format(returnDate,'%Y-%m-%d %H:%i:%S') &lt;= date_format(#{eReturnDate},'%Y-%m-%d %H:%i:%S')
             </if>
         </where>
+        order by returnDate desc
     </select>
     <insert id="add" parameterType="ReturnList">
         insert into t_return_list (amountPaid, amountPayable, remarks, returnDate, returnNumber, state, supplierId, userId) values (#{amountPaid},#{amountPayable},#{remarks},#{returnDate},#{returnNumber},#{state},#{supplier.id},#{user.id});
@@ -75,5 +76,8 @@
     <delete id="delete" parameterType="integer">
         delete from t_return_list where id=#{id}
     </delete>
+    <select id="findByReturnNumber" parameterType="string" resultMap="ReturnListResult">
+        select * from t_return_list where returnNumber=#{returnName}
+    </select>
 
 </mapper>

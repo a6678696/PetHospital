@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>进货入库</title>
+    <title>退货出库</title>
     <link rel="stylesheet" type="text/css" href="/static/jquery-easyui-1.7.0/themes/metro-blue/easyui.css">
     <link rel="stylesheet" type="text/css" href="/static/jquery-easyui-1.7.0/themes/icon.css">
     <script type="text/javascript" src="/static/jquery-easyui-1.7.0/jquery.min.js"></script>
@@ -12,14 +12,20 @@
     <script type="text/javascript">
         var url;
 
-        function savePurchaseGoods() {
-            $("#purchaseNumber").val($("#dh").text());
+        $(document).ready(function () {
+
+
+
+        });
+
+        function saveReturnGoods() {
+            $("#returnNumber").val($("#dh").text());
             $("#goodsJson").val(JSON.stringify($("#dg").datagrid("getData").rows));
             $("#fm").form("submit", {
-                url: "/admin/purchaseList/save",
+                url: "/admin/returnList/save",
                 onSubmit: function () {
                     if ($("#dg").datagrid("getRows").length == 0) {
-                        $.messager.alert("系统提示", "请添加进货商品！");
+                        $.messager.alert("系统提示", "请添加退货商品！");
                         return false;
                     }
                     if (!$(this).form("validate")) {
@@ -43,7 +49,7 @@
             });
         }
 
-        function openPurchaseListGoodsModifyDialog() {
+        function openReturnListGoodsModifyDialog() {
             $("#saveAddAddNextButton").hide();
             var selectedRows = $("#dg").datagrid("getSelections");
             if (selectedRows.length != 1) {
@@ -51,7 +57,7 @@
                 return;
             }
             var row = selectedRows[0];
-            $("#dlg2").dialog("open").dialog("setTitle", "修改进货单商品");
+            $("#dlg2").dialog("open").dialog("setTitle", "修改退货单商品");
             $("#fm2").form("load", row);
             $("#lastPurchasingPrice").val("¥" + row.lastPurchasingPrice);
             $("#price").numberbox("setValue", row.price);
@@ -61,7 +67,7 @@
             $("#rowIndex").val($("#dg").datagrid("getRowIndex", row));
         }
 
-        function deletePurchaseListGoods() {
+        function deleteReturnListGoods() {
             var selectedRows = $("#dg").datagrid("getSelections");
             if (selectedRows.length != 1) {
                 $.messager.alert("系统提示", "请选择一条要删除的商品！");
@@ -70,14 +76,14 @@
             $.messager.confirm("系统提示", "您确定要删除这商品吗?", function (r) {
                 if (r) {
                     $("#dg").datagrid("deleteRow", $("#dg").datagrid("getRowIndex", selectedRows[0]));
-                    setPurchaseListAmount();
+                    setReturnListAmount();
                 }
             });
         }
 
-        // 进货入库模块
+        // 退货出库模块
 
-        function setPurchaseListAmount() {
+        function setReturnListAmount() {
             var rows = $("#dg").datagrid("getRows");
             var amount = 0;
             for (var i = 0; i < rows.length; i++) {
@@ -88,8 +94,8 @@
             $("#amountPaid").val(amount.toFixed(2));
         }
 
-        function openPurchaseListGoodsAddDialog() {
-            $("#dlg").dialog("open").dialog("setTitle", "进货入库商品选择");
+        function openReturnListGoodsAddDialog() {
+            $("#dlg").dialog("open").dialog("setTitle", "退货出库商品选择");
 
             $("#tree").tree({
                 url: '/admin/goodsType/loadTreeInfo',
@@ -200,7 +206,7 @@
                     }
                 });
             }
-            setPurchaseListAmount();
+            setReturnListAmount();
             if (type == 1) {
                 closeGoodsDialog();
             }
@@ -268,7 +274,7 @@
             $("#dg").datagrid({
                 onDblClickRow: function (index, row) {
                     $("#saveAddAddNextButton").hide();
-                    $("#dlg2").dialog("open").dialog("setTitle", "修改进货单商品");
+                    $("#dlg2").dialog("open").dialog("setTitle", "修改退货单商品");
                     $("#fm2").form("load", row);
                     $("#lastPurchasingPrice").val("¥" + row.lastPurchasingPrice);
                     $("#price").numberbox("setValue", row.price);
@@ -299,9 +305,9 @@
                 delay: 100
             });
 
-            // $("#purchaseDate").datebox("setValue", genTodayStr());
+            // $("#returnDate").datebox("setValue", genTodayStr());
 
-            $("#dh").load("/admin/purchaseList/genCode");
+            $("#dh").load("/admin/returnList/genCode");
         });
     </script>
 </head>
@@ -327,7 +333,7 @@
                                                             class="easyui-validatebox" required="true" size="10"/>
                     </td>
                     <td>
-                        &nbsp;&nbsp;&nbsp;&nbsp;收货日期：<input type="text" id="purchaseDate" name="purchaseDate"
+                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;退货日期：<input type="text" id="returnDate" name="returnDate"
                                                             class="easyui-datetimebox" required="true"
                                                             data-options="editable:false" size="21"/>
                     </td>
@@ -339,16 +345,16 @@
                         备&nbsp;&nbsp;&nbsp;注：<input type="text" id="remarks" name="remarks" size="78"/>
                     </td>
                     <td>
-                        &nbsp;&nbsp;&nbsp;&nbsp;是否付款：<select class="easyui-combobox" id="state" name="state"
+                        是否收到退货款：<select class="easyui-combobox" id="state" name="state"
                                                              style="width: 167px" editable=false panelHeight="auto">
-                        <option value="1">已付</option>
-                        <option value="2">未付</option>
+                        <option value="1">已收</option>
+                        <option value="2">未收</option>
                     </select>
                     </td>
                     <td>
-                        <input type="hidden" id="purchaseNumber" name="purchaseNumber"/>
+                        <input type="hidden" id="returnNumber" name="returnNumber"/>
                         <input type="hidden" id="goodsJson" name="goodsJson"/>
-                        &nbsp;&nbsp;&nbsp;&nbsp;<a href="javascript:savePurchaseGoods()" class="easyui-linkbutton"
+                        &nbsp;&nbsp;&nbsp;&nbsp;<a href="javascript:saveReturnGoods()" class="easyui-linkbutton"
                                                    iconCls="icon-ok">保存</a>
                     </td>
                 </tr>
@@ -373,11 +379,11 @@
 
     <div id="tb">
         <div style="padding: 2px">
-            <a href="javascript:openPurchaseListGoodsAddDialog()" class="easyui-linkbutton" iconCls="icon-add"
+            <a href="javascript:openReturnListGoodsAddDialog()" class="easyui-linkbutton" iconCls="icon-add"
                plain="true">添加</a>
-            <a href="javascript:openPurchaseListGoodsModifyDialog()" class="easyui-linkbutton" iconCls="icon-edit"
+            <a href="javascript:openReturnListGoodsModifyDialog()" class="easyui-linkbutton" iconCls="icon-edit"
                plain="true">修改</a>
-            <a href="javascript:deletePurchaseListGoods()" class="easyui-linkbutton" iconCls="icon-remove" plain="true">删除</a>
+            <a href="javascript:deleteReturnListGoods()" class="easyui-linkbutton" iconCls="icon-remove" plain="true">删除</a>
         </div>
     </div>
 </div>
@@ -387,7 +393,7 @@
      closed="true" data-options="onClose:function(){$('#s_codeOrName').val('');}">
     <div class="easyui-layout" style="width: 100%;height: 100%">
         <div region="north" style="height: 50px">
-            <div style="padding-top: 8px">
+            <div style="padding-top: 8px;padding-left: 40px">
                 &nbsp;商品编码或者名称：&nbsp;<input type="text" id="s_codeOrName" size="20"
                                             onkeydown="if(event.keyCode==13) searchGoods()"/>
                 <a href="javascript:searchGoods()" class="easyui-linkbutton" iconCls="icon-search" plain="true">搜索</a>
@@ -411,9 +417,9 @@
                 <thead>
                 <th field="id" width="30" hidden="true" align="center">编号</th>
                 <th field="code" width="50" align="center">商品编码</th>
-                <th field="name" width="170" align="left">商品名称</th>
+                <th field="name" width="150" align="left">商品名称</th>
                 <th field="model" width="50" align="center">商品型号</th>
-                <th field="unit" width="30" align="center">单位</th>
+                <th field="unit" width="50" align="center">单位</th>
                 <th field="lastPurchasingPrice" width="50" align="right" formatter="formatLastPurchasingPrice">上次进价</th>
                 <th field="purchasingPrice" width="50" align="right" formatter="formatPurchasingPrice">成本均价</th>
                 <th field="inventoryQuantity" width="50" align="center">库存数量</th>
@@ -471,7 +477,7 @@
             </table>
         </form>
     </fieldset>
-    <div style="padding-left: 40px;padding-top: 10px">
+    <div style="padding-left: 12px;padding-top: 10px">
         <form id="fm4" method="post">
             <table cellspacing="8px">
                 <tr>
@@ -482,7 +488,7 @@
                         <input type="text" id="price" name="price" class="easyui-numberbox"
                                data-options="min:0,precision:2" required="true" size="10"/>
                     </td>
-                    <td align="right">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;数量：</td>
+                    <td align="right" width="60">&nbsp;&nbsp;&nbsp;数量：</td>
                     <td>
                         <input type="text" id="num" name="num" class="easyui-numberbox" data-options="min:1"
                                required="true" size="10"/>

@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>进货单据查询</title>
+    <title>退货单据查询</title>
     <link rel="stylesheet" type="text/css" href="/static/jquery-easyui-1.7.0/themes/metro-blue/easyui.css">
     <link rel="stylesheet" type="text/css" href="/static/jquery-easyui-1.7.0/themes/icon.css">
     <script type="text/javascript" src="/static/jquery-easyui-1.7.0/jquery.min.js"></script>
@@ -10,7 +10,7 @@
     <script type="text/javascript" src="/static/jquery-easyui-1.7.0/locale/easyui-lang-zh_CN.js"></script>
     <script type="text/javascript" src="/static/js/date.js"></script>
     <script type="text/javascript">
-        function searchPurchase() {
+        function searchReturn() {
             $("#dg2").datagrid("loadData", {total: 0, rows: []});
             var supplierId;
             if (isNaN($("#s_supplier").combobox("getValue"))) {
@@ -19,13 +19,13 @@
                 supplierId = $("#s_supplier").combobox("getValue");
             }
             $("#dg").datagrid({
-                url: '/admin/purchaseList/list',
+                url: '/admin/returnList/list',
                 queryParams: {
-                    purchaseNumber: $("#s_purchaseNumber").val(),
+                    returnNumber: $("#s_returnNumber").val(),
                     "supplier.id": supplierId,
                     state: $("#s_state").combobox("getValue"),
-                    bPurchaseDate: $("#s_bPurchaseDate").datebox("getValue"),
-                    ePurchaseDate: $("#s_ePurchaseDate").datebox("getValue")
+                    bReturnDate: $("#s_bReturnDate").datebox("getValue"),
+                    eReturnDate: $("#s_eReturnDate").datebox("getValue")
                 }
             });
         }
@@ -42,16 +42,16 @@
             return val.trueName;
         }
 
-        function deletePurchase() {
+        function deleteReturn() {
             var selectedRows = $("#dg").datagrid("getSelections");
             if (selectedRows.length != 1) {
-                $.messager.alert("系统提示", "请选择一条要删除的进货单！");
+                $.messager.alert("系统提示", "请选择一条要删除的退货单！");
                 return;
             }
             var id = selectedRows[0].id;
-            $.messager.confirm("系统提示", "<span style='color: red'>删除进货单后将无法恢复，是否删除?</span>", function (r) {
+            $.messager.confirm("系统提示", "<span style='color: red'>删除退货单后将无法恢复，是否删除?</span>", function (r) {
                 if (r) {
-                    $.post("/admin/purchaseList/delete", {id: id}, function (result) {
+                    $.post("/admin/returnList/delete", {id: id}, function (result) {
                         if (result.success) {
                             $("#dg").datagrid("reload");
                             $("#dg2").datagrid("reload");
@@ -69,9 +69,9 @@
             $("#dg").datagrid({
                 onClickRow: function (index, row) {
                     $("#dg2").datagrid({
-                        url: '/admin/purchaseList/listGoods',
+                        url: '/admin/returnList/listGoods',
                         queryParams: {
-                            purchaseListId: row.id
+                            returnListId: row.id
                         }
                     });
                 }
@@ -93,13 +93,13 @@
                 supplierId = $("#s_supplier").combobox("getValue");
             }
             $("#dg").datagrid({
-                url: '/admin/purchaseList/list',
+                url: '/admin/returnList/list',
                 queryParams: {
-                    purchaseNumber: $("#s_purchaseNumber").val(),
+                    returnNumber: $("#s_returnNumber").val(),
                     "supplier.id": supplierId,
                     state: $("#s_state").combobox("getValue"),
-                    bPurchaseDate: $("#s_bPurchaseDate").datebox("getValue"),
-                    ePurchaseDate: $("#s_ePurchaseDate").datebox("getValue")
+                    bReturnDate: $("#s_bReturnDate").datebox("getValue"),
+                    eReturnDate: $("#s_eReturnDate").datebox("getValue")
                 }
             });
         });
@@ -114,25 +114,25 @@
 
         function formatState(val, row) {
             if (val == 1) {
-                return "<span style='color: mediumspringgreen'>已付</span>";
+                return "<span style='color: mediumspringgreen'>已收</span>";
             } else if (val == 2) {
-                return "<span style='color: red'>未付</span>";
+                return "<span style='color: red'>未收</span>";
             }
         }
     </script>
 </head>
 <body class="easyui-layout" style="margin: 1px">
 <div region="north" style="height: 350px">
-    <table id="dg" title="进货单据查询" class="easyui-datagrid"
+    <table id="dg" title="退货单据查询" class="easyui-datagrid"
            fitColumns="true" rownumbers="true" singleSelect="true"
            fit="true" toolbar="#tb">
         <thead>
-        <th field="id" width="20" align="center" hidden="true">进货单ID</th>
-        <th field="purchaseNumber" width="30" align="center">进货单号</th>
-        <th field="purchaseDate" width="33" align="center">进货日期</th>
+        <th field="id" width="20" align="center" hidden="true">退货单ID</th>
+        <th field="returnNumber" width="30" align="center">退货单号</th>
+        <th field="returnDate" width="40" align="center">退货日期</th>
         <th field="supplier" width="50" align="center" formatter="formatSupplier">供应商</th>
-        <th field="amountPayable" width="20" align="right" formatter="formatAmountPayable">进货金额</th>
-        <th field="state" width="20" align="center" formatter="formatState">是否付款</th>
+        <th field="amountPayable" width="20" align="right" formatter="formatAmountPayable">退货金额</th>
+        <th field="state" width="30" align="center" formatter="formatState">是否收到退货款</th>
         <th field="user" width="20" align="center" formatter="formatUser">操作员</th>
         <th field="remarks" width="100" align="center">备注</th>
         </thead>
@@ -142,23 +142,23 @@
         <fieldset style="border-color: #E7F0FF">
             <legend>查询设置</legend>
             &nbsp;单据号&nbsp;
-            <input type="text" id="s_purchaseNumber" size="15" onkeydown="if(event.keyCode==13) searchPurchase()"/>
+            <input type="text" id="s_returnNumber" size="15" onkeydown="if(event.keyCode==13) searchReturn()"/>
             &nbsp;&nbsp;&nbsp;供应商：&nbsp;<input class="easyui-combobox" id="s_supplier" name="supplier.id"
                                                style="width: 200px"
                                                data-options="panelHeight:'auto',valueField:'id',textField:'name',url:'/admin/supplier/comboList'"/>
-            &nbsp;&nbsp;&nbsp;是否付款&nbsp;
+            &nbsp;&nbsp;&nbsp;是否收到退货款&nbsp;
             <select class="easyui-combobox" id="s_state" style="width: 100px" editable="false" panelHeight="auto">
                 <option value="">全部</option>
-                <option value="1">已付</option>
-                <option value="2">未付</option>
+                <option value="1">已收</option>
+                <option value="2">未收</option>
             </select>
             &nbsp;&nbsp;&nbsp;日期：&nbsp;
-            <input id="s_bPurchaseDate" class="easyui-datetimebox" editable=false style="width:180px"/>
+            <input id="s_bReturnDate" class="easyui-datetimebox" editable=false style="width:180px"/>
             &nbsp;&nbsp;-&nbsp;&nbsp;
-            <input id="s_ePurchaseDate" class="easyui-datetimebox" editable=false style="width:180px"/>
-            &nbsp;&nbsp;<a href="javascript:searchPurchase()" class="easyui-linkbutton" iconCls="icon-search"
+            <input id="s_eReturnDate" class="easyui-datetimebox" editable=false style="width:180px"/>
+            &nbsp;&nbsp;<a href="javascript:searchReturn()" class="easyui-linkbutton" iconCls="icon-search"
                            plain="true">搜索</a>
-            &nbsp;&nbsp;<a href="javascript:deletePurchase()" class="easyui-linkbutton" iconCls="icon-remove"
+            &nbsp;&nbsp;<a href="javascript:deleteReturn()" class="easyui-linkbutton" iconCls="icon-remove"
                            plain="true">删除</a>
         </fieldset>
     </div>

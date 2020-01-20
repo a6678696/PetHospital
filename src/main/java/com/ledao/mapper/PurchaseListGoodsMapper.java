@@ -40,7 +40,7 @@ public interface PurchaseListGoodsMapper {
     List<PurchaseListGoods> list(Map<String, Object> map);
 
     /**
-     * 条件进货单商品
+     * 添加进货单商品
      *
      * @param purchaseListGoods
      * @return

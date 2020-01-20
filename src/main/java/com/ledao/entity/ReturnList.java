@@ -49,7 +49,7 @@ public class ReturnList {
      */
     private float amountPaid;
     /**
-     * 交易状态 1 已付 2 未付
+     * 是否收到退货款 1 已收 2 未收
      */
     private Integer state;
     /**
@@ -64,4 +64,15 @@ public class ReturnList {
      * 退货单商品集合
      */
     public List<ReturnListGoods> returnListGoodsList=null;
+
+    @Override
+    public String toString() {
+        return "--{" +
+                "编号=" + id +
+                ", 退货单号='" + returnNumber + '\'' +
+                ", 供应商=" + supplier.getName() +
+                ", 退货日期=" + returnDate +
+                ", 操作员=" + user.getUserName() +
+                '}';
+    }
 }
