@@ -33,7 +33,7 @@ public class SaleListGoodsServiceImpl implements SaleListGoodsService {
     }
 
     @Override
-    public Integer getTotalByGoodsId(Integer goodsId) {
+    public Long getTotalByGoodsId(Integer goodsId) {
         return saleListGoodsMapper.getTotalByGoodsId(goodsId);
     }
 

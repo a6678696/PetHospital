@@ -30,6 +30,14 @@ public interface PurchaseListMapper {
     PurchaseList findById(Integer id);
 
     /**
+     * 根据订单号查询订单
+     *
+     * @param purchaseNumber
+     * @return
+     */
+    PurchaseList findByPurchaseNumber(String purchaseNumber);
+
+    /**
      * 根据条件查询进货单信息
      *
      * @param map

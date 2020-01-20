@@ -36,4 +36,9 @@ public class PurchaseListGoodsServiceImpl implements PurchaseListGoodsService {
     public List<PurchaseListGoods> list(Map<String, Object> map) {
         return purchaseListGoodsMapper.list(map);
     }
+
+    @Override
+    public Integer add(PurchaseListGoods purchaseListGoods) {
+        return purchaseListGoodsMapper.add(purchaseListGoods);
+    }
 }

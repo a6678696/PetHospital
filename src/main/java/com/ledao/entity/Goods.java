@@ -73,7 +73,7 @@ public class Goods {
     /**
      * 销售总数
      */
-    private int saleTotal;
+    private Long saleTotal;
 
     @Override
     public String toString() {

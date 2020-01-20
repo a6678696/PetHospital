@@ -36,7 +36,7 @@ public interface SaleListGoodsService {
      * @param goodsId
      * @return
      */
-    Integer getTotalByGoodsId(Integer goodsId);
+    Long getTotalByGoodsId(Integer goodsId);
 
     /**
      * 根据条件查询销售单商品

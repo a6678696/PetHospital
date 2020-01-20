@@ -48,6 +48,16 @@ public class GoodsServiceImpl implements GoodsService {
     }
 
     @Override
+    public List<Goods> listInventory(Map<String, Object> map) {
+        return goodsMapper.listInventory(map);
+    }
+
+    @Override
+    public Long getCountInventory(Map<String, Object> map) {
+        return goodsMapper.getCountInventory(map);
+    }
+
+    @Override
     public List<Goods> listNoInventoryQuantityByCodeOrName(Map<String, Object> map) {
         return goodsMapper.listNoInventoryQuantityByCodeOrName(map);
     }

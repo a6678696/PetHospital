@@ -31,8 +31,8 @@
     <select id="list" parameterType="map" resultMap="CustomerReturnListGoodsResult">
         select * from t_customer_return_list_goods
         where 1=1
-        <if test="type.id!=null ">
-            and typeId=#{type.id}
+        <if test="typeId!=null ">
+            and typeId=#{typeId}
         </if>
         <if test="codeOrName!='' and codeOrName!=null">
             and concat(`code`, `name`) like concat('%',#{codeOrName},'%')

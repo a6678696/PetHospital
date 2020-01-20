@@ -45,6 +45,22 @@ public interface GoodsService {
     List<Goods> list(Map<String, Object> map);
 
     /**
+     * 根据条件分页查询商品库存信息
+     *
+     * @param map
+     * @return
+     */
+    List<Goods> listInventory(Map<String, Object> map);
+
+    /**
+     * 获取商品库存信息记录数
+     *
+     * @param map
+     * @return
+     */
+    Long getCountInventory(Map<String, Object> map);
+
+    /**
      * 获取总记录数
      *
      * @param map

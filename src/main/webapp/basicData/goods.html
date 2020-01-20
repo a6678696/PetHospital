@@ -26,6 +26,8 @@
                     }else{
                         $("#del").linkbutton("disable");
                     }
+                },
+                onDblClick:function (node) {
                     $("#dg").datagrid('load',{
                         "name":$("#s_name").val(),
                         "type.id":node.id
@@ -336,7 +338,7 @@
 <body class="easyui-layout" style="padding-top: 2px">
 <div data-options="region:'west',collapsible:false" style="width: 200px" title="商品类别" split=true>
     <ul id="tree" class="easyui-tree" style="padding: 10px"></ul>
-    <div style="position: absolute;bottom: 10px;left: 15px">
+    <div style="text-align: center">
         <a href="javascript:openGoodsTypeAddDialog()" class="easyui-linkbutton" iconCls="icon-add" >新增</a>
         <a id="del"  href="javascript:deleteGoodsType()" class="easyui-linkbutton" disabled=true iconCls="icon-remove">删除</a>
     </div>
@@ -346,17 +348,17 @@
            fitColumns="true" pagination="true" rownumbers="true" singleSelect="true"
            url="/admin/goods/list" fit="true" toolbar="#tb">
         <thead>
-        <th field="id" width="30" align="center">编号</th>
+        <th field="id" width="30" hidden="true" align="center">编号</th>
         <th field="code" width="50" align="center">商品编码</th>
-        <th field="name" width="150" align="center">商品名称</th>
-        <th field="model" width="50" align="center">商品型号</th>
-        <th field="typeId" width="40" align="center" hidden=true formatter="formatGoodsTypeId">类别ID</th>
+        <th field="name" width="220" align="center">商品名称</th>
+        <th field="model" width="70" align="center">商品型号</th>
+        <th field="typeId" width="40" align="center" hidden="true" formatter="formatGoodsTypeId">类别ID</th>
         <th field="typeName" width="50" align="center" formatter="formatGoodsTypeName">类别</th>
-        <th field="unit" width="50" align="center">单位</th>
+        <th field="unit" width="20" align="center">单位</th>
         <th field="purchasingPrice" width="50" align="right" formatter="formatPurchasingPrice">采购价</th>
         <th field="sellingPrice" width="50" align="right" formatter="formatSellingPrice">出售价</th>
-        <th field="minNum" width="50" align="center">库存下限</th>
-        <th field="producer" width="200" align="center">生产厂商</th>
+        <th field="minNum" width="40" align="center">库存下限</th>
+        <th field="producer" width="180" align="center">生产厂商</th>
         <th field="remarks" hidden=true width="150" align="center">备注</th>
         </thead>
     </table>
@@ -370,11 +372,12 @@
         <div>
             &nbsp;商品名称：&nbsp;<input type="text" id="s_name" size="20" onkeydown="if(event.keyCode==13) searchGoods()"/>
             <a href="javascript:searchGoods()" class="easyui-linkbutton" iconCls="icon-search" plain="true">搜索</a>
+            <strong style="font-size: 13px;color: #0c9076">友情提示:双击左侧<span style="color: red">商品类别</span>可以按照商品类别搜索商品,输入搜索条件(商品名称)后再双击<span style="color: red">商品类别</span>可以在该商品类别中搜索商品</strong>
         </div>
     </div>
 </div>
 
-<div id="dlg" class="easyui-dialog" style="width: 300px;height: 120px;padding: 10px 20px"
+<div id="dlg" class="easyui-dialog" style="width: 300px;height: 123px;padding: 10px 20px"
      closed="true" buttons="#dlg-buttons" data-options="onClose:function(){$('#goodsTypeName').val('');}">
     <form id="fm" method="post">
         <div>
@@ -472,7 +475,7 @@
     <a href="javascript:closeGoodsTypeChooseDialog()" class="easyui-linkbutton" iconCls="icon-cancel" plain="true">关闭</a>
 </div>
 
-<div id="dlg4" class="easyui-dialog" style="width: 200px;height: 300px;"
+<div id="dlg4" class="easyui-dialog" style="width: 220px;height: 300px;"
      closed="true" >
     <table id="dg4"  class="easyui-datagrid"
            fitColumns="true"  rownumbers="true" singleSelect="true"
@@ -493,7 +496,7 @@
     </div>
 </div>
 
-<div id="dlg5" class="easyui-dialog" style="width: 300px;height: 120px;padding: 10px 20px"
+<div id="dlg5" class="easyui-dialog" style="width: 300px;height: 124px;padding: 10px 20px"
      closed="true" buttons="#dlg-buttons5" data-options="onClose:function(){$('#goodsUnitName').val('');}">
     <form id="fm5" method="post">
         <div>

@@ -77,22 +77,22 @@
         </if>
         and inventoryQuantity &lt;1
     </select>
-    <select id="listHasInventoryQuantityByCodeOrName" parameterType="string" resultMap="GoodsResult">
+    <select id="listHasInventoryQuantityByCodeOrName" parameterType="map" resultMap="GoodsResult">
         select * from t_goods
         where 1=1
-        <if test="_parameter!='' and _parameter!=null">
-            and concat(`code`, `name`) like concat('%',#{_parameter},'%')
+        <if test="codeOrName!='' and codeOrName!=null">
+            and concat(`code`, `name`) like concat('%',#{codeOrName},'%')
         </if>
         and inventoryQuantity &gt;1
         <if test="start!=null and size!=null ">
             limit #{start},#{size}
         </if>
     </select>
-    <select id="getCountHasInventoryQuantityByCodeOrName" parameterType="string" resultType="java.lang.Long">
+    <select id="getCountHasInventoryQuantityByCodeOrName" parameterType="map" resultType="java.lang.Long">
         select count(*) from t_goods
         where 1=1
-        <if test="_parameter!='' and _parameter!=null">
-            and concat(`code`, `name`) like concat('%',#{_parameter},'%')
+        <if test="codeOrName!='' and codeOrName!=null">
+            and concat(`code`, `name`) like concat('%',#{codeOrName},'%')
         </if>
         and inventoryQuantity &gt;1
     </select>
@@ -149,5 +149,35 @@
                 typeId=#{type.id},
             </if>
         </set>
+        where id=#{id}
     </update>
+    <select id="listInventory" parameterType="map" resultMap="GoodsResult">
+        select * from t_goods
+        where 1=1
+        <if test="name!=null and name!=''">
+            and name=#{name}
+        </if>
+        <if test="typeId!=null ">
+            and typeId=#{typeId}
+        </if>
+        <if test="codeOrName!='' and codeOrName!=null">
+            and concat(`code`, `name`) like concat('%',#{codeOrName},'%')
+        </if>
+        <if test="start!=null and size!=null ">
+            limit #{start},#{size}
+        </if>
+    </select>
+    <select id="getCountInventory" parameterType="map" resultType="java.lang.Long">
+        select count(*) from t_goods
+        where 1=1
+        <if test="name!=null and name!=''">
+            and name=#{name}
+        </if>
+        <if test="typeId!=null ">
+            and typeId=#{typeId}
+        </if>
+        <if test="codeOrName!='' and codeOrName!=null">
+            and concat(`code`, `name`) like concat('%',#{codeOrName},'%')
+        </if>
+    </select>
 </mapper>

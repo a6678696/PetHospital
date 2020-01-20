@@ -18,7 +18,10 @@ function genLastYearStr(){
 function genLastMonthDayStr(){
 	var date = new Date();
 	var month=(date.getMonth()+1-1)<10?"0"+(date.getMonth()+1-1):(date.getMonth()+1-1);
-	return date.getFullYear()+"-"+formatZero(month)+"-"+formatZero(date.getDate());
+	var hour=(date.getHours()+1-1)<10?"0"+(date.getHours()+1-1):(date.getHours()+1-1);
+	var minutes=(date.getMinutes()+1-1)<10?"0"+(date.getMinutes()+1-1):(date.getMinutes()+1-1);
+	var seconds=(date.getSeconds()+1-1)<10?"0"+(date.getSeconds()+1-1):(date.getSeconds()+1-1);
+	return date.getFullYear()+"-"+formatZero(month)+"-"+formatZero(date.getDate())+" "+formatZero(hour)+":"+formatZero(minutes)+":"+formatZero(seconds);
 }
 
 function genLastWeekDayStr(){

@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<dataSource name="db_pethospital@localhost">
+<dataSource name="jdbc:mysql://localhost:3306/db_pethospital?serverTimezone=GMT%2B8">
   <database-model serializer="dbm" dbms="MYSQL" family-id="MYSQL" format-version="4.17">
     <root id="1">
       <ServerVersion>5.6.24</ServerVersion>
@@ -1660,7 +1660,7 @@
     </column>
     <column id="402" parent="262" name="purchaseDate">
       <Position>4</Position>
-      <DataType>date|0s</DataType>
+      <DataType>datetime|0s</DataType>
       <ColumnKind>normal</ColumnKind>
     </column>
     <column id="403" parent="262" name="purchaseNumber">

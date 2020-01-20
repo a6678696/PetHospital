@@ -31,13 +31,14 @@
             <if test="state!=null ">
                 and state=#{state}
             </if>
-            <if test="bPurchaseDate!=null and bPurchaseDate!=''">
-                and date_format(purchaseDate,'%Y-%m-%d') &gt;= '#{bPurchaseDate}'
+            <if test="bPurchaseDate!=null">
+                and date_format(purchaseDate,'%Y-%m-%d %H:%i:%S') &gt;= date_format(#{bPurchaseDate},'%Y-%m-%d %H:%i:%S')
             </if>
-            <if test="ePurchaseDate!=null and ePurchaseDate!=''">
-                and date_format(purchaseDate,'%Y-%m-%d') &lt;= '#{ePurchaseDate}'
+            <if test="ePurchaseDate!=null">
+                and date_format(purchaseDate,'%Y-%m-%d %H:%i:%S') &lt;= date_format(#{ePurchaseDate},'%Y-%m-%d %H:%i:%S')
             </if>
         </where>
+        order by purchaseDate desc
     </select>
     <insert id="add" parameterType="PurchaseList">
         insert into t_purchase_list (amountPaid, amountPayable, purchaseDate, purchaseNumber, remarks, state, supplierId, userId) values (#{amountPaid},#{amountPayable},#{purchaseDate},#{purchaseNumber},#{remarks},#{state},#{supplier.id},#{user.id});
@@ -75,5 +76,8 @@
     <delete id="delete" parameterType="integer">
         delete from t_purchase_list where id=#{id}
     </delete>
+    <select id="findByPurchaseNumber" parameterType="string" resultMap="PurchaseListResult">
+        select * from t_purchase_list where purchaseNumber=#{purchaseNumber}
+    </select>
 
 </mapper>

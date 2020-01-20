@@ -50,4 +50,21 @@ public class StringUtil {
             return null;
         }
     }
+
+    /**
+     * 生成四位编号
+     *
+     * @param code
+     * @return
+     */
+    public static String formatCode(String code) {
+        int length = code.length();
+        Integer num = Integer.parseInt(code.substring(length - 4, length)) + 1;
+        StringBuffer codeNum = new StringBuffer(num + "");
+        int codeLength = codeNum.length();
+        for (int i = 4; i > codeLength; i--) {
+            codeNum.insert(0, "0");
+        }
+        return codeNum.toString();
+    }
 }

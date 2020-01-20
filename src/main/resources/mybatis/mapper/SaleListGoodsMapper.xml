@@ -22,8 +22,8 @@
     <delete id="deleteBySaleListId" parameterType="integer">
         delete from t_sale_list_goods where saleListId=#{saleListId}
     </delete>
-    <select id="getTotalByGoodsId" resultType="java.lang.Integer">
-        select count(num) as total from t_sale_list_goods where goodsId=#{goodsId}
+    <select id="getTotalByGoodsId" resultType="java.lang.Long">
+        select sum(num) as total from t_sale_list_goods where goodsId=#{goodsId}
     </select>
     <select id="list" parameterType="map" resultMap="SaleListGoodsResult">
         select * from t_sale_list_goods

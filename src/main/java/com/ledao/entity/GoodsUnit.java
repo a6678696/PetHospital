@@ -20,4 +20,12 @@ public class GoodsUnit {
      * 商品单位名称
      */
     private String name;
+
+    @Override
+    public String toString() {
+        return "--{" +
+                "编号=" + id +
+                ", 商品单位名称='" + name + '\'' +
+                '}';
+    }
 }

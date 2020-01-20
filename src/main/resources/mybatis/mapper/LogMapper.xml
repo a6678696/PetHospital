@@ -22,10 +22,10 @@
                 and userId=#{userId}
             </if>
             <if test="bTime!=null">
-                and date_format(t.time,'%Y-%m-%d %H:%i:%S') &gt;= date_add(date_format(#{bTime},'%Y-%m-%d %H:%i:%S'), interval +8 hour)
+                and date_format(t.time,'%Y-%m-%d %H:%i:%S') &gt;= date_format(#{bTime},'%Y-%m-%d %H:%i:%S')
             </if>
             <if test="eTime!=null">
-                and date_format(t.time,'%Y-%m-%d %H:%i:%S') &lt;= date_add(date_format(#{eTime},'%Y-%m-%d %H:%i:%S'), interval +8 hour)
+                and date_format(t.time,'%Y-%m-%d %H:%i:%S') &lt;= date_format(#{eTime},'%Y-%m-%d %H:%i:%S')
             </if>
         </where>
         order by t.time desc
@@ -43,10 +43,10 @@
                 and userId=#{userId}
             </if>
             <if test="bTime!=null">
-                and date_format(t.time,'%Y-%m-%d %H:%i:%S') &gt;= date_add(date_format(#{bTime},'%Y-%m-%d %H:%i:%S'), interval +8 hour)
+                and date_format(t.time,'%Y-%m-%d %H:%i:%S') &gt;= date_format(#{bTime},'%Y-%m-%d %H:%i:%S')
             </if>
             <if test="eTime!=null">
-                and date_format(t.time,'%Y-%m-%d %H:%i:%S') &lt;= date_add(date_format(#{eTime},'%Y-%m-%d %H:%i:%S'), interval +8 hour)
+                and date_format(t.time,'%Y-%m-%d %H:%i:%S') &lt;= date_format(#{eTime},'%Y-%m-%d %H:%i:%S')
             </if>
         </where>
     </select>

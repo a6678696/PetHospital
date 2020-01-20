@@ -33,6 +33,11 @@ public class PurchaseListServiceImpl implements PurchaseListService {
     }
 
     @Override
+    public PurchaseList findByPurchaseNumber(String purchaseNumber) {
+        return purchaseListMapper.findByPurchaseNumber(purchaseNumber);
+    }
+
+    @Override
     public List<PurchaseList> list(Map<String, Object> map) {
         return purchaseListMapper.list(map);
     }

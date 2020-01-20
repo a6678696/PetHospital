@@ -53,6 +53,22 @@ public interface GoodsMapper {
     Long getCount(Map<String, Object> map);
 
     /**
+     * 根据条件分页查询商品库存信息
+     *
+     * @param map
+     * @return
+     */
+    List<Goods> listInventory(Map<String, Object> map);
+
+    /**
+     * 获取商品库存信息记录数
+     *
+     * @param map
+     * @return
+     */
+    Long getCountInventory(Map<String, Object> map);
+
+    /**
      * 根据商品编码或商品名称条件分页查询没有库存的商品信息
      *
      * @param map

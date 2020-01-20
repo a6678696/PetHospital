@@ -59,10 +59,9 @@ public class GoodsAdminController {
         map.put("start", pageBean.getStart());
         map.put("size", pageBean.getPageSize());
         map.put("name", StringUtil.formatLike(searchGoods.getName()));
-        /*if(searchGoods.getType()!=null && searchGoods.getType().getId()!=null && searchGoods.getType().getId()!=1){
+        if (searchGoods.getType() != null && searchGoods.getType().getId() != null && searchGoods.getType().getId() != 1) {
             map.put("typeId", searchGoods.getType().getId());
-        }*/
-        map.put("typeId", searchGoods.getType().getId());
+        }
         map.put("codeOrName", searchGoods.getCodeOrName());
         resultMap.put("rows", goodsService.list(map));
         resultMap.put("total", goodsService.getCount(map));
@@ -98,15 +97,28 @@ public class GoodsAdminController {
         PageBean pageBean = new PageBean(page, rows);
         Map<String, Object> resultMap = new HashMap<>(16);
         Map<String, Object> map = new HashMap<>(16);
-        map.put("typeId", searchGoods.getType().getId());
+        if (searchGoods.getType() != null && searchGoods.getType().getId() != null && searchGoods.getType().getId() != 1) {
+            map.put("typeId", searchGoods.getType().getId());
+        }
         map.put("codeOrName", searchGoods.getCodeOrName());
         map.put("start", pageBean.getStart());
         map.put("size", pageBean.getPageSize());
-        List<Goods> goodsList = goodsService.list(map);
-        Long total = goodsService.getCount(map);
+        List<Goods> goodsList = goodsService.listInventory(map);
+        Long total = goodsService.getCountInventory(map);
         for (Goods goods : goodsList) {
-            // 设置销售总量
-            goods.setSaleTotal((int) (saleListGoodsService.getTotalByGoodsId(goods.getId()) - customerReturnListGoodsService.getTotalByGoodsId(goods.getId())));
+            long saleNum;
+            long returnNum;
+            if (saleListGoodsService.getTotalByGoodsId(goods.getId()) == null) {
+                saleNum = 0;
+            } else {
+                saleNum = saleListGoodsService.getTotalByGoodsId(goods.getId());
+            }
+            if (customerReturnListGoodsService.getTotalByGoodsId(goods.getId()) == null) {
+                returnNum = 0;
+            } else {
+                returnNum = customerReturnListGoodsService.getTotalByGoodsId(goods.getId());
+            }
+            goods.setSaleTotal(saleNum - returnNum);
         }
         resultMap.put("rows", goodsList);
         resultMap.put("total", total);
@@ -159,6 +171,126 @@ public class GoodsAdminController {
         resultMap.put("rows", goodsService.listHasInventoryQuantityByCodeOrName(map));
         resultMap.put("total", goodsService.getCountHasInventoryQuantityByCodeOrName(map));
         logService.add(new Log(Log.SEARCH_ACTION, "查询商品信息(无库存)"));
+        return resultMap;
+    }
+
+    /**
+     * 生成商品编码
+     *
+     * @return
+     */
+    @RequestMapping("/genGoodsCode")
+    @RequiresPermissions(value = "商品管理")
+    public String genGoodsCode() {
+        String maxGoodsCode = goodsService.getMaxGoodsCode();
+        if (StringUtil.isNotEmpty(maxGoodsCode)) {
+            Integer code = Integer.parseInt(maxGoodsCode) + 1;
+            StringBuilder codes = new StringBuilder(code + "");
+            int length = codes.length();
+            for (int i = 4; i > length; i--) {
+                codes.insert(0, "0");
+            }
+            return codes.toString();
+        } else {
+            return "0001";
+        }
+    }
+
+    /**
+     * 添加或者修改商品信息
+     *
+     * @param goods
+     * @return
+     */
+    @RequestMapping("/save")
+    @RequiresPermissions(value = "商品管理")
+    public Map<String, Object> save(Goods goods) {
+        int key;
+        Map<String, Object> resultMap = new HashMap<>(16);
+        if (goods.getId() != null) {
+            logService.add(new Log(Log.UPDATE_ACTION, "更新商品信息" + goods));
+            key = goodsService.update(goods);
+        } else {
+            logService.add(new Log(Log.ADD_ACTION, "添加商品信息" + goods));
+            // 设置上次进价为当前价格
+            goods.setLastPurchasingPrice(goods.getPurchasingPrice());
+            key = goodsService.add(goods);
+        }
+        if (key > 0) {
+            resultMap.put("success", true);
+        } else {
+            resultMap.put("success", false);
+        }
+        return resultMap;
+    }
+
+    /**
+     * 删除商品信息
+     *
+     * @param id
+     * @return
+     */
+    @RequestMapping("/delete")
+    @RequiresPermissions(value = "商品管理")
+    public Map<String, Object> delete(Integer id) {
+        Map<String, Object> resultMap = new HashMap<>(16);
+        Goods goods = goodsService.findById(id);
+        if (goods.getState() == 1) {
+            resultMap.put("success", false);
+            resultMap.put("errorInfo", "该商品已经期初入库，不能删除");
+        } else if (goods.getState() == 2) {
+            resultMap.put("success", false);
+            resultMap.put("errorInfo", "该商品已经发生单据，不能删除");
+        } else {
+            logService.add(new Log(Log.DELETE_ACTION, "删除商品信息" + goods));
+            goodsService.delete(id);
+            resultMap.put("success", true);
+        }
+        return resultMap;
+    }
+
+    /**
+     * 添加商品到仓库 修改库存以及价格信息
+     *
+     * @param id
+     * @param num
+     * @param price
+     * @return
+     */
+    @RequestMapping("/saveStore")
+    @RequiresPermissions(value = "期初库存")
+    public Map<String, Object> saveStore(Integer id, Integer num, Float price) {
+        Map<String, Object> resultMap = new HashMap<>(16);
+        Goods goods = goodsService.findById(id);
+        goods.setInventoryQuantity(num);
+        goods.setPurchasingPrice(price);
+        goods.setLastPurchasingPrice(price);
+        goodsService.update(goods);
+        logService.add(new Log(Log.UPDATE_ACTION, "修改商品信息:" + goods + ",价格=" + price + ",库存=" + num));
+        resultMap.put("success", true);
+        return resultMap;
+    }
+
+    /**
+     * 删除库存，吧商品的库存设置为0
+     *
+     * @param id
+     * @return
+     */
+    @RequestMapping("/deleteStock")
+    @RequiresPermissions(value = "期初库存")
+    public Map<String, Object> deleteStock(Integer id) {
+        Map<String, Object> resultMap = new HashMap<>(16);
+        Goods goods = goodsService.findById(id);
+        if (goods.getState() == 2) {
+            resultMap.put("success", false);
+            resultMap.put("errorInfo", "该商品已经发生单据，不能删除");
+        } else {
+            goods.setInventoryQuantity(0);
+            goodsService.update(goods);
+            logService.add(new Log(Log.UPDATE_ACTION, "修改商品信息" + goods));
+            resultMap.put("success", true);
+        }
         return resultMap;
     }
 }

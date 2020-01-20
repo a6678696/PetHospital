@@ -1,5 +1,6 @@
 package com.ledao.mapper;
 
+import com.ledao.entity.PurchaseList;
 import com.ledao.entity.PurchaseListGoods;
 
 import java.util.List;
@@ -37,4 +38,12 @@ public interface PurchaseListGoodsMapper {
      * @return
      */
     List<PurchaseListGoods> list(Map<String, Object> map);
+
+    /**
+     * 条件进货单商品
+     *
+     * @param purchaseListGoods
+     * @return
+     */
+    Integer add(PurchaseListGoods purchaseListGoods);
 }

@@ -37,4 +37,12 @@ public interface PurchaseListGoodsService {
      * @return
      */
     List<PurchaseListGoods> list(Map<String, Object> map);
+
+    /**
+     * 条件进货单商品
+     *
+     * @param purchaseListGoods
+     * @return
+     */
+    Integer add(PurchaseListGoods purchaseListGoods);
 }
