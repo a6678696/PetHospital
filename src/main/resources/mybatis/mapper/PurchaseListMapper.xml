@@ -25,10 +25,12 @@
             <if test="purchaseNumber!=null and purchaseNumber!=''">
                 and purchaseNumber like #{purchaseNumber}
             </if>
-            <if test="supplier.id!=null ">
-                and supplierId=#{supplier.id}
+            <if test="supplier!=null ">
+                <if test="supplier.id!=null">
+                    and supplierId=#{supplier.id}
+                </if>
             </if>
-            <if test="state!=null ">
+            <if test="state!=null">
                 and state=#{state}
             </if>
             <if test="bPurchaseDate!=null">

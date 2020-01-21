@@ -155,19 +155,22 @@ public class ReturnListAdminController {
     public Map<String, Object> listCount(ReturnList returnList, ReturnListGoods returnListGoods) {
         Map<String, Object> resultMap = new HashMap<>(16);
         Map<String, Object> map = new HashMap<>(16);
-        map.put("returnNumber", StringUtil.formatLike(returnList.getReturnNumber()));
-        map.put("supplier", returnList.getSupplier());
-        map.put("state", returnList.getState());
         map.put("bReturnDate", returnList.getBReturnDate());
         map.put("eReturnDate", returnList.getEReturnDate());
         List<ReturnList> returnListList = returnListService.list(map);
         for (ReturnList pl : returnListList) {
-            returnListGoods.setReturnList(pl);
+            List<ReturnListGoods> returnListGoodsList = returnListGoodsService.listByReturnListId(pl.getId());
+            for (ReturnListGoods listGoods : returnListGoodsList) {
+                listGoods.setType(goodsTypeService.findById(listGoods.getTypeId()));
+            }
+
+            pl.setReturnListGoodsList(returnListGoodsList);
+            /*returnListGoods.setReturnList(pl);
             Map<String, Object> map2 = new HashMap<>(16);
             map2.put("type", returnListGoods.getType());
             map2.put("codeOrName", returnListGoods.getCodeOrName());
             List<ReturnListGoods> plgList = returnListGoodsService.list(map2);
-            pl.setReturnListGoodsList(plgList);
+            pl.setReturnListGoodsList(plgList);*/
         }
         resultMap.put("rows", returnListList);
         logService.add(new Log(Log.SEARCH_ACTION, "商品采购统计查询"));

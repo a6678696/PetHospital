@@ -22,8 +22,10 @@
             <if test="returnNumber!=null and returnNumber!=''">
                 and returnNumber like #{returnNumber}
             </if>
-            <if test="supplier.id">
-                and supplierId=#{supplier.id}
+            <if test="supplier!=null">
+                <if test="supplier.id">
+                    and supplierId=#{supplier.id}
+                </if>
             </if>
             <if test="state!=null ">
                 and state=#{state}

@@ -120,7 +120,7 @@ public class PurchaseListAdminController {
             goods.setState(2);
             goodsService.update(goods);
         }
-        logService.add(new Log(Log.ADD_ACTION, "添加进货单"+purchaseList));
+        logService.add(new Log(Log.ADD_ACTION, "添加进货单" + purchaseList));
         resultMap.put("success", true);
         return resultMap;
     }
@@ -159,19 +159,20 @@ public class PurchaseListAdminController {
     public Map<String, Object> listCount(PurchaseList purchaseList, PurchaseListGoods purchaseListGoods) {
         Map<String, Object> resultMap = new HashMap<>(16);
         Map<String, Object> map = new HashMap<>(16);
-        map.put("purchaseNumber", StringUtil.formatLike(purchaseList.getPurchaseNumber()));
-        map.put("supplier", purchaseList.getSupplier());
-        map.put("state", purchaseList.getState());
         map.put("bPurchaseDate", purchaseList.getBPurchaseDate());
         map.put("ePurchaseDate", purchaseList.getEPurchaseDate());
         List<PurchaseList> purchaseListList = purchaseListService.list(map);
         for (PurchaseList pl : purchaseListList) {
-            purchaseListGoods.setPurchaseList(pl);
-            Map<String, Object> map2 = new HashMap<>(16);
-            map2.put("type", purchaseListGoods.getType());
-            map2.put("codeOrName", purchaseListGoods.getCodeOrName());
-            List<PurchaseListGoods> plgList = purchaseListGoodsService.list(map2);
-            pl.setPurchaseListGoodsList(plgList);
+            List<PurchaseListGoods> purchaseListGoodsList = purchaseListGoodsService.listByPurchaseListId(pl.getId());
+            /*for (PurchaseListGoods listGoods : purchaseListGoodsList) {
+                    purchaseListGoods.setPurchaseList(pl);
+                    Map<String, Object> map2 = new HashMap<>(16);
+                    map2.put("type", purchaseListGoods.getType());
+                    map2.put("codeOrName", purchaseListGoods.getCodeOrName());
+                    List<PurchaseListGoods> plgList = purchaseListGoodsService.list(map2);
+                    pl.setPurchaseListGoodsList(plgList);
+            }*/
+            pl.setPurchaseListGoodsList(purchaseListGoodsList);
         }
         resultMap.put("rows", purchaseListList);
         logService.add(new Log(Log.SEARCH_ACTION, "商品采购统计查询"));

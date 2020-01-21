@@ -5,76 +5,13 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="0a04dcdb-703f-4bd2-b3be-43a82c777491" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/ledao/controller/admin/DamageListAdminController.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/ledao/controller/admin/OverflowListAdminController.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/webapp/count/customer.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/webapp/count/purchase.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/webapp/count/sale.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/webapp/count/saleDay.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/webapp/count/saleMonth.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/webapp/count/supplier.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/webapp/static/highcharts4/js/adapters/standalone-framework.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/webapp/static/highcharts4/js/adapters/standalone-framework.src.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/webapp/static/highcharts4/js/highcharts-3d.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/webapp/static/highcharts4/js/highcharts-3d.src.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/webapp/static/highcharts4/js/highcharts-more.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/webapp/static/highcharts4/js/highcharts-more.src.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/webapp/static/highcharts4/js/highcharts.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/webapp/static/highcharts4/js/highcharts.src.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/webapp/static/highcharts4/js/modules/broken-axis.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/webapp/static/highcharts4/js/modules/broken-axis.src.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/webapp/static/highcharts4/js/modules/canvas-tools.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/webapp/static/highcharts4/js/modules/canvas-tools.src.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/webapp/static/highcharts4/js/modules/data.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/webapp/static/highcharts4/js/modules/data.src.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/webapp/static/highcharts4/js/modules/drilldown.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/webapp/static/highcharts4/js/modules/drilldown.src.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/webapp/static/highcharts4/js/modules/exporting.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/webapp/static/highcharts4/js/modules/exporting.src.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/webapp/static/highcharts4/js/modules/funnel.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/webapp/static/highcharts4/js/modules/funnel.src.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/webapp/static/highcharts4/js/modules/heatmap.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/webapp/static/highcharts4/js/modules/heatmap.src.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/webapp/static/highcharts4/js/modules/no-data-to-display.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/webapp/static/highcharts4/js/modules/no-data-to-display.src.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/webapp/static/highcharts4/js/modules/solid-gauge.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/webapp/static/highcharts4/js/modules/solid-gauge.src.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/webapp/static/highcharts4/js/modules/treemap.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/webapp/static/highcharts4/js/modules/treemap.src.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/webapp/static/highcharts4/js/themes/dark-blue.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/webapp/static/highcharts4/js/themes/dark-green.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/webapp/static/highcharts4/js/themes/dark-unica.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/webapp/static/highcharts4/js/themes/gray.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/webapp/static/highcharts4/js/themes/grid-light.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/webapp/static/highcharts4/js/themes/grid.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/webapp/static/highcharts4/js/themes/sand-signika.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/webapp/static/highcharts4/js/themes/skies.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/webapp/stock/damage.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/webapp/stock/damageOverflowSearch.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/webapp/stock/overflow.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/inspectionProfiles/Project_Default.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/inspectionProfiles/Project_Default.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/ledao/entity/DamageList.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/ledao/entity/DamageList.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/ledao/mapper/DamageListGoodsMapper.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/ledao/mapper/DamageListGoodsMapper.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/ledao/mapper/DamageListMapper.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/ledao/mapper/DamageListMapper.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/ledao/mapper/OverflowListGoodsMapper.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/ledao/mapper/OverflowListGoodsMapper.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/ledao/mapper/OverflowListMapper.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/ledao/mapper/OverflowListMapper.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/ledao/service/DamageListGoodsService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/ledao/service/DamageListGoodsService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/ledao/service/DamageListService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/ledao/service/DamageListService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/ledao/service/OverflowListGoodsService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/ledao/service/OverflowListGoodsService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/ledao/service/OverflowListService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/ledao/service/OverflowListService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/ledao/serviceimpl/DamageListGoodsServiceImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/ledao/serviceimpl/DamageListGoodsServiceImpl.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/ledao/serviceimpl/DamageListServiceImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/ledao/serviceimpl/DamageListServiceImpl.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/ledao/serviceimpl/OverflowListGoodsServiceImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/ledao/serviceimpl/OverflowListGoodsServiceImpl.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/ledao/serviceimpl/OverflowListServiceImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/ledao/serviceimpl/OverflowListServiceImpl.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/mybatis/mapper/DamageListGoodsMapper.xml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/mybatis/mapper/DamageListGoodsMapper.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/mybatis/mapper/DamageListMapper.xml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/mybatis/mapper/DamageListMapper.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/mybatis/mapper/OverflowListGoodsMapper.xml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/mybatis/mapper/OverflowListGoodsMapper.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/mybatis/mapper/OverflowListMapper.xml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/mybatis/mapper/OverflowListMapper.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/basicData/stock.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/basicData/stock.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/sale/returnSearch.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/sale/returnSearch.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/sale/saleSearch.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/sale/saleSearch.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/stock/alarm.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/stock/alarm.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/ledao/controller/admin/PurchaseListAdminController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/ledao/controller/admin/PurchaseListAdminController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/ledao/controller/admin/ReturnListAdminController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/ledao/controller/admin/ReturnListAdminController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/mybatis/mapper/PurchaseListMapper.xml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/mybatis/mapper/PurchaseListMapper.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/mybatis/mapper/ReturnListMapper.xml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/mybatis/mapper/ReturnListMapper.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/webapp/count/purchase.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/count/purchase.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/webapp/static/jquery-easyui-1.7.0/jquery.easyui.min.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/static/jquery-easyui-1.7.0/jquery.easyui.min.js" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -256,7 +193,7 @@
       <workItem from="1579368189151" duration="431000" />
       <workItem from="1579396043839" duration="36422000" />
       <workItem from="1579494896975" duration="22891000" />
-      <workItem from="1579582526136" duration="27858000" />
+      <workItem from="1579582526136" duration="37425000" />
     </task>
     <task id="LOCAL-00001" summary="LeDao宠物医院管理系统">
       <created>1579192730886</created>
@@ -349,7 +286,14 @@
       <option name="project" value="LOCAL" />
       <updated>1579593964171</updated>
     </task>
-    <option name="localTasksCounter" value="14" />
+    <task id="LOCAL-00014" summary="LeDao宠物医院管理系统">
+      <created>1579623704350</created>
+      <option name="number" value="00014" />
+      <option name="presentableId" value="LOCAL-00014" />
+      <option name="project" value="LOCAL" />
+      <updated>1579623704350</updated>
+    </task>
+    <option name="localTasksCounter" value="15" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -372,10 +316,10 @@
       <screen x="0" y="0" width="1536" height="824" />
     </state>
     <state x="361" y="71" key="#com.intellij.execution.impl.EditConfigurationsDialog/0.0.1536.824@0.0.1536.824" timestamp="1579501989802" />
-    <state x="574" y="122" key="#com.intellij.ide.util.MemberChooser" timestamp="1579610948842">
+    <state x="574" y="122" key="#com.intellij.ide.util.MemberChooser" timestamp="1579629666614">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state x="574" y="122" key="#com.intellij.ide.util.MemberChooser/0.0.1536.824@0.0.1536.824" timestamp="1579610948842" />
+    <state x="574" y="122" key="#com.intellij.ide.util.MemberChooser/0.0.1536.824@0.0.1536.824" timestamp="1579629666614" />
     <state x="516" y="164" key="#com.intellij.ide.util.PackageChooserDialog" timestamp="1579150006221">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
@@ -396,14 +340,14 @@
       <screen x="0" y="0" width="1536" height="824" />
     </state>
     <state x="499" y="159" key="#com.intellij.refactoring.safeDelete.UnsafeUsagesDialog/0.0.1536.824@0.0.1536.824" timestamp="1579172113914" />
-    <state x="334" y="0" key="CommitChangelistDialog2" timestamp="1579593960068">
+    <state x="334" y="0" key="CommitChangelistDialog2" timestamp="1579623701342">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state x="334" y="0" key="CommitChangelistDialog2/0.0.1536.824@0.0.1536.824" timestamp="1579593960068" />
-    <state width="1067" height="466" key="DebuggerActiveHint" timestamp="1579609683050">
+    <state x="334" y="0" key="CommitChangelistDialog2/0.0.1536.824@0.0.1536.824" timestamp="1579623701342" />
+    <state width="1067" height="466" key="DebuggerActiveHint" timestamp="1579632876039">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state width="1067" height="466" key="DebuggerActiveHint/0.0.1536.824@0.0.1536.824" timestamp="1579609683050" />
+    <state width="1067" height="466" key="DebuggerActiveHint/0.0.1536.824@0.0.1536.824" timestamp="1579632876039" />
     <state x="147" y="71" key="DiffContextDialog" timestamp="1579193275073">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
@@ -416,54 +360,54 @@
       <screen x="0" y="0" width="1536" height="824" />
     </state>
     <state x="589" y="326" width="382" height="172" key="Github.CreateGistDialog/0.0.1536.824@0.0.1536.824" timestamp="1579192359130" />
-    <state width="1493" height="230" key="GridCell.Tab.0.bottom" timestamp="1579620501562">
+    <state width="1493" height="205" key="GridCell.Tab.0.bottom" timestamp="1579633189869">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state width="1493" height="230" key="GridCell.Tab.0.bottom/0.0.1536.824@0.0.1536.824" timestamp="1579620501562" />
-    <state width="1493" height="230" key="GridCell.Tab.0.center" timestamp="1579620501562">
+    <state width="1493" height="205" key="GridCell.Tab.0.bottom/0.0.1536.824@0.0.1536.824" timestamp="1579633189869" />
+    <state width="1493" height="205" key="GridCell.Tab.0.center" timestamp="1579633189869">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state width="1493" height="230" key="GridCell.Tab.0.center/0.0.1536.824@0.0.1536.824" timestamp="1579620501562" />
-    <state width="1493" height="230" key="GridCell.Tab.0.left" timestamp="1579620501562">
+    <state width="1493" height="205" key="GridCell.Tab.0.center/0.0.1536.824@0.0.1536.824" timestamp="1579633189869" />
+    <state width="1493" height="205" key="GridCell.Tab.0.left" timestamp="1579633189869">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state width="1493" height="230" key="GridCell.Tab.0.left/0.0.1536.824@0.0.1536.824" timestamp="1579620501562" />
-    <state width="1493" height="230" key="GridCell.Tab.0.right" timestamp="1579620501562">
+    <state width="1493" height="205" key="GridCell.Tab.0.left/0.0.1536.824@0.0.1536.824" timestamp="1579633189869" />
+    <state width="1493" height="205" key="GridCell.Tab.0.right" timestamp="1579633189869">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state width="1493" height="230" key="GridCell.Tab.0.right/0.0.1536.824@0.0.1536.824" timestamp="1579620501562" />
-    <state width="1493" height="230" key="GridCell.Tab.1.bottom" timestamp="1579620501562">
+    <state width="1493" height="205" key="GridCell.Tab.0.right/0.0.1536.824@0.0.1536.824" timestamp="1579633189869" />
+    <state width="1493" height="205" key="GridCell.Tab.1.bottom" timestamp="1579633189869">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state width="1493" height="230" key="GridCell.Tab.1.bottom/0.0.1536.824@0.0.1536.824" timestamp="1579620501562" />
-    <state width="1493" height="230" key="GridCell.Tab.1.center" timestamp="1579620501562">
+    <state width="1493" height="205" key="GridCell.Tab.1.bottom/0.0.1536.824@0.0.1536.824" timestamp="1579633189869" />
+    <state width="1493" height="205" key="GridCell.Tab.1.center" timestamp="1579633189869">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state width="1493" height="230" key="GridCell.Tab.1.center/0.0.1536.824@0.0.1536.824" timestamp="1579620501562" />
-    <state width="1493" height="230" key="GridCell.Tab.1.left" timestamp="1579620501562">
+    <state width="1493" height="205" key="GridCell.Tab.1.center/0.0.1536.824@0.0.1536.824" timestamp="1579633189869" />
+    <state width="1493" height="205" key="GridCell.Tab.1.left" timestamp="1579633189869">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state width="1493" height="230" key="GridCell.Tab.1.left/0.0.1536.824@0.0.1536.824" timestamp="1579620501562" />
-    <state width="1493" height="230" key="GridCell.Tab.1.right" timestamp="1579620501562">
+    <state width="1493" height="205" key="GridCell.Tab.1.left/0.0.1536.824@0.0.1536.824" timestamp="1579633189869" />
+    <state width="1493" height="205" key="GridCell.Tab.1.right" timestamp="1579633189869">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state width="1493" height="230" key="GridCell.Tab.1.right/0.0.1536.824@0.0.1536.824" timestamp="1579620501562" />
-    <state width="1493" height="230" key="GridCell.Tab.2.bottom" timestamp="1579620501562">
+    <state width="1493" height="205" key="GridCell.Tab.1.right/0.0.1536.824@0.0.1536.824" timestamp="1579633189869" />
+    <state width="1493" height="205" key="GridCell.Tab.2.bottom" timestamp="1579633189869">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state width="1493" height="230" key="GridCell.Tab.2.bottom/0.0.1536.824@0.0.1536.824" timestamp="1579620501562" />
-    <state width="1493" height="230" key="GridCell.Tab.2.center" timestamp="1579620501562">
+    <state width="1493" height="205" key="GridCell.Tab.2.bottom/0.0.1536.824@0.0.1536.824" timestamp="1579633189869" />
+    <state width="1493" height="205" key="GridCell.Tab.2.center" timestamp="1579633189869">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state width="1493" height="230" key="GridCell.Tab.2.center/0.0.1536.824@0.0.1536.824" timestamp="1579620501562" />
-    <state width="1493" height="230" key="GridCell.Tab.2.left" timestamp="1579620501562">
+    <state width="1493" height="205" key="GridCell.Tab.2.center/0.0.1536.824@0.0.1536.824" timestamp="1579633189869" />
+    <state width="1493" height="205" key="GridCell.Tab.2.left" timestamp="1579633189869">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state width="1493" height="230" key="GridCell.Tab.2.left/0.0.1536.824@0.0.1536.824" timestamp="1579620501562" />
-    <state width="1493" height="230" key="GridCell.Tab.2.right" timestamp="1579620501562">
+    <state width="1493" height="205" key="GridCell.Tab.2.left/0.0.1536.824@0.0.1536.824" timestamp="1579633189869" />
+    <state width="1493" height="205" key="GridCell.Tab.2.right" timestamp="1579633189869">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state width="1493" height="230" key="GridCell.Tab.2.right/0.0.1536.824@0.0.1536.824" timestamp="1579620501562" />
+    <state width="1493" height="205" key="GridCell.Tab.2.right/0.0.1536.824@0.0.1536.824" timestamp="1579633189869" />
     <state x="299" y="68" key="Maven.ArtifactSearchDialog" timestamp="1579332741235">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
@@ -472,14 +416,14 @@
       <screen x="0" y="0" width="1536" height="824" />
     </state>
     <state x="270" y="0" key="SettingsEditor/0.0.1536.824@0.0.1536.824" timestamp="1579605525535" />
-    <state x="361" y="146" key="Vcs.Push.Dialog.v2" timestamp="1579593970333">
+    <state x="361" y="146" key="Vcs.Push.Dialog.v2" timestamp="1579623706531">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state x="361" y="146" key="Vcs.Push.Dialog.v2/0.0.1536.824@0.0.1536.824" timestamp="1579593970333" />
-    <state width="775" height="419" key="XDebugger.FullValuePopup" timestamp="1579358514956">
+    <state x="361" y="146" key="Vcs.Push.Dialog.v2/0.0.1536.824@0.0.1536.824" timestamp="1579623706531" />
+    <state width="775" height="419" key="XDebugger.FullValuePopup" timestamp="1579632875830">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state width="775" height="419" key="XDebugger.FullValuePopup/0.0.1536.824@0.0.1536.824" timestamp="1579358514956" />
+    <state width="775" height="419" key="XDebugger.FullValuePopup/0.0.1536.824@0.0.1536.824" timestamp="1579632875830" />
     <state x="630" y="270" width="340" height="284" key="com.intellij.database.actions.DdlActions$DeleteProvider2$1" timestamp="1579113392825">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
@@ -504,9 +448,9 @@
       <screen x="0" y="0" width="1536" height="824" />
     </state>
     <state x="470" y="40" key="refactoring.ChangeSignatureDialog/0.0.1536.824@0.0.1536.824" timestamp="1579501292945" />
-    <state x="431" y="145" width="672" height="678" key="search.everywhere.popup" timestamp="1579614050790">
+    <state x="431" y="145" width="672" height="678" key="search.everywhere.popup" timestamp="1579631811320">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state x="431" y="145" width="672" height="678" key="search.everywhere.popup/0.0.1536.824@0.0.1536.824" timestamp="1579614050790" />
+    <state x="431" y="145" width="672" height="678" key="search.everywhere.popup/0.0.1536.824@0.0.1536.824" timestamp="1579631811320" />
   </component>
 </project>

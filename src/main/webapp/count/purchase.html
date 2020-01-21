@@ -8,9 +8,12 @@
     <script type="text/javascript" src="/static/jquery-easyui-1.7.0/jquery.min.js"></script>
     <script type="text/javascript" src="/static/jquery-easyui-1.7.0/jquery.easyui.min.js"></script>
     <script type="text/javascript" src="/static/jquery-easyui-1.7.0/locale/easyui-lang-zh_CN.js"></script>
-    <script type="text/javascript" src="/static/js/date.js"></script>
 
     <script type="text/javascript">
+
+        $(document).ready(function () {
+           search();
+        });
 
         function chooseGoodsType() {
             $("#dlg").dialog("open").dialog("setTitle", "选择商品类别");
@@ -98,7 +101,7 @@
                             code: goodsRow.code,
                             name: goodsRow.name,
                             model: goodsRow.model,
-                            typeName: goodsRow.type.name,
+                            typeName:goodsRow.type.name,
                             unit: goodsRow.unit,
                             price: goodsRow.price,
                             num: goodsRow.num,
@@ -118,6 +121,10 @@
         function formatAmount(val, row) {
             return "¥" + val;
         }
+
+        function formatNum(val,row) {
+            return "<span style='color: red'>" + val + "</span>";
+        }
     </script>
 </head>
 <body style="margin: 1px">
@@ -135,7 +142,7 @@
     <th field="typeName" width="30" align="center">商品类别</th>
     <th field="unit" width="10" align="center">单位</th>
     <th field="price" width="20" align="right" formatter="formatPrice">单价</th>
-    <th field="num" width="10" align="center">数量</th>
+    <th field="num" width="10" align="center" formatter="formatNum">数量</th>
     <th field="amount" width="15" align="right" formatter="formatAmount">库存总值</th>
     </thead>
 </table>
@@ -145,9 +152,9 @@
         <fieldset style="border-color: #E7F0FF">
             <legend>查询设置</legend>
             &nbsp;&nbsp;&nbsp;往来日期：&nbsp;
-            <input id="s_begin" class="easyui-datebox" editable=false style="width:100px"/>
+            <input id="s_begin" class="easyui-datetimebox" editable=false style="width:170px"/>
             &nbsp;&nbsp;-&nbsp;&nbsp;
-            <input id="s_end" class="easyui-datebox" editable=false style="width:100px"/>
+            <input id="s_end" class="easyui-datetimebox" editable=false style="width:170px"/>
             <input type="hidden" id="typeId"/>
             &nbsp;商品类别：&nbsp;<input type="text" id="typeName" readonly="readonly" onclick="chooseGoodsType()"
                                     style="width: 90px"/>
