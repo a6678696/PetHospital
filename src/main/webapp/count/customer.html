@@ -1,0 +1,220 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>客户统计</title>
+    <link rel="stylesheet" type="text/css" href="/static/jquery-easyui-1.7.0/themes/metro-blue/easyui.css">
+    <link rel="stylesheet" type="text/css" href="/static/jquery-easyui-1.7.0/themes/icon.css">
+    <script type="text/javascript" src="/static/jquery-easyui-1.7.0/jquery.min.js"></script>
+    <script type="text/javascript" src="/static/jquery-easyui-1.7.0/jquery.easyui.min.js"></script>
+    <script type="text/javascript" src="/static/jquery-easyui-1.7.0/locale/easyui-lang-zh_CN.js"></script>
+    <script type="text/javascript" src="/static/js/date.js"></script>
+    <script type="text/javascript">
+
+
+        function search() {
+            $("#dg").datagrid("loadData", {total: 0, rows: []});
+            $("#dg2").datagrid("loadData", {total: 0, rows: []});
+            var s_begin = $("#s_begin").datebox("getValue");
+            var s_end = $("#s_end").datebox("getValue");
+            var state = $("#s_state").combobox("getValue");
+            var customerId;
+            if (isNaN($("#s_customer").combobox("getValue"))) {
+                customerId = "";
+            } else {
+                customerId = $("#s_customer").combobox("getValue");
+            }
+
+            $.post("/admin/saleList/list", {
+                bSaleDate: s_begin,
+                eSaleDate: s_end,
+                state: state,
+                'customer.id': customerId
+            }, function (result) {
+                var rows = result.rows;
+                for (var i = 0; i < rows.length; i++) {
+                    var row = rows[i];
+                    $("#dg").datagrid('appendRow', {
+                        id: row.id,
+                        customerName: row.customer.name,
+                        date: row.saleDate,
+                        number: row.saleNumber,
+                        type: '销售单',
+                        amount: row.amountPayable,
+                        state: row.state,
+                        user: row.user.trueName,
+                        remarks: row.remarks
+                    });
+                }
+            }, "json");
+
+            $.post("/admin/customerReturnList/list", {
+                bCustomerReturnDate: s_begin,
+                eCustomerReturnDate: s_end,
+                state: state,
+                'customer.id': customerId
+            }, function (result) {
+                var rows = result.rows;
+                for (var i = 0; i < rows.length; i++) {
+                    var row = rows[i];
+                    $("#dg").datagrid('appendRow', {
+                        id: row.id,
+                        customerName: row.customer.name,
+                        date: row.customerReturnDate,
+                        number: row.customerReturnNumber,
+                        type: '退货单',
+                        amount: row.amountPayable,
+                        state: row.state,
+                        user: row.user.trueName,
+                        remarks: row.remarks
+                    });
+                }
+            }, "json");
+
+        }
+
+
+        function formatAmount(val, row) {
+            return "¥" + val;
+        }
+
+        function formatState(val, row) {
+            if (val == 1) {
+                return "<span style='color: mediumspringgreen'>已付/退款</span>";
+            } else if (val == 2) {
+                return "<span style='color: red'>未付/退款</span>";
+            }
+        }
+
+
+        function pay() {
+            var selectedRows = $("#dg").datagrid("getSelections");
+            if (selectedRows.length != 1) {
+                $.messager.alert("系统提示", "请选择一条要结算的记录！");
+                return;
+            }
+            var id = selectedRows[0].id;
+            var type = selectedRows[0].type;
+            $.messager.confirm("系统提示", "您确定要结算吗？", function (r) {
+                if (r) {
+                    if (type == "销售单") {
+                        $.post("/admin/saleList/update", {id: id}, function (result) {
+                            if (result.success) {
+                                $.messager.alert("系统提示", "提交成功！");
+                                search();
+                            } else {
+                                $.messager.alert("系统提示", result.errorInfo);
+                            }
+                        }, "json");
+                    } else {
+                        $.post("/admin/customerReturnList/update", {id: id}, function (result) {
+                            if (result.success) {
+                                $.messager.alert("系统提示", "提交成功！");
+                                search();
+                            } else {
+                                $.messager.alert("系统提示", result.errorInfo);
+                            }
+                        }, "json");
+                    }
+
+                }
+            });
+        }
+
+
+        $(document).ready(function () {
+
+            search();
+
+            $("#dg").datagrid({
+                onClickRow: function (index, row) {
+                    if (row.type == "销售单") {
+                        $("#dg2").datagrid({
+                            url: '/admin/saleList/listGoods',
+                            queryParams: {
+                                saleListId: row.id
+                            }
+                        });
+                    } else if (row.type == "退货单") {
+                        $("#dg2").datagrid({
+                            url: '/admin/customerReturnList/listGoods',
+                            queryParams: {
+                                customerReturnListId: row.id
+                            }
+                        });
+                    }
+                }
+            });
+
+        });
+
+
+        function formatPrice(val, row) {
+            return "¥" + val;
+        }
+
+        function formatTotal(val, row) {
+            return "¥" + val;
+        }
+
+
+    </script>
+</head>
+<body class="easyui-layout" style="margin: 1px">
+<div region="north" style="height: 350px">
+    <table id="dg" title="客户统计" class="easyui-datagrid"
+           fitColumns="true" rownumbers="true" singleSelect="true"
+           fit="true" toolbar="#tb">
+        <thead>
+        <th field="id" width="20" align="center" hidden="true">ID</th>
+        <th field="customerName" width="60" align="center">客户名称</th>
+        <th field="date" width="40" align="center">日期</th>
+        <th field="number" width="40" align="center">单号</th>
+        <th field="type" width="30" align="center">类型</th>
+        <th field="amount" width="20" align="right" formatter="formatAmount">总金额</th>
+        <th field="state" width="30" align="center" formatter="formatState">是否付/退款</th>
+        <th field="user" width="20" align="center">操作员</th>
+        <th field="remarks" width="100" align="center">备注</th>
+        </thead>
+    </table>
+
+    <div id="tb">
+        <fieldset style="border-color: #E7F0FF">
+            <legend>查询设置</legend>
+            &nbsp;&nbsp;&nbsp;往来日期：&nbsp;
+            <input id="s_begin" class="easyui-datetimebox" editable=false style="width:170px"/>
+            &nbsp;&nbsp;-&nbsp;&nbsp;
+            <input id="s_end" class="easyui-datetimebox" editable=false style="width:170px"/>
+            &nbsp;&nbsp;&nbsp;客户名称：&nbsp;<input class="easyui-combobox" id="s_customer" style="width: 200px"
+                                                data-options="panelHeight:'auto',valueField:'id',textField:'name',url:'/admin/customer/comboList'"/>
+            &nbsp;&nbsp;&nbsp;是否付/退款&nbsp;
+            <select class="easyui-combobox" id="s_state" style="width: 100px" editable="false" panelHeight="auto">
+                <option value="">全部</option>
+                <option value="1">已付/退款</option>
+                <option value="2">未付/退款</option>
+            </select>
+            &nbsp;&nbsp;<a href="javascript:search()" class="easyui-linkbutton" iconCls="icon-search"
+                           plain="true">搜索</a>
+            &nbsp;&nbsp;<a href="javascript:pay()" class="easyui-linkbutton" iconCls="icon-ok" plain="true">支付结算</a>
+        </fieldset>
+    </div>
+</div>
+<div region="center" style="margin-top: 5px">
+    <table id="dg2" class="easyui-datagrid"
+           fitColumns="true" rownumbers="true" singleSelect="true"
+           fit="true">
+        <thead>
+        <th field="code" width="30" align="center">商品编码</th>
+        <th field="name" width="150" align="center">商品名称</th>
+        <th field="model" width="50" align="center">商品型号</th>
+        <th field="price" width="50" align="right" formatter="formatPrice">单价</th>
+        <th field="num" width="50" align="center">数量</th>
+        <th field="unit" width="50" align="center">单位</th>
+        <th field="total" width="50" align="right" formatter="formatTotal">总金额</th>
+        </thead>
+    </table>
+
+</div>
+
+</body>
+</html>

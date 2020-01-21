@@ -1,0 +1,185 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>商品销售统计</title>
+    <link rel="stylesheet" type="text/css" href="/static/jquery-easyui-1.7.0/themes/metro-blue/easyui.css">
+    <link rel="stylesheet" type="text/css" href="/static/jquery-easyui-1.7.0/themes/icon.css">
+    <script type="text/javascript" src="/static/jquery-easyui-1.7.0/jquery.min.js"></script>
+    <script type="text/javascript" src="/static/jquery-easyui-1.7.0/jquery.easyui.min.js"></script>
+    <script type="text/javascript" src="/static/jquery-easyui-1.7.0/locale/easyui-lang-zh_CN.js"></script>
+    <script type="text/javascript" src="/static/js/date.js"></script>
+
+    <script type="text/javascript">
+
+        function chooseGoodsType() {
+            $("#dlg").dialog("open").dialog("setTitle", "选择商品类别");
+            $("#typeTree").tree({
+                url: '/admin/goodsType/loadTreeInfo',
+                onLoadSuccess: function () {
+                    var rootNode = $("#typeTree").tree("getRoot");
+                    $("#typeTree").tree("expand", rootNode.target);
+                }
+            });
+        }
+
+        function saveGoodsTypeChoose() {
+            var node = $("#typeTree").tree("getSelected");
+            if (node != null && node.id != 1) {
+                $("#typeId").val(node.id);
+                $("#typeName").val(node.text);
+            } else {
+                $("#typeId").val("");
+                $("#typeName").val("");
+            }
+
+            $("#dlg").dialog("close");
+        }
+
+        function closeGoodsTypeChooseDialog() {
+            $("#dlg").dialog("close");
+        }
+
+        function search() {
+            $("#dg").datagrid("loadData", {total: 0, rows: []});
+            var s_begin = $("#s_begin").datebox("getValue");
+            var s_end = $("#s_end").datebox("getValue");
+            var typeId = $("#typeId").val();
+            var codeOrName = $("#codeOrName").val();
+
+            $.post("/admin/saleList/listCount", {
+                bSaleDate: s_begin,
+                eSaleDate: s_end,
+                "type.id": typeId,
+                codeOrName: codeOrName
+            }, function (result) {
+                var rows = result.rows;
+                for (var i = 0; i < rows.length; i++) {
+                    var row = rows[i];
+                    var goodsRows = row.saleListGoodsList;
+                    for (var j = 0; j < goodsRows.length; j++) {
+                        var goodsRow = goodsRows[j];
+                        $("#dg").datagrid('appendRow', {
+                            number: row.saleNumber,
+                            type: "进货",
+                            date: row.saleDate,
+                            customerName: row.customer.name,
+                            code: goodsRow.code,
+                            name: goodsRow.name,
+                            model: goodsRow.model,
+                            typeName: goodsRow.type.name,
+                            unit: goodsRow.unit,
+                            price: goodsRow.price,
+                            num: goodsRow.num,
+                            amount: goodsRow.price * goodsRow.num
+                        });
+                    }
+                }
+            }, "json");
+
+
+            $.post("/admin/customerReturnList/listCount", {
+                bCustomerReturnDate: s_begin,
+                eCustomerReturnDate: s_end,
+                "type.id": typeId,
+                codeOrName: codeOrName
+            }, function (result) {
+                var rows = result.rows;
+                for (var i = 0; i < rows.length; i++) {
+                    var row = rows[i];
+                    var goodsRows = row.customerReturnListGoodsList;
+                    for (var j = 0; j < goodsRows.length; j++) {
+                        var goodsRow = goodsRows[j];
+                        $("#dg").datagrid('appendRow', {
+                            number: row.customerReturnNumber,
+                            type: "退货",
+                            date: row.customerReturnDate,
+                            customerName: row.customer.name,
+                            code: goodsRow.code,
+                            name: goodsRow.name,
+                            model: goodsRow.model,
+                            typeName: goodsRow.type.name,
+                            unit: goodsRow.unit,
+                            price: goodsRow.price,
+                            num: goodsRow.num,
+                            amount: goodsRow.price * goodsRow.num
+                        });
+                    }
+                }
+            }, "json");
+
+        }
+
+
+        function formatPrice(val, row) {
+            return "¥" + val;
+        }
+
+        function formatAmount(val, row) {
+            return "¥" + val;
+        }
+
+
+        $(document).ready(function () {
+
+            $("#s_begin").datebox("setValue", genLastMonthDayStr()); // 设置上个月日期
+            $("#s_end").datebox("setValue", genTodayStr()); // 设置当前日期
+
+
+        });
+    </script>
+</head>
+<body style="margin: 1px">
+<table id="dg" title="商品销售统计" class="easyui-datagrid"
+       fitColumns="true" rownumbers="true"
+       fit="true" toolbar="#tb">
+    <thead>
+    <th field="number" width="40" align="center">单号</th>
+    <th field="type" width="20" align="center">类型</th>
+    <th field="date" width="30" align="center">日期</th>
+    <th field="customerName" width="50" align="center">客户</th>
+    <th field="code" width="20" align="center">商品编号</th>
+    <th field="name" width="50" align="center">商品名称</th>
+    <th field="model" width="20" align="center">商品型号</th>
+    <th field="typeName" width="30" align="center">商品类别</th>
+    <th field="unit" width="10" align="center">单位</th>
+    <th field="price" width="20" align="right" formatter="formatPrice">单价</th>
+    <th field="num" width="10" align="center">数量</th>
+    <th field="amount" width="15" align="right" formatter="formatAmount">库存总值</th>
+    </thead>
+</table>
+
+<div id="tb">
+    <div style="padding: 5px">
+        <fieldset style="border-color: #E7F0FF">
+            <legend>查询设置</legend>
+            &nbsp;&nbsp;&nbsp;往来日期：&nbsp;
+            <input id="s_begin" class="easyui-datebox" editable=false style="width:100px"/>
+            &nbsp;&nbsp;-&nbsp;&nbsp;
+            <input id="s_end" class="easyui-datebox" editable=false style="width:100px"/>
+            <input type="hidden" id="typeId"/>
+            &nbsp;商品类别：&nbsp;<input type="text" id="typeName" readonly="readonly" onclick="chooseGoodsType()"
+                                    style="width: 90px"/>
+            &nbsp;商品编码或者名称：&nbsp;<input type="text" id="codeOrName" size="20"
+                                        onkeydown="if(event.keyCode==13) search()"/>
+            &nbsp;&nbsp;<a href="javascript:search()" class="easyui-linkbutton" iconCls="icon-search"
+                           plain="true">搜索</a>
+        </fieldset>
+    </div>
+</div>
+
+
+<div id="dlg" class="easyui-dialog" style="width: 180px;height: 300px;padding: 10px 10px;top: 80px;left: 400px"
+     closed="true" buttons="#dlg-buttons">
+    <ul id="typeTree" class="easyui-tree"></ul>
+</div>
+
+<div id="dlg-buttons">
+    <a href="javascript:saveGoodsTypeChoose()" class="easyui-linkbutton" iconCls="icon-ok" plain="true">选择</a>
+    <a href="javascript:closeGoodsTypeChooseDialog()" class="easyui-linkbutton" iconCls="icon-cancel"
+       plain="true">关闭</a>
+</div>
+
+
+</body>
+</html>

@@ -33,6 +33,11 @@ public class DamageListServiceImpl implements DamageListService {
     }
 
     @Override
+    public DamageList findByDamageNumber(String damageNumber) {
+        return damageListMapper.findByDamageNumber(damageNumber);
+    }
+
+    @Override
     public Integer add(DamageList damageList) {
         return damageListMapper.add(damageList);
     }

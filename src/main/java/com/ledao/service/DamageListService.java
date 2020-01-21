@@ -30,6 +30,14 @@ public interface DamageListService {
     DamageList findById(Integer id);
 
     /**
+     * 根据报损单号查询实体
+     *
+     * @param damageNumber
+     * @return
+     */
+    DamageList findByDamageNumber(String damageNumber);
+
+    /**
      * 添加商品报损单
      *
      * @param damageList

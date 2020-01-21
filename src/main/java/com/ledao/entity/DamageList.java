@@ -42,4 +42,5 @@ public class DamageList {
      * 备注
      */
     private String remarks;
+
 }

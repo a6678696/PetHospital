@@ -16,10 +16,13 @@
         <association property="type" column="typeId" select="com.ledao.mapper.GoodsTypeMapper.findById"></association>
     </resultMap>
     <select id="listByOverflowListId" parameterType="integer" resultMap="OverflowListGoodsResult">
-        select * from t_overflow_list_goods where overflowListId=#{overflowListId}
+        select * from t_overflow_list_goods where overflowListId=#{overflowListId} order by code asc
     </select>
     <delete id="deleteByOverflowListId" parameterType="integer">
         delete from t_overflow_list_goods where overflowListId=#{overflowListId}
     </delete>
+    <insert id="add" parameterType="OverflowListGoods">
+        insert into t_overflow_list_goods (code, goodsId, model, name, num, price, total, unit, overflowListId, typeId) values (#{code},#{goodsId},#{model},#{name},#{num},#{price},#{total},#{unit},#{overflowList.id},#{type.id});
+    </insert>
 
 </mapper>

@@ -30,6 +30,14 @@ public interface OverflowListMapper {
     OverflowList findById(Integer id);
 
     /**
+     * 根据报溢单号查询实体
+     *
+     * @param overflowNumber
+     * @return
+     */
+    OverflowList findByOverflowNumber(String overflowNumber);
+
+    /**
      * 添加商品报溢单
      *
      * @param overflowList

@@ -39,13 +39,17 @@
     <select id="list" parameterType="map" resultMap="OverflowListResult">
         select * from t_overflow_list
         <where>
-            <if test="bOverflowDate!=null and bOverflowDate!=''">
-                and date_format(overflowDate,'%Y-%m-%d') &gt;= '#{bOverflowDate}'
+            <if test="bOverflowDate!=null">
+                and date_format(overflowDate,'%Y-%m-%d %H:%i:%S') &gt;= date_format(#{bOverflowDate},'%Y-%m-%d %H:%i:%S')
             </if>
-            <if test="eOverflowDate!=null and eOverflowDate!=''">
-                and date_format(overflowDate,'%Y-%m-%d') &lt;= '#{eOverflowDate}'
+            <if test="eOverflowDate!=null">
+                and date_format(overflowDate,'%Y-%m-%d %H:%i:%S') &lt;= date_format(#{eOverflowDate},'%Y-%m-%d %H:%i:%S')
             </if>
         </where>
+        order by overflowDate desc
+    </select>
+    <select id="findByOverflowNumber" parameterType="string" resultMap="OverflowListResult">
+        select * from t_overflow_list where overflowNumber=#{overflowNumber}
     </select>
 
 </mapper>

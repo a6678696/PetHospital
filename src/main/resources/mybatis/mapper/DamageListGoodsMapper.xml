@@ -16,10 +16,13 @@
         <association property="type" column="typeId" select="com.ledao.mapper.GoodsTypeMapper.findById"></association>
     </resultMap>
     <select id="listByDamageListId" parameterType="integer" resultMap="DamageListGoodsResult">
-        select * from t_damage_list_goods where damageListId=#{damageListId}
+        select * from t_damage_list_goods where damageListId=#{damageListId} order by code asc
     </select>
     <delete id="deleteByDamageListId" parameterType="integer">
         delete from t_damage_list_goods where damageListId=#{damageListId}
     </delete>
+    <insert id="add" parameterType="DamageListGoods">
+        insert into t_damage_list_goods (code, goodsId, model, name, num, price, total, unit, damageListId, typeId) values (#{code},#{goodsId},#{model},#{name},#{num},#{price},#{total},#{unit},#{damageList.id},#{type.id});
+    </insert>
 
 </mapper>

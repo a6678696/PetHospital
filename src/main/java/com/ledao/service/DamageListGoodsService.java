@@ -28,4 +28,12 @@ public interface DamageListGoodsService {
      * @return
      */
     Integer deleteByDamageListId(Integer damageListId);
+
+    /**
+     * 添加报损单商品
+     *
+     * @param damageListGoods
+     * @return
+     */
+    Integer add(DamageListGoods damageListGoods);
 }

@@ -30,4 +30,9 @@ public class DamageListGoodsServiceImpl implements DamageListGoodsService {
     public Integer deleteByDamageListId(Integer damageListId) {
         return damageListGoodsMapper.deleteByDamageListId(damageListId);
     }
+
+    @Override
+    public Integer add(DamageListGoods damageListGoods) {
+        return damageListGoodsMapper.add(damageListGoods);
+    }
 }

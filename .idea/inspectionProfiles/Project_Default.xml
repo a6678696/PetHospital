@@ -2,6 +2,32 @@
   <profile version="1.0">
     <option name="myName" value="Project Default" />
     <inspection_tool class="DuplicatedCode" enabled="false" level="WEAK WARNING" enabled_by_default="false" />
+    <inspection_tool class="HtmlUnknownAttribute" enabled="true" level="WARNING" enabled_by_default="true">
+      <option name="myValues">
+        <value>
+          <list size="17">
+            <item index="0" class="java.lang.String" itemvalue="fitcolumns" />
+            <item index="1" class="java.lang.String" itemvalue="pagination" />
+            <item index="2" class="java.lang.String" itemvalue="rownumbers" />
+            <item index="3" class="java.lang.String" itemvalue="toolbar" />
+            <item index="4" class="java.lang.String" itemvalue="fit" />
+            <item index="5" class="java.lang.String" itemvalue="url" />
+            <item index="6" class="java.lang.String" itemvalue="toolbar" />
+            <item index="7" class="java.lang.String" itemvalue="field" />
+            <item index="8" class="java.lang.String" itemvalue="checkbox" />
+            <item index="9" class="java.lang.String" itemvalue="iconcls" />
+            <item index="10" class="java.lang.String" itemvalue="plain" />
+            <item index="11" class="java.lang.String" itemvalue="closed" />
+            <item index="12" class="java.lang.String" itemvalue="buttons" />
+            <item index="13" class="java.lang.String" itemvalue="split" />
+            <item index="14" class="java.lang.String" itemvalue="singleselect" />
+            <item index="15" class="java.lang.String" itemvalue="region" />
+            <item index="16" class="java.lang.String" itemvalue="formatter" />
+          </list>
+        </value>
+      </option>
+      <option name="myCustomValuesEnabled" value="true" />
+    </inspection_tool>
     <inspection_tool class="JavaDoc" enabled="true" level="WARNING" enabled_by_default="true">
       <option name="TOP_LEVEL_CLASS_OPTIONS">
         <value>

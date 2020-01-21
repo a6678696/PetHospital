@@ -30,4 +30,9 @@ public class OverflowListGoodsServiceImpl implements OverflowListGoodsService {
     public Integer deleteByOverflowListId(Integer overflowListId) {
         return overflowListGoodsMapper.deleteByOverflowListId(overflowListId);
     }
+
+    @Override
+    public Integer add(OverflowListGoods overflowListGoods) {
+        return overflowListGoodsMapper.add(overflowListGoods);
+    }
 }

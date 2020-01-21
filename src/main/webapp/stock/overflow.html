@@ -1,0 +1,480 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>商品报溢</title>
+    <link rel="stylesheet" type="text/css" href="/static/jquery-easyui-1.7.0/themes/metro-blue/easyui.css">
+    <link rel="stylesheet" type="text/css" href="/static/jquery-easyui-1.7.0/themes/icon.css">
+    <script type="text/javascript" src="/static/jquery-easyui-1.7.0/jquery.min.js"></script>
+    <script type="text/javascript" src="/static/jquery-easyui-1.7.0/jquery.easyui.min.js"></script>
+    <script type="text/javascript" src="/static/jquery-easyui-1.7.0/locale/easyui-lang-zh_CN.js"></script>
+    <script type="text/javascript" src="/static/js/date.js"></script>
+    <script type="text/javascript">
+        var url;
+
+        function saveOverflowGoods() {
+            $("#overflowNumber").val($("#dh").text());
+            $("#goodsJson").val(JSON.stringify($("#dg").datagrid("getData").rows));
+            $("#fm").form("submit", {
+                url: "/admin/overflowList/save",
+                onSubmit: function () {
+                    if ($("#dg").datagrid("getRows").length == 0) {
+                        $.messager.alert("系统提示", "请添加报溢商品！");
+                        return false;
+                    }
+                    if (!$(this).form("validate")) {
+                        return false;
+                    }
+                    return true;
+                },
+                success: function (result) {
+                    var result = eval('(' + result + ')');
+                    if (result.success) {
+                        alert("保存成功！");
+                        window.location.reload();
+                    } else {
+                        $.messager.alert("系统提示", result.errorInfo);
+                    }
+                }
+            });
+        }
+
+        function openOverflowListGoodsModifyDialog() {
+            $("#saveAddAddNextButton").hide();
+            var selectedRows = $("#dg").datagrid("getSelections");
+            if (selectedRows.length != 1) {
+                $.messager.alert("系统提示", "请选择一个商品！");
+                return;
+            }
+            var row = selectedRows[0];
+            $("#dlg2").dialog("open").dialog("setTitle", "修改报溢单商品");
+            $("#fm2").form("load", row);
+            $("#lastPurchasingPrice").val("¥" + row.lastPurchasingPrice);
+            $("#price").numberbox("setValue", row.price);
+            $("#num").numberbox("setValue", row.num);
+            $("#action").val("modify");
+            $("#num").focus();
+            $("#rowIndex").val($("#dg").datagrid("getRowIndex", row));
+        }
+
+        function deleteOverflowListGoods() {
+            var selectedRows = $("#dg").datagrid("getSelections");
+            if (selectedRows.length != 1) {
+                $.messager.alert("系统提示", "请选择一条要删除的商品！");
+                return;
+            }
+            $.messager.confirm("系统提示", "您确定要删除这<span style='color: red'>" + selectedRows.length + "</span>商品吗?", function (r) {
+                if (r) {
+                    $("#dg").datagrid("deleteRow", $("#dg").datagrid("getRowIndex", selectedRows[0]));
+                    setOverflowListAmount();
+                }
+            });
+        }
+
+        // 报溢出库模块
+
+        function setOverflowListAmount() {
+            var rows = $("#dg").datagrid("getRows");
+            var amount = 0;
+            for (var i = 0; i < rows.length; i++) {
+                var row = rows[i];
+                amount += row.total;
+            }
+            $("#amountPayable").val(amount.toFixed(2));
+            $("#amountPaid").val(amount.toFixed(2));
+        }
+
+        function openOverflowListGoodsAddDialog() {
+            $("#dlg").dialog("open").dialog("setTitle", "报溢出库商品选择");
+
+            $("#tree").tree({
+                url: '/admin/goodsType/loadTreeInfo',
+                onLoadSuccess: function () {
+                    var rootNode = $("#tree").tree("getRoot");
+                    $("#tree").tree("expand", rootNode.target);
+                },
+                onClick: function (node) {
+                    if (node.attributes.state == 0) { // 假如是叶子节点，删除按钮恢复可用
+                        $("#del").linkbutton("enable");
+                    } else {
+                        $("#del").linkbutton("disable");
+                    }
+                },
+                onDblClick: function (node) {
+                    $("#dg2").datagrid('load', {
+                        "codeOrName": $("#s_codeOrName").val(),
+                        "type.id": node.id
+                    });
+                }
+            });
+        }
+
+
+        // 商品选择模块
+
+        function searchGoods() {
+            $("#dg2").datagrid('load', {
+                "codeOrName": $("#s_codeOrName").val()
+            });
+        }
+
+        function formatLastPurchasingPrice(val, row) {
+            return "¥" + val;
+        }
+
+        function formatPurchasingPrice(val, row) {
+            return "¥" + val;
+        }
+
+
+        function openGoodsChooseDialog() {
+            $("#saveAddAddNextButton").show();
+            var selectedRows = $("#dg2").datagrid("getSelections");
+            if (selectedRows.length != 1) {
+                $.messager.alert("系统提示", "请选择一个商品！");
+                return;
+            }
+            var row = selectedRows[0];
+            $("#dlg2").dialog("open").dialog("setTitle", "选择商品");
+            $("#fm2").form("load", row);
+            $("#lastPurchasingPrice").val("¥" + row.lastPurchasingPrice);
+            $("#price").numberbox("setValue", row.lastPurchasingPrice);
+            $("#action").val("add");
+            $("#num").focus();
+        }
+
+        function resetValue() {
+            $("#price").numberbox("setValue", "");
+            $("#num").numberbox("setValue", "");
+        }
+
+        function saveGoods(type) {
+            var action = $("#action").val();
+            if (!$("#fm4").form("validate")) {
+                return;
+            }
+            if (action == "add") {
+                var selectedRows = $("#dg2").datagrid("getSelections");
+                var row = selectedRows[0];
+                var price = $("#price").numberbox("getValue");
+                var num = $("#num").numberbox("getValue");
+                var total = price * num;
+                $("#dg").datagrid("appendRow", {
+                    code: row.code,
+                    name: row.name,
+                    model: row.model,
+                    unit: row.unit,
+                    price: price,
+                    num: num,
+                    total: total,
+                    typeId: row.type.id,
+                    goodsId: row.id,
+                    inventoryQuantity: row.inventoryQuantity,
+                    lastPurchasingPrice: row.lastPurchasingPrice
+                });
+            } else if (action == "modify") {
+                var rowIndex = $("#rowIndex").val();
+                var selectedRows = $("#dg").datagrid("getSelections");
+                var row = selectedRows[0];
+                var price = $("#price").numberbox("getValue");
+                var num = $("#num").numberbox("getValue");
+                var total = price * num;
+                $("#dg").datagrid("updateRow", {
+                    index: rowIndex,
+                    row: {
+                        code: row.code,
+                        name: row.name,
+                        model: row.model,
+                        unit: row.unit,
+                        price: price,
+                        num: num,
+                        total: total,
+                        typeId: row.typeId,
+                        goodsId: row.id,
+                        inventoryQuantity: row.inventoryQuantity,
+                        lastPurchasingPrice: row.lastPurchasingPrice
+                    }
+                });
+            }
+            setOverflowListAmount();
+            if (type == 1) {
+                closeGoodsDialog();
+            }
+            closeGoodsChooseDialog();
+        }
+
+        function closeGoodsDialog() {
+            $('#s_codeOrName').val('');
+            $("#dlg").dialog("close");
+        }
+
+        function closeGoodsChooseDialog() {
+            resetValue();
+            $("#dlg2").dialog("close");
+        }
+
+        // 商品类别模块
+
+        function openGoodsTypeAddDialog() {
+            $("#dlg3").dialog("open").dialog("setTitle", "新增商品类别");
+        }
+
+        function deleteGoodsType() {
+            var node = $("#tree").tree("getSelected"); // 获取选中节点
+            var id = node.id;
+            $.post("/admin/goodsType/delete", {id: id}, function (result) {
+                if (result.success) {
+                    $("#tree").tree("reload");
+                    $("#del").linkbutton("disable");
+                } else {
+                    $.messager.alert("系统提示", result.errorInfo);
+                }
+            }, "json");
+        }
+
+        function saveGoodsType() {
+            if (!$("#fm3").form("validate")) {
+                return;
+            }
+            var goodsTypeName = $('#goodsTypeName').val();
+            var node = $("#tree").tree("getSelected"); // 获取选中节点
+            var parentId;
+            if (node == null) {
+                parentId = 1;
+            } else {
+                parentId = node.id;
+            }
+            $.post("/admin/goodsType/save", {name: goodsTypeName, parentId: parentId}, function (result) {
+                if (result.success) {
+                    $("#tree").tree("reload");
+                    closeGoodsTypeDialog();
+                } else {
+                    $.messager.alert("系统提示", "提交失败，请联系管理员！");
+                }
+            }, "json");
+        }
+
+        function closeGoodsTypeDialog() {
+            $("#dlg3").dialog("close");
+            $('#goodsTypeName').val('');
+        }
+
+        $(document).ready(function () {
+
+            $("#dg").datagrid({
+                onDblClickRow: function (index, row) {
+                    $("#saveAddAddNextButton").hide();
+                    $("#dlg2").dialog("open").dialog("setTitle", "修改报溢单商品");
+                    $("#fm2").form("load", row);
+                    $("#lastPurchasingPrice").val("¥" + row.lastPurchasingPrice);
+                    $("#price").numberbox("setValue", row.price);
+                    $("#num").numberbox("setValue", row.num);
+                    $("#action").val("modify");
+                    $("#num").focus();
+                    $("#rowIndex").val($("#dg").datagrid("getRowIndex", row));
+                }
+            });
+
+            $("#dg2").datagrid({
+                onDblClickRow: function (index, row) {
+                    $("#saveAddAddNextButton").show();
+                    $("#dlg2").dialog("open").dialog("setTitle", "选择商品");
+                    $("#fm2").form("load", row);
+                    $("#lastPurchasingPrice").val("¥" + row.lastPurchasingPrice);
+                    $("#price").numberbox("setValue", row.lastPurchasingPrice);
+                    $("#action").val("add");
+                    $("#num").focus();
+                }
+            });
+
+            $("#dh").load("/admin/overflowList/genCode");
+        });
+    </script>
+</head>
+<body class="easyui-layout">
+<div data-options="region:'north'" style="height: 105px;border: 0px;padding-top: 20px">
+    <fieldset style="border-color: #E7F0FF">
+        <legend>单号：<span id="dh"></span></legend>
+        <form id="fm" method="post">
+            <table cellspacing="8px">
+                <tr>
+                    <td>
+                        &nbsp;&nbsp;&nbsp;&nbsp;报溢日期：<input type="text" id="overflowDate" name="overflowDate"
+                                                            class="easyui-datetimebox" required="true"
+                                                            data-options="editable:false" size="21"/>
+                    </td>
+                    <td colspan="3">
+                        备&nbsp;&nbsp;&nbsp;注：<input type="text" id="remarks" name="remarks" size="78"/>
+                    </td>
+                    <td>
+                        &nbsp;&nbsp;&nbsp;&nbsp;<a href="javascript:saveOverflowGoods()" class="easyui-linkbutton"
+                                                   iconCls="icon-ok">保存</a>
+                    </td>
+                    <input type="hidden" id="overflowNumber" name="overflowNumber"/>
+                    <input type="hidden" id="goodsJson" name="goodsJson"/>
+                </tr>
+            </table>
+        </form>
+    </fieldset>
+</div>
+<div data-options="region:'center'" style="padding: 10px;border: 1px">
+    <table id="dg" class="easyui-datagrid" style="height:1200px"
+           fitColumns="true" rownumbers="true" singleSelect="true"
+           fit="true" toolbar="#tb">
+        <thead>
+        <th field="code" width="30" align="center">商品编码</th>
+        <th field="name" width="150" align="center">商品名称</th>
+        <th field="model" width="50" align="center">型号</th>
+        <th field="unit" width="50" align="center">单位</th>
+        <th field="price" width="50" align="center">单价</th>
+        <th field="num" width="50" align="center">数量</th>
+        <th field="total" width="50" align="right">总金额</th>
+        </thead>
+    </table>
+
+    <div id="tb">
+        <div style="padding: 2px">
+            <a href="javascript:openOverflowListGoodsAddDialog()" class="easyui-linkbutton" iconCls="icon-add"
+               plain="true">添加</a>
+            <a href="javascript:openOverflowListGoodsModifyDialog()" class="easyui-linkbutton" iconCls="icon-edit"
+               plain="true">修改</a>
+            <a href="javascript:deleteOverflowListGoods()" class="easyui-linkbutton" iconCls="icon-remove"
+               plain="true">删除</a>
+        </div>
+    </div>
+</div>
+
+
+<div id="dlg" class="easyui-dialog" style="width: 1200px;height: 560px;"
+     closed="true" data-options="onClose:function(){$('#s_codeOrName').val('');}">
+    <div class="easyui-layout" style="width: 100%;height: 100%">
+        <div region="north" style="height: 50px">
+            <div style="padding-top: 8px">
+                &nbsp;商品编码或者名称：&nbsp;<input type="text" id="s_codeOrName" size="20"
+                                            onkeydown="if(event.keyCode==13) searchGoods()"/>
+                <a href="javascript:searchGoods()" class="easyui-linkbutton" iconCls="icon-search" plain="true">搜索</a>
+                <strong style="font-size: 13px;color: #0c9076">友情提示:双击左侧<span style="color: red">商品类别</span>可以按照商品类别搜索商品,输入搜索条件(商品名称)后再双击<span
+                        style="color: red">商品类别</span>可以在该商品类别中搜索商品</strong>
+            </div>
+        </div>
+
+        <div data-options="region:'west',collapsible:false" style="width: 200px" title="商品类别" split=true>
+            <ul id="tree" class="easyui-tree" style="padding: 10px"></ul>
+            <div style="position: absolute;bottom: 10px;left: 15px">
+                <a href="javascript:openGoodsTypeAddDialog()" class="easyui-linkbutton" iconCls="icon-add">新增</a>
+                <a id="del" href="javascript:deleteGoodsType()" class="easyui-linkbutton" disabled=true
+                   iconCls="icon-remove">删除</a>
+            </div>
+        </div>
+
+        <div data-options="region:'center'">
+            <table id="dg2" title="商品管理" class="easyui-datagrid"
+                   fitColumns="true" pagination="true" rownumbers="true" singleSelect="true"
+                   url="/admin/goods/list" fit="true" toolbar="#tb2">
+                <thead>
+                <th field="id" width="30" hidden="true" align="center">编号</th>
+                <th field="code" width="50" align="center">商品编码</th>
+                <th field="name" width="170" align="left">商品名称</th>
+                <th field="model" width="50" align="center">商品型号</th>
+                <th field="unit" width="30" align="center">单位</th>
+                <th field="lastPurchasingPrice" width="50" align="right" formatter="formatLastPurchasingPrice">上次进价</th>
+                <th field="purchasingPrice" width="50" align="right" formatter="formatPurchasingPrice">成本均价</th>
+                <th field="inventoryQuantity" width="50" align="center">库存数量</th>
+                </thead>
+            </table>
+
+            <div id="tb2">
+                <div>
+                    <a href="javascript:openGoodsChooseDialog()" class="easyui-linkbutton" iconCls="icon-ok"
+                       plain="true">选择</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div id="dlg2" class="easyui-dialog" style="width: 580px;height: 290px;padding: 5px 5px"
+     closed="true" buttons="#dlg-buttons2" data-options="onClose:function(){resetValue()}">
+    <fieldset style="border-color: #E7F0FF">
+        <legend>商品信息</legend>
+        <form id="fm2" method="post">
+            <table cellspacing="8px">
+                <tr>
+                    <td>商品编号：</td>
+                    <td>
+                        <input type="text" id="code" name="code" readonly="readonly" size="20"/>
+                    </td>
+                    <td>商品名称：</td>
+                    <td>
+                        <input type="text" id="name" name="name" readonly="readonly" size="20"/>
+                    </td>
+                </tr>
+                <tr>
+                    <td>商品型号：</td>
+                    <td>
+                        <input type="text" id="model" name="model" readonly="readonly" size="20"/>
+                    </td>
+                    <td>商品单位：</td>
+                    <td>
+                        <input type="text" id="unit" name="unit" readonly="readonly" size="20"/>
+                    </td>
+                </tr>
+                <tr>
+                    <td>上次进价：</td>
+                    <td>
+                        <input type="text" id="lastPurchasingPrice" name="lastPurchasingPrice" readonly="readonly"
+                               size="20"/>
+                    </td>
+                    <td>当前库存：</td>
+                    <td>
+                        <input type="text" id="inventoryQuantity" name="inventoryQuantity" readonly="readonly"
+                               size="20"/>
+                    </td>
+                </tr>
+            </table>
+        </form>
+    </fieldset>
+    <div style="padding-left: 40px;padding-top: 10px">
+        <form id="fm4" method="post">
+            <table cellspacing="8px">
+                <tr>
+                    <td align="right">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;单价：</td>
+                    <td>
+                        <input type="hidden" id="action"/>
+                        <input type="hidden" id="rowIndex"/>
+                        <input type="text" id="price" name="price" class="easyui-numberbox"
+                               data-options="min:0,precision:2" required="true" size="10"/>
+                    </td>
+                    <td align="right">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;数量：</td>
+                    <td>
+                        <input type="text" id="num" name="num" class="easyui-numberbox" data-options="min:1"
+                               required="true" size="10"/>
+                    </td>
+                </tr>
+            </table>
+        </form>
+    </div>
+</div>
+
+<div id="dlg-buttons2">
+    <a id="saveAddAddNextButton" href="javascript:saveGoods(2)" class="easyui-linkbutton"
+       iconCls="icon-ok">保存并新增下一商品</a>
+    <a href="javascript:saveGoods(1)" class="easyui-linkbutton" iconCls="icon-ok">保存</a>
+    <a href="javascript:closeGoodsChooseDialog()" class="easyui-linkbutton" iconCls="icon-cancel">关闭</a>
+</div>
+
+<div id="dlg3" class="easyui-dialog" style="width: 300px;height: 123px;padding: 10px 20px"
+     closed="true" buttons="#dlg-buttons3" data-options="onClose:function(){$('#goodsTypeName').val('');}">
+    <form id="fm3" method="post">
+        <div>
+            商品类别：&nbsp;<input type="text" id="goodsTypeName" name="goodsTypeName" class="easyui-validatebox"
+                              required="true"/>
+        </div>
+    </form>
+</div>
+<div id="dlg-buttons3">
+    <a href="javascript:saveGoodsType()" class="easyui-linkbutton" iconCls="icon-ok">保存</a>
+    <a href="javascript:closeGoodsTypeDialog()" class="easyui-linkbutton" iconCls="icon-cancel">关闭</a>
+</div>
+</body>
+</html>

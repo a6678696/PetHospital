@@ -33,6 +33,11 @@ public class OverflowListServiceImpl implements OverflowListService {
     }
 
     @Override
+    public OverflowList findByOverflowNumber(String overflowNumber) {
+        return overflowListMapper.findByOverflowNumber(overflowNumber);
+    }
+
+    @Override
     public Integer add(OverflowList overflowList) {
         return overflowListMapper.add(overflowList);
     }

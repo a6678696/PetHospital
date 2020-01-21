@@ -12,7 +12,7 @@
     <select id="getTodayMaxDamageNumber" resultType="java.lang.String">
         select max(damageNumber) from t_damage_list where to_days(damageDate)=to_days(now())
     </select>
-    <select id="findById" parameterType="DamageList" resultMap="DamageListResult">
+    <select id="findById" parameterType="integer" resultMap="DamageListResult">
         select * from t_damage_list where id=#{id}
     </select>
     <insert id="add" parameterType="DamageList">
@@ -39,13 +39,17 @@
     <select id="list" parameterType="map" resultMap="DamageListResult">
         select * from t_damage_list
         <where>
-            <if test="bDamageDate!=null and bDamageDate!=''">
-                and date_format(damageDate,'%Y-%m-%d') &gt;= '#{bDamageDate}'
+            <if test="bDamageDate!=null">
+                and date_format(damageDate,'%Y-%m-%d %H:%i:%S') &gt;= date_format(#{bDamageDate},'%Y-%m-%d %H:%i:%S')
             </if>
-            <if test="eDamageDate!=null and eDamageDate!=''">
-                and date_format(damageDate,'%Y-%m-%d') &lt;= '#{eDamageDate}'
+            <if test="eDamageDate!=null">
+                and date_format(damageDate,'%Y-%m-%d %H:%i:%S') &lt;= date_format(#{eDamageDate},'%Y-%m-%d %H:%i:%S')
             </if>
         </where>
+        order by damageDate desc
+    </select>
+    <select id="findByDamageNumber" parameterType="string" resultMap="DamageListResult">
+        select * from t_damage_list where damageNumber=#{damageNumber}
     </select>
 
 </mapper>

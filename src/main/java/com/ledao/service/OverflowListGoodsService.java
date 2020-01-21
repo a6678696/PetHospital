@@ -28,4 +28,12 @@ public interface OverflowListGoodsService {
      * @return
      */
     Integer deleteByOverflowListId(Integer overflowListId);
+
+    /**
+     * 添加报溢单商品
+     *
+     * @param overflowListGoods
+     * @return
+     */
+    Integer add(OverflowListGoods overflowListGoods);
 }

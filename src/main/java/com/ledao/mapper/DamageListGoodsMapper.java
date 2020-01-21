@@ -1,5 +1,6 @@
 package com.ledao.mapper;
 
+import com.ledao.entity.DamageList;
 import com.ledao.entity.DamageListGoods;
 
 import java.util.List;
@@ -28,4 +29,12 @@ public interface DamageListGoodsMapper {
      * @return
      */
     Integer deleteByDamageListId(Integer damageListId);
+
+    /**
+     * 添加报损单商品
+     *
+     * @param damageListGoods
+     * @return
+     */
+    Integer add(DamageListGoods damageListGoods);
 }
