@@ -41,4 +41,9 @@ public class SaleListGoodsServiceImpl implements SaleListGoodsService {
     public List<SaleListGoods> list(Map<String, Object> map) {
         return saleListGoodsMapper.list(map);
     }
+
+    @Override
+    public Integer add(SaleListGoods saleListGoods) {
+        return saleListGoodsMapper.add(saleListGoods);
+    }
 }

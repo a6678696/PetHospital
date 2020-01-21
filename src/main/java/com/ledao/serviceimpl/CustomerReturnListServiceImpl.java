@@ -33,6 +33,11 @@ public class CustomerReturnListServiceImpl implements CustomerReturnListService 
     }
 
     @Override
+    public CustomerReturnList findByCustomerReturnNumber(String customerReturnNumber) {
+        return customerReturnListMapper.findByCustomerReturnNumber(customerReturnNumber);
+    }
+
+    @Override
     public Integer add(CustomerReturnList customerReturnList) {
         return customerReturnListMapper.add(customerReturnList);
     }

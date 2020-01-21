@@ -41,4 +41,9 @@ public class CustomerReturnListGoodsServiceImpl implements CustomerReturnListGoo
     public List<CustomerReturnListGoods> list(Map<String, Object> map) {
         return customerReturnListGoodsMapper.list(map);
     }
+
+    @Override
+    public Integer add(CustomerReturnListGoods customerReturnListGoods) {
+        return customerReturnListGoodsMapper.add(customerReturnListGoods);
+    }
 }

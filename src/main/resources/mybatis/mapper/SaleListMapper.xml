@@ -70,16 +70,20 @@
             <if test="state!=null ">
                 and state=#{state}
             </if>
-            <if test="bSaleDate!=null and bSaleDate!=''">
-                and date_format(saleDate,'%Y-%m-%d') &gt;= '#{bSaleDate}'
+            <if test="bSaleDate!=null">
+                and date_format(saleDate,'%Y-%m-%d %H:%i:%S') &gt;= date_format(#{bSaleDate},'%Y-%m-%d %H:%i:%S')
             </if>
-            <if test="eSaleDate!=null and eSaleDate!=''">
-                and date_format(saleDate,'%Y-%m-%d') &lt;= '#{eSaleDate}'
+            <if test="eSaleDate!=null">
+                and date_format(saleDate,'%Y-%m-%d %H:%i:%S') &lt;= date_format(#{eSaleDate},'%Y-%m-%d %H:%i:%S')
             </if>
         </where>
+        order by saleDate desc
     </select>
     <delete id="delete" parameterType="integer">
         delete from t_sale_list where id=#{id}
     </delete>
+    <select id="findBySaleNumber" parameterType="string" resultMap="SaleListResult">
+        select * from t_sale_list where saleNumber=#{saleNumber}
+    </select>
 
 </mapper>

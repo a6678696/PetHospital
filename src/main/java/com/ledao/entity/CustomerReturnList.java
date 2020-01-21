@@ -1,8 +1,11 @@
 package com.ledao.entity;
 
+import com.ledao.util.DateUtil;
 import lombok.Data;
+import lombok.SneakyThrows;
 
 import java.util.Date;
+import java.util.List;
 
 /**
  * 客户退货单实体
@@ -58,4 +61,19 @@ public class CustomerReturnList {
      * 备注
      */
     private String remarks;
+    /**
+     * 客户退货单商品集合
+     */
+    private List<CustomerReturnListGoods> customerReturnListGoodsList = null;
+
+    @SneakyThrows
+    @Override
+    public String toString() {
+        return "--{" +
+                "编号=" + id +
+                ", 客户退货单号='" + customerReturnNumber + '\'' +
+                ", 客户退货日期=" + DateUtil.dateFormat(customerReturnDate) +
+                ", 实付金额=" + amountPaid +
+                '}';
+    }
 }

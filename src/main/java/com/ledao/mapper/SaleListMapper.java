@@ -48,6 +48,14 @@ public interface SaleListMapper {
     SaleList findById(Integer id);
 
     /**
+     * 根据销售单号查询销售单
+     *
+     * @param saleNumber
+     * @return
+     */
+    SaleList findBySaleNumber(String saleNumber);
+
+    /**
      * 添加销售单
      *
      * @param saleList

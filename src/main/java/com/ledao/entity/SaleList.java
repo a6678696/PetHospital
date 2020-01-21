@@ -1,6 +1,8 @@
 package com.ledao.entity;
 
+import com.ledao.util.DateUtil;
 import lombok.Data;
+import lombok.SneakyThrows;
 
 import java.beans.Transient;
 import java.util.Date;
@@ -49,7 +51,7 @@ public class SaleList {
      */
     private float amountPaid;
     /**
-     *交易状态 1 已付 2 未付
+     *交易状态 1 已收 2 未收
      */
     private Integer state;
     /**
@@ -64,4 +66,16 @@ public class SaleList {
      *销售单商品集合
      */
     private List<SaleListGoods> saleListGoodsList=null;
+
+    @SneakyThrows
+    @Override
+    public String toString() {
+        return "--{" +
+                "编号=" + id +
+                ", 销售单号='" + saleNumber + '\'' +
+                ", 客户=" + customer.getName() +
+                ", 销售日期=" + DateUtil.dateFormat(saleDate) +
+                ", 实付金额=" + amountPaid +
+                '}';
+    }
 }

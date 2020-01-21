@@ -45,4 +45,12 @@ public interface SaleListGoodsService {
      * @return
      */
     List<SaleListGoods> list(Map<String, Object> map);
+
+    /**
+     * 添加销售单商品
+     *
+     * @param saleListGoods
+     * @return
+     */
+    Integer add(SaleListGoods saleListGoods);
 }

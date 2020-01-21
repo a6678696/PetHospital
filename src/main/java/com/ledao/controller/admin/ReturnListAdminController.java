@@ -72,7 +72,7 @@ public class ReturnListAdminController {
     @RequestMapping("/genCode")
     @RequiresPermissions(value = "退货出库")
     public String genCode() throws Exception {
-        StringBuffer code = new StringBuffer("JH");
+        StringBuffer code = new StringBuffer("TH");
         code.append(DateUtil.getCurrentDateStr());
         String returnNumber = returnListService.getTodayMaxReturnNumber();
         if (returnNumber != null) {

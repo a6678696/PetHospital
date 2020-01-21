@@ -30,6 +30,14 @@ public interface CustomerReturnListService {
     CustomerReturnList findById(Integer id);
 
     /**
+     * 根据客户退货单号查询实体
+     *
+     * @param customerReturnNumber
+     * @return
+     */
+    CustomerReturnList findByCustomerReturnNumber(String customerReturnNumber);
+
+    /**
      * 添加客户退货单
      *
      * @param customerReturnList

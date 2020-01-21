@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>进货入库</title>
+    <title>客户退货</title>
     <link rel="stylesheet" type="text/css" href="/static/jquery-easyui-1.7.0/themes/metro-blue/easyui.css">
     <link rel="stylesheet" type="text/css" href="/static/jquery-easyui-1.7.0/themes/icon.css">
     <script type="text/javascript" src="/static/jquery-easyui-1.7.0/jquery.min.js"></script>
@@ -12,21 +12,21 @@
     <script type="text/javascript">
         var url;
 
-        function savePurchaseGoods() {
-            $("#purchaseNumber").val($("#dh").text());
+        function saveCustomerReturnGoods() {
+            $("#customerReturnNumber").val($("#dh").text());
             $("#goodsJson").val(JSON.stringify($("#dg").datagrid("getData").rows));
             $("#fm").form("submit", {
-                url: "/admin/purchaseList/save",
+                url: "/admin/customerReturnList/save",
                 onSubmit: function () {
                     if ($("#dg").datagrid("getRows").length == 0) {
-                        $.messager.alert("系统提示", "请添加进货商品！");
+                        $.messager.alert("系统提示", "请添加客户商品！");
                         return false;
                     }
                     if (!$(this).form("validate")) {
                         return false;
                     }
-                    if (isNaN($("#supplierId").combobox("getValue"))) {
-                        $.messager.alert("系统提示", "请选择供应商！");
+                    if (isNaN($("#customerId").combobox("getValue"))) {
+                        $.messager.alert("系统提示", "请选择客户！");
                         return false;
                     }
                     return true;
@@ -43,7 +43,7 @@
             });
         }
 
-        function openPurchaseListGoodsModifyDialog() {
+        function openCustomerReturnListGoodsModifyDialog() {
             $("#saveAddAddNextButton").hide();
             var selectedRows = $("#dg").datagrid("getSelections");
             if (selectedRows.length != 1) {
@@ -51,7 +51,7 @@
                 return;
             }
             var row = selectedRows[0];
-            $("#dlg2").dialog("open").dialog("setTitle", "修改进货单商品");
+            $("#dlg2").dialog("open").dialog("setTitle", "修改客户单商品");
             $("#fm2").form("load", row);
             $("#lastPurchasingPrice").val("¥" + row.lastPurchasingPrice);
             $("#price").numberbox("setValue", row.price);
@@ -61,7 +61,7 @@
             $("#rowIndex").val($("#dg").datagrid("getRowIndex", row));
         }
 
-        function deletePurchaseListGoods() {
+        function deleteCustomerReturnListGoods() {
             var selectedRows = $("#dg").datagrid("getSelections");
             if (selectedRows.length != 1) {
                 $.messager.alert("系统提示", "请选择一条要删除的商品！");
@@ -70,14 +70,14 @@
             $.messager.confirm("系统提示", "您确定要删除这商品吗?", function (r) {
                 if (r) {
                     $("#dg").datagrid("deleteRow", $("#dg").datagrid("getRowIndex", selectedRows[0]));
-                    setPurchaseListAmount();
+                    setCustomerReturnListAmount();
                 }
             });
         }
 
-        // 进货入库模块
+        // 客户退货模块
 
-        function setPurchaseListAmount() {
+        function setCustomerReturnListAmount() {
             var rows = $("#dg").datagrid("getRows");
             var amount = 0;
             for (var i = 0; i < rows.length; i++) {
@@ -88,8 +88,8 @@
             $("#amountPaid").val(amount.toFixed(2));
         }
 
-        function openPurchaseListGoodsAddDialog() {
-            $("#dlg").dialog("open").dialog("setTitle", "进货入库商品选择");
+        function openCustomerReturnListGoodsAddDialog() {
+            $("#dlg").dialog("open").dialog("setTitle", "客户退货商品选择");
 
             $("#tree").tree({
                 url: '/admin/goodsType/loadTreeInfo',
@@ -200,7 +200,7 @@
                     }
                 });
             }
-            setPurchaseListAmount();
+            setCustomerReturnListAmount();
             if (type == 1) {
                 closeGoodsDialog();
             }
@@ -268,7 +268,7 @@
             $("#dg").datagrid({
                 onDblClickRow: function (index, row) {
                     $("#saveAddAddNextButton").hide();
-                    $("#dlg2").dialog("open").dialog("setTitle", "修改进货单商品");
+                    $("#dlg2").dialog("open").dialog("setTitle", "修改客户单商品");
                     $("#fm2").form("load", row);
                     $("#lastPurchasingPrice").val("¥" + row.lastPurchasingPrice);
                     $("#price").numberbox("setValue", row.price);
@@ -291,17 +291,17 @@
                 }
             });
 
-            $("#supplierId").combobox({
+            $("#customerId").combobox({
                 mode: 'remote',
-                url: '/admin/supplier/comboList',
+                url: '/admin/customer/comboList',
                 valueField: 'id',
                 textField: 'name',
                 delay: 100
             });
 
-            // $("#purchaseDate").datebox("setValue", genTodayStr());
+            // $("#customerReturnDate").datebox("setValue", genTodayStr());
 
-            $("#dh").load("/admin/purchaseList/genCode");
+            $("#dh").load("/admin/customerReturnList/genCode");
         });
     </script>
 </head>
@@ -313,9 +313,9 @@
             <table cellspacing="8px">
                 <tr>
                     <td>
-                        供应商：<input class="easyui-combobox" id="supplierId" name="supplier.id" style="width: 240px"
+                        客户：<input class="easyui-combobox" id="customerId" name="customer.id" style="width: 240px"
                                    required="true"
-                                   data-options="required:true,panelHeight:'auto',valueField:'id',textField:'name',url:'/admin/supplier/comboList'"/>
+                                   data-options="required:true,panelHeight:'auto',valueField:'id',textField:'name',url:'/admin/customer/comboList'"/>
                     </td>
                     <td>
                         &nbsp;&nbsp;&nbsp;&nbsp;应付金额：<input type="text" id="amountPayable" name="amountPayable"
@@ -327,7 +327,7 @@
                                                             class="easyui-validatebox" required="true" size="10"/>
                     </td>
                     <td>
-                        &nbsp;&nbsp;&nbsp;&nbsp;收货日期：<input type="text" id="purchaseDate" name="purchaseDate"
+                        &nbsp;&nbsp;&nbsp;&nbsp;收货日期：<input type="text" id="customerReturnDate" name="customerReturnDate"
                                                             class="easyui-datetimebox" required="true"
                                                             data-options="editable:false" size="21"/>
                     </td>
@@ -339,16 +339,16 @@
                         备&nbsp;&nbsp;&nbsp;注：<input type="text" id="remarks" name="remarks" size="78"/>
                     </td>
                     <td>
-                        &nbsp;&nbsp;&nbsp;&nbsp;是否付款：<select class="easyui-combobox" id="state" name="state"
+                        &nbsp;&nbsp;&nbsp;&nbsp;是否退款：<select class="easyui-combobox" id="state" name="state"
                                                              style="width: 167px" editable=false panelHeight="auto">
-                        <option value="1">已付</option>
-                        <option value="2">未付</option>
+                        <option value="1">已退</option>
+                        <option value="2">未退</option>
                     </select>
                     </td>
                     <td>
-                        <input type="hidden" id="purchaseNumber" name="purchaseNumber"/>
+                        <input type="hidden" id="customerReturnNumber" name="customerReturnNumber"/>
                         <input type="hidden" id="goodsJson" name="goodsJson"/>
-                        &nbsp;&nbsp;&nbsp;&nbsp;<a href="javascript:savePurchaseGoods()" class="easyui-linkbutton"
+                        &nbsp;&nbsp;&nbsp;&nbsp;<a href="javascript:saveCustomerReturnGoods()" class="easyui-linkbutton"
                                                    iconCls="icon-ok">保存</a>
                     </td>
                 </tr>
@@ -373,11 +373,11 @@
 
     <div id="tb">
         <div style="padding: 2px">
-            <a href="javascript:openPurchaseListGoodsAddDialog()" class="easyui-linkbutton" iconCls="icon-add"
+            <a href="javascript:openCustomerReturnListGoodsAddDialog()" class="easyui-linkbutton" iconCls="icon-add"
                plain="true">添加</a>
-            <a href="javascript:openPurchaseListGoodsModifyDialog()" class="easyui-linkbutton" iconCls="icon-edit"
+            <a href="javascript:openCustomerReturnListGoodsModifyDialog()" class="easyui-linkbutton" iconCls="icon-edit"
                plain="true">修改</a>
-            <a href="javascript:deletePurchaseListGoods()" class="easyui-linkbutton" iconCls="icon-remove" plain="true">删除</a>
+            <a href="javascript:deleteCustomerReturnListGoods()" class="easyui-linkbutton" iconCls="icon-remove" plain="true">删除</a>
         </div>
     </div>
 </div>

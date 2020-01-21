@@ -12,7 +12,12 @@
     </resultMap>
 
     <select id="findByName" parameterType="string" resultMap="CustomerResult">
-        select * from t_customer where name like #{name}
+        select * from t_customer
+        <where>
+            <if test="_parameter != null and _parameter != ''">
+                name like #{name}
+            </if>
+        </where>
     </select>
 
     <select id="list" parameterType="map" resultMap="CustomerResult">

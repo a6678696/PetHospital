@@ -45,4 +45,12 @@ public interface CustomerReturnListGoodsMapper {
      * @return
      */
     List<CustomerReturnListGoods> list(Map<String, Object> map);
+
+    /**
+     * 添加客户退货单商品
+     *
+     * @param customerReturnListGoods
+     * @return
+     */
+    Integer add(CustomerReturnListGoods customerReturnListGoods);
 }

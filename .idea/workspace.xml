@@ -5,29 +5,40 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="0a04dcdb-703f-4bd2-b3be-43a82c777491" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/ledao/controller/admin/ReturnListAdminController.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/webapp/purchase/return.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/webapp/purchase/returnSearch.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/ledao/controller/admin/CustomerReturnListAdminController.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/ledao/controller/admin/SaleListAdminController.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/webapp/sale/returnSearch.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/webapp/sale/saleSearch.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/webapp/sale/saleout.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/webapp/sale/salereturn.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/ledao/controller/UserController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/ledao/controller/UserController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/ledao/controller/admin/PurchaseListAdminController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/ledao/controller/admin/PurchaseListAdminController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/ledao/controller/admin/ReturnListAdminController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/ledao/controller/admin/ReturnListAdminController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/ledao/entity/CustomerReturnList.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/ledao/entity/CustomerReturnList.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/ledao/entity/PurchaseList.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/ledao/entity/PurchaseList.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/ledao/entity/ReturnList.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/ledao/entity/ReturnList.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/ledao/mapper/PurchaseListGoodsMapper.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/ledao/mapper/PurchaseListGoodsMapper.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/ledao/mapper/ReturnListGoodsMapper.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/ledao/mapper/ReturnListGoodsMapper.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/ledao/mapper/ReturnListMapper.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/ledao/mapper/ReturnListMapper.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/ledao/service/ReturnListGoodsService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/ledao/service/ReturnListGoodsService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/ledao/service/ReturnListService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/ledao/service/ReturnListService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/ledao/serviceimpl/ReturnListGoodsServiceImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/ledao/serviceimpl/ReturnListGoodsServiceImpl.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/ledao/serviceimpl/ReturnListServiceImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/ledao/serviceimpl/ReturnListServiceImpl.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/mybatis/mapper/GoodsMapper.xml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/mybatis/mapper/GoodsMapper.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/mybatis/mapper/ReturnListGoodsMapper.xml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/mybatis/mapper/ReturnListGoodsMapper.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/mybatis/mapper/ReturnListMapper.xml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/mybatis/mapper/ReturnListMapper.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/mybatis/mapper/SupplierMapper.xml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/mybatis/mapper/SupplierMapper.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/ledao/entity/SaleList.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/ledao/entity/SaleList.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/ledao/mapper/CustomerReturnListGoodsMapper.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/ledao/mapper/CustomerReturnListGoodsMapper.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/ledao/mapper/CustomerReturnListMapper.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/ledao/mapper/CustomerReturnListMapper.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/ledao/mapper/SaleListGoodsMapper.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/ledao/mapper/SaleListGoodsMapper.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/ledao/mapper/SaleListMapper.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/ledao/mapper/SaleListMapper.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/ledao/service/CustomerReturnListGoodsService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/ledao/service/CustomerReturnListGoodsService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/ledao/service/CustomerReturnListService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/ledao/service/CustomerReturnListService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/ledao/service/SaleListGoodsService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/ledao/service/SaleListGoodsService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/ledao/service/SaleListService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/ledao/service/SaleListService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/ledao/serviceimpl/CustomerReturnListGoodsServiceImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/ledao/serviceimpl/CustomerReturnListGoodsServiceImpl.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/ledao/serviceimpl/CustomerReturnListServiceImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/ledao/serviceimpl/CustomerReturnListServiceImpl.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/ledao/serviceimpl/SaleListGoodsServiceImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/ledao/serviceimpl/SaleListGoodsServiceImpl.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/ledao/serviceimpl/SaleListServiceImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/ledao/serviceimpl/SaleListServiceImpl.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/ledao/util/DateUtil.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/ledao/util/DateUtil.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/mybatis/mapper/CustomerMapper.xml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/mybatis/mapper/CustomerMapper.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/mybatis/mapper/CustomerReturnListGoodsMapper.xml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/mybatis/mapper/CustomerReturnListGoodsMapper.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/mybatis/mapper/CustomerReturnListMapper.xml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/mybatis/mapper/CustomerReturnListMapper.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/mybatis/mapper/SaleListGoodsMapper.xml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/mybatis/mapper/SaleListGoodsMapper.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/mybatis/mapper/SaleListMapper.xml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/mybatis/mapper/SaleListMapper.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/webapp/basicData/goods.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/basicData/goods.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/webapp/basicData/stock.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/basicData/stock.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/webapp/common/stockSearch.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/common/stockSearch.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/webapp/purchase/purchase.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/purchase/purchase.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/purchase/purchaseSearch.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/purchase/purchaseSearch.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/ledao/controller/UserController.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/ledao/controller/UserController.class" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -114,25 +125,25 @@
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="aspect.path.notification.shown" value="true" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/src/main/webapp/purchase" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/src/main/webapp/sale" />
     <property name="project.structure.last.edited" value="Modules" />
     <property name="project.structure.proportion" value="0.15" />
     <property name="project.structure.side.proportion" value="0.2" />
     <property name="settings.editor.selected.configurable" value="editing.templates" />
   </component>
   <component name="RecentsManager">
-    <key name="MoveFile.RECENT_KEYS">
-      <recent name="F:\idea workspase for Actual combat\PetHospital\src\main\resources\mybatis" />
-    </key>
-    <key name="CopyClassDialog.RECENTS_KEY">
-      <recent name="com.ledao.controller.admin" />
-    </key>
     <key name="CopyFile.RECENT_KEYS">
+      <recent name="F:\idea workspase for Actual combat\PetHospital\src\main\webapp\sale" />
       <recent name="F:\idea workspase for Actual combat\PetHospital\src\main\webapp\purchase" />
       <recent name="F:\idea workspase for Actual combat\PetHospital\src\main\webapp\static\jquery-easyui-1.7.0\themes\usericons" />
       <recent name="F:\idea workspase for Actual combat\PetHospital\src\main\webapp\static\images" />
       <recent name="F:\idea workspase for Actual combat\PetHospital\src\main\webapp" />
-      <recent name="F:\idea workspase for Actual combat\PetHospital\src\main\resources" />
+    </key>
+    <key name="CopyClassDialog.RECENTS_KEY">
+      <recent name="com.ledao.controller.admin" />
+    </key>
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="F:\idea workspase for Actual combat\PetHospital\src\main\resources\mybatis" />
     </key>
   </component>
   <component name="RunManager" selected="Spring Boot.PethospitalApplication">
@@ -175,11 +186,6 @@
                 <item name="services root" type="e789fda9:ObjectUtils$Sentinel" />
                 <item name="root:jdbc:mysql://localhost:3306/db_pethospital?serverTimezone=GMT%2B8" type="7427dc5b:ServiceModel$ServiceGroupNode" />
               </path>
-              <path>
-                <item name="services root" type="e789fda9:ObjectUtils$Sentinel" />
-                <item name="root:jdbc:mysql://localhost:3306/db_pethospital?serverTimezone=GMT%2B8" type="7427dc5b:ServiceModel$ServiceGroupNode" />
-                <item name="com.intellij.database.console.session.MessageBusSession@534788db" type="9fbbdea:ServiceModel$ServiceNode" />
-              </path>
             </expand>
             <select />
           </treeState>
@@ -208,7 +214,8 @@
       <workItem from="1579343510723" duration="18873000" />
       <workItem from="1579368189151" duration="431000" />
       <workItem from="1579396043839" duration="36422000" />
-      <workItem from="1579494896975" duration="22188000" />
+      <workItem from="1579494896975" duration="22891000" />
+      <workItem from="1579582526136" duration="10495000" />
     </task>
     <task id="LOCAL-00001" summary="LeDao宠物医院管理系统">
       <created>1579192730886</created>
@@ -287,7 +294,14 @@
       <option name="project" value="LOCAL" />
       <updated>1579504238801</updated>
     </task>
-    <option name="localTasksCounter" value="12" />
+    <task id="LOCAL-00012" summary="LeDao宠物医院管理系统">
+      <created>1579544319075</created>
+      <option name="number" value="00012" />
+      <option name="presentableId" value="LOCAL-00012" />
+      <option name="project" value="LOCAL" />
+      <updated>1579544319075</updated>
+    </task>
+    <option name="localTasksCounter" value="13" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -310,10 +324,10 @@
       <screen x="0" y="0" width="1536" height="824" />
     </state>
     <state x="361" y="71" key="#com.intellij.execution.impl.EditConfigurationsDialog/0.0.1536.824@0.0.1536.824" timestamp="1579501989802" />
-    <state x="574" y="122" key="#com.intellij.ide.util.MemberChooser" timestamp="1579536366691">
+    <state x="574" y="122" key="#com.intellij.ide.util.MemberChooser" timestamp="1579592994249">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state x="574" y="122" key="#com.intellij.ide.util.MemberChooser/0.0.1536.824@0.0.1536.824" timestamp="1579536366691" />
+    <state x="574" y="122" key="#com.intellij.ide.util.MemberChooser/0.0.1536.824@0.0.1536.824" timestamp="1579592994249" />
     <state x="516" y="164" key="#com.intellij.ide.util.PackageChooserDialog" timestamp="1579150006221">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
@@ -334,74 +348,74 @@
       <screen x="0" y="0" width="1536" height="824" />
     </state>
     <state x="499" y="159" key="#com.intellij.refactoring.safeDelete.UnsafeUsagesDialog/0.0.1536.824@0.0.1536.824" timestamp="1579172113914" />
-    <state x="334" y="0" key="CommitChangelistDialog2" timestamp="1579504232370">
+    <state x="334" y="0" key="CommitChangelistDialog2" timestamp="1579544316405">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state x="334" y="0" key="CommitChangelistDialog2/0.0.1536.824@0.0.1536.824" timestamp="1579504232370" />
-    <state width="911" height="466" key="DebuggerActiveHint" timestamp="1579454363407">
+    <state x="334" y="0" key="CommitChangelistDialog2/0.0.1536.824@0.0.1536.824" timestamp="1579544316405" />
+    <state width="911" height="466" key="DebuggerActiveHint" timestamp="1579584976438">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state width="911" height="466" key="DebuggerActiveHint/0.0.1536.824@0.0.1536.824" timestamp="1579454363407" />
+    <state width="911" height="466" key="DebuggerActiveHint/0.0.1536.824@0.0.1536.824" timestamp="1579584976438" />
     <state x="147" y="71" key="DiffContextDialog" timestamp="1579193275073">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
     <state x="147" y="71" key="DiffContextDialog/0.0.1536.824@0.0.1536.824" timestamp="1579193275073" />
-    <state x="549" y="168" width="773" height="488" key="FileChooserDialogImpl" timestamp="1579500237214">
+    <state x="549" y="168" width="773" height="488" key="FileChooserDialogImpl" timestamp="1579583849989">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state x="549" y="168" width="773" height="488" key="FileChooserDialogImpl/0.0.1536.824@0.0.1536.824" timestamp="1579500237214" />
+    <state x="549" y="168" width="773" height="488" key="FileChooserDialogImpl/0.0.1536.824@0.0.1536.824" timestamp="1579583849989" />
     <state x="589" y="326" width="382" height="172" key="Github.CreateGistDialog" timestamp="1579192359130">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
     <state x="589" y="326" width="382" height="172" key="Github.CreateGistDialog/0.0.1536.824@0.0.1536.824" timestamp="1579192359130" />
-    <state width="1493" height="219" key="GridCell.Tab.0.bottom" timestamp="1579542734215">
+    <state width="1493" height="177" key="GridCell.Tab.0.bottom" timestamp="1579593940543">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state width="1493" height="219" key="GridCell.Tab.0.bottom/0.0.1536.824@0.0.1536.824" timestamp="1579542734215" />
-    <state width="1493" height="219" key="GridCell.Tab.0.center" timestamp="1579542734215">
+    <state width="1493" height="177" key="GridCell.Tab.0.bottom/0.0.1536.824@0.0.1536.824" timestamp="1579593940543" />
+    <state width="1493" height="177" key="GridCell.Tab.0.center" timestamp="1579593940543">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state width="1493" height="219" key="GridCell.Tab.0.center/0.0.1536.824@0.0.1536.824" timestamp="1579542734215" />
-    <state width="1493" height="219" key="GridCell.Tab.0.left" timestamp="1579542734215">
+    <state width="1493" height="177" key="GridCell.Tab.0.center/0.0.1536.824@0.0.1536.824" timestamp="1579593940543" />
+    <state width="1493" height="177" key="GridCell.Tab.0.left" timestamp="1579593940543">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state width="1493" height="219" key="GridCell.Tab.0.left/0.0.1536.824@0.0.1536.824" timestamp="1579542734215" />
-    <state width="1493" height="219" key="GridCell.Tab.0.right" timestamp="1579542734215">
+    <state width="1493" height="177" key="GridCell.Tab.0.left/0.0.1536.824@0.0.1536.824" timestamp="1579593940543" />
+    <state width="1493" height="177" key="GridCell.Tab.0.right" timestamp="1579593940543">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state width="1493" height="219" key="GridCell.Tab.0.right/0.0.1536.824@0.0.1536.824" timestamp="1579542734215" />
-    <state width="1493" height="177" key="GridCell.Tab.1.bottom" timestamp="1579542703832">
+    <state width="1493" height="177" key="GridCell.Tab.0.right/0.0.1536.824@0.0.1536.824" timestamp="1579593940543" />
+    <state width="1493" height="177" key="GridCell.Tab.1.bottom" timestamp="1579593940543">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state width="1493" height="177" key="GridCell.Tab.1.bottom/0.0.1536.824@0.0.1536.824" timestamp="1579542703832" />
-    <state width="1493" height="177" key="GridCell.Tab.1.center" timestamp="1579542703831">
+    <state width="1493" height="177" key="GridCell.Tab.1.bottom/0.0.1536.824@0.0.1536.824" timestamp="1579593940543" />
+    <state width="1493" height="177" key="GridCell.Tab.1.center" timestamp="1579593940543">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state width="1493" height="177" key="GridCell.Tab.1.center/0.0.1536.824@0.0.1536.824" timestamp="1579542703831" />
-    <state width="1493" height="177" key="GridCell.Tab.1.left" timestamp="1579542703831">
+    <state width="1493" height="177" key="GridCell.Tab.1.center/0.0.1536.824@0.0.1536.824" timestamp="1579593940543" />
+    <state width="1493" height="177" key="GridCell.Tab.1.left" timestamp="1579593940543">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state width="1493" height="177" key="GridCell.Tab.1.left/0.0.1536.824@0.0.1536.824" timestamp="1579542703831" />
-    <state width="1493" height="177" key="GridCell.Tab.1.right" timestamp="1579542703832">
+    <state width="1493" height="177" key="GridCell.Tab.1.left/0.0.1536.824@0.0.1536.824" timestamp="1579593940543" />
+    <state width="1493" height="177" key="GridCell.Tab.1.right" timestamp="1579593940543">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state width="1493" height="177" key="GridCell.Tab.1.right/0.0.1536.824@0.0.1536.824" timestamp="1579542703832" />
-    <state width="1493" height="177" key="GridCell.Tab.2.bottom" timestamp="1579542703832">
+    <state width="1493" height="177" key="GridCell.Tab.1.right/0.0.1536.824@0.0.1536.824" timestamp="1579593940543" />
+    <state width="1493" height="177" key="GridCell.Tab.2.bottom" timestamp="1579593940544">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state width="1493" height="177" key="GridCell.Tab.2.bottom/0.0.1536.824@0.0.1536.824" timestamp="1579542703832" />
-    <state width="1493" height="177" key="GridCell.Tab.2.center" timestamp="1579542703832">
+    <state width="1493" height="177" key="GridCell.Tab.2.bottom/0.0.1536.824@0.0.1536.824" timestamp="1579593940544" />
+    <state width="1493" height="177" key="GridCell.Tab.2.center" timestamp="1579593940544">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state width="1493" height="177" key="GridCell.Tab.2.center/0.0.1536.824@0.0.1536.824" timestamp="1579542703832" />
-    <state width="1493" height="177" key="GridCell.Tab.2.left" timestamp="1579542703832">
+    <state width="1493" height="177" key="GridCell.Tab.2.center/0.0.1536.824@0.0.1536.824" timestamp="1579593940544" />
+    <state width="1493" height="177" key="GridCell.Tab.2.left" timestamp="1579593940543">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state width="1493" height="177" key="GridCell.Tab.2.left/0.0.1536.824@0.0.1536.824" timestamp="1579542703832" />
-    <state width="1493" height="177" key="GridCell.Tab.2.right" timestamp="1579542703832">
+    <state width="1493" height="177" key="GridCell.Tab.2.left/0.0.1536.824@0.0.1536.824" timestamp="1579593940543" />
+    <state width="1493" height="177" key="GridCell.Tab.2.right" timestamp="1579593940544">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state width="1493" height="177" key="GridCell.Tab.2.right/0.0.1536.824@0.0.1536.824" timestamp="1579542703832" />
+    <state width="1493" height="177" key="GridCell.Tab.2.right/0.0.1536.824@0.0.1536.824" timestamp="1579593940544" />
     <state x="299" y="68" key="Maven.ArtifactSearchDialog" timestamp="1579332741235">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
@@ -410,10 +424,10 @@
       <screen x="0" y="0" width="1536" height="824" />
     </state>
     <state x="270" y="0" key="SettingsEditor/0.0.1536.824@0.0.1536.824" timestamp="1579428459767" />
-    <state x="361" y="146" key="Vcs.Push.Dialog.v2" timestamp="1579544303947">
+    <state x="361" y="146" key="Vcs.Push.Dialog.v2" timestamp="1579544320585">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state x="361" y="146" key="Vcs.Push.Dialog.v2/0.0.1536.824@0.0.1536.824" timestamp="1579544303947" />
+    <state x="361" y="146" key="Vcs.Push.Dialog.v2/0.0.1536.824@0.0.1536.824" timestamp="1579544320585" />
     <state width="775" height="419" key="XDebugger.FullValuePopup" timestamp="1579358514956">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
@@ -430,10 +444,10 @@
       <screen x="0" y="0" width="1536" height="824" />
     </state>
     <state x="562" y="330" key="com.intellij.openapi.vcs.update.UpdateOrStatusOptionsDialogupdate-v2/0.0.1536.824@0.0.1536.824" timestamp="1579193123784" />
-    <state x="403" y="112" width="969" height="534" key="find.popup" timestamp="1579544241176">
+    <state x="44" y="112" width="1441" height="534" key="find.popup" timestamp="1579593463984">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state x="403" y="112" width="969" height="534" key="find.popup/0.0.1536.824@0.0.1536.824" timestamp="1579544241176" />
+    <state x="44" y="112" width="1441" height="534" key="find.popup/0.0.1536.824@0.0.1536.824" timestamp="1579593463984" />
     <state x="521" y="204" key="git4idea.merge.GitPullDialog" timestamp="1579193188401">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
@@ -442,9 +456,9 @@
       <screen x="0" y="0" width="1536" height="824" />
     </state>
     <state x="470" y="40" key="refactoring.ChangeSignatureDialog/0.0.1536.824@0.0.1536.824" timestamp="1579501292945" />
-    <state x="431" y="145" width="672" height="678" key="search.everywhere.popup" timestamp="1579543361579">
+    <state x="431" y="145" width="672" height="678" key="search.everywhere.popup" timestamp="1579592977209">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state x="431" y="145" width="672" height="678" key="search.everywhere.popup/0.0.1536.824@0.0.1536.824" timestamp="1579543361579" />
+    <state x="431" y="145" width="672" height="678" key="search.everywhere.popup/0.0.1536.824@0.0.1536.824" timestamp="1579592977209" />
   </component>
 </project>

@@ -43,6 +43,11 @@ public class SaleListServiceImpl implements SaleListService {
     }
 
     @Override
+    public SaleList findBySaleNumber(String saleNumber) {
+        return saleListMapper.findBySaleNumber(saleNumber);
+    }
+
+    @Override
     public Integer add(SaleList saleList) {
         return saleListMapper.add(saleList);
     }

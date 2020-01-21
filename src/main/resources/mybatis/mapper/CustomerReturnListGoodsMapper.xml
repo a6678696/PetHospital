@@ -38,5 +38,8 @@
             and concat(`code`, `name`) like concat('%',#{codeOrName},'%')
         </if>
     </select>
+    <insert id="add" parameterType="CustomerReturnListGoods">
+        insert into t_customer_return_list_goods (code, goodsId, model, name, num, price, total, unit, customerReturnListId, typeId) values (#{code},#{goodsId},#{model},#{name},#{num},#{price},#{total},#{unit},#{customerReturnList.id},#{type.id});
+    </insert>
 
 </mapper>

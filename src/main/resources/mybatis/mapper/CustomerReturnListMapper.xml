@@ -57,22 +57,26 @@
             <if test="customerReturnNumber!=null and customerReturnNumber!=''">
                 and customerReturnNumber like #{customerReturnNumber}
             </if>
-            <if test="customerId!=null">
-                and customerId =#{customerId}
+            <if test="customer.id!=null">
+                and customerId =#{customer.id}
             </if>
             <if test="state!=null ">
                 and state=#{state}
             </if>
-            <if test="bCustomerReturnDate!=null and bCustomerReturnDate!=''">
-                and date_format(customerReturnDate,'%Y-%m-%d') &gt;= '#{bCustomerReturnDate}'
+            <if test="bCustomerReturnDate!=null">
+                and date_format(customerReturnDate,'%Y-%m-%d %H:%i:%S') &gt;= date_format(#{bCustomerReturnDate},'%Y-%m-%d %H:%i:%S')
             </if>
-            <if test="eCustomerReturnDate!=null and eCustomerReturnDate!=''">
-                and date_format(customerReturnDate,'%Y-%m-%d') &lt;= '#{eCustomerReturnDate}'
+            <if test="eCustomerReturnDate!=null">
+                and date_format(customerReturnDate,'%Y-%m-%d %H:%i:%S') &lt;= date_format(#{eCustomerReturnDate},'%Y-%m-%d %H:%i:%S')
             </if>
         </where>
+        order by customerReturnDate desc
     </select>
     <delete id="delete" parameterType="integer">
         delete from t_customer_return_list where id#{id}
     </delete>
+    <select id="findByCustomerReturnNumber" parameterType="CustomerReturnList" resultMap="CustomerReturnListResult">
+        select * from t_customer_return_list where customerReturnNumber = #{customerReturnNumber}
+    </select>
 
 </mapper>

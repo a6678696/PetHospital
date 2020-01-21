@@ -1,7 +1,9 @@
 package com.ledao.entity;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
+import com.ledao.util.DateUtil;
 import lombok.Data;
+import lombok.SneakyThrows;
 
 import java.beans.Transient;
 import java.util.Date;
@@ -66,13 +68,14 @@ public class PurchaseList {
      */
     private List<PurchaseListGoods> purchaseListGoodsList=null;
 
+    @SneakyThrows
     @Override
     public String toString() {
         return "--{" +
                 "编号=" + id +
                 ", 退货单号='" + purchaseNumber + '\'' +
                 ", 供应商=" + supplier.getName() +
-                ", 退货日期=" + purchaseDate +
+                ", 退货日期=" + DateUtil.dateFormat(purchaseDate) +
                 ", 操作员=" + user.getUserName() +
                 '}';
     }
