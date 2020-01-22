@@ -2,10 +2,7 @@ package com.ledao.controller.admin;
 
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
-import com.ledao.entity.Goods;
-import com.ledao.entity.Log;
-import com.ledao.entity.SaleList;
-import com.ledao.entity.SaleListGoods;
+import com.ledao.entity.*;
 import com.ledao.service.*;
 import com.ledao.util.DateUtil;
 import com.ledao.util.MathUtil;
@@ -155,19 +152,16 @@ public class SaleListAdminController {
     public Map<String, Object> listCount(SaleList saleList, SaleListGoods saleListGoods) {
         Map<String, Object> resultMap = new HashMap<>(16);
         Map<String, Object> map = new HashMap<>(16);
-        map.put("saleNumber", StringUtil.formatLike(saleList.getSaleNumber()));
-        map.put("customer", saleList.getCustomer());
-        map.put("state", saleList.getState());
         map.put("bSaleDate", saleList.getBSaleDate());
         map.put("eSaleDate", saleList.getESaleDate());
         List<SaleList> saleListList = saleListService.list(map);
         for (SaleList pl : saleListList) {
-            saleListGoods.setSaleList(pl);
             Map<String, Object> map2 = new HashMap<>(16);
+            map2.put("saleListId", pl.getId());
             map2.put("type", saleListGoods.getType());
             map2.put("codeOrName", saleListGoods.getCodeOrName());
-            List<SaleListGoods> plgList = saleListGoodsService.list(map2);
-            pl.setSaleListGoodsList(plgList);
+            List<SaleListGoods> saleListGoodsList = saleListGoodsService.list(map2);
+            pl.setSaleListGoodsList(saleListGoodsList);
         }
         resultMap.put("rows", saleListList);
         logService.add(new Log(Log.SEARCH_ACTION, "商品采购统计查询"));

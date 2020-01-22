@@ -28,7 +28,10 @@
     <select id="list" parameterType="map" resultMap="SaleListGoodsResult">
         select * from t_sale_list_goods
         where 1=1
-        <if test="type.id!=null ">
+        <if test="saleListId!=null ">
+            and saleListId=#{saleListId}
+        </if>
+        <if test="type!=null and type.id!=null ">
             and typeId=#{type.id}
         </if>
         <if test="codeOrName!='' and codeOrName!=null">

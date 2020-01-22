@@ -57,7 +57,7 @@
             <if test="customerReturnNumber!=null and customerReturnNumber!=''">
                 and customerReturnNumber like #{customerReturnNumber}
             </if>
-            <if test="customer.id!=null">
+            <if test="customer!=null and customer.id!=null">
                 and customerId =#{customer.id}
             </if>
             <if test="state!=null ">

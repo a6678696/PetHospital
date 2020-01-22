@@ -31,7 +31,7 @@
     <select id="list" parameterType="map" resultMap="CustomerReturnListGoodsResult">
         select * from t_customer_return_list_goods
         where 1=1
-        <if test="typeId!=null ">
+        <if test="type!=null and typeId!=null ">
             and typeId=#{typeId}
         </if>
         <if test="codeOrName!='' and codeOrName!=null">

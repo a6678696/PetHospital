@@ -12,7 +12,7 @@
     <script type="text/javascript">
 
         $(document).ready(function () {
-           search();
+            search();
         });
 
         function chooseGoodsType() {
@@ -101,7 +101,7 @@
                             code: goodsRow.code,
                             name: goodsRow.name,
                             model: goodsRow.model,
-                            typeName:goodsRow.type.name,
+                            typeName: goodsRow.type.name,
                             unit: goodsRow.unit,
                             price: goodsRow.price,
                             num: goodsRow.num,
@@ -122,8 +122,16 @@
             return "¥" + val;
         }
 
-        function formatNum(val,row) {
+        function formatNum(val, row) {
             return "<span style='color: red'>" + val + "</span>";
+        }
+
+        function formatType(val, row) {
+            if (val == "退货") {
+                return "<span style='color: red'>" + val + "</span>";
+            } else {
+                return "<span style='color: blue'>" + val + "</span>";
+            }
         }
     </script>
 </head>
@@ -133,8 +141,8 @@
        fit="true" toolbar="#tb">
     <thead>
     <th field="number" width="40" align="center">单号</th>
-    <th field="type" width="20" align="center">类型</th>
-    <th field="date" width="30" align="center">日期</th>
+    <th field="type" width="20" align="center" formatter="formatType">类型</th>
+    <th field="date" width="40" align="center">日期</th>
     <th field="supplierName" width="50" align="center">供应商</th>
     <th field="code" width="20" align="center">商品编号</th>
     <th field="name" width="50" align="center">商品名称</th>
@@ -177,7 +185,5 @@
     <a href="javascript:closeGoodsTypeChooseDialog()" class="easyui-linkbutton" iconCls="icon-cancel"
        plain="true">关闭</a>
 </div>
-
-
 </body>
 </html>

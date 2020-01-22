@@ -24,7 +24,10 @@
     <select id="list" parameterType="map" resultMap="PurchaseListGoodsResult">
         select * from t_purchase_list_goods
         <where>
-            <if test="type.id!=null ">
+            <if test="purchaseListId!=null ">
+                and purchaseListId=#{purchaseListId}
+            </if>
+            <if test="type!=null and type.id!=null ">
                 and typeId=#{type.id}
             </if>
             <if test="codeOrName!='' and codeOrName!=null">

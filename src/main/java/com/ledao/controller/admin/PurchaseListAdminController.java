@@ -2,10 +2,7 @@ package com.ledao.controller.admin;
 
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
-import com.ledao.entity.Goods;
-import com.ledao.entity.Log;
-import com.ledao.entity.PurchaseList;
-import com.ledao.entity.PurchaseListGoods;
+import com.ledao.entity.*;
 import com.ledao.service.*;
 import com.ledao.util.DateUtil;
 import com.ledao.util.MathUtil;
@@ -163,15 +160,11 @@ public class PurchaseListAdminController {
         map.put("ePurchaseDate", purchaseList.getEPurchaseDate());
         List<PurchaseList> purchaseListList = purchaseListService.list(map);
         for (PurchaseList pl : purchaseListList) {
-            List<PurchaseListGoods> purchaseListGoodsList = purchaseListGoodsService.listByPurchaseListId(pl.getId());
-            /*for (PurchaseListGoods listGoods : purchaseListGoodsList) {
-                    purchaseListGoods.setPurchaseList(pl);
-                    Map<String, Object> map2 = new HashMap<>(16);
-                    map2.put("type", purchaseListGoods.getType());
-                    map2.put("codeOrName", purchaseListGoods.getCodeOrName());
-                    List<PurchaseListGoods> plgList = purchaseListGoodsService.list(map2);
-                    pl.setPurchaseListGoodsList(plgList);
-            }*/
+            Map<String, Object> map2 = new HashMap<>(16);
+            map2.put("purchaseListId", pl.getId());
+            map2.put("type", purchaseListGoods.getType());
+            map2.put("codeOrName", purchaseListGoods.getCodeOrName());
+            List<PurchaseListGoods> purchaseListGoodsList = purchaseListGoodsService.list(map2);
             pl.setPurchaseListGoodsList(purchaseListGoodsList);
         }
         resultMap.put("rows", purchaseListList);

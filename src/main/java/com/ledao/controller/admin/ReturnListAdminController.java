@@ -159,18 +159,12 @@ public class ReturnListAdminController {
         map.put("eReturnDate", returnList.getEReturnDate());
         List<ReturnList> returnListList = returnListService.list(map);
         for (ReturnList pl : returnListList) {
-            List<ReturnListGoods> returnListGoodsList = returnListGoodsService.listByReturnListId(pl.getId());
-            for (ReturnListGoods listGoods : returnListGoodsList) {
-                listGoods.setType(goodsTypeService.findById(listGoods.getTypeId()));
-            }
-
-            pl.setReturnListGoodsList(returnListGoodsList);
-            /*returnListGoods.setReturnList(pl);
             Map<String, Object> map2 = new HashMap<>(16);
+            map2.put("returnListId", pl.getId());
             map2.put("type", returnListGoods.getType());
             map2.put("codeOrName", returnListGoods.getCodeOrName());
-            List<ReturnListGoods> plgList = returnListGoodsService.list(map2);
-            pl.setReturnListGoodsList(plgList);*/
+            List<ReturnListGoods> returnListGoodsList = returnListGoodsService.list(map2);
+            pl.setReturnListGoodsList(returnListGoodsList);
         }
         resultMap.put("rows", returnListList);
         logService.add(new Log(Log.SEARCH_ACTION, "商品采购统计查询"));

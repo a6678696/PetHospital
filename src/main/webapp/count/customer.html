@@ -157,7 +157,13 @@
             return "¥" + val;
         }
 
-
+        function formatType(val,row) {
+            if (val == "销售单") {
+                return "<span style='color: blue'>" + val + "</span>";
+            } else {
+                return "<span style='color: red'>" + val + "</span>";
+            }
+        }
     </script>
 </head>
 <body class="easyui-layout" style="margin: 1px">
@@ -170,7 +176,7 @@
         <th field="customerName" width="60" align="center">客户名称</th>
         <th field="date" width="40" align="center">日期</th>
         <th field="number" width="40" align="center">单号</th>
-        <th field="type" width="30" align="center">类型</th>
+        <th field="type" width="30" align="center" formatter="formatType">类型</th>
         <th field="amount" width="20" align="right" formatter="formatAmount">总金额</th>
         <th field="state" width="30" align="center" formatter="formatState">是否付/退款</th>
         <th field="user" width="20" align="center">操作员</th>

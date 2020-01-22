@@ -2,10 +2,7 @@ package com.ledao.controller.admin;
 
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
-import com.ledao.entity.Goods;
-import com.ledao.entity.Log;
-import com.ledao.entity.CustomerReturnList;
-import com.ledao.entity.CustomerReturnListGoods;
+import com.ledao.entity.*;
 import com.ledao.service.*;
 import com.ledao.util.DateUtil;
 import com.ledao.util.StringUtil;
@@ -161,12 +158,12 @@ public class CustomerReturnListAdminController {
         map.put("eCustomerReturnDate", customerReturnList.getECustomerReturnDate());
         List<CustomerReturnList> customerReturnListList = customerReturnListService.list(map);
         for (CustomerReturnList pl : customerReturnListList) {
-            customerReturnListGoods.setCustomerReturnList(pl);
             Map<String, Object> map2 = new HashMap<>(16);
+            map2.put("customerReturnListId", pl.getId());
             map2.put("type", customerReturnListGoods.getType());
             map2.put("codeOrName", customerReturnListGoods.getCodeOrName());
-            List<CustomerReturnListGoods> plgList = customerReturnListGoodsService.list(map2);
-            pl.setCustomerReturnListGoodsList(plgList);
+            List<CustomerReturnListGoods> customerListGoodsList = customerReturnListGoodsService.list(map2);
+            pl.setCustomerReturnListGoodsList(customerListGoodsList);
         }
         resultMap.put("rows", customerReturnListList);
         logService.add(new Log(Log.SEARCH_ACTION, "商品采购统计查询"));

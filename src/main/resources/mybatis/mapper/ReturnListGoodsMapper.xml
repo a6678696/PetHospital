@@ -12,7 +12,8 @@
         <result property="price" column="price"/>
         <result property="num" column="num"/>
         <result property="total" column="total"/>
-        <association property="returnList" column="returnListId" select="com.ledao.mapper.ReturnListMapper.findById"></association>
+        <association property="returnList" column="returnListId"
+                     select="com.ledao.mapper.ReturnListMapper.findById"></association>
         <association property="type" column="typeId" select="com.ledao.mapper.GoodsTypeMapper.findById"></association>
     </resultMap>
     <select id="listByReturnListId" resultType="com.ledao.entity.ReturnListGoods">
@@ -24,7 +25,10 @@
     <select id="list" parameterType="map" resultMap="ReturnListGoodsResult">
         select * from t_return_list_goods
         <where>
-            <if test="type.id!=null ">
+            <if test="returnListId!=null ">
+                and returnListId=#{returnListId}
+            </if>
+            <if test="type!=null and type.id!=null">
                 and typeId=#{type.id}
             </if>
             <if test="codeOrName!='' and codeOrName!=null">
