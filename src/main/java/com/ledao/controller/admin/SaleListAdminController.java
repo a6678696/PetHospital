@@ -18,10 +18,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import javax.annotation.Resource;
 import java.text.SimpleDateFormat;
-import java.util.Date;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 
 /**
  * 后台管理销售单Controller
@@ -113,7 +110,7 @@ public class SaleListAdminController {
             goods.setState(2);
             goodsService.update(goods);
         }
-        logService.add(new Log(Log.ADD_ACTION, "添加销售单"+saleList));
+        logService.add(new Log(Log.ADD_ACTION, "添加销售单" + saleList));
         resultMap.put("success", true);
         return resultMap;
     }
@@ -211,12 +208,101 @@ public class SaleListAdminController {
      * @return
      */
     @RequestMapping("/update")
-    @RequiresPermissions(value = "供应商统计")
+    @RequiresPermissions(value = "客户统计")
     public Map<String, Object> update(Integer id) {
         Map<String, Object> resultMap = new HashMap<>(16);
         SaleList saleList = saleListService.findById(id);
         saleList.setState(1);
         saleListService.update(saleList);
+        resultMap.put("success", true);
+        return resultMap;
+    }
+
+    /**
+     * 按日统计分析
+     *
+     * @return
+     * @throws Exception
+     */
+    @RequestMapping("/countSaleByDay")
+    @RequiresPermissions(value = "按日统计分析")
+    public Map<String, Object> countSaleByDay(String begin, String end) throws Exception {
+        Map<String, Object> resultMap = new HashMap<>(16);
+        List<SaleCount> saleCountList = new ArrayList<>();
+        //要显示的天数
+        List<String> dates = DateUtil.getRangeDates(begin, end);
+        //有数据的天数
+        List<SaleCount> objectList = saleListService.countSaleByDay(begin, end);
+        for (SaleCount saleCount : objectList) {
+            saleCount.setAmountProfit(saleCount.getAmountSale() - saleCount.getAmountCost());
+        }
+        for (String date : dates) {
+            SaleCount saleCount = new SaleCount();
+            saleCount.setDate(date);
+            boolean flag = false;
+            for (SaleCount count : objectList) {
+                if (count.getDate().equals(date)) {
+                    // 成本总金额
+                    saleCount.setAmountCost(MathUtil.format2Bit(Float.parseFloat(String.valueOf(count.getAmountCost()))));
+                    // 销售总金额
+                    saleCount.setAmountSale(MathUtil.format2Bit(Float.parseFloat(String.valueOf(count.getAmountSale()))));
+                    // 销售利润
+                    saleCount.setAmountProfit(MathUtil.format2Bit(count.getAmountProfit()));
+                    flag = true;
+                }
+            }
+            if (!flag) {
+                saleCount.setAmountCost(0);
+                saleCount.setAmountSale(0);
+                saleCount.setAmountProfit(0);
+            }
+            saleCountList.add(saleCount);
+        }
+        resultMap.put("rows", saleCountList);
+        resultMap.put("success", true);
+        return resultMap;
+    }
+
+    /**
+     * 按月统计分析
+     * @return
+     * @throws Exception
+     */
+    @RequestMapping("/countSaleByMonth")
+    @RequiresPermissions(value="按月统计分析")
+    public Map<String, Object> countSaleByMonth(String begin, String end) throws Exception {
+        Map<String, Object> resultMap = new HashMap<>(16);
+        List<SaleCount> saleCountList = new ArrayList<>();
+        //要显示的月数
+        List<String> dates = DateUtil.getRangeMonths(begin, end);
+        //有数据的月数
+        List<SaleCount> objectList = saleListService.countSaleByMonth(begin, end);
+        for (SaleCount saleCount : objectList) {
+            saleCount.setAmountProfit(saleCount.getAmountSale() - saleCount.getAmountCost());
+        }
+        for (String date : dates) {
+            SaleCount saleCount = new SaleCount();
+            saleCount.setDate(date);
+            boolean flag = false;
+            for (SaleCount count : objectList) {
+                if (count.getDate().equals(date)) {
+                    // 成本总金额
+                    saleCount.setAmountCost(MathUtil.format2Bit(Float.parseFloat(String.valueOf(count.getAmountCost()))));
+                    // 销售总金额
+                    saleCount.setAmountSale(MathUtil.format2Bit(Float.parseFloat(String.valueOf(count.getAmountSale()))));
+                    // 销售利润
+                    saleCount.setAmountProfit(MathUtil.format2Bit(count.getAmountProfit()));
+                    flag = true;
+                }
+            }
+            if (!flag) {
+                saleCount.setAmountCost(0);
+                saleCount.setAmountSale(0);
+                saleCount.setAmountProfit(0);
+            }
+            saleCountList.add(saleCount);
+        }
+        resultMap.put("rows", saleCountList);
         resultMap.put("success", true);
         return resultMap;
     }

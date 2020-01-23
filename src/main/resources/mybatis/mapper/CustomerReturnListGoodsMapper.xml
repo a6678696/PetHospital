@@ -30,13 +30,17 @@
 
     <select id="list" parameterType="map" resultMap="CustomerReturnListGoodsResult">
         select * from t_customer_return_list_goods
-        where 1=1
-        <if test="type!=null and typeId!=null ">
-            and typeId=#{typeId}
-        </if>
-        <if test="codeOrName!='' and codeOrName!=null">
-            and concat(`code`, `name`) like concat('%',#{codeOrName},'%')
-        </if>
+        <where>
+            <if test="customerReturnListId!=null ">
+                and customerReturnListId=#{customerReturnListId}
+            </if>
+            <if test="typeId!=null ">
+                and typeId=#{typeId}
+            </if>
+            <if test="codeOrName!='' and codeOrName!=null">
+                and concat(`code`, `name`) like concat('%',#{codeOrName},'%')
+            </if>
+        </where>
     </select>
     <insert id="add" parameterType="CustomerReturnListGoods">
         insert into t_customer_return_list_goods (code, goodsId, model, name, num, price, total, unit, customerReturnListId, typeId) values (#{code},#{goodsId},#{model},#{name},#{num},#{price},#{total},#{unit},#{customerReturnList.id},#{type.id});

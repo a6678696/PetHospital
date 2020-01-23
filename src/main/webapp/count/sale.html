@@ -61,7 +61,7 @@
                         var goodsRow = goodsRows[j];
                         $("#dg").datagrid('appendRow', {
                             number: row.saleNumber,
-                            type: "进货",
+                            type: "客户进货",
                             date: row.saleDate,
                             customerName: row.customer.name,
                             code: goodsRow.code,
@@ -92,7 +92,7 @@
                         var goodsRow = goodsRows[j];
                         $("#dg").datagrid('appendRow', {
                             number: row.customerReturnNumber,
-                            type: "退货",
+                            type: "客户退货",
                             date: row.customerReturnDate,
                             customerName: row.customer.name,
                             code: goodsRow.code,
@@ -124,7 +124,7 @@
         }
 
         function formatType(val, row) {
-            if (val == "退货") {
+            if (val == "客户退货") {
                 return "<span style='color: red'>" + val + "</span>";
             } else {
                 return "<span style='color: blue'>" + val + "</span>";

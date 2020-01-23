@@ -1,5 +1,6 @@
 package com.ledao.serviceimpl;
 
+import com.ledao.entity.SaleCount;
 import com.ledao.entity.SaleList;
 import com.ledao.mapper.SaleListMapper;
 import com.ledao.service.SaleListService;
@@ -28,12 +29,12 @@ public class SaleListServiceImpl implements SaleListService {
     }
 
     @Override
-    public List<Object> countSaleByDay(String begin, String end) {
+    public List<SaleCount> countSaleByDay(String begin, String end) {
         return saleListMapper.countSaleByDay(begin, end);
     }
 
     @Override
-    public List<Object> countSaleByMonth(String begin, String end) {
+    public List<SaleCount> countSaleByMonth(String begin, String end) {
         return saleListMapper.countSaleByMonth(begin, end);
     }
 

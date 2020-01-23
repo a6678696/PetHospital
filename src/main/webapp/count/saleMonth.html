@@ -114,16 +114,24 @@
             }
         }
 
+        function formatDate(val, row) {
+            if (val != "合计") {
+                return val.substring(0, 4) + "年" + val.substring(5, 7) + "月";
+            } else {
+                return "合计";
+            }
+        }
+
     </script>
 <body>
 <div style="height: 100px;padding: 10px;border: 0px;">
     <fieldset style="border-color: #E7F0FF">
         <legend>统计设置</legend>
         &nbsp;&nbsp;&nbsp;统计时间：&nbsp;
-        <input id="s_begin" class="easyui-datebox" data-options="formatter:myformatter,parser:myparser" editable=false
+        <input id="s_begin" class="easyui-datebox" data-options="formatter:myformatter,parser:myparser" editable=true
                style="width:100px"/>
         &nbsp;&nbsp;-&nbsp;&nbsp;
-        <input id="s_end" class="easyui-datebox" data-options="formatter:myformatter,parser:myparser" editable=false
+        <input id="s_end" class="easyui-datebox" data-options="formatter:myformatter,parser:myparser" editable=true
                style="width:100px"/>
         &nbsp;&nbsp;<a href="javascript:search()" class="easyui-linkbutton" iconCls="icon-search" plain="true">搜索</a>
     </fieldset>
@@ -138,7 +146,7 @@
            fitColumns="true" rownumbers="true" singleSelect="true"
            fit="true">
         <thead>
-        <th field="date" width="30" align="center">日期</th>
+        <th field="date" width="30" align="center" formatter="formatDate">日期</th>
         <th field="amountSale" width="60" align="right" formatter="formatMoney">销售金额</th>
         <th field="amountCost" width="60" align="right" formatter="formatMoney">成本金额</th>
         <th field="amountProfit" width="60" align="right" formatter="formatMoney">盈利金额</th>

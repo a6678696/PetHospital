@@ -27,16 +27,17 @@
     </select>
     <select id="list" parameterType="map" resultMap="SaleListGoodsResult">
         select * from t_sale_list_goods
-        where 1=1
-        <if test="saleListId!=null ">
-            and saleListId=#{saleListId}
-        </if>
-        <if test="type!=null and type.id!=null ">
-            and typeId=#{type.id}
-        </if>
-        <if test="codeOrName!='' and codeOrName!=null">
-            and concat(`code`, `name`) like concat('%',#{codeOrName},'%')
-        </if>
+        <where>
+            <if test="saleListId!=null ">
+                and saleListId=#{saleListId}
+            </if>
+            <if test="type!=null and type.id!=null ">
+                and typeId=#{type.id}
+            </if>
+            <if test="codeOrName!='' and codeOrName!=null">
+                and concat(`code`, `name`) like concat('%',#{codeOrName},'%')
+            </if>
+        </where>
     </select>
     <insert id="add" parameterType="SaleListGoods">
         insert into t_sale_list_goods (code, goodsId, model, name, num, price, total, unit, saleListId, typeId) values (#{code},#{goodsId},#{model},#{name},#{num},#{price},#{total},#{unit},#{saleList.id},#{type.id});

@@ -160,7 +160,7 @@ public class CustomerReturnListAdminController {
         for (CustomerReturnList pl : customerReturnListList) {
             Map<String, Object> map2 = new HashMap<>(16);
             map2.put("customerReturnListId", pl.getId());
-            map2.put("type", customerReturnListGoods.getType());
+            map2.put("typeId", customerReturnListGoods.getType().getId());
             map2.put("codeOrName", customerReturnListGoods.getCodeOrName());
             List<CustomerReturnListGoods> customerListGoodsList = customerReturnListGoodsService.list(map2);
             pl.setCustomerReturnListGoodsList(customerListGoodsList);

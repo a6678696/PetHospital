@@ -1,5 +1,6 @@
 package com.ledao.service;
 
+import com.ledao.entity.SaleCount;
 import com.ledao.entity.SaleList;
 
 import java.util.List;
@@ -28,7 +29,7 @@ public interface SaleListService {
      * @param end
      * @return
      */
-    List<Object> countSaleByDay(String begin, String end);
+    List<SaleCount> countSaleByDay(String begin, String end);
 
     /**
      * 按月统计某个日期范围内的销售信息
@@ -37,7 +38,7 @@ public interface SaleListService {
      * @param end
      * @return
      */
-    List<Object> countSaleByMonth(String begin, String end);
+    List<SaleCount> countSaleByMonth(String begin, String end);
 
     /**
      * 根据id查询实体
