@@ -16,6 +16,7 @@
         $(document).ready(function () {
             $("#s_begin").datebox("setValue", genLastWeekDayStr()); // 设置上个月日期
             $("#s_end").datebox("setValue", genTodayStr()); // 设置当前日期
+            search();
         });
 
         function search() {

@@ -12,13 +12,121 @@
     <script type="text/javascript" src="/static/highcharts4/js/highcharts.js"></script>
     <script type="text/javascript">
 
-        $(document).ready(function () {
+        $(function() {
 
-            $("#s_begin").datebox("setValue", genLastYearStr().substring(0, 7)); // 设置上个月日期
-            $("#s_end").datebox("setValue", genTodayStr().substring(0, 7)); // 设置当前日期
+            $('#s_begin').datebox({
+                //显示日趋选择对象后再触发弹出月份层的事件，初始化时没有生成月份层
+                onShowPanel: function () {
+                    //触发click事件弹出月份层
+                    span.trigger('click');
+                    if (!tds)
+                        //延时触发获取月份对象，因为上面的事件触发和对象生成有时间间隔
+                        setTimeout(function() {
+                            tds = p.find('div.calendar-menu-month-inner td');
+                            tds.click(function(e) {
+                                //禁止冒泡执行easyui给月份绑定的事件
+                                e.stopPropagation();
+                                //得到年份
+                                var year = /\d{4}/.exec(span.html())[0] ,
+                                    //月份
+                                    //之前是这样的month = parseInt($(this).attr('abbr'), 10) + 1;
+                                    month = parseInt($(this).attr('abbr'), 10);
 
+                                //隐藏日期对象
+                                $('#s_begin').datebox('hidePanel')
+                                    //设置日期的值
+                                    .datebox('setValue', year + '-' + month);
+                            });
+                        }, 0);
+                },
+                //配置parser，返回选择的日期
+                parser: function (s) {
+                    if (!s) return new Date();
+                    var arr = s.split('-');
+                    return new Date(parseInt(arr[0], 10), parseInt(arr[1], 10) - 1, 1);
+                },
+                //配置formatter，只返回年月 之前是这样的d.getFullYear() + '-' +(d.getMonth());
+                formatter: function (d) {
+                    var currentMonth = (d.getMonth()+1);
+                    var currentMonthStr = currentMonth < 10 ? ('0' + currentMonth) : (currentMonth + '');
+                    return d.getFullYear() + '-' + currentMonthStr;
+                }
+            });
 
+            //日期选择对象
+            var p = $('#s_begin').datebox('panel'),
+                //日期选择对象中月份
+                tds = false,
+                //显示月份层的触发控件
+                span = p.find('span.calendar-text');
+            var curr_time = new Date();
+            curr_time.setFullYear(curr_time.getFullYear() - 1);
+
+            //设置前当月
+            $("#s_begin").datebox("setValue", myformatter(curr_time));
         });
+
+        $(function() {
+
+            $('#s_end').datebox({
+                //显示日趋选择对象后再触发弹出月份层的事件，初始化时没有生成月份层
+                onShowPanel: function () {
+                    //触发click事件弹出月份层
+                    span.trigger('click');
+                    if (!tds)
+                        //延时触发获取月份对象，因为上面的事件触发和对象生成有时间间隔
+                        setTimeout(function() {
+                            tds = p.find('div.calendar-menu-month-inner td');
+                            tds.click(function(e) {
+                                //禁止冒泡执行easyui给月份绑定的事件
+                                e.stopPropagation();
+                                //得到年份
+                                var year = /\d{4}/.exec(span.html())[0] ,
+                                    //月份
+                                    //之前是这样的month = parseInt($(this).attr('abbr'), 10) + 1;
+                                    month = parseInt($(this).attr('abbr'), 10);
+
+                                //隐藏日期对象
+                                $('#s_end').datebox('hidePanel')
+                                    //设置日期的值
+                                    .datebox('setValue', year + '-' + month);
+                            });
+                        }, 0);
+                },
+                //配置parser，返回选择的日期
+                parser: function (s) {
+                    if (!s) return new Date();
+                    var arr = s.split('-');
+                    return new Date(parseInt(arr[0], 10), parseInt(arr[1], 10) - 1, 1);
+                },
+                //配置formatter，只返回年月 之前是这样的d.getFullYear() + '-' +(d.getMonth());
+                formatter: function (d) {
+                    var currentMonth = (d.getMonth()+1);
+                    var currentMonthStr = currentMonth < 10 ? ('0' + currentMonth) : (currentMonth + '');
+                    return d.getFullYear() + '-' + currentMonthStr;
+                }
+            });
+
+            //日期选择对象
+            var p = $('#s_end').datebox('panel'),
+                //日期选择对象中月份
+                tds = false,
+                //显示月份层的触发控件
+                span = p.find('span.calendar-text');
+            var curr_time = new Date();
+
+            //设置前当月
+            $("#s_end").datebox("setValue", myformatter(curr_time));
+        });
+
+        //格式化日期
+        function myformatter(date) {
+            //获取年份
+            var y = date.getFullYear();
+            //获取月份
+            var m = date.getMonth() + 1;
+            return y + '-' + m;
+        }
 
         function search() {
             $("#dg").datagrid("loadData", {total: 0, rows: []});
@@ -29,8 +137,8 @@
                     type: 'column',
                     events: {
                         load: function (event) {
-                            var begin = $("#s_begin").datebox("getValue");
-                            var end = $("#s_end").datebox("getValue");
+                            var begin = $("#s_begin").datebox("getValue").substring(0,7);
+                            var end = $("#s_end").datebox("getValue").substring(0,7);
                             $.post("/admin/saleList/countSaleByMonth", {begin: begin, end: end}, function (result) {
                                 var rows = result.rows;
                                 var xArr = new Array();
@@ -94,26 +202,6 @@
             return "¥" + val;
         }
 
-        function myformatter(date) {
-            var y = date.getFullYear();
-            var m = date.getMonth() + 1;
-            var d = date.getDate();
-            return y + '-' + (m < 10 ? ('0' + m) : m);
-        }
-
-        function myparser(s) {
-            if (!s) return new Date();
-            var ss = (s.split('-'));
-            var y = parseInt(ss[0], 10);
-            var m = parseInt(ss[1], 10);
-            var d = parseInt(ss[2], 10);
-            if (!isNaN(y) && !isNaN(m) && !isNaN(d)) {
-                return new Date(y, m - 1, d);
-            } else {
-                return new Date();
-            }
-        }
-
         function formatDate(val, row) {
             if (val != "合计") {
                 return val.substring(0, 4) + "年" + val.substring(5, 7) + "月";
@@ -122,17 +210,19 @@
             }
         }
 
+        $(document).ready(function () {
+            search();
+        });
+
     </script>
 <body>
 <div style="height: 100px;padding: 10px;border: 0px;">
     <fieldset style="border-color: #E7F0FF">
         <legend>统计设置</legend>
         &nbsp;&nbsp;&nbsp;统计时间：&nbsp;
-        <input id="s_begin" class="easyui-datebox" data-options="formatter:myformatter,parser:myparser" editable=true
-               style="width:100px"/>
+        <input id="s_begin" editable=false style="width:88px"/>
         &nbsp;&nbsp;-&nbsp;&nbsp;
-        <input id="s_end" class="easyui-datebox" data-options="formatter:myformatter,parser:myparser" editable=true
-               style="width:100px"/>
+        <input id="s_end" editable=false style="width:88px"/>
         &nbsp;&nbsp;<a href="javascript:search()" class="easyui-linkbutton" iconCls="icon-search" plain="true">搜索</a>
     </fieldset>
 </div>
