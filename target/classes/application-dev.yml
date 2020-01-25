@@ -6,6 +6,12 @@ server:
     uri-encoding: utf-8
 
 spring:
+  servlet:
+    multipart:
+      enabled: true
+      file-size-threshold: 0
+      max-file-size: 10MB
+      max-request-size: 100MB
   #数据库连接配置
   datasource:
     type: com.alibaba.druid.pool.DruidDataSource
@@ -18,6 +24,9 @@ spring:
     date-format: yyyy-MM-dd HH:mm:ss
   thymeleaf:
     cache: false
+
+carouselImageFilePath: F://idea workspase for Actual combat/PetHospital/src/main/webapp/static/carouselImage/
+
 
 #mybatis的相关配置
 mybatis:

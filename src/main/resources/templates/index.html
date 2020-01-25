@@ -2,7 +2,7 @@
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
-    <title th:text="${title}+'LeDao宠物医院'">111</title>
+    <title th:text="${title}+'--LeDao宠物医院'"></title>
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="description" content="">
     <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -36,6 +36,7 @@
 <header class="header mb-5">
     <div th:include="common/head::#h"></div>
     <div th:include="common/menu::#m"></div>
+    <div th:include="${mainPage}::${mainPageKey}"></div>
     <div th:include="common/foot::#f"></div>
 </header>
 </body>

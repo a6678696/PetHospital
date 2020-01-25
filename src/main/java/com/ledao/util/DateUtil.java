@@ -28,6 +28,12 @@ public class DateUtil {
         return simpleDateFormat.format(date);
     }
 
+    public static String getCurrentDateStr2() throws Exception {
+        Date date = new Date();
+        SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyyMMddHHmmss");
+        return simpleDateFormat.format(date);
+    }
+
     public static String dateFormat(Date date) throws Exception {
         SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
         return simpleDateFormat.format(date);

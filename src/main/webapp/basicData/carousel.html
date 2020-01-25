@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>轮播图管理</title>
+    <link rel="stylesheet" type="text/css" href="/static/jquery-easyui-1.7.0/themes/metro-blue/easyui.css">
+    <link rel="stylesheet" type="text/css" href="/static/jquery-easyui-1.7.0/themes/icon.css">
+    <script type="text/javascript" src="/static/jquery-easyui-1.7.0/jquery.min.js"></script>
+    <script type="text/javascript" src="/static/jquery-easyui-1.7.0/jquery.easyui.min.js"></script>
+    <script type="text/javascript" src="/static/jquery-easyui-1.7.0/locale/easyui-lang-zh_CN.js"></script>
+    <script type="text/javascript">
+
+        var url;
+
+        function resetValue() {
+
+            $("#carouselImage").textbox("setText", "");
+            $("#sort").numberbox("setValue", "");
+            $("#remarks").val("");
+        }
+
+        function closeCarouselDialog() {
+            $("#dlg").dialog("close");
+            resetValue();
+        }
+
+        function saveCarousel() {
+            $("#fm").form("submit", {
+                url: url,
+                onSubmit: function () {
+                    return $(this).form("validate");
+                },
+                success: function (result) {
+                    var result = eval('(' + result + ')');
+                    if (result.success) {
+                        $.messager.alert("系统提示", "保存成功！");
+                        resetValue();
+                        $("#dlg").dialog("close");
+                        $("#dg").datagrid("reload");
+                    } else {
+                        $.messager.alert("系统提示", "上传的图片过大,不能超过1.048576M");
+                    }
+                }
+            });
+        }
+
+        function openCarouselAddDialog() {
+            $("#dlg").dialog("open").dialog("setTitle", "添加轮播图信息");
+            url = "/admin/carousel/save";
+        }
+
+        function openCarouselModifyDialog() {
+            var selectedRows = $("#dg").datagrid("getSelections");
+            if (selectedRows.length != 1) {
+                $.messager.alert("系统提示", "请选择一条要修改的数据！");
+                return;
+            }
+            var row = selectedRows[0];
+            $("#dlg").dialog("open").dialog("setTitle", "修改轮播图信息");
+            $("#fm").form("load", row);
+            url = "/admin/carousel/save?id=" + row.id;
+        }
+
+        function deleteCarousel() {
+            var selectedRows = $("#dg").datagrid("getSelections");
+            if (selectedRows.length == 0) {
+                $.messager.alert("系统提示", "请选择要删除的数据！");
+                return;
+            }
+            var strIds = [];
+            for (var i = 0; i < selectedRows.length; i++) {
+                strIds.push(selectedRows[i].id);
+            }
+            var ids = strIds.join(",");
+            $.messager.confirm("系统提示", "您确定要删除<span style='color: red'>" + selectedRows.length + "</span>这条数据吗?", function (r) {
+                if (r) {
+                    $.post("/admin/carousel/delete", {ids: ids}, function (result) {
+                        if (result.success) {
+                            $.messager.alert("系统提示", "数据已成功删除！");
+                            $("#dg").datagrid("reload");
+                        } else {
+                            $.messager.alert("系统提示", result.errorInfo);
+                        }
+                    }, "json");
+                }
+            });
+        }
+
+        $(document).ready(function () {
+
+            $("#dg").datagrid({
+                onDblClickRow: function (index, row) {
+                    $("#dlg").dialog("open").dialog("setTitle", "修改轮播图信息");
+                    $("#fm").form("load", row);
+                    url = "/admin/carousel/save?id=" + row.id;
+                }
+            });
+
+        });
+
+        function formatImageName(val, row) {
+            return "<img width=220 height=100 src='/static/carouselImage/" + val + "'/>";
+        }
+    </script>
+</head>
+<body style="margin: 1px">
+<table id="dg" title="轮播图管理" class="easyui-datagrid"
+       fitColumns="true" pagination="true" rownumbers="true"
+       url="/admin/carousel/list" fit="true" toolbar="#tb">
+    <thead>
+    <th field="cb" checkbox="true" align="center"></th>
+    <th field="id" width="20" align="center">编号</th>
+    <th field="imageName" width="100" align="center" formatter="formatImageName">轮播图图片</th>
+    <th field="sort" width="50" align="center">图片排列顺序</th>
+    <th field="remarks" width="50" align="center">备注</th>
+    </thead>
+</table>
+
+<div id="tb">
+    <div>
+        <a href="javascript:openCarouselAddDialog()" class="easyui-linkbutton" iconCls="icon-add" plain="true">添加</a>
+        <a href="javascript:openCarouselModifyDialog()" class="easyui-linkbutton" iconCls="icon-edit"
+           plain="true">修改</a>
+        <a href="javascript:deleteCarousel()" class="easyui-linkbutton" iconCls="icon-remove" plain="true">删除</a>
+    </div>
+</div>
+
+
+<div id="dlg" class="easyui-dialog" style="width: 500px;height: 285px;padding: 10px 20px"
+     closed="true" buttons="#dlg-buttons" data-options="onClose:function(){resetValue()}">
+    <form id="fm" method="post" enctype="multipart/form-data">
+        <table cellspacing="8px">
+            <tr>
+                <td>轮播图图片：</td>
+                <td>
+                    <input id="carouselImage" name="carouselImage" class="easyui-filebox" buttonText="点击选择图片"
+                           style="width:307px">
+                </td>
+            </tr>
+            <tr>
+                <td>排列序号：</td>
+                <td>
+                    <input type="text" id="sort" name="sort" class="easyui-numberbox" data-options="min:1"
+                           style="width: 210px;">
+                </td>
+            </tr>
+            <tr>
+                <td valign="top">备注：</td>
+                <td>
+                    <textarea rows="5" cols="40" id="remarks" name="remarks"></textarea>
+                </td>
+            </tr>
+        </table>
+    </form>
+</div>
+
+<div id="dlg-buttons">
+    <a href="javascript:saveCarousel()" class="easyui-linkbutton" iconCls="icon-ok">保存</a>
+    <a href="javascript:closeCarouselDialog()" class="easyui-linkbutton" iconCls="icon-cancel">关闭</a>
+</div>
+</body>
+</html>

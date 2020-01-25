@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.ledao.mapper.CarouselMapper">
+
+    <resultMap id="CarouselResult" type="Carousel">
+        <result property="id" column="id"/>
+        <result property="imageName" column="imageName"/>
+        <result property="sort" column="sort"/>
+        <result property="remarks" column="remarks"/>
+    </resultMap>
+    <select id="list" parameterType="map" resultMap="CarouselResult">
+        select * from t_carousel order by sort
+        <if test="start!=null and size!=null ">
+            limit #{start},#{size}
+        </if>
+    </select>
+    <select id="getCount" parameterType="map" resultType="java.lang.Long">
+        select count(*) from t_carousel
+    </select>
+    <insert id="add" parameterType="Carousel">
+        insert into t_carousel (imageName, sort,remarks) values (#{imageName},#{sort},#{remarks});
+    </insert>
+    <update id="update" parameterType="Carousel">
+        update t_carousel
+        <set>
+            <if test="imageName != null and imageName != ''">
+                imageName=#{imageName},
+            </if>
+            <if test="sort != null">
+                sort=#{sort},
+            </if>
+            <if test="remarks != null and remarks != ''">
+                remarks=#{remarks},
+            </if>
+        </set>
+        where id=#{id}
+    </update>
+    <delete id="delete" parameterType="integer">
+        delete from t_carousel where id=#{id}
+    </delete>
+    <select id="findById" parameterType="integer" resultMap="CarouselResult">
+        select * from t_carousel where id=#{id}
+    </select>
+
+</mapper>
