@@ -27,6 +27,7 @@ spring:
 
 carouselImageFilePath: F://idea workspase for Actual combat/PetHospital/src/main/webapp/static/images/carouselImage/
 equipmentTypeImageFilePath: F://idea workspase for Actual combat/PetHospital/src/main/webapp/static/images/equipmentTypeImage/
+articleImageFilePath: F://idea workspase for Actual combat/PetHospital/src/main/webapp/static/images/articleImage/
 
 
 #mybatis的相关配置

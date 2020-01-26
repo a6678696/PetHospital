@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>文章管理</title>
+    <link rel="stylesheet" type="text/css" href="/static/jquery-easyui-1.7.0/themes/metro-blue/easyui.css">
+    <link rel="stylesheet" type="text/css" href="/static/jquery-easyui-1.7.0/themes/icon.css">
+    <script type="text/javascript" src="/static/jquery-easyui-1.7.0/jquery.min.js"></script>
+    <script type="text/javascript" src="/static/jquery-easyui-1.7.0/jquery.easyui.min.js"></script>
+    <script type="text/javascript" src="/static/jquery-easyui-1.7.0/locale/easyui-lang-zh_CN.js"></script>
+    <script type="text/javascript" src="/static/ckeditor/ckeditor.js"></script>
+    <script type="text/javascript">
+
+        function searchArticle() {
+            $("#dg").datagrid('load', {
+                "title": $("#s_title").val()
+            });
+        }
+
+        function deleteArticle() {
+            var selectedRows = $("#dg").datagrid("getSelections");
+            if (selectedRows.length == 0) {
+                $.messager.alert("系统提示", "请选择要删除的文章!");
+                return;
+            }
+            var strIds = [];
+            for (var i = 0; i < selectedRows.length; i++) {
+                strIds.push(selectedRows[i].id);
+            }
+            var ids = strIds.join(",");
+            $.messager.confirm("系统提示", "你确定要删除这<span style='color: red'>" + selectedRows.length + "</span>篇文章吗?", function (r) {
+                if (r) {
+                    $.post("/admin/article/delete", {ids: ids}, function (result) {
+                        if (result.success) {
+                            $.messager.alert("系统提示", "数据已成功删除！");
+                            $("#dg").datagrid("reload");
+                        } else {
+                            $.messager.alert("系统提示", "数据删除失败！");
+                        }
+                    }, "json");
+                }
+            });
+        }
+
+        function openArticleModifyTab() {
+            var selectedRows = $("#dg").datagrid("getSelections");
+            if (selectedRows.length != 1) {
+                $.messager.alert("系统提示", "请选择一篇要修改的文章!");
+                return;
+            }
+            var row = selectedRows[0];
+            $("#dlg").dialog("open").dialog("setTitle", "修改文章");
+            $("#fm").form("load", row);
+            CKEDITOR.instances.content.setData(row.content);
+            url = "/admin/article/save?id=" + row.id;
+        }
+
+        function submitData() {
+            $("#fm").form("submit", {
+                url: url,
+                onSubmit: function () {
+                    var content = CKEDITOR.instances.content.getData();
+                    if (content == "") {
+                        $.messager.alert("系统提示", "内容不能为空!");
+                        return false;
+                    }
+                    return $(this).form("validate");
+                },
+                success: function (result) {
+                    var result = eval('(' + result + ')');
+                    if (result.success) {
+                        $.messager.alert("系统提示", "保存成功!");
+                        $("#dg").datagrid("reload");
+                        $("#dlg").dialog("close");
+                        resetValue();
+                    } else {
+                        $.messager.alert("系统提示", "保存失败！");
+                    }
+                }
+            })
+        }
+
+        function formatType(val,row) {
+            if (val == 1) {
+                return "医院公告";
+            }else if (val == 2) {
+                return "医院新闻";
+            }else if (val == 3) {
+                return "宠物大全";
+            }else if (val == 4) {
+                return "用药常识";
+            }
+        }
+
+        function closeArticleDialog() {
+            $("#dlg").dialog("close");
+            $("#dg").datagrid("reload");
+            resetValue();
+        }
+    </script>
+</head>
+<body style="margin: 1px">
+<table id="dg" title="文章管理" class="easyui-datagrid"
+       fitColumns="true" pagination="true" rownumbers="true"
+       url="/admin/article/list" fit="true" toolbar="#tb">
+    <thead>
+    <tr>
+        <th field="cb" checkbox="true" align="center"></th>
+        <th field="id" width="20" align="center">编号</th>
+        <th field="title" width="200" align="center">标题</th>
+        <th field="releaseDate" width="50" align="center">发布日期</th>
+        <th field="type" width="50" align="center" formatter="formatType">文章类型</th>
+    </tr>
+    </thead>
+</table>
+<div id="tb">
+    <div>
+        <a href="javascript:openArticleModifyTab()" class="easyui-linkbutton" iconCls="icon-edit" plain="true">修改</a>
+        <a href="javascript:deleteArticle()" class="easyui-linkbutton" iconCls="icon-remove" plain="true">删除</a>
+    </div>
+    <div>
+        &nbsp;标题&nbsp;<input type="text" id="s_title" size="20" onkeydown="if(window.event.keyCode===13) searchArticle()"/>
+        <a href="javascript:searchArticle()" class="easyui-linkbutton" iconCls="icon-search" plain="true">搜索</a>
+    </div>
+</div>
+<div id="dlg" class="easyui-dialog" style="width: 1200px;height: 520px;padding: 10px 20px"
+     closed="true" buttons="#dlg-buttons" data-options="onClose:function(){resetValue()}">
+    <form action="" id="fm" method="post" enctype="multipart/form-data">
+        <table cellspacing="20px">
+            <tr>
+                <td width="80px">文章标题：</td>
+                <td>
+                    <input type="text" id="title" name="title" style="width: 400px" required="true"  class="easyui-validatebox"/>
+                </td>
+            </tr>
+            <tr>
+                <td>所属类别：</td>
+                <td>
+                    <select class="easyui-combobox" style="width: 154px" id="type" name="type" editable="false"
+                            required="true"
+                            panelHeight="auto">
+                        <option value="1">医院公告</option>
+                        <option value="2">医院新闻</option>
+                        <option value="3">宠物大全</option>
+                        <option value="4">用药常识</option>
+                    </select>
+                </td>
+            </tr>
+            <tr>
+                <td valign="top">文章内容：</td>
+                <td>
+                    <textarea id="content" name="content" rows="30" cols="80"></textarea>
+                </td>
+            </tr>
+        </table>
+    </form>
+</div>
+<div id="dlg-buttons">
+    <a href="javascript:submitData()" class="easyui-linkbutton" iconCls="icon-ok">保存</a>
+    <a href="javascript:closeArticleDialog()" class="easyui-linkbutton" iconCls="icon-cancel">关闭</a>
+</div>
+<script type="text/javascript">
+    CKEDITOR.replace("content");
+</script>
+</body>
+</html>

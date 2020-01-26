@@ -1,5 +1,6 @@
 package com.ledao.controller.admin;
 
+import com.ledao.entity.Article;
 import com.ledao.entity.Carousel;
 import com.ledao.entity.Log;
 import com.ledao.entity.PageBean;

@@ -36,6 +36,9 @@
       <if test="userName!=null and userName!=''">
         and userName like #{userName}
       </if>
+      <if test="key!=null ">
+        and id&gt;1
+      </if>
     </where>
   </select>
 

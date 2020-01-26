@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.ledao.mapper.ArticleMapper">
+
+    <resultMap id="ArticleResult" type="Article">
+        <result property="id" column="id"/>
+        <result property="title" column="title"/>
+        <result property="releaseDate" column="releaseDate"/>
+        <result property="click" column="click"/>
+        <result property="type" column="type"/>
+        <result property="content" column="content"/>
+    </resultMap>
+    <select id="list" parameterType="map" resultMap="ArticleResult">
+        select * from t_article
+        <where>
+            <if test="title!=null and title!=''">
+                and title like #{title}
+            </if>
+            <if test="type!=null">
+                and type=#{type}
+            </if>
+        </where>
+        order by releaseDate desc
+        <if test="start!=null and size!=null">
+            limit #{start},#{size}
+        </if>
+    </select>
+    <select id="getCount" resultType="java.lang.Long">
+        select count(*) from t_article
+        <where>
+            <if test="title!=null and title!=''">
+                and title like #{title}
+            </if>
+            <if test="type!=null">
+                and type=#{type}
+            </if>
+        </where>
+    </select>
+    <insert id="add" parameterType="Article">
+        insert into t_article (title, releaseDate, click, type, content) values (#{title},now(),0,#{type},#{content});
+    </insert>
+    <update id="update" parameterType="Article">
+        update t_article
+        <set>
+            <if test="title != null and title != ''">
+                title=#{title},
+            </if>
+            <if test="releaseDate != null">
+                releaseDate=#{releaseDate},
+            </if>
+            <if test="click != null">
+                click=#{click},
+            </if>
+            <if test="type != null">
+                type=#{type},
+            </if>
+            <if test="content != null and content != ''">
+                content=#{content},
+            </if>
+        </set>
+        where id=#{id}
+    </update>
+    <delete id="delete" parameterType="integer">
+        delete from t_article where id=#{id}
+    </delete>
+    <select id="findById" parameterType="integer" resultMap="ArticleResult">
+        select * from t_article where id=#{id}
+    </select>
+
+</mapper>

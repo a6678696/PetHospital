@@ -1,5 +1,6 @@
 package com.ledao.run;
 
+import com.ledao.service.ArticleService;
 import com.ledao.service.CarouselService;
 import com.ledao.service.EquipmentTypeService;
 import org.springframework.boot.CommandLineRunner;
@@ -30,6 +31,9 @@ public class StartupRunner implements CommandLineRunner, ServletContextListener 
     @Resource
     private EquipmentTypeService equipmentTypeService;
 
+    @Resource
+    private ArticleService articleService;
+
     @Override
     public void run(String... args) throws Exception {
         this.loadData();
@@ -48,7 +52,20 @@ public class StartupRunner implements CommandLineRunner, ServletContextListener 
         map.put("type", 2);
         application.setAttribute("secondCarouselList",carouselService.list(map));
         application.setAttribute("equipmentTypeList",equipmentTypeService.list(null));
-
+        //获取医院公告信息
+        map.put("type", 1);
+        map.put("start", 0);
+        map.put("size", 5);
+        application.setAttribute("announcementArticleList",articleService.list(map));
+        //获取医院新闻信息
+        map.put("type", 2);
+        application.setAttribute("newsArticleList", articleService.list(map));
+        //获取宠物大全信息
+        map.put("type", 3);
+        application.setAttribute("petArticleList", articleService.list(map));
+        //获取用药常识信息
+        map.put("type", 4);
+        application.setAttribute("drugArticleList", articleService.list(map));
     }
 
     @Override

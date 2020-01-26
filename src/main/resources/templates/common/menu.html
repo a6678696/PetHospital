@@ -120,41 +120,33 @@
                                     <div class="col-md-6 col-lg-3">
                                         <h5>医院公告<a href="#"><strong style="float: right">更多...</strong></a></h5>
                                         <ul class="list-unstyled mb-3">
-                                            <li class="nav-item"><a href="index.html" class="nav-link">医院公告医院公告医院公告医院公告</a></li>
-                                            <li class="nav-item"><a href="category.html" class="nav-link">医院公告医院公告医院公告医院公告</a></li>
-                                            <li class="nav-item"><a href="category-right.html" class="nav-link">医院公告医院公告医院公告医院公告</a></li>
-                                            <li class="nav-item"><a href="category-full.html" class="nav-link">医院公告医院公告医院公告医院公告</a></li>
-                                            <li class="nav-item"><a href="detail.html" class="nav-link">医院公告医院公告医院公告医院公告</a></li>
+                                            <li class="nav-item" th:each="announcementArticle:${application.announcementArticleList}">
+                                                <a href="index.html" class="nav-link" th:text="${announcementArticle.getTitle()}"></a>
+                                            </li>
                                         </ul>
                                     </div>
                                     <div class="col-md-6 col-lg-3">
                                         <h5>医院新闻<a href="#"><strong style="float: right">更多...</strong></a></h5>
                                         <ul class="list-unstyled mb-3">
-                                            <li class="nav-item"><a href="register.html" class="nav-link">医院新闻医院新闻医院新闻医院新闻</a></li>
-                                            <li class="nav-item"><a href="customer-orders.html" class="nav-link">医院新闻医院新闻医院新闻医院新闻</a></li>
-                                            <li class="nav-item"><a href="customer-order.html" class="nav-link">医院新闻医院新闻医院新闻医院新闻</a></li>
-                                            <li class="nav-item"><a href="customer-wishlist.html" class="nav-link">医院新闻医院新闻医院新闻医院新闻</a></li>
-                                            <li class="nav-item"><a href="customer-account.html" class="nav-link">医院新闻医院新闻医院新闻医院新闻</a></li>
+                                            <li class="nav-item" th:each="newsArticle:${application.newsArticleList}">
+                                                <a href="index.html" class="nav-link" th:text="${newsArticle.getTitle()}"></a>
+                                            </li>
                                         </ul>
                                     </div>
                                     <div class="col-md-6 col-lg-3">
                                         <h5>宠物大全<a href="#"><strong style="float: right">更多...</strong></a></h5>
                                         <ul class="list-unstyled mb-3">
-                                            <li class="nav-item"><a href="basket.html" class="nav-link">宠物大全宠物大全宠物大全宠物大全</a></li>
-                                            <li class="nav-item"><a href="checkout1.html" class="nav-link">宠物大全宠物大全宠物大全宠物大全</a></li>
-                                            <li class="nav-item"><a href="checkout2.html" class="nav-link">宠物大全宠物大全宠物大全宠物大全</a></li>
-                                            <li class="nav-item"><a href="checkout3.html" class="nav-link">宠物大全宠物大全宠物大全宠物大全</a></li>
-                                            <li class="nav-item"><a href="checkout4.html" class="nav-link">宠物大全宠物大全宠物大全宠物大全</a></li>
+                                            <li class="nav-item" th:each="petArticle:${application.petArticleList}">
+                                                <a href="index.html" class="nav-link" th:text="${petArticle.getTitle()}"></a>
+                                            </li>
                                         </ul>
                                     </div>
                                     <div class="col-md-6 col-lg-3">
                                         <h5>用药常识<a href="#"><strong style="float: right">更多...</strong></a></h5>
                                         <ul class="list-unstyled mb-3">
-                                            <li class="nav-item"><a href="blog.html" class="nav-link">用药常识用药常识用药常识用药常识</a></li>
-                                            <li class="nav-item"><a href="post.html" class="nav-link">用药常识用药常识用药常识用药常识</a></li>
-                                            <li class="nav-item"><a href="faq.html" class="nav-link">用药常识用药常识用药常识用药常识</a></li>
-                                            <li class="nav-item"><a href="text.html" class="nav-link">用药常识用药常识用药常识用药常识</a></li>
-                                            <li class="nav-item"><a href="text-right.html" class="nav-link">用药常识用药常识用药常识用药常识</a></li>
+                                            <li class="nav-item" th:each="drugArticle:${application.drugArticleList}">
+                                                <a href="index.html" class="nav-link" th:text="${drugArticle.getTitle()}"></a>
+                                            </li>
                                         </ul>
                                     </div>
                                 </div>
