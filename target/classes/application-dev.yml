@@ -25,7 +25,8 @@ spring:
   thymeleaf:
     cache: false
 
-carouselImageFilePath: F://idea workspase for Actual combat/PetHospital/src/main/webapp/static/carouselImage/
+carouselImageFilePath: F://idea workspase for Actual combat/PetHospital/src/main/webapp/static/images/carouselImage/
+equipmentTypeImageFilePath: F://idea workspase for Actual combat/PetHospital/src/main/webapp/static/images/equipmentTypeImage/
 
 
 #mybatis的相关配置

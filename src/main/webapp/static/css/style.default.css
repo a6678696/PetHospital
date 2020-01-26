@@ -303,6 +303,33 @@ h1 {
   margin-bottom: 30px;
 }
 
+
+#hot1 h2 {
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  font-size: 2.25rem;
+  color: #4fbfa8;
+  font-weight: 100;
+  text-align: center;
+}
+
+#hot1 .product-slider {
+  clear: both;
+  margin-bottom: 20px;
+}
+
+#hot1 .product-slider .item {
+  margin: 0 25px;
+}
+
+#hot1 .product-slider .product {
+  margin-bottom: 0;
+}
+
+#hot1 .product-slider .owl-dots {
+  position: relative;
+  margin-bottom: 30px;
+}
 /*
 *
 * ======================================================================

@@ -1,12 +1,13 @@
 package com.ledao.controller.admin;
 
-import com.ledao.entity.Carousel;
+import com.ledao.entity.EquipmentType;
 import com.ledao.entity.Log;
 import com.ledao.entity.PageBean;
 import com.ledao.run.StartupRunner;
-import com.ledao.service.CarouselService;
+import com.ledao.service.EquipmentTypeService;
 import com.ledao.service.LogService;
 import com.ledao.util.DateUtil;
+import com.ledao.util.StringUtil;
 import org.apache.commons.io.FileUtils;
 import org.apache.shiro.authz.annotation.RequiresPermissions;
 import org.springframework.beans.factory.annotation.Value;
@@ -21,21 +22,21 @@ import java.util.HashMap;
 import java.util.Map;
 
 /**
- * 后台管理轮播图Controller
+ * 后台管理设备类型Controller
  *
  * @author LeDao
  * @company
  * @create 2020-01-25 15:01
  */
 @RestController
-@RequestMapping("/admin/carousel")
-public class CarouselAdminController {
+@RequestMapping("/admin/equipmentType")
+public class EquipmentTypeAdminController {
 
-    @Value("${carouselImageFilePath}")
-    private String carouselImageFilePath;
+    @Value("${equipmentTypeImageFilePath}")
+    private String equipmentTypeImageFilePath;
 
     @Resource
-    private CarouselService carouselService;
+    private EquipmentTypeService equipmentTypeService;
 
     @Resource
     private LogService logService;
@@ -44,36 +45,36 @@ public class CarouselAdminController {
     private StartupRunner startupRunner;
 
     /**
-     * 分页查询轮播图信息
+     * 分页查询设备类型信息
      *
      * @param page
      * @param rows
      * @return
      */
     @RequestMapping("/list")
-    @RequiresPermissions(value = "轮播图管理")
-    public Map<String, Object> list(Carousel carousel,@RequestParam(value = "page", required = false) Integer page, @RequestParam(value = "rows", required = false) Integer rows) {
+    @RequiresPermissions(value = "设备类型管理")
+    public Map<String, Object> list(EquipmentType equipmentType,@RequestParam(value = "page", required = false) Integer page, @RequestParam(value = "rows", required = false) Integer rows) {
         PageBean pageBean = new PageBean(page, rows);
         Map<String, Object> resultMap = new HashMap<>(16);
         Map<String, Object> map = new HashMap<>(16);
-        map.put("type", carousel.getType());
+        map.put("name", StringUtil.formatLike(equipmentType.getName()));
         map.put("start", pageBean.getStart());
         map.put("size", pageBean.getPageSize());
-        resultMap.put("rows", carouselService.list(map));
-        resultMap.put("total", carouselService.getCount(map));
-        logService.add(new Log(Log.SEARCH_ACTION, "查询轮播图信息"));
+        resultMap.put("rows", equipmentTypeService.list(map));
+        resultMap.put("total", equipmentTypeService.getCount(map));
+        logService.add(new Log(Log.SEARCH_ACTION, "查询设备类型信息"));
         return resultMap;
     }
 
     /**
-     * 添加或修改轮播图信息
+     * 添加或修改设备类型信息
      *
-     * @param carousel
+     * @param equipmentType
      * @return
      */
     @RequestMapping("/save")
-    @RequiresPermissions(value = "轮播图管理")
-    public Map<String, Object> save(Carousel carousel, @RequestParam("carouselImage") MultipartFile file) throws Exception {
+    @RequiresPermissions(value = "设备类型管理")
+    public Map<String, Object> save(EquipmentType equipmentType, @RequestParam("equipmentTypeImage") MultipartFile file) throws Exception {
         Map<String, Object> resultMap = new HashMap<>(16);
         if (!file.isEmpty()) {
             // 获取上传的文件名
@@ -81,19 +82,19 @@ public class CarouselAdminController {
             // 获取文件的后缀
             String suffixName = fileName.substring(fileName.lastIndexOf("."));
             String newFileName = DateUtil.getCurrentDateStr2() + suffixName;
-            FileUtils.copyInputStreamToFile(file.getInputStream(), new File(carouselImageFilePath + newFileName));
-            if (carousel.getId() != null) {
-                FileUtils.deleteQuietly(new File(carouselImageFilePath + carouselService.findById(carousel.getId()).getImageName()));
+            FileUtils.copyInputStreamToFile(file.getInputStream(), new File(equipmentTypeImageFilePath + newFileName));
+            if (equipmentType.getId() != null) {
+                FileUtils.deleteQuietly(new File(equipmentTypeImageFilePath + equipmentTypeService.findById(equipmentType.getId()).getImageName()));
             }
-            carousel.setImageName(newFileName);
+            equipmentType.setImageName(newFileName);
         }
         int key;
-        if (carousel.getId() == null) {
-            key = carouselService.add(carousel);
-            logService.add(new Log(Log.ADD_ACTION, "添加轮播图信息" + carousel));
+        if (equipmentType.getId() == null) {
+            key = equipmentTypeService.add(equipmentType);
+            logService.add(new Log(Log.ADD_ACTION, "添加设备类型信息" + equipmentType));
         } else {
-            key = carouselService.update(carousel);
-            logService.add(new Log(Log.UPDATE_ACTION, "修改轮播图信息" + carousel));
+            key = equipmentTypeService.update(equipmentType);
+            logService.add(new Log(Log.UPDATE_ACTION, "修改设备类型信息" + equipmentType));
         }
         if (key > 0) {
             resultMap.put("success", true);
@@ -105,23 +106,23 @@ public class CarouselAdminController {
     }
 
     /**
-     * 删除轮播图信息
+     * 删除设备类型信息
      *
      * @param ids
      * @return
      */
     @RequestMapping("/delete")
-    @RequiresPermissions(value = "轮播图管理")
+    @RequiresPermissions(value = "设备类型管理")
     public Map<String, Object> delete(String ids) {
         Map<String, Object> resultMap = new HashMap<>(16);
         String[] idsStr = ids.split(",");
         for (int i = 0; i < idsStr.length; i++) {
             int id = Integer.parseInt(idsStr[i]);
-            logService.add(new Log(Log.DELETE_ACTION, "删除轮播图信息" + carouselService.findById(id)));
-            if (carouselService.findById(id).getImageName() != null) {
-                FileUtils.deleteQuietly(new File(carouselImageFilePath + carouselService.findById(carouselService.findById(id).getId()).getImageName()));
+            logService.add(new Log(Log.DELETE_ACTION, "删除设备类型信息" + equipmentTypeService.findById(id)));
+            if (equipmentTypeService.findById(id).getImageName() != null) {
+                FileUtils.deleteQuietly(new File(equipmentTypeImageFilePath + equipmentTypeService.findById(equipmentTypeService.findById(id).getId()).getImageName()));
             }
-            carouselService.delete(id);
+            equipmentTypeService.delete(id);
         }
         startupRunner.loadData();
         resultMap.put("success", true);

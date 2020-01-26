@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.ledao.mapper.EquipmentTypeMapper">
+
+    <resultMap id="EquipmentTypeResult" type="EquipmentType">
+        <result property="id" column="id"/>
+        <result property="imageName" column="imageName"/>
+        <result property="remarks" column="remarks"/>
+        <result property="name" column="name"/>
+    </resultMap>
+    <select id="list" parameterType="map" resultMap="EquipmentTypeResult">
+        select * from t_equipment_type t
+        <where>
+            <if test="name!=null and name!=''">
+                and name like #{name}
+            </if>
+        </where>
+        <if test="start!=null and size!=null ">
+            limit #{start},#{size}
+        </if>
+    </select>
+    <select id="getCount" parameterType="map" resultType="java.lang.Long">
+        select count(*) from t_equipment_type t
+        <where>
+            <if test="name!=null and name!=''">
+                and name like #{name}
+            </if>
+        </where>
+    </select>
+    <insert id="add" parameterType="EquipmentType">
+        insert into t_equipment_type (imageName,remarks,name) values (#{imageName},#{remarks},#{name});
+    </insert>
+    <update id="update" parameterType="EquipmentType">
+        update t_equipment_type
+        <set>
+            <if test="imageName != null and imageName != ''">
+                imageName=#{imageName},
+            </if>
+            <if test="remarks != null and remarks != ''">
+                remarks=#{remarks},
+            </if>
+            <if test="name != null and name != ''">
+                name=#{name},
+            </if>
+        </set>
+        where id=#{id}
+    </update>
+    <delete id="delete" parameterType="integer">
+        delete from t_equipment_type where id=#{id}
+    </delete>
+    <select id="findById" parameterType="integer" resultMap="EquipmentTypeResult">
+        select * from t_equipment_type where id=#{id}
+    </select>
+
+</mapper>

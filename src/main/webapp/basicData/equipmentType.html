@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>轮播图管理</title>
+    <title>设备类型管理</title>
     <link rel="stylesheet" type="text/css" href="/static/jquery-easyui-1.7.0/themes/metro-blue/easyui.css">
     <link rel="stylesheet" type="text/css" href="/static/jquery-easyui-1.7.0/themes/icon.css">
     <script type="text/javascript" src="/static/jquery-easyui-1.7.0/jquery.min.js"></script>
@@ -12,26 +12,25 @@
 
         var url;
 
-        function searchCarousel() {
-            $("#dg").datagrid('load',{
-                "type": $("#s_type").val()
+        function searchEquipmentType() {
+            $("#dg").datagrid('load', {
+                "name": $("#s_name").val()
             });
         }
 
         function resetValue() {
 
-            $("#carouselImage").textbox("setText", "");
-            $("#sort").numberbox("setValue", "");
-            $("#type").combobox("setValue", "");
+            $("#equipmentTypeImage").textbox("setText", "");
+            $("#name").val("");
             $("#remarks").val("");
         }
 
-        function closeCarouselDialog() {
+        function closeEquipmentTypeDialog() {
             $("#dlg").dialog("close");
             resetValue();
         }
 
-        function saveCarousel() {
+        function saveEquipmentType() {
             $("#fm").form("submit", {
                 url: url,
                 onSubmit: function () {
@@ -51,24 +50,24 @@
             });
         }
 
-        function openCarouselAddDialog() {
-            $("#dlg").dialog("open").dialog("setTitle", "添加轮播图信息");
-            url = "/admin/carousel/save";
+        function openEquipmentTypeAddDialog() {
+            $("#dlg").dialog("open").dialog("setTitle", "添加设备类型信息");
+            url = "/admin/equipmentType/save";
         }
 
-        function openCarouselModifyDialog() {
+        function openEquipmentTypeModifyDialog() {
             var selectedRows = $("#dg").datagrid("getSelections");
             if (selectedRows.length != 1) {
                 $.messager.alert("系统提示", "请选择一条要修改的数据！");
                 return;
             }
             var row = selectedRows[0];
-            $("#dlg").dialog("open").dialog("setTitle", "修改轮播图信息");
+            $("#dlg").dialog("open").dialog("setTitle", "修改设备类型信息");
             $("#fm").form("load", row);
-            url = "/admin/carousel/save?id=" + row.id;
+            url = "/admin/equipmentType/save?id=" + row.id;
         }
 
-        function deleteCarousel() {
+        function deleteEquipmentType() {
             var selectedRows = $("#dg").datagrid("getSelections");
             if (selectedRows.length == 0) {
                 $.messager.alert("系统提示", "请选择要删除的数据！");
@@ -81,7 +80,7 @@
             var ids = strIds.join(",");
             $.messager.confirm("系统提示", "您确定要删除<span style='color: red'>" + selectedRows.length + "</span>这条数据吗?", function (r) {
                 if (r) {
-                    $.post("/admin/carousel/delete", {ids: ids}, function (result) {
+                    $.post("/admin/equipmentType/delete", {ids: ids}, function (result) {
                         if (result.success) {
                             $.messager.alert("系统提示", "数据已成功删除！");
                             $("#dg").datagrid("reload");
@@ -97,86 +96,64 @@
 
             $("#dg").datagrid({
                 onDblClickRow: function (index, row) {
-                    $("#dlg").dialog("open").dialog("setTitle", "修改轮播图信息");
+                    $("#dlg").dialog("open").dialog("setTitle", "修改设备类型信息");
                     $("#fm").form("load", row);
-                    url = "/admin/carousel/save?id=" + row.id;
+                    url = "/admin/equipmentType/save?id=" + row.id;
                 }
             });
 
         });
 
         function formatImageName(val, row) {
-            return "<img width=220 height=100 src='/static/carouselImage/" + val + "'/>";
-        }
-
-        function formatType(val,row) {
-            if (val == 1) {
-                return "第一个轮播图";
-            } else {
-                return "第二个轮播图";
-            }
+            return "<img width=220 height=100 src='/static/equipmentTypeImage/" + val + "'/>";
         }
     </script>
 </head>
 <body style="margin: 1px">
-<table id="dg" title="轮播图管理" class="easyui-datagrid"
+<table id="dg" title="设备类型管理" class="easyui-datagrid"
        fitColumns="true" pagination="true" rownumbers="true"
-       url="/admin/carousel/list" fit="true" toolbar="#tb">
+       url="/admin/equipmentType/list" fit="true" toolbar="#tb">
     <thead>
     <th field="cb" checkbox="true" align="center"></th>
     <th field="id" width="20" align="center">编号</th>
-    <th field="imageName" width="100" align="center" formatter="formatImageName">轮播图图片</th>
-    <th field="sort" width="50" align="center">图片排列顺序</th>
-    <th field="type" width="50" align="center" formatter="formatType">图片所属</th>
+    <th field="imageName" width="100" align="center" formatter="formatImageName">设备类型图片</th>
+    <th field="name" width="50" align="center">名称</th>
     <th field="remarks" width="50" align="center">备注</th>
     </thead>
 </table>
 
 <div id="tb">
     <div>
-        <a href="javascript:openCarouselAddDialog()" class="easyui-linkbutton" iconCls="icon-add" plain="true">添加</a>
-        <a href="javascript:openCarouselModifyDialog()" class="easyui-linkbutton" iconCls="icon-edit"
+        <a href="javascript:openEquipmentTypeAddDialog()" class="easyui-linkbutton" iconCls="icon-add"
+           plain="true">添加</a>
+        <a href="javascript:openEquipmentTypeModifyDialog()" class="easyui-linkbutton" iconCls="icon-edit"
            plain="true">修改</a>
-        <a href="javascript:deleteCarousel()" class="easyui-linkbutton" iconCls="icon-remove" plain="true">删除</a>
+        <a href="javascript:deleteEquipmentType()" class="easyui-linkbutton" iconCls="icon-remove" plain="true">删除</a>
     </div>
     <div>
-        &nbsp;轮播图所属：&nbsp;
-        <select id="s_type" class="easyui-combobox" name="type" style="width:130px;" panelHeight="auto">
-            <option value="">请选择...</option>
-            <option value="1">第一个轮播图</option>
-            <option value="2">第二个轮播图</option>
-        </select>
-        <a href="javascript:searchCarousel()" class="easyui-linkbutton" iconCls="icon-search" plain="true">搜索</a>
+        &nbsp;设备类型名称：&nbsp;
+        <input type="text" id="s_name" size="20" onkeydown="if(event.keyCode==13) searchEquipmentType()"/>
+        <a href="javascript:searchEquipmentType()" class="easyui-linkbutton" iconCls="icon-search" plain="true">搜索</a>
     </div>
 </div>
 
 
-<div id="dlg" class="easyui-dialog" style="width: 500px;height: 325px;padding: 10px 20px"
+<div id="dlg" class="easyui-dialog" style="width: 500px;height: 278px;padding: 10px 20px"
      closed="true" buttons="#dlg-buttons" data-options="onClose:function(){resetValue()}">
     <form id="fm" method="post" enctype="multipart/form-data">
         <table cellspacing="8px">
             <tr>
-                <td>轮播图图片:</td>
+                <td>设备类型图片:</td>
                 <td>
-                    <input id="carouselImage" name="carouselImage" class="easyui-filebox" buttonText="点击选择图片"
+                    <input id="equipmentTypeImage" name="equipmentTypeImage" class="easyui-filebox" buttonText="点击选择图片"
                            style="width:307px">
                 </td>
             </tr>
             <tr>
-                <td>排列序号:</td>
+                <td>名称:</td>
                 <td>
-                    <input type="text" id="sort" name="sort" class="easyui-numberbox" data-options="min:1"
-                           style="width: 210px;">
-                </td>
-            </tr>
-            <tr>
-                <td>图片所属:</td>
-                <td>
-                    <select id="type" class="easyui-combobox" name="type" style="width:210px;" panelHeight="auto">
-                        <option value="">请选择...</option>
-                        <option value="1">第一个轮播图</option>
-                        <option value="2">第二个轮播图</option>
-                    </select>
+                    <input type="text" id="name" name="name" class="easyui-validatebox" required="true"
+                           style="width: 250px"/>
                 </td>
             </tr>
             <tr>
@@ -190,8 +167,8 @@
 </div>
 
 <div id="dlg-buttons">
-    <a href="javascript:saveCarousel()" class="easyui-linkbutton" iconCls="icon-ok">保存</a>
-    <a href="javascript:closeCarouselDialog()" class="easyui-linkbutton" iconCls="icon-cancel">关闭</a>
+    <a href="javascript:saveEquipmentType()" class="easyui-linkbutton" iconCls="icon-ok">保存</a>
+    <a href="javascript:closeEquipmentTypeDialog()" class="easyui-linkbutton" iconCls="icon-cancel">关闭</a>
 </div>
 </body>
 </html>
