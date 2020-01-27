@@ -51,4 +51,14 @@ public class ArticleServiceImpl implements ArticleService {
     public Article findById(Integer id) {
         return articleMapper.findById(id);
     }
+
+    @Override
+    public Article getLast(Integer id) {
+        return articleMapper.getLast(id);
+    }
+
+    @Override
+    public Article getNext(Integer id) {
+        return articleMapper.getNext(id);
+    }
 }

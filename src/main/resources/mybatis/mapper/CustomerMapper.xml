@@ -9,13 +9,16 @@
         <result property="number" column="number"/>
         <result property="address" column="address"/>
         <result property="remarks" column="remarks"/>
+        <result property="userName" column="userName"/>
+        <result property="password" column="password"/>
+        <result property="imageName" column="imageName"/>
     </resultMap>
 
     <select id="findByName" parameterType="string" resultMap="CustomerResult">
         select * from t_customer
         <where>
             <if test="_parameter != null and _parameter != ''">
-                name like #{name}
+                userName like #{userName}
             </if>
         </where>
     </select>
@@ -25,6 +28,9 @@
         <where>
             <if test="name!=null and name!=''">
                 and name like #{name}
+            </if>
+            <if test="userName!=null and userName!=''">
+                and userName like #{userName}
             </if>
         </where>
         <if test="start!=null and size!=null ">
@@ -38,11 +44,14 @@
             <if test="name!=null and name!=''">
                 and name like #{name}
             </if>
+            <if test="userName!=null and userName!=''">
+                and userName like #{userName}
+            </if>
         </where>
     </select>
 
     <insert id="add" parameterType="Customer">
-        insert into t_customer (address, contact, name, number, remarks) values (#{address},#{contact},#{name},#{number},#{remarks});
+        insert into t_customer (address, contact, name, number, remarks,userName,password,imageName) values (#{address},#{contact},#{name},#{number},#{remarks},#{userName},#{password},#{imageName});
     </insert>
 
     <update id="update" parameterType="Customer">
@@ -50,6 +59,15 @@
         <set>
             <if test="name != null and name != ''">
                 name=#{name},
+            </if>
+            <if test="userName != null and userName != ''">
+                userName=#{userName},
+            </if>
+            <if test="password != null and password != ''">
+                password=#{password},
+            </if>
+            <if test="imageName != null and imageName != ''">
+                imageName=#{imageName},
             </if>
             <if test="address != null and address != ''">
                 address=#{address},

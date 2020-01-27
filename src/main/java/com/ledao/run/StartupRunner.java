@@ -3,6 +3,7 @@ package com.ledao.run;
 import com.ledao.service.ArticleService;
 import com.ledao.service.CarouselService;
 import com.ledao.service.EquipmentTypeService;
+import com.ledao.service.UserService;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.stereotype.Component;
 
@@ -34,6 +35,9 @@ public class StartupRunner implements CommandLineRunner, ServletContextListener 
     @Resource
     private ArticleService articleService;
 
+    @Resource
+    private UserService userService;
+
     @Override
     public void run(String... args) throws Exception {
         this.loadData();
@@ -52,6 +56,9 @@ public class StartupRunner implements CommandLineRunner, ServletContextListener 
         map.put("type", 2);
         application.setAttribute("secondCarouselList",carouselService.list(map));
         application.setAttribute("equipmentTypeList",equipmentTypeService.list(null));
+        //获取医生信息
+        map.put("type", 2);
+        application.setAttribute("doctorList",userService.list(map));
         //获取医院公告信息
         map.put("type", 1);
         map.put("start", 0);

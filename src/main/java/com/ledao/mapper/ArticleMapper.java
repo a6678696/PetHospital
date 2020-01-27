@@ -61,4 +61,20 @@ public interface ArticleMapper {
      * @return
      */
     Article findById(Integer id);
+
+    /**
+     * 获取上一篇文章
+     *
+     * @param id
+     * @return
+     */
+    Article getLast(Integer id);
+
+    /**
+     * 获取下一篇文章
+     *
+     * @param id
+     * @return
+     */
+    Article getNext(Integer id);
 }

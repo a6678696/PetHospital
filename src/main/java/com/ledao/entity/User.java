@@ -45,6 +45,14 @@ public class User {
      *所拥有的角色
      */
     private String roles;
+    /**
+     * 类型 1.系统维护人员 2.医生 3.美容师 4.维修员
+     */
+    private Integer type;
+    /**
+     * 头像图片
+     */
+    private String imageName;
 
     @Override
     public String toString() {

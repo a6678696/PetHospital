@@ -31,7 +31,7 @@
         }
 
         function formatCustomer(val, row) {
-            return val.name;
+            return val.userName;
         }
 
         function formatAmountPayable(val, row) {
@@ -81,7 +81,7 @@
                 mode: 'remote',
                 url: '/admin/customer/comboList',
                 valueField: 'id',
-                textField: 'name',
+                textField: 'userName',
                 delay: 100
             });
 
@@ -130,7 +130,7 @@
         <th field="id" width="20" align="center" hidden="true">销售单ID</th>
         <th field="saleNumber" width="30" align="center">销售单号</th>
         <th field="saleDate" width="33" align="center">销售日期</th>
-        <th field="customer" width="50" align="center" formatter="formatCustomer">客户</th>
+        <th field="customer" width="50" align="center" formatter="formatCustomer">客户用户名</th>
         <th field="amountPayable" width="20" align="right" formatter="formatAmountPayable">销售金额</th>
         <th field="state" width="20" align="center" formatter="formatState">是否收款</th>
         <th field="user" width="20" align="center" formatter="formatUser">操作员</th>
@@ -143,9 +143,9 @@
             <legend>查询设置</legend>
             &nbsp;单据号&nbsp;
             <input type="text" id="s_saleNumber" size="15" onkeydown="if(event.keyCode==13) searchSale()"/>
-            &nbsp;&nbsp;&nbsp;客户：&nbsp;<input class="easyui-combobox" id="s_customer" name="customer.id"
+            &nbsp;&nbsp;&nbsp;客户用户名：&nbsp;<input class="easyui-combobox" id="s_customer" name="customer.id"
                                                style="width: 200px"
-                                               data-options="panelHeight:'auto',valueField:'id',textField:'name',url:'/admin/customer/comboList'"/>
+                                               data-options="panelHeight:'auto',valueField:'id',textField:'userName',url:'/admin/customer/comboList'"/>
             &nbsp;&nbsp;&nbsp;是否收款&nbsp;
             <select class="easyui-combobox" id="s_state" style="width: 100px" editable="false" panelHeight="auto">
                 <option value="">全部</option>

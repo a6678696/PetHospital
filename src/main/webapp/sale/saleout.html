@@ -295,7 +295,7 @@
                 mode: 'remote',
                 url: '/admin/customer/comboList',
                 valueField: 'id',
-                textField: 'name',
+                textField: 'userName',
                 delay: 100
             });
 
@@ -315,7 +315,7 @@
                     <td>
                         客户：<input class="easyui-combobox" id="customerId" name="customer.id" style="width: 240px"
                                    required="true"
-                                   data-options="required:true,panelHeight:'auto',valueField:'id',textField:'name',url:'/admin/customer/comboList'"/>
+                                   data-options="required:true,panelHeight:'auto',valueField:'id',textField:'userName',url:'/admin/customer/comboList'"/>
                     </td>
                     <td>
                         &nbsp;&nbsp;&nbsp;&nbsp;应付金额：<input type="text" id="amountPayable" name="amountPayable"
@@ -329,7 +329,7 @@
                     <td>
                         &nbsp;&nbsp;&nbsp;&nbsp;收货日期：<input type="text" id="saleDate" name="saleDate"
                                                             class="easyui-datetimebox" required="true"
-                                                            data-options="editable:false" size="21"/>
+                                                            data-options="editable:false" size="24"/>
                     </td>
                     <td>
                     </td>
@@ -340,7 +340,7 @@
                     </td>
                     <td>
                         &nbsp;&nbsp;&nbsp;&nbsp;是否收款：<select class="easyui-combobox" id="state" name="state"
-                                                             style="width: 167px" editable=false panelHeight="auto">
+                                                             style="width: 168px" editable=false panelHeight="auto">
                         <option value="1">已收</option>
                         <option value="2">未收</option>
                     </select>

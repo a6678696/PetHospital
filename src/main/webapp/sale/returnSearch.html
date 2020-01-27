@@ -31,7 +31,7 @@
         }
 
         function formatCustomer(val, row) {
-            return val.name;
+            return val.userName;
         }
 
         function formatAmountPayable(val, row) {
@@ -130,7 +130,7 @@
         <th field="id" width="20" align="center" hidden="true">客户退货单ID</th>
         <th field="customerReturnNumber" width="30" align="center">客户退货单号</th>
         <th field="customerReturnDate" width="33" align="center">客户退货日期</th>
-        <th field="customer" width="50" align="center" formatter="formatCustomer">客户</th>
+        <th field="customer" width="50" align="center" formatter="formatCustomer">客户用户名</th>
         <th field="amountPayable" width="20" align="right" formatter="formatAmountPayable">客户退货金额</th>
         <th field="state" width="20" align="center" formatter="formatState">是否退款</th>
         <th field="user" width="20" align="center" formatter="formatUser">操作员</th>
@@ -143,7 +143,7 @@
             <legend>查询设置</legend>
             &nbsp;单据号&nbsp;
             <input type="text" id="s_customerReturnNumber" size="15" onkeydown="if(event.keyCode==13) searchCustomerReturn()"/>
-            &nbsp;&nbsp;&nbsp;客户：&nbsp;<input class="easyui-combobox" id="s_customer" name="customer.id"
+            &nbsp;&nbsp;&nbsp;客户用户名：&nbsp;<input class="easyui-combobox" id="s_customer" name="customer.id"
                                                style="width: 200px"
                                                data-options="panelHeight:'auto',valueField:'id',textField:'name',url:'/admin/customer/comboList'"/>
             &nbsp;&nbsp;&nbsp;是否退款&nbsp;

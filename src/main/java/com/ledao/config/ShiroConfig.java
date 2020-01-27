@@ -48,6 +48,8 @@ public class ShiroConfig {
         // 配置不会被拦截的链接 顺序判断
         filterChainDefinitionMap.put("/", "anon");
         filterChainDefinitionMap.put("/common/**", "anon");
+        filterChainDefinitionMap.put("/page/**", "anon");
+        filterChainDefinitionMap.put("/article/**", "anon");
         filterChainDefinitionMap.put("/login.html", "anon");
         filterChainDefinitionMap.put("/static/**", "anon");
         filterChainDefinitionMap.put("/user/login", "anon");

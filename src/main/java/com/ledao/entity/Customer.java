@@ -21,6 +21,18 @@ public class Customer {
      */
     private String name;
     /**
+     * 用户名
+     */
+    private String userName;
+    /**
+     * 密码
+     */
+    private String password;
+    /**
+     * 用户头像
+     */
+    private String imageName;
+    /**
      * 联系人
      */
     private String contact;

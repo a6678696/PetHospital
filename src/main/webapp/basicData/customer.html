@@ -14,7 +14,8 @@
 
         function searchCustomer() {
             $("#dg").datagrid('load', {
-                "name": $("#s_name").val()
+                "name": $("#s_name").val(),
+                "userName": $("#s_userName").val()
             });
         }
 
@@ -24,6 +25,9 @@
             $("#number").val("");
             $("#address").val("");
             $("#remarks").val("");
+            $("#userName").val("");
+            $("#password").val("");
+            $("#customerImage").val("");
         }
 
         function closeCustomerDialog() {
@@ -53,6 +57,7 @@
 
         function openCustomerAddDialog() {
             $("#dlg").dialog("open").dialog("setTitle", "添加客户信息");
+            $("#name").val("无(默认为'无',有公司的请输入)");
             url = "/admin/customer/save";
         }
 
@@ -113,8 +118,9 @@
     <thead>
     <th field="cb" checkbox="true" align="center"></th>
     <th field="id" width="20" align="center">编号</th>
-    <th field="name" width="100" align="center">客户名称</th>
+    <th field="name" width="100" align="center">公司名称</th>
     <th field="contact" width="50" align="center">联系人</th>
+    <th field="userName" width="100" align="center">用户名</th>
     <th field="number" width="50" align="center">联系电话</th>
     <th field="address" width="150" align="center">联系地址</th>
     <th field="remarks" width="150" align="center">备注</th>
@@ -130,20 +136,41 @@
     </div>
     <div>
         &nbsp;客户名称：&nbsp;<input type="text" id="s_name" size="20" onkeydown="if(event.keyCode==13) searchCustomer()"/>
+        &nbsp;用户名：&nbsp;<input type="text" id="s_userName" size="20" onkeydown="if(event.keyCode==13) searchCustomer()"/>
         <a href="javascript:searchCustomer()" class="easyui-linkbutton" iconCls="icon-search" plain="true">搜索</a>
     </div>
 </div>
 
 
-<div id="dlg" class="easyui-dialog" style="width: 500px;height: 350px;padding: 10px 20px"
+<div id="dlg" class="easyui-dialog" style="width: 500px;height: 440px;padding: 10px 20px"
      closed="true" buttons="#dlg-buttons" data-options="onClose:function(){resetValue()}">
-    <form id="fm" method="post">
+    <form id="fm" method="post" enctype="multipart/form-data">
         <table cellspacing="8px">
             <tr>
-                <td>客户名称：</td>
+                <td>公司名称：</td>
                 <td>
                     <input type="text" id="name" name="name" class="easyui-validatebox" required="true"
                            style="width: 250px"/>
+                </td>
+            </tr>
+            <tr>
+                <td>用户名：</td>
+                <td>
+                    <input type="text" id="userName" name="userName" class="easyui-validatebox" required="true"
+                           style="width: 250px"/>
+                </td>
+            </tr>
+            <tr>
+                <td>密码：</td>
+                <td>
+                    <input type="text" id="password" name="password" class="easyui-validatebox" required="true"
+                           style="width: 250px"/>
+                </td>
+            </tr>
+            <tr>
+                <td>用户头像：</td>
+                <td>
+                    <input type="file" id="customerImage" name="customerImage"/>
                 </td>
             </tr>
             <tr>

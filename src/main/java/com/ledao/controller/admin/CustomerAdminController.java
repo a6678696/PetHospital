@@ -5,14 +5,19 @@ import com.ledao.entity.Log;
 import com.ledao.entity.PageBean;
 import com.ledao.service.CustomerService;
 import com.ledao.service.LogService;
+import com.ledao.util.DateUtil;
 import com.ledao.util.StringUtil;
+import org.apache.commons.io.FileUtils;
 import org.apache.shiro.authz.annotation.Logical;
 import org.apache.shiro.authz.annotation.RequiresPermissions;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.multipart.MultipartFile;
 
 import javax.annotation.Resource;
+import java.io.File;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -27,6 +32,9 @@ import java.util.Map;
 @RestController
 @RequestMapping("/admin/customer")
 public class CustomerAdminController {
+
+    @Value("${customerImageFilePath}")
+    private String customerImageFilePath;
 
     @Resource
     private CustomerService customerService;
@@ -64,6 +72,7 @@ public class CustomerAdminController {
         Map<String, Object> resultMap = new HashMap<>(16);
         Map<String, Object> map = new HashMap<>(16);
         map.put("name", StringUtil.formatLike(searchCustomer.getName()));
+        map.put("userName", StringUtil.formatLike(searchCustomer.getUserName()));
         map.put("start", pageBean.getStart());
         map.put("size", pageBean.getPageSize());
         resultMap.put("rows", customerService.list(map));
@@ -80,9 +89,21 @@ public class CustomerAdminController {
      */
     @RequestMapping("/save")
     @RequiresPermissions(value = "客户管理")
-    public Map<String, Object> save(Customer customer) {
-        int key;
+    public Map<String, Object> save(Customer customer, @RequestParam("customerImage") MultipartFile file) throws Exception {
         Map<String, Object> resultMap = new HashMap<>(16);
+        if (!file.isEmpty()) {
+            // 获取上传的文件名
+            String fileName = file.getOriginalFilename();
+            // 获取文件的后缀
+            String suffixName = fileName.substring(fileName.lastIndexOf("."));
+            String newFileName = DateUtil.getCurrentDateStr2() + suffixName;
+            FileUtils.copyInputStreamToFile(file.getInputStream(), new File(customerImageFilePath + newFileName));
+            if (customer.getId() != null) {
+                FileUtils.deleteQuietly(new File(customerImageFilePath + customerService.findById(customer.getId()).getImageName()));
+            }
+            customer.setImageName(newFileName);
+        }
+        int key;
         if (customer.getId() == null) {
             key = customerService.add(customer);
             logService.add(new Log(Log.ADD_ACTION, "添加客户信息" + customer));

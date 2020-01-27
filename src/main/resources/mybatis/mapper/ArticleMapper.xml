@@ -66,5 +66,11 @@
     <select id="findById" parameterType="integer" resultMap="ArticleResult">
         select * from t_article where id=#{id}
     </select>
+    <select id="getLast" parameterType="integer" resultMap="ArticleResult">
+        select * from t_article where id &lt; #{id} order by id desc limit 1
+    </select>
+    <select id="getNext" parameterType="integer" resultMap="ArticleResult">
+        select * from t_article where id &gt; #{id} order by id asc limit 1
+    </select>
 
 </mapper>

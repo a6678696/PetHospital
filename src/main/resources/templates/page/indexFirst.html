@@ -79,218 +79,23 @@
                 </div>
                 <div class="container">
                     <div class="product-slider owl-carousel owl-theme">
-                        <div class="item">
+                        <div class="item" th:each="doctor:${application.doctorList}">
                             <div class="product">
                                 <div class="flip-container">
                                     <div class="flipper">
-                                        <div class="front"><a href="detail.html"><img src="static/img/product1.jpg"
+                                        <div class="front"><a href="detail.html"><img th:src="'static/images/userImage/'+${doctor.getImageName()}"
                                                                                       alt="" class="img-fluid"></a>
                                         </div>
-                                        <div class="back"><a href="detail.html"><img src="static/images/img/product1_2.jpg"
-                                                                                     alt="" class="img-fluid"></a></div>
+                                        <div class="back"><a href="detail.html"><img
+                                                th:src="'static/images/userImage/'+${doctor.getImageName()}"
+                                                alt="" class="img-fluid"></a></div>
                                     </div>
                                 </div>
-                                <a href="detail.html" class="invisible"><img src="static/images/img/product1.jpg" alt=""
+                                <a href="detail.html" class="invisible"><img th:src="'static/images/userImage/'+${doctor.getImageName()}" alt=""
                                                                              class="img-fluid"></a>
                                 <div class="text">
-                                    <h3><a href="detail.html">Fur coat with very but very very long name</a></h3>
-                                    <p class="price">
-                                        <del></del>
-                                        $143.00
-                                    </p>
+                                    <h3><a href="detail.html" th:text="${doctor.getTrueName()}"></a></h3>
                                 </div>
-                            </div>
-                            <!-- /.product-->
-                        </div>
-                        <div class="item">
-                            <div class="product">
-                                <div class="flip-container">
-                                    <div class="flipper">
-                                        <div class="front"><a href="detail.html"><img src="static/images/img/product2.jpg"
-                                                                                      alt="" class="img-fluid"></a>
-                                        </div>
-                                        <div class="back"><a href="detail.html"><img src="static/images/img/product2_2.jpg"
-                                                                                     alt="" class="img-fluid"></a></div>
-                                    </div>
-                                </div>
-                                <a href="detail.html" class="invisible"><img src="static/images/img/product2.jpg" alt=""
-                                                                             class="img-fluid"></a>
-                                <div class="text">
-                                    <h3><a href="detail.html">White Blouse Armani</a></h3>
-                                    <p class="price">
-                                        <del>$280</del>
-                                        $143.00
-                                    </p>
-                                </div>
-                            </div>
-                            <!-- /.product-->
-                        </div>
-                        <div class="item">
-                            <div class="product">
-                                <div class="flip-container">
-                                    <div class="flipper">
-                                        <div class="front"><a href="detail.html"><img src="static/images/img/product3.jpg"
-                                                                                      alt="" class="img-fluid"></a>
-                                        </div>
-                                        <div class="back"><a href="detail.html"><img src="static/images/img/product3_2.jpg"
-                                                                                     alt="" class="img-fluid"></a></div>
-                                    </div>
-                                </div>
-                                <a href="detail.html" class="invisible"><img src="static/images/img/product3.jpg" alt=""
-                                                                             class="img-fluid"></a>
-                                <div class="text">
-                                    <h3><a href="detail.html">Black Blouse Versace</a></h3>
-                                    <p class="price">
-                                        <del></del>
-                                        $143.00
-                                    </p>
-                                </div>
-                                <!-- /.text-->
-                            </div>
-                            <!-- /.product-->
-                        </div>
-                        <div class="item">
-                            <div class="product">
-                                <div class="flip-container">
-                                    <div class="flipper">
-                                        <div class="front"><a href="detail.html"><img src="static/images/img/product3.jpg"
-                                                                                      alt="" class="img-fluid"></a>
-                                        </div>
-                                        <div class="back"><a href="detail.html"><img src="static/images/img/product3_2.jpg"
-                                                                                     alt="" class="img-fluid"></a></div>
-                                    </div>
-                                </div>
-                                <a href="detail.html" class="invisible"><img src="static/images/img/product3.jpg" alt=""
-                                                                             class="img-fluid"></a>
-                                <div class="text">
-                                    <h3><a href="detail.html">Black Blouse Versace</a></h3>
-                                    <p class="price">
-                                        <del></del>
-                                        $143.00
-                                    </p>
-                                </div>
-                                <!-- /.text-->
-                            </div>
-                            <!-- /.product-->
-                        </div>
-                        <div class="item">
-                            <div class="product">
-                                <div class="flip-container">
-                                    <div class="flipper">
-                                        <div class="front"><a href="detail.html"><img src="static/images/img/product2.jpg"
-                                                                                      alt="" class="img-fluid"></a>
-                                        </div>
-                                        <div class="back"><a href="detail.html"><img src="static/images/img/product2_2.jpg"
-                                                                                     alt="" class="img-fluid"></a></div>
-                                    </div>
-                                </div>
-                                <a href="detail.html" class="invisible"><img src="static/images/img/product2.jpg" alt=""
-                                                                             class="img-fluid"></a>
-                                <div class="text">
-                                    <h3><a href="detail.html">White Blouse Versace</a></h3>
-                                    <p class="price">
-                                        <del></del>
-                                        $143.00
-                                    </p>
-                                </div>
-                                <!-- /.text-->
-                                <div class="ribbon new">
-                                    <div class="theribbon">NEW</div>
-                                    <div class="ribbon-background"></div>
-                                </div>
-                                <!-- /.ribbon-->
-                            </div>
-                            <!-- /.product-->
-                        </div>
-                        <div class="item">
-                            <div class="product">
-                                <div class="flip-container">
-                                    <div class="flipper">
-                                        <div class="front"><a href="detail.html"><img src="static/images/img/product1.jpg"
-                                                                                      alt="" class="img-fluid"></a>
-                                        </div>
-                                        <div class="back"><a href="detail.html"><img src="static/images/img/product1_2.jpg"
-                                                                                     alt="" class="img-fluid"></a></div>
-                                    </div>
-                                </div>
-                                <a href="detail.html" class="invisible"><img src="static/images/img/product1.jpg" alt=""
-                                                                             class="img-fluid"></a>
-                                <div class="text">
-                                    <h3><a href="detail.html">Fur coat</a></h3>
-                                    <p class="price">
-                                        <del></del>
-                                        $143.00
-                                    </p>
-                                </div>
-                                <!-- /.text-->
-                                <div class="ribbon gift">
-                                    <div class="theribbon">GIFT</div>
-                                    <div class="ribbon-background"></div>
-                                </div>
-                                <!-- /.ribbon-->
-                            </div>
-                            <!-- /.product-->
-                        </div>
-                        <div class="item">
-                            <div class="product">
-                                <div class="flip-container">
-                                    <div class="flipper">
-                                        <div class="front"><a href="detail.html"><img src="static/images/img/product2.jpg"
-                                                                                      alt="" class="img-fluid"></a>
-                                        </div>
-                                        <div class="back"><a href="detail.html"><img src="static/images/img/product2_2.jpg"
-                                                                                     alt="" class="img-fluid"></a></div>
-                                    </div>
-                                </div>
-                                <a href="detail.html" class="invisible"><img src="static/images/img/product2.jpg" alt=""
-                                                                             class="img-fluid"></a>
-                                <div class="text">
-                                    <h3><a href="detail.html">White Blouse Armani</a></h3>
-                                    <p class="price">
-                                        <del>$280</del>
-                                        $143.00
-                                    </p>
-                                </div>
-                                <!-- /.text-->
-                                <div class="ribbon sale">
-                                    <div class="theribbon">SALE</div>
-                                    <div class="ribbon-background"></div>
-                                </div>
-                                <!-- /.ribbon-->
-                                <div class="ribbon new">
-                                    <div class="theribbon">NEW</div>
-                                    <div class="ribbon-background"></div>
-                                </div>
-                                <!-- /.ribbon-->
-                                <div class="ribbon gift">
-                                    <div class="theribbon">GIFT</div>
-                                    <div class="ribbon-background"></div>
-                                </div>
-                                <!-- /.ribbon-->
-                            </div>
-                            <!-- /.product-->
-                        </div>
-                        <div class="item">
-                            <div class="product">
-                                <div class="flip-container">
-                                    <div class="flipper">
-                                        <div class="front"><a href="detail.html"><img src="static/images/img/product3.jpg"
-                                                                                      alt="" class="img-fluid"></a>
-                                        </div>
-                                        <div class="back"><a href="detail.html"><img src="static/images/img/product3_2.jpg"
-                                                                                     alt="" class="img-fluid"></a></div>
-                                    </div>
-                                </div>
-                                <a href="detail.html" class="invisible"><img src="static/images/img/product3.jpg" alt=""
-                                                                             class="img-fluid"></a>
-                                <div class="text">
-                                    <h3><a href="detail.html">Black Blouse Versace</a></h3>
-                                    <p class="price">
-                                        <del></del>
-                                        $143.00
-                                    </p>
-                                </div>
-                                <!-- /.text-->
                             </div>
                             <!-- /.product-->
                         </div>
@@ -305,10 +110,16 @@
             *** GET INSPIRED ***
             _________________________________________________________
             -->
+            <div class="box text-center">
+                <div class="container">
+                    <div class="col-md-12">
+                        <h2 class="mb-0" style="color: #64c4af">医疗环境</h2>
+                    </div>
+                </div>
+            </div>
             <div class="container">
                 <div class="col-md-12">
                     <div class="box slideshow">
-                        <h3>医疗环境</h3>
                         <p class="lead">
                             LeDao宠物医院是桂林市规模较大的一所专业化医院.以精湛的医术,热情周到的服务,良好的职业操守,赢得广大宠物爱好者的认可.医院包括全科门诊及住院治疗,对各种小动物疾病、疑难杂症及各科手术都具备了丰富的临床经验,形成了一套独立,严谨的诊疗体系.</p>
                         <div id="get-inspired" class="owl-carousel owl-theme">
@@ -352,7 +163,8 @@
                                     </div>
                                 </div>
                                 <a class="invisible"><img
-                                        th:src="'static/images/equipmentTypeImage/'+${equipmentType.getImageName()}" alt=""
+                                        th:src="'static/images/equipmentTypeImage/'+${equipmentType.getImageName()}"
+                                        alt=""
                                         class="img-fluid"></a>
                                 <div class="text">
                                     <h3 th:text="${equipmentType.getName()}"><a href="detail.html"></a></h3>
@@ -385,10 +197,14 @@
                                 <h4><a href="post.html">医院公告</a></h4>
                                 <hr>
                                 <div th:each="announcementArticle:${application.announcementArticleList}">
-                                    <p class="intro"><strong th:text="'['+${#dates.format(announcementArticle.getReleaseDate(),'yyyy-MM-dd')}+']'"></strong><a href="#" style="text-decoration:none;"
-                                                                                          th:title="${announcementArticle.getTitle()}">&nbsp;&nbsp;<span th:text="${announcementArticle.getTitle()}"></span></a>
+                                    <p class="intro"><strong
+                                            th:text="'['+${#dates.format(announcementArticle.getReleaseDate(),'yyyy-MM-dd')}+']'"></strong><a
+                                            th:href="'/article/'+${announcementArticle.getId()}" style="text-decoration:none;"
+                                            th:title="${announcementArticle.getTitle()}">&nbsp;&nbsp;<span
+                                            th:text="${announcementArticle.getTitle()}"></span></a>
+                                    </p>
                                 </div>
-                                <p class="read-more"><a href="post.html" class="btn btn-primary">更多...</a>
+                                <p class="read-more"><a href="/article/list/1?type=1" class="btn btn-primary">更多...</a>
                                 </p>
                             </div>
                         </div>
@@ -398,37 +214,42 @@
                                 </p>
                                 <hr>
                                 <div th:each="newsArticle:${application.newsArticleList}">
-                                    <p class="intro"><strong th:text="'['+${#dates.format(newsArticle.getReleaseDate(),'yyyy-MM-dd')}+']'"></strong><a href="#" style="text-decoration:none;"
-                                                                                                                                                                   th:title="${newsArticle.getTitle()}">&nbsp;&nbsp;<span th:text="${newsArticle.getTitle()}"></span></a>
+                                    <p class="intro">
+                                        <strong th:text="'['+${#dates.format(newsArticle.getReleaseDate(),'yyyy-MM-dd')}+']'"></strong>
+                                        <a th:href="'/article/'+${newsArticle.getId()}" style="text-decoration:none;" th:title="${newsArticle.getTitle()}">&nbsp;&nbsp;<span
+                                                th:text="${newsArticle.getTitle()}"></span></a>
+                                    </p>
                                 </div>
-                                <p class="read-more"><a href="post.html" class="btn btn-primary">更多...</a>
+                                <p class="read-more"><a href="/article/list/1?type=2" class="btn btn-primary">更多...</a>
                                 </p>
                             </div>
                         </div>
                         <div class="col-sm-6">
                             <div class="post">
                                 <h4><a href="post.html">宠物大全</a></h4>
-                                </p>
                                 <hr>
                                 <div th:each="petArticle:${application.petArticleList}">
-                                    <p class="intro"><strong th:text="'['+${#dates.format(petArticle.getReleaseDate(),'yyyy-MM-dd')}+']'"></strong><a href="#" style="text-decoration:none;"
-                                                                                                                                                           th:title="${petArticle.getTitle()}">&nbsp;&nbsp;<span th:text="${petArticle.getTitle()}"></span></a>
+                                    <p class="intro">
+                                        <strong th:text="'['+${#dates.format(petArticle.getReleaseDate(),'yyyy-MM-dd')}+']'"></strong>
+                                        <a th:href="'/article/'+${petArticle.getId()}" style="text-decoration:none;" th:title="${petArticle.getTitle()}">&nbsp;&nbsp;<span
+                                                th:text="${petArticle.getTitle()}"></span></a>
+                                    </p>
                                 </div>
-                                <p class="read-more"><a href="post.html" class="btn btn-primary">更多...</a>
-                                </p>
+                                <p class="read-more"><a href="/article/list/1?type=3" class="btn btn-primary">更多...</a></p>
                             </div>
                         </div>
                         <div class="col-sm-6">
                             <div class="post">
                                 <h4><a href="post.html">用药常识</a></h4>
-                                </p>
                                 <hr>
                                 <div th:each="drugArticle:${application.drugArticleList}">
-                                    <p class="intro"><strong th:text="'['+${#dates.format(drugArticle.getReleaseDate(),'yyyy-MM-dd')}+']'"></strong><a href="#" style="text-decoration:none;"
-                                                                                                                                                           th:title="${drugArticle.getTitle()}">&nbsp;&nbsp;<span th:text="${drugArticle.getTitle()}"></span></a>
+                                    <p class="intro">
+                                        <strong th:text="'['+${#dates.format(drugArticle.getReleaseDate(),'yyyy-MM-dd')}+']'"></strong>
+                                        <a th:href="'/article/'+${drugArticle.getId()}" style="text-decoration:none;" th:title="${drugArticle.getTitle()}">&nbsp;&nbsp;<span
+                                                th:text="${drugArticle.getTitle()}"></span></a>
+                                    </p>
                                 </div>
-                                <p class="read-more"><a href="post.html" class="btn btn-primary">更多...</a>
-                                </p>
+                                <p class="read-more"><a href="/article/list/1?type=4" class="btn btn-primary">更多...</a></p>
                             </div>
                         </div>
                     </div>

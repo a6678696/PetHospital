@@ -5,14 +5,19 @@ import com.ledao.service.LogService;
 import com.ledao.service.RoleService;
 import com.ledao.service.UserRoleService;
 import com.ledao.service.UserService;
+import com.ledao.util.DateUtil;
 import com.ledao.util.StringUtil;
+import org.apache.commons.io.FileUtils;
 import org.apache.shiro.SecurityUtils;
 import org.apache.shiro.authz.annotation.RequiresPermissions;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.multipart.MultipartFile;
 
 import javax.annotation.Resource;
 import javax.servlet.http.HttpSession;
+import java.io.File;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -27,6 +32,9 @@ import java.util.Map;
 @Controller
 @RequestMapping("/admin/user")
 public class UserAdminController {
+
+    @Value("${userImageFilePath}")
+    private String userImageFilePath;
 
     @Resource
     private UserService userService;
@@ -56,6 +64,7 @@ public class UserAdminController {
         Map<String, Object> map = new HashMap<>(16);
         PageBean pageBean = new PageBean(Integer.parseInt(page), Integer.parseInt(rows));
         map.put("userName", StringUtil.formatLike(searchUser.getUserName()));
+        map.put("type", searchUser.getType());
         map.put("start", pageBean.getStart());
         map.put("size", pageBean.getPageSize());
         map.put("key", 1);
@@ -71,7 +80,7 @@ public class UserAdminController {
         }
         resultMap.put("rows", userList);
         resultMap.put("total", total);
-        logService.add(new Log(Log.SEARCH_ACTION,"查询用户信息"));
+        logService.add(new Log(Log.SEARCH_ACTION, "查询用户信息"));
         return resultMap;
     }
 
@@ -84,15 +93,27 @@ public class UserAdminController {
     @RequestMapping("/save")
     @ResponseBody
     @RequiresPermissions(value = "用户管理")
-    public Map<String, Object> save(User user) {
+    public Map<String, Object> save(User user, @RequestParam("userImage") MultipartFile file) throws Exception {
         Map<String, Object> resultMap = new HashMap<>(16);
+        if (!file.isEmpty()) {
+            // 获取上传的文件名
+            String fileName = file.getOriginalFilename();
+            // 获取文件的后缀
+            String suffixName = fileName.substring(fileName.lastIndexOf("."));
+            String newFileName = DateUtil.getCurrentDateStr2() + suffixName;
+            FileUtils.copyInputStreamToFile(file.getInputStream(), new File(userImageFilePath + newFileName));
+            if (user.getId() != null) {
+                FileUtils.deleteQuietly(new File(userImageFilePath + userService.findById(user.getId()).getImageName()));
+            }
+            user.setImageName(newFileName);
+        }
         int key;
         if (user.getId() == null) {
             key = userService.add(user);
-            logService.add(new Log(Log.ADD_ACTION,"添加用户信息"+user));
+            logService.add(new Log(Log.ADD_ACTION, "添加用户信息" + user));
         } else {
             key = userService.update(user);
-            logService.add(new Log(Log.UPDATE_ACTION,"修改用户信息"+user));
+            logService.add(new Log(Log.UPDATE_ACTION, "修改用户信息" + user));
         }
         if (key > 0) {
             resultMap.put("success", true);
@@ -112,7 +133,7 @@ public class UserAdminController {
     @ResponseBody
     @RequiresPermissions(value = "用户管理")
     public Map<String, Object> delete(Integer id) {
-        logService.add(new Log(Log.DELETE_ACTION,"删除用户信息"+userService.findById(id)));
+        logService.add(new Log(Log.DELETE_ACTION, "删除用户信息" + userService.findById(id)));
         Map<String, Object> resultMap = new HashMap<>(16);
         userRoleService.deleteByUserId(id);
         userService.delete(id);
@@ -137,18 +158,19 @@ public class UserAdminController {
         if (StringUtil.isNotEmpty(roleIds)) {
             String[] roleIdStr = roleIds.split(",");
             for (int i = 0; i < roleIdStr.length; i++) {
-                Integer userId2=userService.findById(userId).getId();
-                Integer roleId2=roleService.findById(Integer.parseInt(roleIdStr[i])).getId();
-                userRoleService.add(roleId2,userId2);
+                Integer userId2 = userService.findById(userId).getId();
+                Integer roleId2 = roleService.findById(Integer.parseInt(roleIdStr[i])).getId();
+                userRoleService.add(roleId2, userId2);
             }
         }
         resultMap.put("success", true);
-        logService.add(new Log(Log.UPDATE_ACTION,"保存用户角色设置"));
+        logService.add(new Log(Log.UPDATE_ACTION, "保存用户角色设置"));
         return resultMap;
     }
 
     /**
      * 修改密码
+     *
      * @param newPassword
      * @param session
      * @return
@@ -156,27 +178,28 @@ public class UserAdminController {
      */
     @RequestMapping("/modifyPassword")
     @ResponseBody
-    @RequiresPermissions(value="修改密码")
-    public Map<String,Object> modifyPassword(String newPassword,HttpSession session)throws Exception{
-        Map<String,Object> resultMap=new HashMap<>(16);
-        User currentUser=(User) session.getAttribute("currentUser");
-        User user=userService.findById(currentUser.getId());
+    @RequiresPermissions(value = "修改密码")
+    public Map<String, Object> modifyPassword(String newPassword, HttpSession session) throws Exception {
+        Map<String, Object> resultMap = new HashMap<>(16);
+        User currentUser = (User) session.getAttribute("currentUser");
+        User user = userService.findById(currentUser.getId());
         user.setPassword(newPassword);
         userService.update(user);
         resultMap.put("success", true);
-        logService.add(new Log(Log.UPDATE_ACTION,"修改密码"));
+        logService.add(new Log(Log.UPDATE_ACTION, "修改密码"));
         return resultMap;
     }
 
     /**
      * 安全退出
+     *
      * @return
      * @throws Exception
      */
     @GetMapping("/logout")
-    @RequiresPermissions(value="安全退出")
-    public String logout(){
-        logService.add(new Log(Log.LOGOUT_ACTION,"用户注销"));
+    @RequiresPermissions(value = "安全退出")
+    public String logout() {
+        logService.add(new Log(Log.LOGOUT_ACTION, "用户注销"));
         SecurityUtils.getSubject().logout();
         return "redirect:/login.html";
     }

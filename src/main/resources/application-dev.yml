@@ -25,10 +25,16 @@ spring:
   thymeleaf:
     cache: false
 
+#轮播图图片存储地址
 carouselImageFilePath: F://idea workspase for Actual combat/PetHospital/src/main/webapp/static/images/carouselImage/
+#设备类型图片存储地址
 equipmentTypeImageFilePath: F://idea workspase for Actual combat/PetHospital/src/main/webapp/static/images/equipmentTypeImage/
+#文章正文图片存储地址
 articleImageFilePath: F://idea workspase for Actual combat/PetHospital/src/main/webapp/static/images/articleImage/
-
+#客户头像图片存储地址
+customerImageFilePath: F://idea workspase for Actual combat/PetHospital/src/main/webapp/static/images/customerImage/
+#医院人员头像图片存储地址
+userImageFilePath: F://idea workspase for Actual combat/PetHospital/src/main/webapp/static/images/userImage/
 
 #mybatis的相关配置
 mybatis:

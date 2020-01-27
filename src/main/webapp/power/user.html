@@ -44,6 +44,8 @@
             $("#password").val("");
             $("#trueName").val("");
             $("#remarks").val("");
+            $("#type").combobox("setValue","");
+            $("#userImage").val("");
         }
 
         function closeUserDialog(){
@@ -146,6 +148,18 @@
         function closeRoleSetDialog(){
             $("#dlg2").dialog("close");
         }
+
+        function formatType(val,row) {
+            if (val == 1) {
+                return "系统维护人员";
+            }else if (val == 2) {
+                return "医生";
+            }else if (val == 3) {
+                return "美容师";
+            }else if (val == 4) {
+                return "维修员";
+            }
+        }
     </script>
 </head>
 <body style="margin: 1px">
@@ -157,6 +171,7 @@
     <th field="userName" width="50" align="center">用户名</th>
     <th field="password" width="50" align="center">密码</th>
     <th field="trueName" width="50" align="center">真实姓名</th>
+    <th field="type" width="50" align="center" formatter="formatType">人员类型</th>
     <th field="remarks" width="80" align="center">备注</th>
     <th field="roles" width="150" align="center">拥有角色</th>
     <th field="aa" width="50" align="center" formatter="formatEdit">角色设置</th>
@@ -176,9 +191,9 @@
 </div>
 
 
-<div id="dlg" class="easyui-dialog" style="width: 450px;height: 300px;padding: 10px 20px"
+<div id="dlg" class="easyui-dialog" style="width: 530px;height: 400px;padding: 10px 20px"
      closed="true" buttons="#dlg-buttons" data-options="onClose:function(){resetValue()}">
-    <form id="fm" method="post">
+    <form id="fm" method="post" enctype="multipart/form-data">
         <table cellspacing="8px">
             <tr>
                 <td>用户名：</td>
@@ -196,6 +211,24 @@
                 <td>真实姓名：</td>
                 <td>
                     <input type="text" id="trueName" name="trueName" class="easyui-validatebox" required="true" style="width: 250px"/>
+                </td>
+            </tr>
+            <tr>
+                <td>用户头像：</td>
+                <td>
+                    <input type="file" id="userImage" name="userImage"/>
+                </td>
+            </tr>
+            <tr>
+                <td>人员类型:</td>
+                <td>
+                    <select id="type" class="easyui-combobox" name="type" style="width:210px;" panelHeight="auto">
+                        <option value="">请选择...</option>
+                        <option value="1">系统维护人员</option>
+                        <option value="2">医生</option>
+                        <option value="3">美容师</option>
+                        <option value="4">维修员</option>
+                    </select>
                 </td>
             </tr>
             <tr>

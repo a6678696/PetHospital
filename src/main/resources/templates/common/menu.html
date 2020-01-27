@@ -7,7 +7,7 @@
 <body>
 <div id="m">
     <nav class="navbar navbar-expand-lg">
-        <div class="container"><a href="/" class="navbar-brand home"><img src="static/images/img/logo3.png" style="height: 60px" alt="Obaju logo" class="d-none d-md-inline-block"><img src="static/images/img/logo3.png" alt="LeDao宠物医院" style="width: 140px" class="d-inline-block d-md-none"><span class="sr-only">Obaju - go to homepage</span></a>
+        <div class="container"><a href="/" class="navbar-brand home"><img th:src="@{/static/images/img/logo3.png}" style="height: 60px" alt="Obaju logo" class="d-none d-md-inline-block"><img th:src="@{/static/images/img/logo3.png}" alt="LeDao宠物医院" style="width: 140px" class="d-inline-block d-md-none"><span class="sr-only">Obaju - go to homepage</span></a>
             <div class="navbar-buttons">
                 <button type="button" data-toggle="collapse" data-target="#navigation" class="btn btn-outline-secondary navbar-toggler"><span class="sr-only">Toggle navigation</span><i class="fa fa-align-justify"></i></button>
                 <button type="button" data-toggle="collapse" data-target="#search" class="btn btn-outline-secondary navbar-toggler"><span class="sr-only">Toggle search</span><i class="fa fa-search"></i></button><a href="basket.html" class="btn btn-outline-secondary navbar-toggler"><i class="fa fa-shopping-cart"></i></a>
@@ -106,8 +106,8 @@
                                         </ul>
                                     </div>
                                     <div class="col-md-6 col-lg-3">
-                                        <div class="banner"><a href="#"><img src="static/images/img/banner.jpg" alt="" class="img img-fluid"></a></div>
-                                        <div class="banner"><a href="#"><img src="static/images/img/banner2.jpg" alt="" class="img img-fluid"></a></div>
+                                        <div class="banner"><a href="#"><img th:src="@{/static/images/img/banner.jpg}" alt="" class="img img-fluid"></a></div>
+                                        <div class="banner"><a href="#"><img th:src="@{/static/images/img/banner2.jpg}" alt="" class="img img-fluid"></a></div>
                                     </div>
                                 </div>
                             </li>
@@ -118,34 +118,34 @@
                             <li>
                                 <div class="row">
                                     <div class="col-md-6 col-lg-3">
-                                        <h5>医院公告<a href="#"><strong style="float: right">更多...</strong></a></h5>
+                                        <h5>医院公告<a href="/article/list/1?type=1"><strong style="float: right">更多...</strong></a></h5>
                                         <ul class="list-unstyled mb-3">
                                             <li class="nav-item" th:each="announcementArticle:${application.announcementArticleList}">
-                                                <a href="index.html" class="nav-link" th:text="${announcementArticle.getTitle()}"></a>
+                                                <a th:href="'/article/'+${announcementArticle.getId()}" class="nav-link" th:text="${announcementArticle.getTitle()}"></a>
                                             </li>
                                         </ul>
                                     </div>
                                     <div class="col-md-6 col-lg-3">
-                                        <h5>医院新闻<a href="#"><strong style="float: right">更多...</strong></a></h5>
+                                        <h5>医院新闻<a href="/article/list/1?type=2"><strong style="float: right">更多...</strong></a></h5>
                                         <ul class="list-unstyled mb-3">
                                             <li class="nav-item" th:each="newsArticle:${application.newsArticleList}">
-                                                <a href="index.html" class="nav-link" th:text="${newsArticle.getTitle()}"></a>
+                                                <a th:href="'/article/'+${newsArticle.getId()}" class="nav-link" th:text="${newsArticle.getTitle()}"></a>
                                             </li>
                                         </ul>
                                     </div>
                                     <div class="col-md-6 col-lg-3">
-                                        <h5>宠物大全<a href="#"><strong style="float: right">更多...</strong></a></h5>
+                                        <h5>宠物大全<a href="/article/list/1?type=3"><strong style="float: right">更多...</strong></a></h5>
                                         <ul class="list-unstyled mb-3">
                                             <li class="nav-item" th:each="petArticle:${application.petArticleList}">
-                                                <a href="index.html" class="nav-link" th:text="${petArticle.getTitle()}"></a>
+                                                <a th:href="'/article/'+${petArticle.getId()}" class="nav-link" th:text="${petArticle.getTitle()}"></a>
                                             </li>
                                         </ul>
                                     </div>
                                     <div class="col-md-6 col-lg-3">
-                                        <h5>用药常识<a href="#"><strong style="float: right">更多...</strong></a></h5>
+                                        <h5>用药常识<a href="/article/list/1?type=4"><strong style="float: right">更多...</strong></a></h5>
                                         <ul class="list-unstyled mb-3">
                                             <li class="nav-item" th:each="drugArticle:${application.drugArticleList}">
-                                                <a href="index.html" class="nav-link" th:text="${drugArticle.getTitle()}"></a>
+                                                <a th:href="'/article/'+${drugArticle.getId()}" class="nav-link" th:text="${drugArticle.getTitle()}"></a>
                                             </li>
                                         </ul>
                                     </div>
