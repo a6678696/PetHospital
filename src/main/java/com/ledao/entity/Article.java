@@ -2,6 +2,7 @@ package com.ledao.entity;
 
 import lombok.Data;
 
+import javax.validation.constraints.NotEmpty;
 import java.util.Date;
 
 /**
@@ -21,6 +22,7 @@ public class Article {
     /**
      * 标题
      */
+    @NotEmpty(message = "请输入您要搜索的文章标题!")
     private String title;
     /**
      * 发布日期
@@ -31,9 +33,13 @@ public class Article {
      */
     private Integer click;
     /**
-     * 文章类型 1.医院公告 2.医院新闻 3.宠物大全 4.用药常识
+     * 文章类型
      */
-    private Integer type;
+    private Integer typeId;
+    /**
+     * 文章类型实体
+     */
+    private ArticleType articleType;
     /**
      * 文章内容
      */
@@ -45,7 +51,7 @@ public class Article {
                 "编号=" + id +
                 ", 标题='" + title + '\'' +
                 ", 发布日期=" + releaseDate +
-                ", 文章类型(1.医院公告 2.医院新闻 3.宠物大全 4.用药常识)=" + type +
+                ", 文章类型=" + typeId +
                 '}';
     }
 }

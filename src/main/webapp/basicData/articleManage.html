@@ -13,7 +13,8 @@
 
         function searchArticle() {
             $("#dg").datagrid('load', {
-                "title": $("#s_title").val()
+                "title": $("#s_title").val(),
+                "typeId": $("#s_typeId").val()
             });
         }
 
@@ -81,15 +82,7 @@
         }
 
         function formatType(val,row) {
-            if (val == 1) {
-                return "医院公告";
-            }else if (val == 2) {
-                return "医院新闻";
-            }else if (val == 3) {
-                return "宠物大全";
-            }else if (val == 4) {
-                return "用药常识";
-            }
+            return val.name;
         }
 
         function closeArticleDialog() {
@@ -97,6 +90,32 @@
             $("#dg").datagrid("reload");
             resetValue();
         }
+
+        $(document).ready(function () {
+
+            $("#dg").datagrid({
+                onDblClickRow: function (index, row) {
+                    $("#dlg").dialog("open").dialog("setTitle", "修改文章信息");
+                    $("#fm").form("load", row);
+                    CKEDITOR.instances.content.setData(row.content);
+                    url = "/admin/article/save?id=" + row.id;
+                }
+            });
+            $("#typeId").combobox({
+                mode: 'remote',
+                url: '/admin/articleType/comboList',
+                valueField: 'id',
+                textField: 'name',
+                delay: 100
+            });
+            $("#s_typeId").combobox({
+                mode: 'remote',
+                url: '/admin/articleType/comboList',
+                valueField: 'id',
+                textField: 'name',
+                delay: 100
+            });
+        });
     </script>
 </head>
 <body style="margin: 1px">
@@ -109,7 +128,7 @@
         <th field="id" width="20" align="center">编号</th>
         <th field="title" width="200" align="center">标题</th>
         <th field="releaseDate" width="50" align="center">发布日期</th>
-        <th field="type" width="50" align="center" formatter="formatType">文章类型</th>
+        <th field="articleType" width="50" align="center" formatter="formatType">文章类型</th>
     </tr>
     </thead>
 </table>
@@ -119,7 +138,9 @@
         <a href="javascript:deleteArticle()" class="easyui-linkbutton" iconCls="icon-remove" plain="true">删除</a>
     </div>
     <div>
-        &nbsp;标题&nbsp;<input type="text" id="s_title" size="20" onkeydown="if(window.event.keyCode===13) searchArticle()"/>
+        &nbsp;标题:&nbsp;<input type="text" id="s_title" size="20" onkeydown="if(window.event.keyCode===13) searchArticle()"/>
+        &nbsp;文章类型:&nbsp;<input class="easyui-combobox" id="s_typeId" name="typeId" style="width: 140px" editable="false"
+                    data-options="panelHeight:'auto',valueField:'id',textField:'name',url:'/admin/articleType/comboList'"/>
         <a href="javascript:searchArticle()" class="easyui-linkbutton" iconCls="icon-search" plain="true">搜索</a>
     </div>
 </div>
@@ -136,14 +157,9 @@
             <tr>
                 <td>所属类别：</td>
                 <td>
-                    <select class="easyui-combobox" style="width: 154px" id="type" name="type" editable="false"
-                            required="true"
-                            panelHeight="auto">
-                        <option value="1">医院公告</option>
-                        <option value="2">医院新闻</option>
-                        <option value="3">宠物大全</option>
-                        <option value="4">用药常识</option>
-                    </select>
+                    <input class="easyui-combobox" id="typeId" name="typeId" style="width: 140px"
+                           required="true" editable="false"
+                           data-options="required:true,panelHeight:'auto',valueField:'id',textField:'name',url:'/admin/articleType/comboList'"/>
                 </td>
             </tr>
             <tr>

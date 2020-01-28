@@ -7,14 +7,19 @@ import com.ledao.service.CustomerReturnListGoodsService;
 import com.ledao.service.GoodsService;
 import com.ledao.service.LogService;
 import com.ledao.service.SaleListGoodsService;
+import com.ledao.util.DateUtil;
 import com.ledao.util.StringUtil;
+import org.apache.commons.io.FileUtils;
 import org.apache.shiro.authz.annotation.Logical;
 import org.apache.shiro.authz.annotation.RequiresPermissions;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.multipart.MultipartFile;
 
 import javax.annotation.Resource;
+import java.io.File;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -29,6 +34,9 @@ import java.util.Map;
 @RestController
 @RequestMapping("/admin/goods")
 public class GoodsAdminController {
+    
+    @Value("${goodsImageFilePath}")
+    private String goodsImageFilePath;
 
     @Resource
     private GoodsService goodsService;
@@ -204,9 +212,21 @@ public class GoodsAdminController {
      */
     @RequestMapping("/save")
     @RequiresPermissions(value = "商品管理")
-    public Map<String, Object> save(Goods goods) {
-        int key;
+    public Map<String, Object> save(Goods goods, @RequestParam("goodsImage")MultipartFile file)throws Exception {
         Map<String, Object> resultMap = new HashMap<>(16);
+        if (!file.isEmpty()) {
+            // 获取上传的文件名
+            String fileName = file.getOriginalFilename();
+            // 获取文件的后缀
+            String suffixName = fileName.substring(fileName.lastIndexOf("."));
+            String newFileName = DateUtil.getCurrentDateStr2() + suffixName;
+            FileUtils.copyInputStreamToFile(file.getInputStream(), new File(goodsImageFilePath + newFileName));
+            if (goods.getId() != null) {
+                FileUtils.deleteQuietly(new File(goodsImageFilePath + goodsService.findById(goods.getId()).getImageName()));
+            }
+            goods.setImageName(newFileName);
+        }
+        int key;
         if (goods.getId() != null) {
             logService.add(new Log(Log.UPDATE_ACTION, "更新商品信息" + goods));
             key = goodsService.update(goods);
@@ -265,6 +285,7 @@ public class GoodsAdminController {
         goods.setInventoryQuantity(num);
         goods.setPurchasingPrice(price);
         goods.setLastPurchasingPrice(price);
+        goods.setState(1);
         goodsService.update(goods);
         logService.add(new Log(Log.UPDATE_ACTION, "修改商品信息:" + goods + ",价格=" + price + ",库存=" + num));
         resultMap.put("success", true);

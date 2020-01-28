@@ -7,8 +7,8 @@
         <result property="title" column="title"/>
         <result property="releaseDate" column="releaseDate"/>
         <result property="click" column="click"/>
-        <result property="type" column="type"/>
         <result property="content" column="content"/>
+        <result property="typeId" column="typeId"/>
     </resultMap>
     <select id="list" parameterType="map" resultMap="ArticleResult">
         select * from t_article
@@ -16,8 +16,8 @@
             <if test="title!=null and title!=''">
                 and title like #{title}
             </if>
-            <if test="type!=null">
-                and type=#{type}
+            <if test="typeId!=null">
+                and typeId=#{typeId}
             </if>
         </where>
         order by releaseDate desc
@@ -31,13 +31,13 @@
             <if test="title!=null and title!=''">
                 and title like #{title}
             </if>
-            <if test="type!=null">
-                and type=#{type}
+            <if test="typeId!=null">
+                and typeId=#{typeId}
             </if>
         </where>
     </select>
     <insert id="add" parameterType="Article">
-        insert into t_article (title, releaseDate, click, type, content) values (#{title},now(),0,#{type},#{content});
+        insert into t_article (title, releaseDate, click, typeId, content) values (#{title},now(),0,#{typeId},#{content});
     </insert>
     <update id="update" parameterType="Article">
         update t_article
@@ -51,8 +51,8 @@
             <if test="click != null">
                 click=#{click},
             </if>
-            <if test="type != null">
-                type=#{type},
+            <if test="typeId != null">
+                typeId=#{typeId},
             </if>
             <if test="content != null and content != ''">
                 content=#{content},
@@ -71,6 +71,9 @@
     </select>
     <select id="getNext" parameterType="integer" resultMap="ArticleResult">
         select * from t_article where id &gt; #{id} order by id asc limit 1
+    </select>
+    <select id="findByTypeId" parameterType="integer" resultMap="ArticleResult">
+        select * from t_article where typeId=#{typeId}
     </select>
 
 </mapper>

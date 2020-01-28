@@ -53,6 +53,11 @@ public class ArticleServiceImpl implements ArticleService {
     }
 
     @Override
+    public List<Article> findByTypeId(Integer typeId) {
+        return articleMapper.findByTypeId(typeId);
+    }
+
+    @Override
     public Article getLast(Integer id) {
         return articleMapper.getLast(id);
     }

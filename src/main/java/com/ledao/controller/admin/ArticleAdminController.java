@@ -5,6 +5,7 @@ import com.ledao.entity.Log;
 import com.ledao.entity.PageBean;
 import com.ledao.run.StartupRunner;
 import com.ledao.service.ArticleService;
+import com.ledao.service.ArticleTypeService;
 import com.ledao.service.LogService;
 import com.ledao.util.DateUtil;
 import com.ledao.util.StringUtil;
@@ -20,6 +21,7 @@ import org.springframework.web.multipart.MultipartFile;
 import javax.annotation.Resource;
 import java.io.File;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 /**
@@ -40,6 +42,9 @@ public class ArticleAdminController {
     private ArticleService articleService;
 
     @Resource
+    private ArticleTypeService articleTypeService;
+
+    @Resource
     private LogService logService;
 
     @Resource
@@ -48,22 +53,26 @@ public class ArticleAdminController {
     /**
      * 分页条件查询文章
      *
-     * @param article
+     * @param searchArticle
      * @param page
      * @param rows
      * @return
      */
     @RequestMapping("/list")
     @RequiresPermissions(value = "文章管理")
-    public Map<String, Object> list(Article article, @RequestParam(value = "page", required = false) Integer page, @RequestParam(value = "rows", required = false) Integer rows) {
+    public Map<String, Object> list(Article searchArticle, @RequestParam(value = "page", required = false) Integer page, @RequestParam(value = "rows", required = false) Integer rows) {
         PageBean pageBean = new PageBean(page, rows);
         Map<String, Object> resultMap = new HashMap<>(16);
         Map<String, Object> map = new HashMap<>(16);
-        map.put("title", StringUtil.formatLike(article.getTitle()));
-        map.put("type", article.getType());
+        map.put("title", StringUtil.formatLike(searchArticle.getTitle()));
+        map.put("typeId", searchArticle.getTypeId());
         map.put("start", pageBean.getStart());
         map.put("size", pageBean.getPageSize());
-        resultMap.put("rows", articleService.list(map));
+        List<Article> articleList=articleService.list(map);
+        for (Article article : articleList) {
+            article.setArticleType(articleTypeService.findById(article.getTypeId()));
+        }
+        resultMap.put("rows", articleList);
         resultMap.put("total", articleService.getCount(map));
         return resultMap;
     }

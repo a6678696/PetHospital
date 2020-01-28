@@ -20,7 +20,7 @@
 
         function resetValue() {
 
-            $("#equipmentTypeImage").textbox("setText", "");
+            $("#equipmentTypeImage").val("");
             $("#name").val("");
             $("#remarks").val("");
         }
@@ -145,8 +145,7 @@
             <tr>
                 <td>设备类型图片:</td>
                 <td>
-                    <input id="equipmentTypeImage" name="equipmentTypeImage" class="easyui-filebox" buttonText="点击选择图片"
-                           style="width:307px">
+                    <input type="file" id="equipmentTypeImage" name="equipmentTypeImage"/>
                 </td>
             </tr>
             <tr>

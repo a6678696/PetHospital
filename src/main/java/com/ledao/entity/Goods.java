@@ -23,6 +23,10 @@ public class Goods {
      */
     private String name;
     /**
+     * 图片名
+     */
+    private String imageName;
+    /**
      * 商品型号
      */
     private String model;
@@ -66,6 +70,18 @@ public class Goods {
      * 备注
      */
     private String remarks;
+    /**
+     * 是否热卖 0否 1是
+     */
+    private Integer hot;
+    /**
+     * 是否特价 0否 1是
+     */
+    private Integer specialPrice;
+    /**
+     * 详情
+     */
+    private String details;
     /**
      * 查询用到 根据商品编码或者商品名称查询
      */

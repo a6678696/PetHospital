@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<div id="b">
+    <div id="all" style="padding-top: 40px">
+        <div id="content">
+            <div class="container">
+                <div class="row">
+                    <div class="col-lg-12">
+                        <!-- breadcrumb-->
+                        <nav aria-label="breadcrumb">
+                            <ol class="breadcrumb">
+                                <li class="breadcrumb-item"><a href="/">主页</a></li>
+                                <li class="breadcrumb-item"><a th:href="'/article/list/1?typeId='+${articleList[0].typeId}" th:text="${typeName}"></a></li><span th:text="'--当前有'+${total}+'篇文章'" style="float: right"></span>
+                            </ol>
+                        </nav>
+                    </div>
+                    <div id="blog-post" class="col-lg-9">
+                        <div class="box">
+                            <div th:each="article:${articleList}" class="form-inline">
+                                <p th:text="'['+${#dates.format(article.releaseDate,'yyyy-MM-dd HH:mm:ss')}+']'"></p>&nbsp;&nbsp;<a
+                                    th:href="'/article/'+${article.id}"><p th:text="${article.title}"></p></a>
+                            </div>
+                            <div class="pages">
+                                <nav aria-label="Page navigation example" class="d-flex justify-content-center">
+                                    <ul class="pagination">
+                                        <div th:utext="${pageCode}" class="form-inline"></div>
+                                    </ul>
+                                </nav>
+                            </div>
+                        </div>
+                        <!-- /.box-->
+                    </div>
+                    <!-- /#blog-post-->
+                    <div class="col-lg-3">
+                        <!--
+                        *** BLOG MENU ***
+                        _________________________________________________________
+                        -->
+                        <div class="card sidebar-menu mb-4">
+                            <div class="card-header">
+                                <h3 class="h4 panel-title">文章分类</h3>
+                            </div>
+                            <div class="card-body">
+                                <ul class="nav flex-column nav-pills">
+                                    <li th:each="articleType:${application.articleTypeList}">
+                                        <a th:href="'/article/list/1?typeId='+${articleType.id}" class="nav-link" th:text="${articleType.name}"></a>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+                        <!-- /.col-lg-3-->
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+</body>
+</html>

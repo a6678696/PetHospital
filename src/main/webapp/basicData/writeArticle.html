@@ -35,9 +35,19 @@
 
         function resetValue() {
             $("#title").val("");
-            $("#type").combobox("setValue", "");
+            $("#typeId").combobox("setValue", "");
             CKEDITOR.instances.content.setData("");
         }
+
+        $(document).ready(function () {
+            $("#typeId").combobox({
+                mode: 'remote',
+                url: '/admin/articleType/comboList',
+                valueField: 'id',
+                textField: 'name',
+                delay: 100
+            });
+        });
     </script>
 </head>
 <body style="margin: 10px">
@@ -47,20 +57,16 @@
             <tr>
                 <td width="80px">文章标题：</td>
                 <td>
-                    <input type="text" id="title" name="title" style="width: 400px" required="true"  class="easyui-validatebox"/>
+                    <input type="text" id="title" name="title" style="width: 400px" required="true"
+                           class="easyui-validatebox"/>
                 </td>
             </tr>
             <tr>
                 <td>所属类别：</td>
                 <td>
-                    <select class="easyui-combobox" style="width: 154px" id="type" name="type" editable="false"
-                            required="true"
-                            panelHeight="auto">
-                        <option value="1">医院公告</option>
-                        <option value="2">医院新闻</option>
-                        <option value="3">宠物大全</option>
-                        <option value="4">用药常识</option>
-                    </select>
+                    <input class="easyui-combobox" id="typeId" name="typeId" style="width: 140px"
+                           required="true" editable="false"
+                           data-options="required:true,panelHeight:'auto',valueField:'id',textField:'name',url:'/admin/articleType/comboList'"/>
                 </td>
             </tr>
             <tr>

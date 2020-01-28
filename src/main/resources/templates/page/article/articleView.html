@@ -15,7 +15,7 @@
                         <nav aria-label="breadcrumb">
                             <ol class="breadcrumb">
                                 <li class="breadcrumb-item"><a href="/">主页</a></li>
-                                <li class="breadcrumb-item"><a th:href="'/article/list/1?typeName='+${typeName}" th:text="${typeName}"></a></li>
+                                <li class="breadcrumb-item"><a th:href="'/article/list/1?typeId='+${article.typeId}" th:text="${typeName}"></a></li>
                                 <li aria-current="page" class="breadcrumb-item active" th:text="${article.title}"></li>
                             </ol>
                         </nav>
@@ -28,7 +28,7 @@
                                         th:text="${#dates.format(article.releaseDate,'yyyy-MM-dd HH:mm:ss')}"></span>&nbsp;&nbsp;阅读次数:&nbsp;<span
                                         th:text="${article.click}"></span>
                                     &nbsp;&nbsp;文章类型:&nbsp;
-                                    <span th:switch="${article.type}">
+                                    <span th:switch="${article.typeId}">
                                     <span th:case="1">医院公告</span>
                                     <span th:case="2">医院新闻</span>
                                     <span th:case="3">宠物大全</span>
@@ -54,10 +54,9 @@
                             </div>
                             <div class="card-body">
                                 <ul class="nav flex-column nav-pills">
-                                    <li><a href="/article/list/1?type=1" class="nav-link">医院公告</a></li>
-                                    <li><a href="/article/list/1?type=2" class="nav-link">医院新闻</a></li>
-                                    <li><a href="/article/list/1?type=3" class="nav-link">宠物大全</a></li>
-                                    <li><a href="/article/list/1?type=4" class="nav-link">用药常识</a></li>
+                                    <li th:each="articleType:${application.articleTypeList}">
+                                        <a th:href="'/article/list/1?typeId='+${articleType.id}" class="nav-link" th:text="${articleType.name}"></a>
+                                    </li>
                                 </ul>
                             </div>
                         </div>

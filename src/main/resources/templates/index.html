@@ -31,13 +31,42 @@
     <script type="text/javascript" th:src="@{/static/vendor/owl.carousel/owl.carousel.min.js}"></script>
     <script type="text/javascript" th:src="@{/static/vendor/owl.carousel2.thumbs/owl.carousel2.thumbs.js}"></script>
     <script type="text/javascript" th:src="@{/static/js/front.js}"></script>
+    <script type="text/javascript">
+        $(function () {
+            $(function(){
+                $(window).scroll(function(){
+                    if($(window).scrollTop() > 100){
+                        $("#gotop").fadeIn(1000);//一秒渐入动画
+                    }else{
+                        $("#gotop").fadeOut(1000);//一秒渐隐动画
+                    }
+                });
+
+                $("#gotop").click(function(){
+                    $('body,html').animate({scrollTop:0},1000);
+                });
+            });
+        });
+    </script>
+    <script th:inline="javascript">
+        window.onload = function () {
+            var error = [[${error}]];
+            if (error != null) {
+                alert(error);
+            }
+        }
+    </script>
 </head>
 <body>
+<span  name="gotop"></span>
 <header class="header mb-5">
     <div th:include="common/head::#h"></div>
     <div th:include="common/menu::#m"></div>
     <div th:include="${mainPage}::${mainPageKey}"></div>
     <div th:include="common/foot::#f"></div>
 </header>
+<a href="#gotop" title="返回顶部">
+    <img th:src="@{/static/images/img/top.png}" id="gotop" alt="" style="position: fixed;bottom: 10%;display: none;height: 40px;padding-left: 90%">
+</a>
 </body>
 </html>

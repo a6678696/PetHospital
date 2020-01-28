@@ -5,58 +5,55 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="0a04dcdb-703f-4bd2-b3be-43a82c777491" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/ledao/controller/ArticleController.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/ledao/util/PageUtil.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/templates/page/articleList.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/templates/page/articleView.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/webapp/static/images/articleImage/20200128023933.jpg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/webapp/static/images/customerImage/20200127145503.jpg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/webapp/static/images/customerImage/20200127150049.jpg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/webapp/static/images/customerImage/20200127150120.jpg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/webapp/static/images/customerImage/20200127150404.jpg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/webapp/static/images/customerImage/20200127150433.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/webapp/static/images/userImage/20200127171852.jpg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/webapp/static/images/userImage/20200127173702.jpg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/webapp/static/images/userImage/20200127173709.jpg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/webapp/static/images/userImage/20200127173724.jpg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/webapp/static/images/userImage/20200127173731.jpg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/webapp/static/images/userImage/20200127173736.jpg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/webapp/static/images/userImage/20200127173742.jpg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/webapp/static/images/userImage/20200127173856.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/ledao/controller/admin/ArticleTypeAdminController.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/ledao/entity/ArticleType.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/ledao/mapper/ArticleTypeMapper.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/ledao/service/ArticleTypeService.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/ledao/service/impl/ArticleTypeServiceImpl.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/mybatis/mapper/ArticleTypeMapper.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/templates/page/article/articleResult.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/webapp/basicData/articleTypeManage.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/webapp/static/images/articleImage/20200129005350.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/webapp/static/images/equipmentTypeImage/20200128215035.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/webapp/static/images/goodsImage/20200129010133.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/webapp/static/images/goodsImage/20200129012706.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/webapp/static/images/img/top.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/webapp/static/jquery-easyui-1.7.0/themes/usericons/menu-59.gif" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/dataSources/3f17d22d-fd6c-438d-aade-dee31a9e9b2d.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dataSources/3f17d22d-fd6c-438d-aade-dee31a9e9b2d.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/inspectionProfiles/Project_Default.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/inspectionProfiles/Project_Default.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/ledao/config/ShiroConfig.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/ledao/config/ShiroConfig.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/ledao/controller/admin/CustomerAdminController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/ledao/controller/admin/CustomerAdminController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/ledao/controller/admin/UserAdminController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/ledao/controller/admin/UserAdminController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/ledao/entity/Customer.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/ledao/entity/Customer.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/ledao/entity/User.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/ledao/entity/User.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/ledao/controller/ArticleController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/ledao/controller/ArticleController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/ledao/controller/admin/ArticleAdminController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/ledao/controller/admin/ArticleAdminController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/ledao/controller/admin/GoodsAdminController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/ledao/controller/admin/GoodsAdminController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/ledao/entity/Article.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/ledao/entity/Article.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/ledao/entity/Goods.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/ledao/entity/Goods.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/ledao/mapper/ArticleMapper.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/ledao/mapper/ArticleMapper.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/ledao/run/StartupRunner.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/ledao/run/StartupRunner.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/ledao/service/ArticleService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/ledao/service/ArticleService.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/ledao/service/impl/ArticleServiceImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/ledao/service/impl/ArticleServiceImpl.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/ledao/util/PageUtil.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/ledao/util/PageUtil.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/resources/application-dev.yml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/application-dev.yml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/resources/mybatis/mapper/ArticleMapper.xml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/mybatis/mapper/ArticleMapper.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/mybatis/mapper/CustomerMapper.xml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/mybatis/mapper/CustomerMapper.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/mybatis/mapper/UserMapper.xml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/mybatis/mapper/UserMapper.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/mybatis/mapper/GoodsMapper.xml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/mybatis/mapper/GoodsMapper.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/resources/templates/common/menu.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/templates/common/menu.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/resources/templates/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/templates/index.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/templates/page/articleList.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/templates/page/article/articleList.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/templates/page/articleView.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/templates/page/article/articleView.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/resources/templates/page/indexFirst.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/templates/page/indexFirst.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/basicData/customer.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/basicData/customer.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/basicData/modifyArticle.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/power/user.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/power/user.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/purchase/purchase.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/purchase/purchase.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/purchase/return.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/purchase/return.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/sale/returnSearch.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/sale/returnSearch.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/sale/saleSearch.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/sale/saleSearch.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/sale/saleout.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/sale/saleout.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/sale/salereturn.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/sale/salereturn.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/static/ckeditor/config.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/static/ckeditor/config.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/static/css/custom.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/static/css/custom.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/webapp/basicData/articleManage.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/basicData/articleManage.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/webapp/basicData/carousel.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/basicData/carousel.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/webapp/basicData/equipmentType.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/basicData/equipmentType.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/webapp/basicData/goods.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/basicData/goods.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/webapp/basicData/writeArticle.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/basicData/writeArticle.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/webapp/login.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/login.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/webapp/static/images/equipmentTypeImage/20200126005849.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/webapp/static/images/icon/DefaultAvatar.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/webapp/static/images/icon/apple-touch-icon-120x120-precomposed.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/webapp/static/images/icon/apple-touch-icon-196x196-precomposed.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/webapp/static/images/icon/apple-touch-icon-57x57-precomposed.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/webapp/static/images/icon/favicon.ico" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/webapp/static/jquery-easyui-1.7.0/themes/icon.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/static/jquery-easyui-1.7.0/themes/icon.css" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/target/classes/application-dev.yml" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/application-dev.yml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/ledao/config/ShiroConfig.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/ledao/config/ShiroConfig.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/ledao/controller/admin/UserAdminController.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/ledao/controller/admin/UserAdminController.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/ledao/entity/User.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/ledao/entity/User.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/mybatis/mapper/UserMapper.xml" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/mybatis/mapper/UserMapper.xml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -99,8 +96,8 @@
         <option value="FxmlFile" />
         <option value="mybatis" />
         <option value="Interface" />
-        <option value="HTML File" />
         <option value="Class" />
+        <option value="HTML File" />
       </list>
     </option>
   </component>
@@ -153,31 +150,31 @@
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="aspect.path.notification.shown" value="true" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/src/main/resources/templates/page" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/src/main/webapp/static/jquery-easyui-1.7.0/themes/usericons" />
     <property name="project.structure.last.edited" value="Modules" />
     <property name="project.structure.proportion" value="0.15" />
     <property name="project.structure.side.proportion" value="0.2" />
     <property name="settings.editor.selected.configurable" value="Errors" />
   </component>
   <component name="RecentsManager">
-    <key name="CopyFile.RECENT_KEYS">
-      <recent name="F:\idea workspase for Actual combat\PetHospital\src\main\resources\templates\page" />
-      <recent name="F:\idea workspase for Actual combat\PetHospital\src\main\webapp\static\jquery-easyui-1.7.0\themes\usericons" />
-      <recent name="F:\idea workspase for Actual combat\PetHospital\src\main\webapp\static" />
-      <recent name="F:\idea workspase for Actual combat\PetHospital\src\main\webapp\basicData" />
-      <recent name="F:\idea workspase for Actual combat\PetHospital\src\main\resources\mybatis\mapper" />
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="F:\idea workspase for Actual combat\PetHospital\src\main\resources\templates\page\article" />
+      <recent name="F:\idea workspase for Actual combat\PetHospital\src\main\webapp\static\images" />
+      <recent name="F:\idea workspase for Actual combat\PetHospital\src\main\resources\templates" />
+      <recent name="F:\idea workspase for Actual combat\PetHospital\src\main\resources\templates\mypages" />
+      <recent name="F:\idea workspase for Actual combat\PetHospital\src\main\resources\templates\static\js" />
     </key>
     <key name="CopyClassDialog.RECENTS_KEY">
       <recent name="com.ledao.controller.admin" />
       <recent name="com.ledao.mapper" />
       <recent name="com.ledao.entity" />
     </key>
-    <key name="MoveFile.RECENT_KEYS">
-      <recent name="F:\idea workspase for Actual combat\PetHospital\src\main\webapp\static\images" />
-      <recent name="F:\idea workspase for Actual combat\PetHospital\src\main\resources\templates" />
-      <recent name="F:\idea workspase for Actual combat\PetHospital\src\main\resources\templates\mypages" />
-      <recent name="F:\idea workspase for Actual combat\PetHospital\src\main\resources\templates\static\js" />
-      <recent name="F:\idea workspase for Actual combat\PetHospital\src\main\resources\templates\static\css" />
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="F:\idea workspase for Actual combat\PetHospital\src\main\webapp\static\jquery-easyui-1.7.0\themes\usericons" />
+      <recent name="F:\idea workspase for Actual combat\PetHospital\src\main\resources\templates\page\article" />
+      <recent name="F:\idea workspase for Actual combat\PetHospital\src\main\webapp\static\images\img" />
+      <recent name="F:\idea workspase for Actual combat\PetHospital\src\main\resources\templates\page" />
+      <recent name="F:\idea workspase for Actual combat\PetHospital\src\main\webapp\static" />
     </key>
   </component>
   <component name="RestServicesNavigator">
@@ -238,12 +235,7 @@
               <path>
                 <item name="services root" type="e789fda9:ObjectUtils$Sentinel" />
                 <item name="root:jdbc:mysql://localhost:3306/db_pethospital?serverTimezone=GMT%2B8" type="7427dc5b:ServiceModel$ServiceGroupNode" />
-                <item name="com.intellij.database.console.session.MessageBusSession@13c54bc6" type="9fbbdea:ServiceModel$ServiceNode" />
-              </path>
-              <path>
-                <item name="services root" type="e789fda9:ObjectUtils$Sentinel" />
-                <item name="root:jdbc:mysql://localhost:3306/db_pethospital?serverTimezone=GMT%2B8" type="7427dc5b:ServiceModel$ServiceGroupNode" />
-                <item name="com.intellij.database.console.session.MessageBusSession@3a01400e" type="9fbbdea:ServiceModel$ServiceNode" />
+                <item name="com.intellij.database.console.session.MessageBusSession@196172d7" type="9fbbdea:ServiceModel$ServiceNode" />
               </path>
             </expand>
             <select />
@@ -283,7 +275,8 @@
       <workItem from="1580014506355" duration="24000" />
       <workItem from="1580015623863" duration="21893000" />
       <workItem from="1580063108758" duration="259000" />
-      <workItem from="1580098340646" duration="35978000" />
+      <workItem from="1580098340646" duration="36110000" />
+      <workItem from="1580183691169" duration="33620000" />
     </task>
     <task id="LOCAL-00001" summary="LeDao宠物医院管理系统">
       <created>1579192730886</created>
@@ -439,7 +432,14 @@
       <option name="project" value="LOCAL" />
       <updated>1580063213477</updated>
     </task>
-    <option name="localTasksCounter" value="23" />
+    <task id="LOCAL-00023" summary="LeDao宠物医院管理系统">
+      <created>1580151392088</created>
+      <option name="number" value="00023" />
+      <option name="presentableId" value="LOCAL-00023" />
+      <option name="project" value="LOCAL" />
+      <updated>1580151392088</updated>
+    </task>
+    <option name="localTasksCounter" value="24" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -463,10 +463,10 @@
       <screen x="0" y="0" width="1536" height="824" />
     </state>
     <state x="361" y="71" key="#com.intellij.execution.impl.EditConfigurationsDialog/0.0.1536.824@0.0.1536.824" timestamp="1579501989802" />
-    <state x="574" y="122" key="#com.intellij.ide.util.MemberChooser" timestamp="1580141207465">
+    <state x="574" y="122" key="#com.intellij.ide.util.MemberChooser" timestamp="1580214580158">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state x="574" y="122" key="#com.intellij.ide.util.MemberChooser/0.0.1536.824@0.0.1536.824" timestamp="1580141207465" />
+    <state x="574" y="122" key="#com.intellij.ide.util.MemberChooser/0.0.1536.824@0.0.1536.824" timestamp="1580214580158" />
     <state x="516" y="164" key="#com.intellij.ide.util.PackageChooserDialog" timestamp="1579150006221">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
@@ -487,86 +487,86 @@
       <screen x="0" y="0" width="1536" height="824" />
     </state>
     <state x="499" y="159" key="#com.intellij.refactoring.safeDelete.UnsafeUsagesDialog/0.0.1536.824@0.0.1536.824" timestamp="1579172113914" />
-    <state x="207" y="84" width="1010" height="632" key="CommitChangelistDialog2" timestamp="1580063203133">
+    <state x="207" y="84" width="1010" height="632" key="CommitChangelistDialog2" timestamp="1580151387221">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state x="207" y="84" width="1010" height="632" key="CommitChangelistDialog2/0.0.1536.824@0.0.1536.824" timestamp="1580063203133" />
-    <state width="1067" height="466" key="DebuggerActiveHint" timestamp="1580149364581">
+    <state x="207" y="84" width="1010" height="632" key="CommitChangelistDialog2/0.0.1536.824@0.0.1536.824" timestamp="1580151387221" />
+    <state width="1067" height="466" key="DebuggerActiveHint" timestamp="1580232678815">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state width="1067" height="466" key="DebuggerActiveHint/0.0.1536.824@0.0.1536.824" timestamp="1580149364581" />
+    <state width="1067" height="466" key="DebuggerActiveHint/0.0.1536.824@0.0.1536.824" timestamp="1580232678815" />
     <state x="147" y="71" key="DiffContextDialog" timestamp="1579193275073">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
     <state x="147" y="71" key="DiffContextDialog/0.0.1536.824@0.0.1536.824" timestamp="1579193275073" />
-    <state x="549" y="168" width="773" height="488" key="FileChooserDialogImpl" timestamp="1580100288826">
+    <state x="549" y="168" width="773" height="488" key="FileChooserDialogImpl" timestamp="1580184450327">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state x="549" y="168" width="773" height="488" key="FileChooserDialogImpl/0.0.1536.824@0.0.1536.824" timestamp="1580100288826" />
+    <state x="549" y="168" width="773" height="488" key="FileChooserDialogImpl/0.0.1536.824@0.0.1536.824" timestamp="1580184450327" />
     <state x="589" y="326" width="382" height="172" key="Github.CreateGistDialog" timestamp="1579192359130">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
     <state x="589" y="326" width="382" height="172" key="Github.CreateGistDialog/0.0.1536.824@0.0.1536.824" timestamp="1579192359130" />
-    <state width="1169" height="265" key="GridCell.Tab.0.bottom" timestamp="1580149576909">
+    <state width="1493" height="141" key="GridCell.Tab.0.bottom" timestamp="1580232374951">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state width="1169" height="265" key="GridCell.Tab.0.bottom/0.0.1536.824@0.0.1536.824" timestamp="1580149576909" />
-    <state width="1169" height="265" key="GridCell.Tab.0.center" timestamp="1580149576909">
+    <state width="1493" height="141" key="GridCell.Tab.0.bottom/0.0.1536.824@0.0.1536.824" timestamp="1580232374951" />
+    <state width="1493" height="141" key="GridCell.Tab.0.center" timestamp="1580232374951">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state width="1169" height="265" key="GridCell.Tab.0.center/0.0.1536.824@0.0.1536.824" timestamp="1580149576909" />
-    <state width="1169" height="265" key="GridCell.Tab.0.left" timestamp="1580149576909">
+    <state width="1493" height="141" key="GridCell.Tab.0.center/0.0.1536.824@0.0.1536.824" timestamp="1580232374951" />
+    <state width="1493" height="141" key="GridCell.Tab.0.left" timestamp="1580232374946">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state width="1169" height="265" key="GridCell.Tab.0.left/0.0.1536.824@0.0.1536.824" timestamp="1580149576909" />
-    <state width="1169" height="265" key="GridCell.Tab.0.right" timestamp="1580149576909">
+    <state width="1493" height="141" key="GridCell.Tab.0.left/0.0.1536.824@0.0.1536.824" timestamp="1580232374946" />
+    <state width="1493" height="141" key="GridCell.Tab.0.right" timestamp="1580232374951">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state width="1169" height="265" key="GridCell.Tab.0.right/0.0.1536.824@0.0.1536.824" timestamp="1580149576909" />
-    <state width="1493" height="150" key="GridCell.Tab.1.bottom" timestamp="1580149422047">
+    <state width="1493" height="141" key="GridCell.Tab.0.right/0.0.1536.824@0.0.1536.824" timestamp="1580232374951" />
+    <state width="1493" height="141" key="GridCell.Tab.1.bottom" timestamp="1580232688103">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state width="1493" height="150" key="GridCell.Tab.1.bottom/0.0.1536.824@0.0.1536.824" timestamp="1580149422047" />
-    <state width="1493" height="150" key="GridCell.Tab.1.center" timestamp="1580149422047">
+    <state width="1493" height="141" key="GridCell.Tab.1.bottom/0.0.1536.824@0.0.1536.824" timestamp="1580232688103" />
+    <state width="1493" height="141" key="GridCell.Tab.1.center" timestamp="1580232688103">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state width="1493" height="150" key="GridCell.Tab.1.center/0.0.1536.824@0.0.1536.824" timestamp="1580149422047" />
-    <state width="1493" height="150" key="GridCell.Tab.1.left" timestamp="1580149422047">
+    <state width="1493" height="141" key="GridCell.Tab.1.center/0.0.1536.824@0.0.1536.824" timestamp="1580232688103" />
+    <state width="1493" height="141" key="GridCell.Tab.1.left" timestamp="1580232688103">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state width="1493" height="150" key="GridCell.Tab.1.left/0.0.1536.824@0.0.1536.824" timestamp="1580149422047" />
-    <state width="1493" height="150" key="GridCell.Tab.1.right" timestamp="1580149422047">
+    <state width="1493" height="141" key="GridCell.Tab.1.left/0.0.1536.824@0.0.1536.824" timestamp="1580232688103" />
+    <state width="1493" height="141" key="GridCell.Tab.1.right" timestamp="1580232688103">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state width="1493" height="150" key="GridCell.Tab.1.right/0.0.1536.824@0.0.1536.824" timestamp="1580149422047" />
-    <state width="1493" height="150" key="GridCell.Tab.2.bottom" timestamp="1580149422048">
+    <state width="1493" height="141" key="GridCell.Tab.1.right/0.0.1536.824@0.0.1536.824" timestamp="1580232688103" />
+    <state width="1493" height="141" key="GridCell.Tab.2.bottom" timestamp="1580230837471">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state width="1493" height="150" key="GridCell.Tab.2.bottom/0.0.1536.824@0.0.1536.824" timestamp="1580149422048" />
-    <state width="1493" height="150" key="GridCell.Tab.2.center" timestamp="1580149422047">
+    <state width="1493" height="141" key="GridCell.Tab.2.bottom/0.0.1536.824@0.0.1536.824" timestamp="1580230837471" />
+    <state width="1493" height="141" key="GridCell.Tab.2.center" timestamp="1580230837471">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state width="1493" height="150" key="GridCell.Tab.2.center/0.0.1536.824@0.0.1536.824" timestamp="1580149422047" />
-    <state width="1493" height="150" key="GridCell.Tab.2.left" timestamp="1580149422047">
+    <state width="1493" height="141" key="GridCell.Tab.2.center/0.0.1536.824@0.0.1536.824" timestamp="1580230837471" />
+    <state width="1493" height="141" key="GridCell.Tab.2.left" timestamp="1580230837471">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state width="1493" height="150" key="GridCell.Tab.2.left/0.0.1536.824@0.0.1536.824" timestamp="1580149422047" />
-    <state width="1493" height="150" key="GridCell.Tab.2.right" timestamp="1580149422048">
+    <state width="1493" height="141" key="GridCell.Tab.2.left/0.0.1536.824@0.0.1536.824" timestamp="1580230837471" />
+    <state width="1493" height="141" key="GridCell.Tab.2.right" timestamp="1580230837471">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state width="1493" height="150" key="GridCell.Tab.2.right/0.0.1536.824@0.0.1536.824" timestamp="1580149422048" />
+    <state width="1493" height="141" key="GridCell.Tab.2.right/0.0.1536.824@0.0.1536.824" timestamp="1580230837471" />
     <state x="299" y="68" key="Maven.ArtifactSearchDialog" timestamp="1579332741235">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
     <state x="299" y="68" key="Maven.ArtifactSearchDialog/0.0.1536.824@0.0.1536.824" timestamp="1579332741235" />
-    <state x="270" y="0" key="SettingsEditor" timestamp="1580051535083">
+    <state x="270" y="0" key="SettingsEditor" timestamp="1580218153390">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state x="270" y="0" key="SettingsEditor/0.0.1536.824@0.0.1536.824" timestamp="1580051535083" />
-    <state x="361" y="146" key="Vcs.Push.Dialog.v2" timestamp="1580063215177">
+    <state x="270" y="0" key="SettingsEditor/0.0.1536.824@0.0.1536.824" timestamp="1580218153390" />
+    <state x="361" y="146" key="Vcs.Push.Dialog.v2" timestamp="1580151396839">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state x="361" y="146" key="Vcs.Push.Dialog.v2/0.0.1536.824@0.0.1536.824" timestamp="1580063215177" />
+    <state x="361" y="146" key="Vcs.Push.Dialog.v2/0.0.1536.824@0.0.1536.824" timestamp="1580151396839" />
     <state width="775" height="419" key="XDebugger.FullValuePopup" timestamp="1579668668921">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
@@ -583,10 +583,10 @@
       <screen x="0" y="0" width="1536" height="824" />
     </state>
     <state x="562" y="330" key="com.intellij.openapi.vcs.update.UpdateOrStatusOptionsDialogupdate-v2/0.0.1536.824@0.0.1536.824" timestamp="1579193123784" />
-    <state x="44" y="112" width="1441" height="534" key="find.popup" timestamp="1580146825658">
+    <state x="44" y="112" width="1441" height="600" key="find.popup" timestamp="1580232040938">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state x="44" y="112" width="1441" height="534" key="find.popup/0.0.1536.824@0.0.1536.824" timestamp="1580146825658" />
+    <state x="44" y="112" width="1441" height="600" key="find.popup/0.0.1536.824@0.0.1536.824" timestamp="1580232040938" />
     <state x="521" y="204" key="git4idea.merge.GitPullDialog" timestamp="1579193188401">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
@@ -599,9 +599,9 @@
       <screen x="0" y="0" width="1536" height="824" />
     </state>
     <state x="425" y="187" key="run.anything.popup/0.0.1536.824@0.0.1536.824" timestamp="1579923612989" />
-    <state x="431" y="145" width="672" height="678" key="search.everywhere.popup" timestamp="1580141732089">
+    <state x="431" y="145" width="672" height="678" key="search.everywhere.popup" timestamp="1580231544340">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state x="431" y="145" width="672" height="678" key="search.everywhere.popup/0.0.1536.824@0.0.1536.824" timestamp="1580141732089" />
+    <state x="431" y="145" width="672" height="678" key="search.everywhere.popup/0.0.1536.824@0.0.1536.824" timestamp="1580231544340" />
   </component>
 </project>

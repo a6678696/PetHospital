@@ -8,6 +8,7 @@
     <script type="text/javascript" src="/static/jquery-easyui-1.7.0/jquery.min.js"></script>
     <script type="text/javascript" src="/static/jquery-easyui-1.7.0/jquery.easyui.min.js"></script>
     <script type="text/javascript" src="/static/jquery-easyui-1.7.0/locale/easyui-lang-zh_CN.js"></script>
+    <script type="text/javascript" src="/static/ckeditor/ckeditor.js"></script>
     <script type="text/javascript">
 
         var url;
@@ -146,6 +147,10 @@
             $("#minNum").numberbox("setValue","");
             $("#producer").val("");
             $("#remarks").val("");
+            $("#goodsImage").val("");
+            CKEDITOR.instances.details.setData("");
+            $('input[type=radio][name="hot"]:checked').prop("checked", false);
+            $('input[type=radio][name="specialPrice"]:checked').prop("checked", false);
         }
 
         function saveGoodsTypeChoose(){
@@ -196,8 +201,8 @@
         }
 
         function closeGoodsDialog(){
-            resetValue();
             $("#dlg2").dialog("close");
+            resetValue();
         }
 
         function openGoodsModifyDialog(){
@@ -211,6 +216,7 @@
             $("#fm2").form("load",row);
             $("#typeId").val(row.type.id);
             $("#typeName").val(row.type.name);
+            CKEDITOR.instances.details.setData(row.details);
             url="/admin/goods/save?id="+row.id;
             $("#saveAddAddNextButton").hide();
         }
@@ -326,6 +332,7 @@
                     $("#fm2").form("load",row);
                     $("#typeId").val(row.type.id);
                     $("#typeName").val(row.type.name);
+                    CKEDITOR.instances.details.setData(row.details);
                     url="/admin/goods/save?id="+row.id;
                     $("#saveAddAddNextButton").hide();
                 }
@@ -391,9 +398,9 @@
     <a href="javascript:closeGoodsTypeDialog()" class="easyui-linkbutton" iconCls="icon-cancel" >关闭</a>
 </div>
 
-<div id="dlg2" class="easyui-dialog" style="width: 500px;height: 400px;padding: 10px 20px"
+<div id="dlg2" class="easyui-dialog" style="width: 1150px;height: 500px;padding: 10px 20px"
      closed="true" buttons="#dlg-buttons2" data-options="onClose:function(){resetValue()}">
-    <form id="fm2" method="post">
+    <form id="fm2" method="post" enctype="multipart/form-data">
         <table>
             <tr>
                 <td>所属类别：</td>
@@ -402,7 +409,8 @@
                     <input type="text" id="typeName" class="easyui-validatebox" required="true" style="width: 90px" readonly="readonly" onclick="openChooseGoodsTypeDialog()"/>
                     <a href="javascript:openChooseGoodsTypeDialog()" class="easyui-linkbutton" iconCls="icon-search" plain="true"></a>
                 </td>
-                <td>&nbsp;&nbsp;&nbsp;&nbsp;</td>
+            </tr>
+            <tr>
                 <td>商品编码：</td>
                 <td>
                     <input type="text" id="code" name="code" class="easyui-validatebox" required="true" style="width: 120px" readonly="readonly" />
@@ -419,7 +427,8 @@
                 <td>
                     <input type="text" id="model" name="model" class="easyui-validatebox" required="true" style="width: 120px"  />
                 </td>
-                <td>&nbsp;&nbsp;&nbsp;&nbsp;</td>
+            </tr>
+            <tr>
                 <td>单位：</td>
                 <td>
                     <select class="easyui-combobox" required="true" id="unit" name="unit" style="width: 90px" data-options="panelHeight:'auto',editable:false,valueField:'name',textField:'name',url:'/admin/goodsUnit/comboList'"></select>
@@ -431,7 +440,8 @@
                 <td>
                     <input type="text" id="purchasingPrice" name="purchasingPrice" class="easyui-numberbox" data-options="min:0" required="true" style="width: 120px"  />
                 </td>
-                <td>&nbsp;&nbsp;&nbsp;&nbsp;</td>
+            </tr>
+            <tr>
                 <td>销售价：</td>
                 <td>
                     <input type="text" id="sellingPrice" name="sellingPrice" class="easyui-numberbox" data-options="min:0" required="true" style="width: 120px"  />
@@ -442,17 +452,49 @@
                 <td colspan="4">
                     <input type="text" id="minNum" name="minNum" class="easyui-numberbox" data-options="min:0" required="true" style="width: 120px"  />
                 </td>
+                <input type="hidden" id="state" name="state" class="easyui-numberbox"
+                       data-options="min:0" required="true" readonly="readonly"/>
+                <input type="hidden" id="inventoryQuantity" name="inventoryQuantity" class="easyui-numberbox"
+                       data-options="min:0" required="true" readonly="readonly"/>
+                <input type="hidden" id="lastPurchasingPrice" name="lastPurchasingPrice" class="easyui-numberbox"
+                       data-options="min:0" required="true" readonly="readonly"/>
             </tr>
             <tr>
                 <td>生产厂商：</td>
-                <td colspan="4">
+                <td colspan="3">
                     <input type="text" id="producer" name="producer" class="easyui-validatebox" required="true" style="width: 340px"  />
+                </td>
+            </tr>
+            <tr>
+                <td>商品图片:</td>
+                <td>
+                    <input type="file" id="goodsImage" name="goodsImage"/>
+                </td>
+            </tr>
+            <tr>
+                <td>是否热卖:</td>
+                <td>
+                    <input type="radio" name="hot" value="1">是
+                    <input type="radio" name="hot" value="0">否
+                </td>
+            </tr>
+            <tr>
+                <td>是否特价:</td>
+                <td>
+                    <input type="radio" name="specialPrice" value="1">是
+                    <input type="radio" name="specialPrice" value="0">否
                 </td>
             </tr>
             <tr>
                 <td valign="top">备注：</td>
                 <td colspan="4">
                     <textarea rows="5" cols="46" id="remarks" name="remarks"></textarea>
+                </td>
+            </tr>
+            <tr>
+                <td valign="top">商品详情：</td>
+                <td colspan="4">
+                    <textarea rows="5" cols="55" id="details" name="details"></textarea>
                 </td>
             </tr>
         </table>
@@ -509,5 +551,8 @@
     <a href="javascript:saveGoodsUnit()" class="easyui-linkbutton" iconCls="icon-ok" >保存</a>
     <a href="javascript:closeGoodsUnitAddDialog()" class="easyui-linkbutton" iconCls="icon-cancel" >关闭</a>
 </div>
+<script type="text/javascript">
+    CKEDITOR.replace("details");
+</script>
 </body>
 </html>

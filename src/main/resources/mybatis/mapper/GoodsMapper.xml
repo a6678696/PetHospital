@@ -16,6 +16,10 @@
         <result property="state" column="state"/>
         <result property="producer" column="producer"/>
         <result property="remarks" column="remarks"/>
+        <result property="imageName" column="imageName"/>
+        <result property="hot" column="hot"/>
+        <result property="specialPrice" column="specialPrice"/>
+        <result property="details" column="details"/>
         <association property="type" column="typeId" select="com.ledao.mapper.GoodsTypeMapper.findById"></association>
     </resultMap>
     <select id="findByTypeId" parameterType="integer" resultMap="GoodsResult">
@@ -109,8 +113,8 @@
         select * from t_goods where id=#{id}
     </select>
     <insert id="add" parameterType="Goods">
-        insert into t_goods (code, inventoryQuantity, lastPurchasingPrice, minNum, model, name, producer, purchasingPrice, remarks, sellingPrice, state, unit, typeId)
-        values (#{code},#{inventoryQuantity},#{lastPurchasingPrice},#{minNum},#{model},#{name},#{producer},#{purchasingPrice},#{remarks},#{sellingPrice},#{state},#{unit},#{type.id});
+        insert into t_goods (code, inventoryQuantity, lastPurchasingPrice, minNum, model, name, producer, purchasingPrice, remarks, sellingPrice, state, unit, typeId,hot,specialPrice,imageName,details)
+        values (#{code},#{inventoryQuantity},#{lastPurchasingPrice},#{minNum},#{model},#{name},#{producer},#{purchasingPrice},#{remarks},#{sellingPrice},#{state},#{unit},#{type.id},#{hot},#{specialPrice},#{imageName},#{details});
     </insert>
     <update id="update" parameterType="Goods">
         update t_goods
@@ -153,6 +157,18 @@
             </if>
             <if test="type.id!=null">
                 typeId=#{type.id},
+            </if>
+            <if test="hot != null">
+                hot=#{hot},
+            </if>
+            <if test="specialPrice != null">
+                specialPrice=#{specialPrice},
+            </if>
+            <if test="imageName != null and imageName != ''">
+                imageName=#{imageName},
+            </if>
+            <if test="details != null and details != ''">
+                details=#{details},
             </if>
         </set>
         where id=#{id}

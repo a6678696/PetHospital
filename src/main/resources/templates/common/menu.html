@@ -118,7 +118,7 @@
                             <li>
                                 <div class="row">
                                     <div class="col-md-6 col-lg-3">
-                                        <h5>医院公告<a href="/article/list/1?type=1"><strong style="float: right">更多...</strong></a></h5>
+                                        <h5>医院公告<a href="/article/list/1?typeId=1"><strong style="float: right">更多...</strong></a></h5>
                                         <ul class="list-unstyled mb-3">
                                             <li class="nav-item" th:each="announcementArticle:${application.announcementArticleList}">
                                                 <a th:href="'/article/'+${announcementArticle.getId()}" class="nav-link" th:text="${announcementArticle.getTitle()}"></a>
@@ -126,7 +126,7 @@
                                         </ul>
                                     </div>
                                     <div class="col-md-6 col-lg-3">
-                                        <h5>医院新闻<a href="/article/list/1?type=2"><strong style="float: right">更多...</strong></a></h5>
+                                        <h5>医院新闻<a href="/article/list/1?typeId=2"><strong style="float: right">更多...</strong></a></h5>
                                         <ul class="list-unstyled mb-3">
                                             <li class="nav-item" th:each="newsArticle:${application.newsArticleList}">
                                                 <a th:href="'/article/'+${newsArticle.getId()}" class="nav-link" th:text="${newsArticle.getTitle()}"></a>
@@ -134,7 +134,7 @@
                                         </ul>
                                     </div>
                                     <div class="col-md-6 col-lg-3">
-                                        <h5>宠物大全<a href="/article/list/1?type=3"><strong style="float: right">更多...</strong></a></h5>
+                                        <h5>宠物大全<a href="/article/list/1?typeId=3"><strong style="float: right">更多...</strong></a></h5>
                                         <ul class="list-unstyled mb-3">
                                             <li class="nav-item" th:each="petArticle:${application.petArticleList}">
                                                 <a th:href="'/article/'+${petArticle.getId()}" class="nav-link" th:text="${petArticle.getTitle()}"></a>
@@ -142,7 +142,7 @@
                                         </ul>
                                     </div>
                                     <div class="col-md-6 col-lg-3">
-                                        <h5>用药常识<a href="/article/list/1?type=4"><strong style="float: right">更多...</strong></a></h5>
+                                        <h5>用药常识<a href="/article/list/1?typeId=4"><strong style="float: right">更多...</strong></a></h5>
                                         <ul class="list-unstyled mb-3">
                                             <li class="nav-item" th:each="drugArticle:${application.drugArticleList}">
                                                 <a th:href="'/article/'+${drugArticle.getId()}" class="nav-link" th:text="${drugArticle.getTitle()}"></a>
@@ -164,11 +164,11 @@
     </nav>
     <div id="search" class="collapse">
         <div class="container">
-            <form role="search" class="ml-auto">
+            <form action="/article/search" role="search" class="ml-auto">
                 <div class="input-group">
-                    <input type="text" placeholder="Search" class="form-control">
+                    <input type="text" id="q" name="title" placeholder="输入要搜索的文章标题..." class="form-control" th:value="${searchArticle==null?'':searchArticle.title}">
                     <div class="input-group-append">
-                        <button type="button" class="btn btn-primary"><i class="fa fa-search"></i></button>
+                        <button type="submit" class="btn btn-primary"><i class="fa fa-search"></i></button>
                     </div>
                 </div>
             </form>

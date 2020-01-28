@@ -63,6 +63,14 @@ public interface ArticleService {
     Article findById(Integer id);
 
     /**
+     * 根据文章类型查询文章
+     *
+     * @param typeId
+     * @return
+     */
+    List<Article> findByTypeId(Integer typeId);
+
+    /**
      * 获取上一篇文章
      *
      * @param id

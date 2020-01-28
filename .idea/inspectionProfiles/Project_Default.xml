@@ -5,7 +5,7 @@
     <inspection_tool class="HtmlUnknownAttribute" enabled="true" level="WARNING" enabled_by_default="true">
       <option name="myValues">
         <value>
-          <list size="17">
+          <list size="18">
             <item index="0" class="java.lang.String" itemvalue="fitcolumns" />
             <item index="1" class="java.lang.String" itemvalue="pagination" />
             <item index="2" class="java.lang.String" itemvalue="rownumbers" />
@@ -23,6 +23,7 @@
             <item index="14" class="java.lang.String" itemvalue="singleselect" />
             <item index="15" class="java.lang.String" itemvalue="region" />
             <item index="16" class="java.lang.String" itemvalue="formatter" />
+            <item index="17" class="java.lang.String" itemvalue="editable" />
           </list>
         </value>
       </option>

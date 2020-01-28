@@ -14,7 +14,7 @@
                     <div class="col-md-12">
                         <div id="main-slider" class="owl-carousel owl-theme">
                             <div class="item" th:each="firstCarousel:${application.firstCarouselList}">
-                                <img th:src="'static/images/carouselImage/'+${firstCarousel.getImageName()}"
+                                <img th:src="@{'/static/images/carouselImage/'+${firstCarousel.getImageName()}}"
                                      style="height: 460px"
                                      class="img-fluid">
                             </div>
@@ -83,15 +83,15 @@
                             <div class="product">
                                 <div class="flip-container">
                                     <div class="flipper">
-                                        <div class="front"><a href="detail.html"><img th:src="'static/images/userImage/'+${doctor.getImageName()}"
+                                        <div class="front"><a href="detail.html"><img th:src="@{'/static/images/userImage/'+${doctor.getImageName()}}"
                                                                                       alt="" class="img-fluid"></a>
                                         </div>
                                         <div class="back"><a href="detail.html"><img
-                                                th:src="'static/images/userImage/'+${doctor.getImageName()}"
+                                                th:src="@{'/static/images/userImage/'+${doctor.getImageName()}}"
                                                 alt="" class="img-fluid"></a></div>
                                     </div>
                                 </div>
-                                <a href="detail.html" class="invisible"><img th:src="'static/images/userImage/'+${doctor.getImageName()}" alt=""
+                                <a href="detail.html" class="invisible"><img th:src="@{'/static/images/userImage/'+${doctor.getImageName()}}" alt=""
                                                                              class="img-fluid"></a>
                                 <div class="text">
                                     <h3><a href="detail.html" th:text="${doctor.getTrueName()}"></a></h3>
@@ -124,7 +124,7 @@
                             LeDao宠物医院是桂林市规模较大的一所专业化医院.以精湛的医术,热情周到的服务,良好的职业操守,赢得广大宠物爱好者的认可.医院包括全科门诊及住院治疗,对各种小动物疾病、疑难杂症及各科手术都具备了丰富的临床经验,形成了一套独立,严谨的诊疗体系.</p>
                         <div id="get-inspired" class="owl-carousel owl-theme">
                             <div class="item" th:each="secondCarousel:${application.secondCarouselList}">
-                                <img th:src="'static/images/carouselImage/'+${secondCarousel.getImageName()}"
+                                <img th:src="@{'/static/images/carouselImage/'+${secondCarousel.getImageName()}}"
                                      alt="Get inspired" class="img-fluid" style="height: 460px">
                             </div>
                         </div>
@@ -154,16 +154,16 @@
                                 <div class="flip-container">
                                     <div class="flipper">
                                         <div class="front"><img
-                                                th:src="'static/images/equipmentTypeImage/' + ${equipmentType.getImageName()}"
+                                                th:src="@{'/static/images/equipmentTypeImage/' + ${equipmentType.getImageName()}}"
                                                 alt="" class="img-fluid">
                                         </div>
                                         <div class="back"><a href="#"><img
-                                                th:src="'static/images/equipmentTypeImage/' + ${equipmentType.getImageName()}"
+                                                th:src="@{'/static/images/equipmentTypeImage/' + ${equipmentType.getImageName()}}"
                                                 alt="" class="img-fluid"></a></div>
                                     </div>
                                 </div>
                                 <a class="invisible"><img
-                                        th:src="'static/images/equipmentTypeImage/'+${equipmentType.getImageName()}"
+                                        th:src="@{'/static/images/equipmentTypeImage/' + ${equipmentType.getImageName()}}"
                                         alt=""
                                         class="img-fluid"></a>
                                 <div class="text">
@@ -194,7 +194,7 @@
                     <div id="blog-homepage" class="row">
                         <div class="col-sm-6">
                             <div class="post">
-                                <h4><a href="post.html">医院公告</a></h4>
+                                <h4><a href="/article/list/1?typeId=1">医院公告</a></h4>
                                 <hr>
                                 <div th:each="announcementArticle:${application.announcementArticleList}">
                                     <p class="intro"><strong
@@ -204,13 +204,13 @@
                                             th:text="${announcementArticle.getTitle()}"></span></a>
                                     </p>
                                 </div>
-                                <p class="read-more"><a href="/article/list/1?type=1" class="btn btn-primary">更多...</a>
+                                <p class="read-more"><a href="/article/list/1?typeId=1" class="btn btn-primary">更多...</a>
                                 </p>
                             </div>
                         </div>
                         <div class="col-sm-6">
                             <div class="post">
-                                <h4><a href="post.html">医院新闻</a></h4>
+                                <h4><a href="/article/list/1?typeId=2">医院新闻</a></h4>
                                 </p>
                                 <hr>
                                 <div th:each="newsArticle:${application.newsArticleList}">
@@ -220,13 +220,13 @@
                                                 th:text="${newsArticle.getTitle()}"></span></a>
                                     </p>
                                 </div>
-                                <p class="read-more"><a href="/article/list/1?type=2" class="btn btn-primary">更多...</a>
+                                <p class="read-more"><a href="/article/list/1?typeId=2" class="btn btn-primary">更多...</a>
                                 </p>
                             </div>
                         </div>
                         <div class="col-sm-6">
                             <div class="post">
-                                <h4><a href="post.html">宠物大全</a></h4>
+                                <h4><a href="/article/list/1?typeId=3">宠物大全</a></h4>
                                 <hr>
                                 <div th:each="petArticle:${application.petArticleList}">
                                     <p class="intro">
@@ -235,12 +235,12 @@
                                                 th:text="${petArticle.getTitle()}"></span></a>
                                     </p>
                                 </div>
-                                <p class="read-more"><a href="/article/list/1?type=3" class="btn btn-primary">更多...</a></p>
+                                <p class="read-more"><a href="/article/list/1?typeId=3" class="btn btn-primary">更多...</a></p>
                             </div>
                         </div>
                         <div class="col-sm-6">
                             <div class="post">
-                                <h4><a href="post.html">用药常识</a></h4>
+                                <h4><a href="/article/list/1?typeId=4">用药常识</a></h4>
                                 <hr>
                                 <div th:each="drugArticle:${application.drugArticleList}">
                                     <p class="intro">
@@ -249,7 +249,7 @@
                                                 th:text="${drugArticle.getTitle()}"></span></a>
                                     </p>
                                 </div>
-                                <p class="read-more"><a href="/article/list/1?type=4" class="btn btn-primary">更多...</a></p>
+                                <p class="read-more"><a href="/article/list/1?typeId=4" class="btn btn-primary">更多...</a></p>
                             </div>
                         </div>
                     </div>
