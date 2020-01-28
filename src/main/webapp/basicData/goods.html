@@ -121,7 +121,7 @@
             $.post("/admin/goods/genGoodsCode",{},function(result){
                 $("#code").val(result);
             });
-            $("#saveAddAddNextButton").show();
+            // $("#saveAddAddNextButton").show();
         }
 
         function openChooseGoodsTypeDialog(){
@@ -218,7 +218,7 @@
             $("#typeName").val(row.type.name);
             CKEDITOR.instances.details.setData(row.details);
             url="/admin/goods/save?id="+row.id;
-            $("#saveAddAddNextButton").hide();
+            // $("#saveAddAddNextButton").hide();
         }
 
         function deleteGoods(){
@@ -334,7 +334,7 @@
                     $("#typeName").val(row.type.name);
                     CKEDITOR.instances.details.setData(row.details);
                     url="/admin/goods/save?id="+row.id;
-                    $("#saveAddAddNextButton").hide();
+                    // $("#saveAddAddNextButton").hide();
                 }
             });
 
@@ -502,8 +502,8 @@
 </div>
 
 <div id="dlg-buttons2">
-    <a id="saveAddAddNextButton" href="javascript:saveGoods(2)" class="easyui-linkbutton" iconCls="icon-ok" >保存并新增下一商品</a>
-    <a href="javascript:saveGoods(1)" class="easyui-linkbutton" iconCls="icon-ok" >保存</a>
+<!--    <a id="saveAddAddNextButton" href="javascript:saveGoods(2)" class="easyui-linkbutton" iconCls="icon-ok" >保存并新增下一商品</a>-->
+    <a href="javascript:saveGoods()" class="easyui-linkbutton" iconCls="icon-ok" >保存</a>
     <a href="javascript:closeGoodsDialog()" class="easyui-linkbutton" iconCls="icon-cancel" >关闭</a>
 </div>
 
