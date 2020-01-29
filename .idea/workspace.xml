@@ -5,19 +5,44 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="0a04dcdb-703f-4bd2-b3be-43a82c777491" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/src/main/webapp/static/images/goodsImage/20200130002017.jpg" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/ledao/controller/GoodsController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/ledao/controller/GoodsController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/ledao/controller/admin/GoodsAdminController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/ledao/controller/admin/GoodsAdminController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/ledao/entity/Goods.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/ledao/entity/Goods.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/ledao/mapper/GoodsMapper.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/ledao/mapper/GoodsMapper.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/ledao/service/GoodsService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/ledao/service/GoodsService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/ledao/service/impl/GoodsServiceImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/ledao/service/impl/GoodsServiceImpl.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/mybatis/mapper/GoodsMapper.xml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/mybatis/mapper/GoodsMapper.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/templates/common/foot.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/templates/common/foot.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/templates/common/head.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/templates/common/head.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/templates/common/menu.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/templates/common/menu.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/templates/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/templates/index.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/templates/page/article/articleList.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/templates/page/article/articleList.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/templates/page/article/articleResult.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/templates/page/article/articleResult.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/templates/page/article/articleView.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/templates/page/article/articleView.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/resources/templates/page/goods/goodsList.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/templates/page/goods/goodsList.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/templates/page/goods/goodsResult.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/templates/page/goods/goodsResult.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/resources/templates/page/goods/goodsView.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/templates/page/goods/goodsView.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/static/images/goodsImage/20200129223702.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/templates/page/indexFirst.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/templates/page/indexFirst.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/webapp/basicData/articleManage.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/basicData/articleManage.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/webapp/basicData/articleTypeManage.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/basicData/articleTypeManage.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/webapp/basicData/carousel.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/basicData/carousel.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/webapp/basicData/customer.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/basicData/customer.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/webapp/basicData/equipmentType.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/basicData/equipmentType.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/webapp/basicData/goods.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/basicData/goods.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/webapp/basicData/stock.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/basicData/stock.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/webapp/basicData/supplier.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/basicData/supplier.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/webapp/basicData/writeArticle.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/basicData/writeArticle.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/webapp/common/stockSearch.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/common/stockSearch.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/webapp/main.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/main.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/webapp/power/log.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/power/log.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/webapp/power/role.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/power/role.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/webapp/power/user.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/power/user.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/webapp/purchase/purchase.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/purchase/purchase.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/webapp/purchase/purchaseSearch.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/purchase/purchaseSearch.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/webapp/purchase/return.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/purchase/return.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/webapp/purchase/returnSearch.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/purchase/returnSearch.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/webapp/sale/returnSearch.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/sale/returnSearch.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/webapp/sale/saleSearch.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/sale/saleSearch.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/webapp/sale/saleout.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/sale/saleout.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/webapp/sale/salereturn.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/sale/salereturn.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/webapp/stock/alarm.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/stock/alarm.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/webapp/stock/damage.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/stock/damage.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/webapp/stock/damageOverflowSearch.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/stock/damageOverflowSearch.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/webapp/stock/overflow.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/stock/overflow.html" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -118,7 +143,7 @@
     <property name="project.structure.last.edited" value="Modules" />
     <property name="project.structure.proportion" value="0.15" />
     <property name="project.structure.side.proportion" value="0.2" />
-    <property name="settings.editor.selected.configurable" value="Errors" />
+    <property name="settings.editor.selected.configurable" value="reference.settings.project.statistic.project.settings" />
   </component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
@@ -242,7 +267,7 @@
       <workItem from="1580098340646" duration="36110000" />
       <workItem from="1580183691169" duration="36412000" />
       <workItem from="1580272112601" duration="29191000" />
-      <workItem from="1580309693966" duration="13769000" />
+      <workItem from="1580309693966" duration="14603000" />
     </task>
     <task id="LOCAL-00001" summary="LeDao宠物医院管理系统">
       <created>1579192730886</created>
@@ -426,7 +451,14 @@
       <option name="project" value="LOCAL" />
       <updated>1580308873147</updated>
     </task>
-    <option name="localTasksCounter" value="27" />
+    <task id="LOCAL-00027" summary="LeDao宠物医院管理系统">
+      <created>1580323765243</created>
+      <option name="number" value="00027" />
+      <option name="presentableId" value="LOCAL-00027" />
+      <option name="project" value="LOCAL" />
+      <updated>1580323765243</updated>
+    </task>
+    <option name="localTasksCounter" value="28" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -474,10 +506,10 @@
       <screen x="0" y="0" width="1536" height="824" />
     </state>
     <state x="499" y="159" key="#com.intellij.refactoring.safeDelete.UnsafeUsagesDialog/0.0.1536.824@0.0.1536.824" timestamp="1579172113914" />
-    <state x="207" y="84" width="1010" height="632" key="CommitChangelistDialog2" timestamp="1580323740155">
+    <state x="207" y="84" width="1010" height="632" key="CommitChangelistDialog2" timestamp="1580323762004">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state x="207" y="84" width="1010" height="632" key="CommitChangelistDialog2/0.0.1536.824@0.0.1536.824" timestamp="1580323740155" />
+    <state x="207" y="84" width="1010" height="632" key="CommitChangelistDialog2/0.0.1536.824@0.0.1536.824" timestamp="1580323762004" />
     <state width="1067" height="466" key="DebuggerActiveHint" timestamp="1580311440552">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
@@ -546,14 +578,14 @@
       <screen x="0" y="0" width="1536" height="824" />
     </state>
     <state x="299" y="68" key="Maven.ArtifactSearchDialog/0.0.1536.824@0.0.1536.824" timestamp="1579332741235" />
-    <state x="270" y="0" key="SettingsEditor" timestamp="1580309416597">
+    <state x="270" y="0" key="SettingsEditor" timestamp="1580323988063">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state x="270" y="0" key="SettingsEditor/0.0.1536.824@0.0.1536.824" timestamp="1580309416597" />
-    <state x="361" y="146" key="Vcs.Push.Dialog.v2" timestamp="1580323731427">
+    <state x="270" y="0" key="SettingsEditor/0.0.1536.824@0.0.1536.824" timestamp="1580323988063" />
+    <state x="361" y="146" key="Vcs.Push.Dialog.v2" timestamp="1580323766886">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state x="361" y="146" key="Vcs.Push.Dialog.v2/0.0.1536.824@0.0.1536.824" timestamp="1580323731427" />
+    <state x="361" y="146" key="Vcs.Push.Dialog.v2/0.0.1536.824@0.0.1536.824" timestamp="1580323766886" />
     <state width="775" height="419" key="XDebugger.FullValuePopup" timestamp="1579668668921">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
@@ -570,10 +602,10 @@
       <screen x="0" y="0" width="1536" height="824" />
     </state>
     <state x="562" y="330" key="com.intellij.openapi.vcs.update.UpdateOrStatusOptionsDialogupdate-v2/0.0.1536.824@0.0.1536.824" timestamp="1579193123784" />
-    <state x="44" y="112" width="1441" height="600" key="find.popup" timestamp="1580320360210">
+    <state x="44" y="112" width="1441" height="600" key="find.popup" timestamp="1580324423041">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state x="44" y="112" width="1441" height="600" key="find.popup/0.0.1536.824@0.0.1536.824" timestamp="1580320360210" />
+    <state x="44" y="112" width="1441" height="600" key="find.popup/0.0.1536.824@0.0.1536.824" timestamp="1580324423041" />
     <state x="521" y="204" key="git4idea.merge.GitPullDialog" timestamp="1579193188401">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
