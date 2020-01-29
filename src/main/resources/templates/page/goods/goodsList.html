@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<div id="b">
+    <div id="all" style="padding-top: 40px">
+        <div id="content">
+            <div class="container">
+                <div class="row">
+                    <div class="col-lg-12">
+                        <!-- breadcrumb-->
+                        <nav aria-label="breadcrumb">
+                            <ol class="breadcrumb">
+                                <i class="fa fa-eye" style="padding-top: 2px"></i>当前位置:&nbsp;&nbsp;
+                                <li class="breadcrumb-item"><a href="/">主页</a></li>
+                                <li aria-current="page" class="breadcrumb-item active">LeDao医院商城</li>
+                                <li aria-current="page" class="breadcrumb-item active" th:text="${typeName}"></li>--当前类别下有<span th:text="${total}" style="color: red"></span>个商品
+                            </ol>
+                        </nav>
+                    </div>
+                    <div class="col-lg-3">
+                        <!--
+                        *** MENUS AND FILTERS ***
+                        _________________________________________________________
+                        -->
+                        <div class="card sidebar-menu mb-4">
+                            <div class="card-header">
+                                <h3 class="h4 card-title">商品分类</h3>
+                            </div>
+                            <div class="card-body">
+                                <ul class="nav nav-pills flex-column category-menu" th:each="goodsType:${goodsTypeList}">
+                                    <li><a th:href="'/goods/list/1?typeId='+${goodsType.id}" class="nav-link active" th:text="${goodsType.name}"> <span class="badge badge-secondary">42</span></a>
+                                        <ul class="list-unstyled" th:each="smallGoodsType:${goodsType.smallGoodsTypeList}">
+                                            <li><a th:href="'/goods/list/1?typeId='+${smallGoodsType.id}" class="nav-link" th:text="${smallGoodsType.name}"></a></li>
+                                        </ul>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+                        <!-- *** MENUS AND FILTERS END ***-->
+                    </div>
+                    <div class="col-lg-9">
+                        <div class="row products">
+                            <div class="col-lg-4 col-md-6" th:each="goods:${goodsList}">
+                                <div class="product">
+                                    <div class="flip-container">
+                                        <div class="flipper">
+                                            <div class="front"><a th:href="'/goods/'+${goods.id}"><img th:src="@{'/static/images/goodsImage/'+${goods.imageName}}" alt="" class="img-fluid"></a></div>
+                                            <div class="back"><a th:href="'/goods/'+${goods.id}"><img th:src="@{'/static/images/goodsImage/'+${goods.imageName}}" alt="" class="img-fluid"></a></div>
+                                        </div>
+                                    </div><a th:href="'/goods/'+${goods.id}" class="invisible"><img th:src="@{'/static/images/goodsImage/'+${goods.imageName}}" alt="" class="img-fluid"></a>
+                                    <div class="text">
+                                        <h3><a th:href="'/goods/'+${goods.id}" th:text="${goods.name}"></a></h3>
+                                        <p class="price">
+                                            <del></del>￥<span th:text="${goods.sellingPrice}"></span>
+                                        </p>
+                                        <p class="buttons"><a th:href="'/goods/'+${goods.id}" class="btn btn-outline-secondary">详情</a><a href="basket.html" class="btn btn-primary"><i class="fa fa-shopping-cart"></i>添加到购物车</a></p>
+                                    </div>
+                                    <!-- /.text-->
+                                    <div class="ribbon new" th:if="${goods.isNew==1}">
+                                        <div class="theribbon">新品</div>
+                                        <div class="ribbon-background"></div>
+                                    </div>
+                                    <!-- /.ribbon-->
+                                    <div class="ribbon sale" th:if="${goods.hot==1}">
+                                        <div class="theribbon">热卖</div>
+                                        <div class="ribbon-background"></div>
+                                    </div>
+                                    <!-- /.ribbon-->
+                                    <div class="ribbon gift" th:if="${goods.specialPrice==1}">
+                                        <div class="theribbon">特价</div>
+                                        <div class="ribbon-background"></div>
+                                    </div>
+                                    <!-- /.ribbon-->
+                                </div>
+                                <!-- /.product            -->
+                            </div>
+                            <!-- /.products-->
+                        </div>
+                        <div class="pages">
+                            <nav aria-label="Page navigation example" class="d-flex justify-content-center">
+                                <ul class="pagination">
+                                    <div th:utext="${pageCode}" class="form-inline"></div>
+                                </ul>
+                            </nav>
+                        </div>
+                        <div class="row same-height-row">
+                            <div class="col-md-3 col-sm-6">
+                                <div class="box same-height">
+                                    <h3>最近浏览</h3>
+                                </div>
+                            </div>
+                            <div class="col-md-3 col-sm-6" th:each="currentBrowse:${session.currentBrowse}">
+                                <div class="product same-height">
+                                    <div class="flip-container">
+                                        <div class="flipper">
+                                            <div class="front"><a th:href="'/goods/'+${currentBrowse.id}"><img th:src="@{'/static/images/goodsImage/'+${currentBrowse.imageName}}" alt="" class="img-fluid"></a></div>
+                                            <div class="back"><a th:href="'/goods/'+${currentBrowse.id}"><img th:src="@{'/static/images/goodsImage/'+${currentBrowse.imageName}}" alt="" class="img-fluid"></a></div>
+                                        </div>
+                                    </div><a th:href="'/goods/'+${currentBrowse.id}" class="invisible"><img th:src="@{'/static/images/goodsImage/'+${currentBrowse.imageName}}" alt="" class="img-fluid"></a>
+                                    <div class="text">
+                                        <a th:href="'/goods/'+${currentBrowse.id}" style="color: black"><h3 th:text="${currentBrowse.name}"></h3></a>
+                                        <p class="price" th:text="'￥'+${currentBrowse.sellingPrice}"></p>
+                                    </div>
+                                </div>
+                                <!-- /.product-->
+                                <div class="ribbon new" th:if="${currentBrowse.isNew==1}">
+                                    <div class="theribbon">新品</div>
+                                    <div class="ribbon-background"></div>
+                                </div>
+                                <!-- /.ribbon-->
+                                <div class="ribbon sale" th:if="${currentBrowse.hot==1}">
+                                    <div class="theribbon">热卖</div>
+                                    <div class="ribbon-background"></div>
+                                </div>
+                                <!-- /.ribbon-->
+                                <div class="ribbon gift" th:if="${currentBrowse.specialPrice==1}">
+                                    <div class="theribbon">特价</div>
+                                    <div class="ribbon-background"></div>
+                                </div>
+                                <!-- /.ribbon-->
+                            </div>
+                        </div>
+                    </div>
+                    <!-- /.col-lg-9-->
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+</body>
+</html>

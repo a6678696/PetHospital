@@ -580,11 +580,11 @@ h1 {
 }
 
 .ribbon.sale {
-  top: 0;
+  top: 50px;
 }
 
 .ribbon.new {
-  top: 50px;
+  top: 0px;
 }
 
 .ribbon.new .theribbon {

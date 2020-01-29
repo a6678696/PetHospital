@@ -228,11 +228,17 @@ public class GoodsAdminController {
         }
         int key;
         if (goods.getId() != null) {
+            //获取更新前的商品信息
+            Goods goods1 = goodsService.findById(goods.getId());
+            goods.setInventoryQuantity(goods1.getInventoryQuantity());
+            goods.setState(goods1.getState());
+            goods.setLastPurchasingPrice(goods1.getLastPurchasingPrice());
             logService.add(new Log(Log.UPDATE_ACTION, "更新商品信息" + goods));
             key = goodsService.update(goods);
         } else {
             logService.add(new Log(Log.ADD_ACTION, "添加商品信息" + goods));
             // 设置上次进价为当前价格
+            goods.setIsNew(1);
             goods.setLastPurchasingPrice(goods.getPurchasingPrice());
             key = goodsService.add(goods);
         }

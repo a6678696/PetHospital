@@ -14,6 +14,7 @@
                         <!-- breadcrumb-->
                         <nav aria-label="breadcrumb">
                             <ol class="breadcrumb">
+                                <i class="fa fa-eye" style="padding-top: 2px"></i>当前位置:&nbsp;&nbsp;
                                 <li class="breadcrumb-item"><a href="/">主页</a></li>
                                 <li class="breadcrumb-item"><a th:href="'/article/list/1?typeId='+${article.typeId}" th:text="${typeName}"></a></li>
                                 <li aria-current="page" class="breadcrumb-item active" th:text="${article.title}"></li>

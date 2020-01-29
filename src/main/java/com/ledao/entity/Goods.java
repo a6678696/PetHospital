@@ -2,6 +2,9 @@ package com.ledao.entity;
 
 import lombok.Data;
 
+import javax.validation.constraints.NotEmpty;
+import java.util.Date;
+
 /**
  * @author LeDao
  * @company
@@ -21,6 +24,7 @@ public class Goods {
     /**
      * 商品名称
      */
+    @NotEmpty(message = "请输入要搜索的商品名称!")
     private String name;
     /**
      * 图片名
@@ -75,6 +79,10 @@ public class Goods {
      */
     private Integer hot;
     /**
+     * 是否热卖 0否 1是
+     */
+    private Integer isNew;
+    /**
      * 是否特价 0否 1是
      */
     private Integer specialPrice;
@@ -90,6 +98,10 @@ public class Goods {
      * 销售总数
      */
     private Long saleTotal;
+    /**
+     * 发布日期
+     */
+    private Date releaseDate;
 
     @Override
     public String toString() {

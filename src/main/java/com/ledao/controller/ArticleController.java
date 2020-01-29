@@ -40,19 +40,18 @@ public class ArticleController {
             mav.addObject("error", bindingResult.getFieldError().getDefaultMessage());
             mav.addObject("title", "首页");
             mav.addObject("mainPage", "page/indexFirst");
-            mav.setViewName("index");
         } else {
-            Map<String,Object> map=new HashMap<>(16);
+            Map<String, Object> map = new HashMap<>(16);
             map.put("title", StringUtil.formatLike(searchArticle.getTitle()));
             List<Article> articleList = articleService.list(map);
             mav.addObject("articleList", articleList);
-            mav.addObject("title", "关于("+searchArticle.getTitle()+")的文章");
-            mav.addObject("mainPage","page/article/articleResult");
-            mav.addObject("mainPageKey","#b");
-            mav.addObject("searchArticle",searchArticle);
-            mav.addObject("total",articleList.size());
-            mav.setViewName("index");
+            mav.addObject("title", "关于(" + searchArticle.getTitle() + ")的文章");
+            mav.addObject("mainPage", "page/article/articleResult");
+            mav.addObject("mainPageKey", "#b");
+            mav.addObject("searchArticle", searchArticle);
+            mav.addObject("total", articleList.size());
         }
+        mav.setViewName("index");
         return mav;
     }
 

@@ -142,7 +142,7 @@
             $("#dlg2").dialog("open").dialog("setTitle", "选择商品");
             $("#fm2").form("load", row);
             $("#lastPurchasingPrice").val("¥" + row.lastPurchasingPrice);
-            $("#price").numberbox("setValue", row.lastPurchasingPrice);
+            $("#price").numberbox("setValue", row.sellingPrice);
             $("#action").val("add");
             $("#num").focus();
         }
@@ -285,7 +285,7 @@
                     $("#dlg2").dialog("open").dialog("setTitle", "选择商品");
                     $("#fm2").form("load", row);
                     $("#lastPurchasingPrice").val("¥" + row.lastPurchasingPrice);
-                    $("#price").numberbox("setValue", row.lastPurchasingPrice);
+                    $("#price").numberbox("setValue", row.sellingPrice);
                     $("#action").val("add");
                     $("#num").focus();
                 }
@@ -365,7 +365,7 @@
         <th field="name" width="150" align="center">商品名称</th>
         <th field="model" width="50" align="center">型号</th>
         <th field="unit" width="50" align="center">单位</th>
-        <th field="price" width="50" align="center">单价</th>
+        <th field="price" width="50" align="center">销售价</th>
         <th field="num" width="50" align="center">数量</th>
         <th field="total" width="50" align="right">总金额</th>
         </thead>
@@ -475,7 +475,7 @@
         <form id="fm4" method="post">
             <table cellspacing="8px">
                 <tr>
-                    <td align="right">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;单价：</td>
+                    <td align="right">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;销售价：</td>
                     <td>
                         <input type="hidden" id="action"/>
                         <input type="hidden" id="rowIndex"/>

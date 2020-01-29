@@ -2,6 +2,8 @@ package com.ledao.entity;
 
 import lombok.Data;
 
+import java.util.List;
+
 /**
  * 商品类别实体
  *
@@ -32,6 +34,10 @@ public class GoodsType {
      * 父菜单Id
      */
     private Integer pId;
+    /**
+     * 商品大类下的商品小类
+     */
+    private List<GoodsType> smallGoodsTypeList = null;
 
     @Override
     public String toString() {

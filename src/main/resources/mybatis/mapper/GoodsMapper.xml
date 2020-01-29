@@ -18,8 +18,10 @@
         <result property="remarks" column="remarks"/>
         <result property="imageName" column="imageName"/>
         <result property="hot" column="hot"/>
+        <result property="isNew" column="isNew"/>
         <result property="specialPrice" column="specialPrice"/>
         <result property="details" column="details"/>
+        <result property="releaseDate" column="releaseDate"/>
         <association property="type" column="typeId" select="com.ledao.mapper.GoodsTypeMapper.findById"></association>
     </resultMap>
     <select id="findByTypeId" parameterType="integer" resultMap="GoodsResult">
@@ -113,8 +115,8 @@
         select * from t_goods where id=#{id}
     </select>
     <insert id="add" parameterType="Goods">
-        insert into t_goods (code, inventoryQuantity, lastPurchasingPrice, minNum, model, name, producer, purchasingPrice, remarks, sellingPrice, state, unit, typeId,hot,specialPrice,imageName,details)
-        values (#{code},#{inventoryQuantity},#{lastPurchasingPrice},#{minNum},#{model},#{name},#{producer},#{purchasingPrice},#{remarks},#{sellingPrice},#{state},#{unit},#{type.id},#{hot},#{specialPrice},#{imageName},#{details});
+        insert into t_goods (code, inventoryQuantity, lastPurchasingPrice, minNum, model, name, producer, purchasingPrice, remarks, sellingPrice, state, unit, typeId,hot,specialPrice,imageName,details,isNew,releaseDate)
+        values (#{code},#{inventoryQuantity},#{lastPurchasingPrice},#{minNum},#{model},#{name},#{producer},#{purchasingPrice},#{remarks},#{sellingPrice},#{state},#{unit},#{type.id},#{hot},#{specialPrice},#{imageName},#{details},#{isNew},now())
     </insert>
     <update id="update" parameterType="Goods">
         update t_goods
@@ -169,6 +171,9 @@
             </if>
             <if test="details != null and details != ''">
                 details=#{details},
+            </if>
+            <if test="isNew != null">
+                isNew=#{isNew},
             </if>
         </set>
         where id=#{id}
