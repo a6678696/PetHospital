@@ -49,6 +49,7 @@
                 and concat(`code`, `name`) like concat('%',#{codeOrName},'%')
             </if>
         </where>
+        order by releaseDate desc
         <if test="start!=null and size!=null ">
             limit #{start},#{size}
         </if>
@@ -200,5 +201,23 @@
         <if test="codeOrName!='' and codeOrName!=null">
             and concat(`code`, `name`) like concat('%',#{codeOrName},'%')
         </if>
+    </select>
+    <select id="listByBigTypeId" parameterType="map" resultMap="GoodsResult">
+        SELECT * FROM t_goods WHERE typeId IN (SELECT id FROM t_goodstype
+        <where>
+            <if test="typeId!=null"></if>
+            and FIND_IN_SET( #{typeId}, pId))
+        </where>
+        order by releaseDate desc
+        <if test="start!=null and size!=null">
+            limit #{start},#{size}
+        </if>
+    </select>
+    <select id="getCountByBigTypeId" parameterType="map" resultType="java.lang.Long">
+        SELECT count(*) FROM t_goods WHERE typeId IN (SELECT id FROM t_goodstype
+        <where>
+            <if test="typeId!=null"></if>
+            and FIND_IN_SET( #{typeId}, pId))
+        </where>
     </select>
 </mapper>

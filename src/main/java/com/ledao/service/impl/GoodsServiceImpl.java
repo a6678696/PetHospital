@@ -28,6 +28,16 @@ public class GoodsServiceImpl implements GoodsService {
     }
 
     @Override
+    public List<Goods> listByBigTypeId(Map<String, Object> map) {
+        return goodsMapper.listByBigTypeId(map);
+    }
+
+    @Override
+    public Long getCountByBigTypeId(Map<String, Object> map) {
+        return goodsMapper.getCountByBigTypeId(map);
+    }
+
+    @Override
     public String getMaxGoodsCode() {
         return goodsMapper.getMaxGoodsCode();
     }

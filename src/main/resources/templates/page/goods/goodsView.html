@@ -16,7 +16,7 @@
                             <ol class="breadcrumb">
                                 <i class="fa fa-eye" style="padding-top: 2px"></i>当前位置:&nbsp;&nbsp;
                                 <li class="breadcrumb-item"><a href="/">主页</a></li>
-                                <li aria-current="page" class="breadcrumb-item active">LeDao医院商城</li>
+                                <li aria-current="page" class="breadcrumb-item active"><a th:href="'/goods/list/1?typeId='+${bigTypeId}" th:text="${bigTypeName}" th:if="${bigTypeId>1}"></a><a href="#" th:text="${bigTypeName}" th:if="${bigTypeId==1}"></a></li>
                                 <li class="breadcrumb-item"><a th:href="'/goods/list/1?typeId='+${goods.type.id}" th:text="${goods.type.name}"></a></li>
                                 <li aria-current="page" class="breadcrumb-item active" th:text="${goods.name}"></li>
                             </ol>
@@ -85,10 +85,10 @@
                         <div class="row same-height-row">
                             <div class="col-md-3 col-sm-6">
                                 <div class="box same-height">
-                                    <h3>您可能喜欢</h3>
+                                    <h3><i class="fa fa-heartbeat"></i>猜您喜欢</h3>
                                 </div>
                             </div>
-                            <div class="col-md-3 col-sm-6" th:each="recommendGoods:${recommendGoodsList}">
+                            <div class="col-md-3 col-sm-6" th:each="recommendGoods:${recommendGoodsList}" th:if="${recommendGoodsStat.count<=3}">
                                 <div class="product same-height">
                                     <div class="flip-container">
                                         <div class="flipper">
@@ -122,7 +122,7 @@
                         <div class="row same-height-row">
                             <div class="col-md-3 col-sm-6">
                                 <div class="box same-height">
-                                    <h3>最近浏览</h3>
+                                    <h3><i class="fa fa-history"></i>最近浏览</h3>
                                 </div>
                             </div>
                             <div class="col-md-3 col-sm-6" th:each="currentBrowse:${session.currentBrowse}">

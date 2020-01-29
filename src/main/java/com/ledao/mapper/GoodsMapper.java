@@ -23,6 +23,22 @@ public interface GoodsMapper {
     List<Goods> findByTypeId(Integer typeId);
 
     /**
+     * 查询某个商品大类下的所有商品
+     *
+     * @param map
+     * @return
+     */
+    List<Goods> listByBigTypeId(Map<String, Object> map);
+
+    /**
+     * 查询某个商品大类下的所有商品总记录数
+     *
+     * @param map
+     * @return
+     */
+    Long getCountByBigTypeId(Map<String, Object> map);
+
+    /**
      * 获取最大的商品编码
      *
      * @return

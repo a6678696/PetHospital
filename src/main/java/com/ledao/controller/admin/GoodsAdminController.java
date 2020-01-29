@@ -269,6 +269,9 @@ public class GoodsAdminController {
             resultMap.put("errorInfo", "该商品已经发生单据，不能删除");
         } else {
             logService.add(new Log(Log.DELETE_ACTION, "删除商品信息" + goods));
+            if (goodsService.findById(id).getImageName() != null) {
+                FileUtils.deleteQuietly(new File(goodsImageFilePath + goodsService.findById(goodsService.findById(id).getId()).getImageName()));
+            }
             goodsService.delete(id);
             resultMap.put("success", true);
         }

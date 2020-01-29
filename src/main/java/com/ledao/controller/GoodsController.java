@@ -80,23 +80,33 @@ public class GoodsController {
     public ModelAndView list(@PathVariable(value = "id", required = false) Integer page, @RequestParam(value = "typeId", required = false) Integer typeId) {
         ModelAndView mav = new ModelAndView();
         Map<String, Object> map = new HashMap<>(16);
-        String typeName = goodsTypeService.findById(typeId).getName();
         map.put("typeId", typeId);
         int pageSize = 6;
         map.put("start", (page - 1) * pageSize);
         map.put("size", pageSize);
-        List<Goods> goodsList = goodsService.list(map);
+        if (goodsTypeService.findById(typeId).getState() == 1) {
+            List<Goods> goodsList=goodsService.listByBigTypeId(map);
+            Long total = goodsService.getCountByBigTypeId(map);
+            mav.addObject("goodsList", goodsList);
+            mav.addObject("total", total);
+            mav.addObject("pageCode", PageUtil.genPagination("/goods/list", total, page, pageSize, typeId));
+        } else {
+            List<Goods> goodsList = goodsService.list(map);
+            Long total = goodsService.getCount(map);
+            mav.addObject("goodsList", goodsList);
+            mav.addObject("total", total);
+            mav.addObject("pageCode", PageUtil.genPagination("/goods/list", total, page, pageSize, typeId));
+
+        }
         List<GoodsType> goodsTypeList = goodsTypeService.findByParentId(1);
         for (GoodsType goodsType : goodsTypeList) {
             goodsType.setSmallGoodsTypeList(goodsTypeService.findByParentId(goodsType.getId()));
         }
-        Long total = goodsService.getCount(map);
-        mav.addObject("typeName", typeName);
-        mav.addObject("title", "商品列表(" + typeName + ")");
-        mav.addObject("goodsList", goodsList);
+        mav.addObject("bigTypeName", goodsTypeService.findById(goodsTypeService.findById(typeId).getPId()).getName());
+        mav.addObject("bigTypeId", goodsTypeService.findById(goodsTypeService.findById(typeId).getPId()).getId());
+        mav.addObject("typeName", goodsTypeService.findById(typeId).getName());
+        mav.addObject("title", "商品列表(" + goodsTypeService.findById(typeId).getName() + ")");
         mav.addObject("goodsTypeList", goodsTypeList);
-        mav.addObject("total", total);
-        mav.addObject("pageCode", PageUtil.genPagination("/goods/list", total, page, pageSize, typeId));
         mav.addObject("mainPage", "page/goods/goodsList");
         mav.addObject("mainPageKey", "#b");
         mav.setViewName("index");
@@ -109,14 +119,8 @@ public class GoodsController {
      * @param id
      * @return
      */
-    /**
-     * 根据id获取文章详细信息
-     *
-     * @param id
-     * @return
-     */
     @RequestMapping("/{id}")
-    public ModelAndView view(@PathVariable(value = "id", required = false) Integer id,HttpServletRequest request) {
+    public ModelAndView view(@PathVariable(value = "id", required = false) Integer id, HttpSession session) {
         ModelAndView mav = new ModelAndView();
         Goods goods = goodsService.findById(id);
         List<GoodsType> goodsTypeList = goodsTypeService.findByParentId(1);
@@ -126,11 +130,14 @@ public class GoodsController {
         Map<String, Object> map = new HashMap<>(16);
         map.put("typeId", goods.getType().getId());
         List<Goods> goodsList = goodsService.list(map);
-        List<Goods> recommendGoodsList = this.getRecommendGoods(goodsList, 3);
-        this.saveCurrentBrowseGoods(goods,request);
+        Collections.shuffle(goodsList);
+        goodsList.remove(goods);
+        this.saveCurrentBrowseGoods(goods, session);
+        mav.addObject("bigTypeName", goodsTypeService.findById(goodsTypeService.findById(goods.getType().getId()).getPId()).getName());
+        mav.addObject("bigTypeId", goodsTypeService.findById(goodsTypeService.findById(goods.getType().getId()).getPId()).getId());
         mav.addObject("goods", goods);
+        mav.addObject("recommendGoodsList", goodsList);
         mav.addObject("goodsTypeList", goodsTypeList);
-        mav.addObject("recommendGoodsList", recommendGoodsList);
         mav.addObject("title", goods.getName());
         mav.addObject("mainPage", "page/goods/goodsView");
         mav.addObject("mainPageKey", "#b");
@@ -142,10 +149,9 @@ public class GoodsController {
      * 保存最近浏览的商品
      *
      * @param goods
-     * @param request
+     * @param session
      */
-    private void saveCurrentBrowseGoods(Goods goods, HttpServletRequest request) {
-        HttpSession session = request.getSession();
+    private void saveCurrentBrowseGoods(Goods goods, HttpSession session) {
         List<Goods> currentBrowseGoods = (List<Goods>) session.getAttribute("currentBrowse");
         if (currentBrowseGoods == null) {
             currentBrowseGoods = new LinkedList<>();
@@ -174,26 +180,29 @@ public class GoodsController {
     /**
      * 获取推荐的商品,根据客户点击的商品的类别推荐
      *
-     * @param goodsList
+     * @param goods
      * @param num
      * @return
      */
-    private List<Goods> getRecommendGoods(List<Goods> goodsList, int num) {
-        List<Goods> resultList = new ArrayList<>();
-        Random random = new Random();
+    private void getRecommendGoods(Goods goods, int num, HttpSession session) {
+        Map<String, Object> map = new HashMap<>(16);
+        map.put("typeId", goods.getType().getId());
+        List<Goods> goodsList = goodsService.list(map);
+        List<Goods> resultList = new LinkedList<>();
+        Random random = new Random(goodsList.size());
         //要推荐的商品数量大于0才推荐
         if (num > 0) {
             for (int i = 0; i < num; i++) {
                 int n = random.nextInt(goodsList.size());
-                Goods goods = goodsList.get(n);
+                Goods goods1 = goodsList.get(n);
                 //如果商品已存在,索引减1,重新添加
-                if (resultList.contains(goods)) {
+                if (resultList.contains(goods1)) {
                     i--;
                 } else {
-                    resultList.add(goods);
+                    resultList.add(goods1);
                 }
             }
         }
-        return resultList;
+        session.setAttribute("recommendGoodsList", resultList);
     }
 }

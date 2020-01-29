@@ -3,6 +3,7 @@ package com.ledao.entity;
 import lombok.Data;
 
 import javax.validation.constraints.NotEmpty;
+import java.io.Serializable;
 import java.util.Date;
 
 /**
@@ -11,7 +12,9 @@ import java.util.Date;
  * @create 2020-01-17 15:11
  */
 @Data
-public class Goods {
+public class Goods implements Serializable {
+
+    private static final long serialVersionUID = 1L;
 
     /**
      * 编号
