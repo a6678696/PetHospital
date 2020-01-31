@@ -13,34 +13,13 @@
                 <div class="col-lg-6 offer mb-3 mb-lg-0"><a class="ml-1" style="font-size: 16px">欢迎来到LeDao宠物医院官方网站</a></div>
                 <div class="col-lg-6 text-center text-lg-right">
                     <ul class="menu list-inline mb-0">
-                        <li class="list-inline-item"><a href="#" data-toggle="modal" data-target="#login-modal">登录</a></li>
-                        <li class="list-inline-item"><a href="register.html">注册</a></li>
+                        <li class="list-inline-item" th:if="${session.currentCustomer==null}"><a href="/login">登录</a></li>
+                        <li class="list-inline-item" th:if="${session.currentCustomer==null}"><a href="/register">注册</a></li>
+                        <li class="list-inline-item" th:if="${session.currentCustomer!=null}"><span th:text="'欢迎您,'+${session.currentCustomer.getContact()}" style="color: white"></span></li>
+                        <li class="list-inline-item" th:if="${session.currentCustomer!=null}"><a href="javascript:logout()">注销</a></li>
+                        <li class="list-inline-item" th:if="${session.currentCustomer!=null}"><a href="#">个人中心</a></li>
                         <li class="list-inline-item"><a href="contact.html">联系我们</a></li>
                     </ul>
-                </div>
-            </div>
-        </div>
-        <div id="login-modal" tabindex="-1" role="dialog" aria-labelledby="Login" aria-hidden="true" class="modal fade">
-            <div class="modal-dialog modal-sm">
-                <div class="modal-content">
-                    <div class="modal-header">
-                        <h5 class="modal-title">用户登录</h5>
-                        <button type="button" data-dismiss="modal" aria-label="Close" class="close"><span aria-hidden="true">×</span></button>
-                    </div>
-                    <div class="modal-body">
-                        <form action="customer-orders.html" method="post">
-                            <div class="form-group">
-                                <input id="email-modal" type="text" placeholder="请输入用户名..." class="form-control">
-                            </div>
-                            <div class="form-group">
-                                <input id="password-modal" type="password" placeholder="请输入密码..." class="form-control">
-                            </div>
-                            <p class="text-center">
-                                <button class="btn btn-primary"><i class="fa fa-sign-in"></i>登录</button>
-                            </p>
-                        </form>
-                        <p class="text-center text-muted"><a href="register.html"><strong>注册!</strong></a></p>
-                    </div>
                 </div>
             </div>
         </div>

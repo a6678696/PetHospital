@@ -28,6 +28,16 @@ public class CustomerServiceImpl implements CustomerService {
     }
 
     @Override
+    public List<Customer> findByUserName(String userName) {
+        return customerMapper.findByUserName(userName);
+    }
+
+    @Override
+    public Long getCountByUserName(String userName) {
+        return customerMapper.getCountByUserName(userName);
+    }
+
+    @Override
     public List<Customer> list(Map<String, Object> map) {
         return customerMapper.list(map);
     }

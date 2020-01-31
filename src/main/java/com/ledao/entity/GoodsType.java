@@ -2,6 +2,7 @@ package com.ledao.entity;
 
 import lombok.Data;
 
+import java.io.Serializable;
 import java.util.List;
 
 /**
@@ -12,7 +13,9 @@ import java.util.List;
  * @create 2020-01-17 15:13
  */
 @Data
-public class GoodsType {
+public class GoodsType implements Serializable {
+
+    private static final long serialVersionUID = 1L;
 
     /**
      * 编号

@@ -27,7 +27,7 @@
                                 <p th:text="'['+${#dates.format(article.releaseDate,'yyyy-MM-dd HH:mm:ss')}+']'"></p>&nbsp;&nbsp;<a
                                     th:href="'/article/'+${article.id}"><p th:text="${article.title}"></p></a>
                             </div>
-                            <div class="pages">
+                            <div class="pages" th:if="${total>7}">
                                 <nav aria-label="Page navigation example" class="d-flex justify-content-center">
                                     <ul class="pagination">
                                         <div th:utext="${pageCode}" class="form-inline"></div>

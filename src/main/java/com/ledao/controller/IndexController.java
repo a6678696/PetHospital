@@ -24,7 +24,37 @@ public class IndexController {
         ModelAndView mav = new ModelAndView();
         mav.addObject("title", "首页");
         mav.addObject("mainPage", "page/indexFirst");
-        mav.addObject("mainPageKey","#b");
+        mav.addObject("mainPageKey", "#b");
+        mav.setViewName("index");
+        return mav;
+    }
+
+    /**
+     * 用户注册地址
+     *
+     * @return
+     */
+    @RequestMapping("/register")
+    public ModelAndView register() {
+        ModelAndView mav = new ModelAndView();
+        mav.addObject("title", "用户注册");
+        mav.addObject("mainPage", "page/register");
+        mav.addObject("mainPageKey", "#b");
+        mav.setViewName("index");
+        return mav;
+    }
+
+    /**
+     * 用户注册
+     *
+     * @return
+     */
+    @RequestMapping("/login")
+    public ModelAndView login() {
+        ModelAndView mav = new ModelAndView();
+        mav.addObject("title", "用户登录");
+        mav.addObject("mainPage", "page/login");
+        mav.addObject("mainPageKey", "#b");
         mav.setViewName("index");
         return mav;
     }

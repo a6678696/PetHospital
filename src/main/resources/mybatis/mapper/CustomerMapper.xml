@@ -1,4 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" ?>
+<!--suppress ALL-->
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
 <mapper namespace="com.ledao.mapper.CustomerMapper">
 
@@ -12,6 +13,7 @@
         <result property="userName" column="userName"/>
         <result property="password" column="password"/>
         <result property="imageName" column="imageName"/>
+        <result property="sex" column="sex"/>
     </resultMap>
 
     <select id="findByName" parameterType="string" resultMap="CustomerResult">
@@ -91,6 +93,12 @@
 
     <select id="findById" parameterType="integer" resultMap="CustomerResult">
         select * from t_customer where id=#{id}
+    </select>
+    <select id="findByUserName" parameterType="string" resultMap="CustomerResult">
+        select * from t_customer where userName=#{userName}
+    </select>
+    <select id="getCountByUserName" parameterType="string" resultType="java.lang.Long">
+        select count(*) from t_customer where userName=#{userName}
     </select>
 
 </mapper>

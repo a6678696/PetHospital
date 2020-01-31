@@ -23,6 +23,22 @@ public interface CustomerService {
     List<Customer> findByName(String name);
 
     /**
+     * 根据名称模糊查询客户信息
+     *
+     * @param userName
+     * @return
+     */
+    List<Customer> findByUserName(String userName);
+
+    /**
+     * 判断用户名是否存在 返回1代表存在
+     *
+     * @param userName
+     * @return
+     */
+    Long getCountByUserName(String userName);
+
+    /**
      * 分页查询顾客信息
      *
      * @param map

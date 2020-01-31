@@ -184,8 +184,7 @@
             <div class="box text-center">
                 <div class="container">
                     <div class="col-md-12">
-                        <h3 class="text-uppercase">了解我们</h3>
-                        <p class="lead mb-0">医院公告、医院新闻、宠物大全、用药常识</p>
+                        <h2 class="text-uppercase"  style="color: #64c4af;font-weight: normal">了解我们</h2>
                     </div>
                 </div>
             </div>
@@ -193,63 +192,20 @@
             <div class="container">
                 <div class="col-md-12">
                     <div id="blog-homepage" class="row">
-                        <div class="col-sm-6">
+                        <div class="col-sm-6" th:each="articleType:${application.articleTypeList1}">
                             <div class="post">
-                                <h4><a href="/article/list/1?typeId=1">医院公告</a></h4>
+                                <h4><a th:href="'/article/list/1?typeId='+${articleType.getId()}" th:text="${articleType.getName()}"></a></h4>
                                 <hr>
-                                <div th:each="announcementArticle:${application.announcementArticleList}">
+                                <div th:each="article:${articleType.articleList}" th:if="${articleStat.count<=5}">
                                     <p class="intro"><strong
-                                            th:text="'['+${#dates.format(announcementArticle.getReleaseDate(),'yyyy-MM-dd')}+']'"></strong><a
-                                            th:href="'/article/'+${announcementArticle.getId()}" style="text-decoration:none;"
-                                            th:title="${announcementArticle.getTitle()}">&nbsp;&nbsp;<span
-                                            th:text="${announcementArticle.getTitle()}"></span></a>
+                                            th:text="'['+${#dates.format(article.getReleaseDate(),'yyyy-MM-dd')}+']'"></strong><a
+                                            th:href="'/article/'+${article.getId()}" style="text-decoration:none;"
+                                            th:title="${article.getTitle()}">&nbsp;&nbsp;<span
+                                            th:text="${article.getTitle()}"></span></a>
                                     </p>
                                 </div>
-                                <p class="read-more"><a href="/article/list/1?typeId=1" class="btn btn-primary">更多...</a>
+                                <p class="read-more"><a th:href="'/article/list/1?typeId='+${articleType.getId()}" class="btn btn-primary">更多...</a>
                                 </p>
-                            </div>
-                        </div>
-                        <div class="col-sm-6">
-                            <div class="post">
-                                <h4><a href="/article/list/1?typeId=2">医院新闻</a></h4>
-                                <hr>
-                                <div th:each="newsArticle:${application.newsArticleList}">
-                                    <p class="intro">
-                                        <strong th:text="'['+${#dates.format(newsArticle.getReleaseDate(),'yyyy-MM-dd')}+']'"></strong>
-                                        <a th:href="'/article/'+${newsArticle.getId()}" style="text-decoration:none;" th:title="${newsArticle.getTitle()}">&nbsp;&nbsp;<span
-                                                th:text="${newsArticle.getTitle()}"></span></a>
-                                    </p>
-                                </div>
-                                <p class="read-more"><a href="/article/list/1?typeId=2" class="btn btn-primary">更多...</a>
-                                </p>
-                            </div>
-                        </div>
-                        <div class="col-sm-6">
-                            <div class="post">
-                                <h4><a href="/article/list/1?typeId=3">宠物大全</a></h4>
-                                <hr>
-                                <div th:each="petArticle:${application.petArticleList}">
-                                    <p class="intro">
-                                        <strong th:text="'['+${#dates.format(petArticle.getReleaseDate(),'yyyy-MM-dd')}+']'"></strong>
-                                        <a th:href="'/article/'+${petArticle.getId()}" style="text-decoration:none;" th:title="${petArticle.getTitle()}">&nbsp;&nbsp;<span
-                                                th:text="${petArticle.getTitle()}"></span></a>
-                                    </p>
-                                </div>
-                                <p class="read-more"><a href="/article/list/1?typeId=3" class="btn btn-primary">更多...</a></p>
-                            </div>
-                        </div>
-                        <div class="col-sm-6">
-                            <div class="post">
-                                <h4><a href="/article/list/1?typeId=4">用药常识</a></h4>
-                                <hr>
-                                <div th:each="drugArticle:${application.drugArticleList}">
-                                    <p class="intro">
-                                        <strong th:text="'['+${#dates.format(drugArticle.getReleaseDate(),'yyyy-MM-dd')}+']'"></strong>
-                                        <a th:href="'/article/'+${drugArticle.getId()}" style="text-decoration:none;" th:title="${drugArticle.getTitle()}">&nbsp;&nbsp;<span
-                                                th:text="${drugArticle.getTitle()}"></span></a>
-                                    </p>
-                                </div>
-                                <p class="read-more"><a href="/article/list/1?typeId=4" class="btn btn-primary">更多...</a></p>
                             </div>
                         </div>
                     </div>

@@ -73,7 +73,11 @@
                                     <h1 class="text-center" th:text="${goods.name}"></h1>
                                     <p class="goToDescription"><a href="#details" class="scroll-to">查看商品详情</a></p>
                                     <p class="price" th:text="'￥'+${goods.sellingPrice}"></p>
-                                    <p class="text-center buttons"><a href="basket.html" class="btn btn-outline-primary"><i class="fa fa-location-arrow"></i>立即购买</a><a href="basket.html" class="btn btn-outline-primary"><i class="fa fa-shopping-cart"></i>添加到购物车</a></p>
+                                    <p class="text-center buttons">
+                                        <a href="basket.html" class="btn btn-outline-success" th:if="${session.currentCustomer!=null}"><i class="fa fa-location-arrow"></i>立即购买</a>
+                                        <a href="basket.html" class="btn btn-outline-primary" th:if="${session.currentCustomer!=null}"><i class="fa fa-shopping-cart"></i>添加到购物车</a>
+                                        <a href="/login" class="btn btn-danger" title="点击按钮后跳转到登录界面" th:if="${session.currentCustomer==null}"><i class="fa fa-globe"></i>登录后方可购物</a>
+                                    </p>
                                 </div>
                                 <div data-slider-id="1" class="owl-thumbs">
                                     <button class="owl-thumb-item"><img th:src="@{'/static/images/goodsImage/'+${goods.imageName}}" alt="" class="img-fluid"></button>

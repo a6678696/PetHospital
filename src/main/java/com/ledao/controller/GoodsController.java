@@ -15,7 +15,6 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
 import javax.annotation.Resource;
-import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 import javax.validation.Valid;
 import java.util.*;
@@ -49,6 +48,7 @@ public class GoodsController {
             mav.addObject("error", bindingResult.getFieldError().getDefaultMessage());
             mav.addObject("title", "首页");
             mav.addObject("mainPage", "page/indexFirst");
+            mav.addObject("mainPageKey", "#b");
         } else {
             Map<String, Object> map = new HashMap<>(16);
             map.put("name", StringUtil.formatLike(searchGoods.getName()));
@@ -81,16 +81,19 @@ public class GoodsController {
         ModelAndView mav = new ModelAndView();
         Map<String, Object> map = new HashMap<>(16);
         map.put("typeId", typeId);
+        //每页商品数量
         int pageSize = 6;
         map.put("start", (page - 1) * pageSize);
         map.put("size", pageSize);
         if (goodsTypeService.findById(typeId).getState() == 1) {
+            //商品大类分类
             List<Goods> goodsList=goodsService.listByBigTypeId(map);
             Long total = goodsService.getCountByBigTypeId(map);
             mav.addObject("goodsList", goodsList);
             mav.addObject("total", total);
             mav.addObject("pageCode", PageUtil.genPagination("/goods/list", total, page, pageSize, typeId));
         } else {
+            //商品小类分类
             List<Goods> goodsList = goodsService.list(map);
             Long total = goodsService.getCount(map);
             mav.addObject("goodsList", goodsList);
@@ -98,6 +101,7 @@ public class GoodsController {
             mav.addObject("pageCode", PageUtil.genPagination("/goods/list", total, page, pageSize, typeId));
 
         }
+        //获取商品分类
         List<GoodsType> goodsTypeList = goodsTypeService.findByParentId(1);
         for (GoodsType goodsType : goodsTypeList) {
             goodsType.setSmallGoodsTypeList(goodsTypeService.findByParentId(goodsType.getId()));

@@ -2,6 +2,8 @@ package com.ledao.entity;
 
 import lombok.Data;
 
+import java.util.List;
+
 /**
  * 文章类型实体
  *
@@ -24,6 +26,10 @@ public class ArticleType {
      * 备注
      */
     private String remarks;
+    /**
+     * 每个类别下的文章集合
+     */
+    private List<Article> articleList = null;
 
     @Override
     public String toString() {

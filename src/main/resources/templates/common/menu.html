@@ -71,22 +71,30 @@
                         <ul class="dropdown-menu megamenu">
                             <li>
                                 <div class="row">
+                                    <div class="col-md-6 col-lg-3" th:each="goodsType:${application.goodsTypeList}">
+                                        <a th:href="'/goods/list/1?typeId='+${goodsType.id}" style="color: black"><h5 th:text="${goodsType.getName()}"></h5></a>
+                                        <ul class="list-unstyled mb-3" th:each="smallGoodsType:${goodsType.smallGoodsTypeList}">
+                                            <li class="nav-item"><a th:href="'/goods/list/1?typeId='+${smallGoodsType.id}" class="nav-link" th:text="${smallGoodsType.name}"></a></li>
+                                        </ul>
+                                    </div>
+                                </div>
+                            </li>
+                        </ul>
+                    </li>
+                    <li class="nav-item dropdown menu-large"><a href="#" data-toggle="dropdown" data-hover="dropdown" data-delay="200" class="dropdown-toggle nav-link">了解更多<b class="caret"></b></a>
+                        <ul class="dropdown-menu megamenu">
+                            <li>
+                                <div class="row">
                                     <div class="col-md-6 col-lg-3">
-                                        <h5>Clothing</h5>
-                                        <ul class="list-unstyled mb-3">
-                                            <li class="nav-item"><a href="category.html" class="nav-link">T-shirts</a></li>
-                                            <li class="nav-item"><a href="category.html" class="nav-link">Shirts</a></li>
-                                            <li class="nav-item"><a href="category.html" class="nav-link">Pants</a></li>
-                                            <li class="nav-item"><a href="category.html" class="nav-link">Accessories</a></li>
+                                        <h5>医院前沿</h5>
+                                        <ul class="list-unstyled mb-3" th:each="articleType:${application.articleTypeList}" th:if="${articleTypeStat.count<=3}">
+                                            <li class="nav-item"><a th:href="'/article/list/1?typeId='+${articleType.getId()}" class="nav-link" th:text="${articleType.getName()}"></a></li>
                                         </ul>
                                     </div>
                                     <div class="col-md-6 col-lg-3">
-                                        <h5>Shoes</h5>
-                                        <ul class="list-unstyled mb-3">
-                                            <li class="nav-item"><a href="category.html" class="nav-link">Trainers</a></li>
-                                            <li class="nav-item"><a href="category.html" class="nav-link">Sandals</a></li>
-                                            <li class="nav-item"><a href="category.html" class="nav-link">Hiking shoes</a></li>
-                                            <li class="nav-item"><a href="category.html" class="nav-link">Casual</a></li>
+                                        <h5>养宠小知识</h5>
+                                        <ul class="list-unstyled mb-3" th:each="articleType:${application.articleTypeList}" th:if="${articleTypeStat.count>3}">
+                                            <li class="nav-item"><a th:href="'/article/list/1?typeId='+${articleType.getId()}" class="nav-link" th:text="${articleType.getName()}"></a></li>
                                         </ul>
                                     </div>
                                     <div class="col-md-6 col-lg-3">
@@ -99,55 +107,19 @@
                                             <li class="nav-item"><a href="category.html" class="nav-link">Hiking shoes</a></li>
                                             <li class="nav-item"><a href="category.html" class="nav-link">Casual</a></li>
                                         </ul>
-                                        <h5>Looks and trends</h5>
+                                    </div>
+                                    <div class="col-md-6 col-lg-3">
+                                        <h5>Featured</h5>
                                         <ul class="list-unstyled mb-3">
                                             <li class="nav-item"><a href="category.html" class="nav-link">Trainers</a></li>
                                             <li class="nav-item"><a href="category.html" class="nav-link">Sandals</a></li>
                                             <li class="nav-item"><a href="category.html" class="nav-link">Hiking shoes</a></li>
                                         </ul>
-                                    </div>
-                                    <div class="col-md-6 col-lg-3">
-                                        <div class="banner"><a href="#"><img th:src="@{/static/images/img/banner.jpg}" alt="" class="img img-fluid"></a></div>
-                                        <div class="banner"><a href="#"><img th:src="@{/static/images/img/banner2.jpg}" alt="" class="img img-fluid"></a></div>
-                                    </div>
-                                </div>
-                            </li>
-                        </ul>
-                    </li>
-                    <li class="nav-item dropdown menu-large"><a href="#" data-toggle="dropdown" data-hover="dropdown" data-delay="200" class="dropdown-toggle nav-link">了解我们<b class="caret"></b></a>
-                        <ul class="dropdown-menu megamenu">
-                            <li>
-                                <div class="row">
-                                    <div class="col-md-6 col-lg-3">
-                                        <h5>医院公告<a href="/article/list/1?typeId=1"><strong style="float: right">更多...</strong></a></h5>
+                                        <h5>Looks and trends</h5>
                                         <ul class="list-unstyled mb-3">
-                                            <li class="nav-item" th:each="announcementArticle:${application.announcementArticleList}">
-                                                <a th:href="'/article/'+${announcementArticle.getId()}" class="nav-link" th:text="${announcementArticle.getTitle()}"></a>
-                                            </li>
-                                        </ul>
-                                    </div>
-                                    <div class="col-md-6 col-lg-3">
-                                        <h5>医院新闻<a href="/article/list/1?typeId=2"><strong style="float: right">更多...</strong></a></h5>
-                                        <ul class="list-unstyled mb-3">
-                                            <li class="nav-item" th:each="newsArticle:${application.newsArticleList}">
-                                                <a th:href="'/article/'+${newsArticle.getId()}" class="nav-link" th:text="${newsArticle.getTitle()}"></a>
-                                            </li>
-                                        </ul>
-                                    </div>
-                                    <div class="col-md-6 col-lg-3">
-                                        <h5>宠物大全<a href="/article/list/1?typeId=3"><strong style="float: right">更多...</strong></a></h5>
-                                        <ul class="list-unstyled mb-3">
-                                            <li class="nav-item" th:each="petArticle:${application.petArticleList}">
-                                                <a th:href="'/article/'+${petArticle.getId()}" class="nav-link" th:text="${petArticle.getTitle()}"></a>
-                                            </li>
-                                        </ul>
-                                    </div>
-                                    <div class="col-md-6 col-lg-3">
-                                        <h5>用药常识<a href="/article/list/1?typeId=4"><strong style="float: right">更多...</strong></a></h5>
-                                        <ul class="list-unstyled mb-3">
-                                            <li class="nav-item" th:each="drugArticle:${application.drugArticleList}">
-                                                <a th:href="'/article/'+${drugArticle.getId()}" class="nav-link" th:text="${drugArticle.getTitle()}"></a>
-                                            </li>
+                                            <li class="nav-item"><a href="category.html" class="nav-link">Trainers</a></li>
+                                            <li class="nav-item"><a href="category.html" class="nav-link">Sandals</a></li>
+                                            <li class="nav-item"><a href="category.html" class="nav-link">Hiking shoes</a></li>
                                         </ul>
                                     </div>
                                 </div>
@@ -157,8 +129,12 @@
                 </ul>
                 <div class="navbar-buttons d-flex justify-content-end">
                     <!-- /.nav-collapse-->
-                    <div id="search-not-mobile" class="navbar-collapse collapse"></div><a data-toggle="collapse" href="#search" class="btn navbar-btn btn-primary d-none d-lg-inline-block"><span class="sr-only">Toggle search</span><i class="fa fa-search"></i></a>
-                    <div id="basket-overview" class="navbar-collapse collapse d-none d-lg-block"><a href="basket.html" class="btn btn-primary navbar-btn"><i class="fa fa-shopping-cart"></i><span>我的购物车</span></a></div>
+                    <div id="search-not-mobile" class="navbar-collapse collapse"></div><a data-toggle="collapse" href="#search" class="btn navbar-btn btn-primary d-none d-lg-inline-block" title="搜索文章和商品"><span class="sr-only">Toggle search</span><i class="fa fa-search"></i></a>
+                    <div id="basket-overview" class="navbar-collapse collapse d-none d-lg-block">
+                        <a href="/goods/list/1?typeId=21" class="btn btn-primary navbar-btn" title="LeDao医院商城"><i class="fa fa-shopping-bag"></i></a>
+                        <a href="basket.html" class="btn btn-primary navbar-btn" th:if="${session.currentCustomer!=null}"><i class="fa fa-shopping-cart"></i><span>我的购物车</span></a>
+                        <a href="/login" class="btn btn-primary navbar-btn" th:if="${session.currentCustomer==null}"><span>登录</span></a>
+                    </div>
                 </div>
             </div>
         </div>
