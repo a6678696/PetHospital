@@ -49,6 +49,7 @@ public class ShiroConfig {
         filterChainDefinitionMap.put("/", "anon");
         filterChainDefinitionMap.put("/register", "anon");
         filterChainDefinitionMap.put("/login", "anon");
+        filterChainDefinitionMap.put("/shoppingCart", "anon");
         filterChainDefinitionMap.put("/common/**", "anon");
         filterChainDefinitionMap.put("/page/**", "anon");
         filterChainDefinitionMap.put("/article/**", "anon");
@@ -56,7 +57,6 @@ public class ShiroConfig {
         filterChainDefinitionMap.put("/customer/**", "anon");
         filterChainDefinitionMap.put("/goods/**", "anon");
         filterChainDefinitionMap.put("/login.html", "anon");
-        filterChainDefinitionMap.put("/index.html", "anon");
         filterChainDefinitionMap.put("/static/**", "anon");
         filterChainDefinitionMap.put("/user/login", "anon");
         filterChainDefinitionMap.put("/drawImage", "anon");

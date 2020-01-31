@@ -5,19 +5,21 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="0a04dcdb-703f-4bd2-b3be-43a82c777491" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/ledao/controller/ShoppingController.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/ledao/entity/ShoppingCart.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/ledao/entity/ShoppingCartItem.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/templates/page/goods/shoppingCart.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/webapp/static/images/img/shoppingCartEmpty.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/webapp/static/images/img/shoppingCartFull.png" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/ledao/PetHospitalApplication.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/ledao/PetHospitalApplication.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/ledao/config/ShiroConfig.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/ledao/config/ShiroConfig.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/ledao/controller/CustomerController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/ledao/controller/CustomerController.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/ledao/controller/IndexController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/ledao/controller/IndexController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/templates/common/menu.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/templates/common/menu.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/ledao/controller/ShoppingController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/ledao/controller/ShoppingController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/ledao/entity/Customer.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/ledao/entity/Customer.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/ledao/entity/ShoppingCart.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/ledao/entity/ShoppingCart.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/ledao/entity/ShoppingCartItem.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/ledao/entity/ShoppingCartItem.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/resources/templates/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/templates/index.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/templates/page/goods/goodsList.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/templates/page/goods/goodsList.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/resources/templates/page/goods/goodsView.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/templates/page/goods/goodsView.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/templates/page/indexFirst.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/templates/page/indexFirst.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/ledao/PetHospitalApplication.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/ledao/PetHospitalApplication.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/templates/page/goods/shoppingCart.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/templates/page/goods/shoppingCart.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/templates/page/register.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/templates/page/register.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/target/classes/com/ledao/config/ShiroConfig.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/ledao/config/ShiroConfig.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/target/classes/com/ledao/controller/IndexController.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/ledao/controller/IndexController.class" afterDir="false" />
     </list>
@@ -116,34 +118,34 @@
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="aspect.path.notification.shown" value="true" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/src/main/webapp/static/js" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/../Ebuy" />
     <property name="project.structure.last.edited" value="Modules" />
     <property name="project.structure.proportion" value="0.15" />
     <property name="project.structure.side.proportion" value="0.2" />
-    <property name="settings.editor.selected.configurable" value="reference.settings.project.statistic.project.settings" />
+    <property name="settings.editor.selected.configurable" value="editing.templates" />
   </component>
   <component name="RecentsManager">
-    <key name="MoveClassesOrPackagesDialog.RECENTS_KEY">
-      <recent name="com.ledao" />
-    </key>
-    <key name="CopyFile.RECENT_KEYS">
-      <recent name="F:\idea workspase for Actual combat\PetHospital\src\main\webapp\static\js" />
-      <recent name="F:\idea workspase for Actual combat\PetHospital\src\main\resources\templates\page" />
-      <recent name="F:\idea workspase for Actual combat\PetHospital\src\main\webapp\static\jquery-easyui-1.7.0\themes\usericons" />
-      <recent name="F:\idea workspase for Actual combat\PetHospital\src\main\resources\templates\page\article" />
-      <recent name="F:\idea workspase for Actual combat\PetHospital\src\main\webapp\static\images\img" />
-    </key>
-    <key name="CopyClassDialog.RECENTS_KEY">
-      <recent name="com.ledao.controller.admin" />
-      <recent name="com.ledao.mapper" />
-      <recent name="com.ledao.entity" />
-    </key>
     <key name="MoveFile.RECENT_KEYS">
       <recent name="F:\idea workspase for Actual combat\PetHospital\src\main\resources\templates\page\article" />
       <recent name="F:\idea workspase for Actual combat\PetHospital\src\main\webapp\static\images" />
       <recent name="F:\idea workspase for Actual combat\PetHospital\src\main\resources\templates" />
       <recent name="F:\idea workspase for Actual combat\PetHospital\src\main\resources\templates\mypages" />
       <recent name="F:\idea workspase for Actual combat\PetHospital\src\main\resources\templates\static\js" />
+    </key>
+    <key name="MoveClassesOrPackagesDialog.RECENTS_KEY">
+      <recent name="com.ledao" />
+    </key>
+    <key name="CopyClassDialog.RECENTS_KEY">
+      <recent name="com.ledao.controller.admin" />
+      <recent name="com.ledao.mapper" />
+      <recent name="com.ledao.entity" />
+    </key>
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="F:\idea workspase for Actual combat\PetHospital\src\main\webapp\static\images\img" />
+      <recent name="F:\idea workspase for Actual combat\PetHospital\src\main\webapp\static\js" />
+      <recent name="F:\idea workspase for Actual combat\PetHospital\src\main\resources\templates\page" />
+      <recent name="F:\idea workspase for Actual combat\PetHospital\src\main\webapp\static\jquery-easyui-1.7.0\themes\usericons" />
+      <recent name="F:\idea workspase for Actual combat\PetHospital\src\main\resources\templates\page\article" />
     </key>
   </component>
   <component name="RestServicesNavigator">
@@ -241,6 +243,8 @@
       <workItem from="1580359749399" duration="18000" />
       <workItem from="1580359782624" duration="36476000" />
       <workItem from="1580444412301" duration="13332000" />
+      <workItem from="1580458701083" duration="107000" />
+      <workItem from="1580467940223" duration="15604000" />
     </task>
     <task id="LOCAL-00001" summary="LeDao宠物医院管理系统">
       <created>1579192730886</created>
@@ -445,7 +449,14 @@
       <option name="project" value="LOCAL" />
       <updated>1580444475523</updated>
     </task>
-    <option name="localTasksCounter" value="30" />
+    <task id="LOCAL-00030" summary="LeDao宠物医院管理系统">
+      <created>1580458743629</created>
+      <option name="number" value="00030" />
+      <option name="presentableId" value="LOCAL-00030" />
+      <option name="project" value="LOCAL" />
+      <updated>1580458743629</updated>
+    </task>
+    <option name="localTasksCounter" value="31" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -497,86 +508,86 @@
       <screen x="0" y="0" width="1536" height="824" />
     </state>
     <state x="499" y="159" key="#com.intellij.refactoring.safeDelete.UnsafeUsagesDialog/0.0.1536.824@0.0.1536.824" timestamp="1579172113914" />
-    <state x="207" y="84" width="1010" height="632" key="CommitChangelistDialog2" timestamp="1580444467555">
+    <state x="207" y="84" width="1010" height="632" key="CommitChangelistDialog2" timestamp="1580458741539">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state x="207" y="84" width="1010" height="632" key="CommitChangelistDialog2/0.0.1536.824@0.0.1536.824" timestamp="1580444467555" />
-    <state width="1067" height="466" key="DebuggerActiveHint" timestamp="1580399017870">
+    <state x="207" y="84" width="1010" height="632" key="CommitChangelistDialog2/0.0.1536.824@0.0.1536.824" timestamp="1580458741539" />
+    <state width="1067" height="466" key="DebuggerActiveHint" timestamp="1580487391924">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state width="1067" height="466" key="DebuggerActiveHint/0.0.1536.824@0.0.1536.824" timestamp="1580399017870" />
+    <state width="1067" height="466" key="DebuggerActiveHint/0.0.1536.824@0.0.1536.824" timestamp="1580487391924" />
     <state x="147" y="71" key="DiffContextDialog" timestamp="1579193275073">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
     <state x="147" y="71" key="DiffContextDialog/0.0.1536.824@0.0.1536.824" timestamp="1579193275073" />
-    <state x="549" y="168" width="773" height="488" key="FileChooserDialogImpl" timestamp="1580447479271">
+    <state x="549" y="168" width="773" height="488" key="FileChooserDialogImpl" timestamp="1580491808151">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state x="549" y="168" width="773" height="488" key="FileChooserDialogImpl/0.0.1536.824@0.0.1536.824" timestamp="1580447479271" />
+    <state x="549" y="168" width="773" height="488" key="FileChooserDialogImpl/0.0.1536.824@0.0.1536.824" timestamp="1580491808151" />
     <state x="589" y="326" width="382" height="172" key="Github.CreateGistDialog" timestamp="1579192359130">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
     <state x="589" y="326" width="382" height="172" key="Github.CreateGistDialog/0.0.1536.824@0.0.1536.824" timestamp="1579192359130" />
-    <state width="1493" height="167" key="GridCell.Tab.0.bottom" timestamp="1580458675613">
+    <state width="1493" height="147" key="GridCell.Tab.0.bottom" timestamp="1580494307628">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state width="1493" height="167" key="GridCell.Tab.0.bottom/0.0.1536.824@0.0.1536.824" timestamp="1580458675613" />
-    <state width="1493" height="167" key="GridCell.Tab.0.center" timestamp="1580458675613">
+    <state width="1493" height="147" key="GridCell.Tab.0.bottom/0.0.1536.824@0.0.1536.824" timestamp="1580494307628" />
+    <state width="1493" height="147" key="GridCell.Tab.0.center" timestamp="1580494307628">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state width="1493" height="167" key="GridCell.Tab.0.center/0.0.1536.824@0.0.1536.824" timestamp="1580458675613" />
-    <state width="1493" height="167" key="GridCell.Tab.0.left" timestamp="1580458675613">
+    <state width="1493" height="147" key="GridCell.Tab.0.center/0.0.1536.824@0.0.1536.824" timestamp="1580494307628" />
+    <state width="1493" height="147" key="GridCell.Tab.0.left" timestamp="1580494307628">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state width="1493" height="167" key="GridCell.Tab.0.left/0.0.1536.824@0.0.1536.824" timestamp="1580458675613" />
-    <state width="1493" height="167" key="GridCell.Tab.0.right" timestamp="1580458675613">
+    <state width="1493" height="147" key="GridCell.Tab.0.left/0.0.1536.824@0.0.1536.824" timestamp="1580494307628" />
+    <state width="1493" height="147" key="GridCell.Tab.0.right" timestamp="1580494307628">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state width="1493" height="167" key="GridCell.Tab.0.right/0.0.1536.824@0.0.1536.824" timestamp="1580458675613" />
-    <state width="1493" height="167" key="GridCell.Tab.1.bottom" timestamp="1580458675613">
+    <state width="1493" height="147" key="GridCell.Tab.0.right/0.0.1536.824@0.0.1536.824" timestamp="1580494307628" />
+    <state width="1493" height="147" key="GridCell.Tab.1.bottom" timestamp="1580494307396">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state width="1493" height="167" key="GridCell.Tab.1.bottom/0.0.1536.824@0.0.1536.824" timestamp="1580458675613" />
-    <state width="1493" height="167" key="GridCell.Tab.1.center" timestamp="1580458675613">
+    <state width="1493" height="147" key="GridCell.Tab.1.bottom/0.0.1536.824@0.0.1536.824" timestamp="1580494307396" />
+    <state width="1493" height="147" key="GridCell.Tab.1.center" timestamp="1580494307396">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state width="1493" height="167" key="GridCell.Tab.1.center/0.0.1536.824@0.0.1536.824" timestamp="1580458675613" />
-    <state width="1493" height="167" key="GridCell.Tab.1.left" timestamp="1580458675613">
+    <state width="1493" height="147" key="GridCell.Tab.1.center/0.0.1536.824@0.0.1536.824" timestamp="1580494307396" />
+    <state width="1493" height="147" key="GridCell.Tab.1.left" timestamp="1580494307396">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state width="1493" height="167" key="GridCell.Tab.1.left/0.0.1536.824@0.0.1536.824" timestamp="1580458675613" />
-    <state width="1493" height="167" key="GridCell.Tab.1.right" timestamp="1580458675613">
+    <state width="1493" height="147" key="GridCell.Tab.1.left/0.0.1536.824@0.0.1536.824" timestamp="1580494307396" />
+    <state width="1493" height="147" key="GridCell.Tab.1.right" timestamp="1580494307396">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state width="1493" height="167" key="GridCell.Tab.1.right/0.0.1536.824@0.0.1536.824" timestamp="1580458675613" />
-    <state width="1493" height="167" key="GridCell.Tab.2.bottom" timestamp="1580458675613">
+    <state width="1493" height="147" key="GridCell.Tab.1.right/0.0.1536.824@0.0.1536.824" timestamp="1580494307396" />
+    <state width="1493" height="147" key="GridCell.Tab.2.bottom" timestamp="1580494307396">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state width="1493" height="167" key="GridCell.Tab.2.bottom/0.0.1536.824@0.0.1536.824" timestamp="1580458675613" />
-    <state width="1493" height="167" key="GridCell.Tab.2.center" timestamp="1580458675613">
+    <state width="1493" height="147" key="GridCell.Tab.2.bottom/0.0.1536.824@0.0.1536.824" timestamp="1580494307396" />
+    <state width="1493" height="147" key="GridCell.Tab.2.center" timestamp="1580494307396">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state width="1493" height="167" key="GridCell.Tab.2.center/0.0.1536.824@0.0.1536.824" timestamp="1580458675613" />
-    <state width="1493" height="167" key="GridCell.Tab.2.left" timestamp="1580458675613">
+    <state width="1493" height="147" key="GridCell.Tab.2.center/0.0.1536.824@0.0.1536.824" timestamp="1580494307396" />
+    <state width="1493" height="147" key="GridCell.Tab.2.left" timestamp="1580494307396">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state width="1493" height="167" key="GridCell.Tab.2.left/0.0.1536.824@0.0.1536.824" timestamp="1580458675613" />
-    <state width="1493" height="167" key="GridCell.Tab.2.right" timestamp="1580458675613">
+    <state width="1493" height="147" key="GridCell.Tab.2.left/0.0.1536.824@0.0.1536.824" timestamp="1580494307396" />
+    <state width="1493" height="147" key="GridCell.Tab.2.right" timestamp="1580494307396">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state width="1493" height="167" key="GridCell.Tab.2.right/0.0.1536.824@0.0.1536.824" timestamp="1580458675613" />
+    <state width="1493" height="147" key="GridCell.Tab.2.right/0.0.1536.824@0.0.1536.824" timestamp="1580494307396" />
     <state x="299" y="68" key="Maven.ArtifactSearchDialog" timestamp="1579332741235">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
     <state x="299" y="68" key="Maven.ArtifactSearchDialog/0.0.1536.824@0.0.1536.824" timestamp="1579332741235" />
-    <state x="270" y="0" key="SettingsEditor" timestamp="1580323988063">
+    <state x="270" y="0" key="SettingsEditor" timestamp="1580471552899">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state x="270" y="0" key="SettingsEditor/0.0.1536.824@0.0.1536.824" timestamp="1580323988063" />
-    <state x="361" y="146" key="Vcs.Push.Dialog.v2" timestamp="1580444477833">
+    <state x="270" y="0" key="SettingsEditor/0.0.1536.824@0.0.1536.824" timestamp="1580471552899" />
+    <state x="361" y="146" key="Vcs.Push.Dialog.v2" timestamp="1580458745289">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state x="361" y="146" key="Vcs.Push.Dialog.v2/0.0.1536.824@0.0.1536.824" timestamp="1580444477833" />
+    <state x="361" y="146" key="Vcs.Push.Dialog.v2/0.0.1536.824@0.0.1536.824" timestamp="1580458745289" />
     <state width="775" height="419" key="XDebugger.FullValuePopup" timestamp="1579668668921">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
@@ -609,9 +620,9 @@
       <screen x="0" y="0" width="1536" height="824" />
     </state>
     <state x="425" y="187" key="run.anything.popup/0.0.1536.824@0.0.1536.824" timestamp="1579923612989" />
-    <state x="431" y="145" width="672" height="678" key="search.everywhere.popup" timestamp="1580458424634">
+    <state x="431" y="145" width="672" height="678" key="search.everywhere.popup" timestamp="1580493215413">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state x="431" y="145" width="672" height="678" key="search.everywhere.popup/0.0.1536.824@0.0.1536.824" timestamp="1580458424634" />
+    <state x="431" y="145" width="672" height="678" key="search.everywhere.popup/0.0.1536.824@0.0.1536.824" timestamp="1580493215413" />
   </component>
 </project>

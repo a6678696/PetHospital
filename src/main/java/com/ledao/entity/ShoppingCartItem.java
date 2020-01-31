@@ -2,6 +2,8 @@ package com.ledao.entity;
 
 import lombok.Data;
 
+import java.io.Serializable;
+
 /**
  * 购物车的某一个商品
  *
@@ -10,7 +12,9 @@ import lombok.Data;
  * @create 2020-01-31 13:34
  */
 @Data
-public class ShoppingCartItem {
+public class ShoppingCartItem implements Serializable {
+
+    private static final long serialVersionUID = 1L;
 
     /**
      * 编号

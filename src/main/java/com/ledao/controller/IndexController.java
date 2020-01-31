@@ -67,7 +67,7 @@ public class IndexController {
     @RequestMapping("/shoppingCart")
     public ModelAndView shoppingCart() {
         ModelAndView mav = new ModelAndView();
-        mav.addObject("title", "用户登录");
+        mav.addObject("title", "我的购物车");
         mav.addObject("mainPage", "page/goods/shoppingCart");
         mav.addObject("mainPageKey", "#b");
         mav.setViewName("index");

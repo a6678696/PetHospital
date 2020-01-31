@@ -140,7 +140,8 @@ public class CustomerController {
     @RequestMapping("/existUserWithUserName")
     public Map<String, Object> existUserWithUserName(String userName) {
         Map<String, Object> resultMap = new HashMap<>(16);
-        if (customerService.getCountByUserName(userName) != 0) {
+        Long count = customerService.getCountByUserName(userName);
+        if (count != 0) {
             resultMap.put("success", true);
         } else {
             resultMap.put("success", false);

@@ -4,32 +4,6 @@
 <head>
     <meta charset="UTF-8">
     <title>Title</title>
-    <script type="text/javascript">
-        //检验用户名是否存在
-        function checkUserName(userName) {
-            if ($("#userName").val() == "") {
-                $("#userErrorInfo").html("用户名不能为空！");
-                $("#userName").focus();
-                return;
-            }
-            $.post("user_existUserWithUserName.action", {userName: userName},
-                function (result) {
-                    var result = eval('(' + result + ')');
-                    if (result.exist) {
-                        $("#userErrorInfo").html("用户名已存在，请重新输入！");
-                        alert("用户名已存在，请重新输入！");
-                        $("#userName").focus();
-                    } else {
-                        $("#userErrorInfo").html("");
-                    }
-                }
-            );
-        }
-        $(document).ready(function(){
-            alert(111);
-            $("#userErrorInfo").html("用户名不能为空！");
-        });
-    </script>
 </head>
 <body>
 <div id="b">
@@ -54,24 +28,24 @@
                             <hr>
                             <form action="/customer/save" method="post" enctype="multipart/form-data">
                                 <div class="form-group">
-                                    <label>用户名:</label><span id="userErrorInfo" style="color: red"></span>
+                                    <label>用户名:</label><span id="userErrorInfo" style="color: red"></span><span id="userSuccessInfo" style="color: mediumspringgreen"></span>
                                     <input id="userName" name="userName" type="text" class="form-control" onblur="checkUserName(this.value)"
-                                           th:value="${customer==null?'':customer.userName}">
+                                           th:value="${customer==null?'':customer.userName}" placeholder="必填">
                                 </div>
                                 <div class="form-group">
-                                    <label>密码:</label>
-                                    <input id="password1" name="password" type="password" class="form-control"
-                                           th:value="${customer==null?'':customer.password}">
+                                    <label>密码:</label><span id="passwordErrorInfo" style="color: red"></span>
+                                    <input id="password1" name="password" type="password" class="form-control" onblur="checkPassword(this.value)"
+                                           th:value="${customer==null?'':customer.password}" placeholder="必填">
                                 </div>
                                 <div class="form-group">
                                     <label>确认密码:</label>
                                     <input id="password2" name="password2" type="password" class="form-control"
-                                           th:value="${customer==null?'':customer.password2}">
+                                           th:value="${customer==null?'':customer.password2}" placeholder="必填">
                                 </div>
                                 <div class="form-group">
                                     <label>真实姓名:</label>
                                     <input id="contact" name="contact" type="text" class="form-control"
-                                           th:value="${customer==null?'':customer.contact}">
+                                           th:value="${customer==null?'':customer.contact}" placeholder="必填">
                                 </div>
                                 <div class="form-group">
                                     <label>头像:</label>
@@ -80,12 +54,12 @@
                                 <div class="form-group">
                                     <label>联系方式:</label>
                                     <input id="number" name="number" type="text" class="form-control"
-                                           th:value="${customer==null?'':customer.number}">
+                                           th:value="${customer==null?'':customer.number}" placeholder="必填">
                                 </div>
                                 <div class="form-group">
                                     <label>收货地址:</label>
                                     <input id="address" name="address" type="text" class="form-control"
-                                           th:value="${customer==null?'':customer.address}">
+                                           th:value="${customer==null?'':customer.address}" placeholder="必填">
                                 </div>
                                 <div class="form-group">
                                     <label>公司名称:</label>

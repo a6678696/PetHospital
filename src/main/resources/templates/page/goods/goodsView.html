@@ -86,9 +86,9 @@
                                     <p class="goToDescription"><a href="#details" class="scroll-to">查看商品详情</a></p>
                                     <p class="price" th:text="'￥'+${goods.sellingPrice}"></p>
                                     <p class="text-center buttons">
-                                        <a href="basket.html" class="btn btn-outline-success"
+                                        <a th:href="@{'/shopping/buy?goodsId='+${goods.id}}" class="btn btn-outline-success"
                                            th:if="${session.currentCustomer!=null}"><i class="fa fa-location-arrow"></i>立即购买</a>
-                                        <a href="javascript:addShoppingCart(32)"
+                                        <a th:href="'javascript:addShoppingCart('+${goods.id}+')'"
                                            class="btn btn-outline-primary" th:if="${session.currentCustomer!=null}"><i
                                                 class="fa fa-shopping-cart"></i>添加到购物车</a>
                                         <a href="/login" class="btn btn-danger" title="点击按钮后跳转到登录界面"
@@ -209,20 +209,4 @@
     </div>
 </div>
 </body>
-<script th:src="@{/static/js/jquery.js}"></script>
-<script>
-    /*<![CDATA[*/
-    function addShoppingCart(goodsId) {
-        $.post("/shopping/addShoppingCartItem", {goodsId: goodsId}, function (result) {
-            if (result.success) {
-                alert("已成功加入购物车!");
-                location.reload();
-            } else {
-                alert("添加失败!")
-            }
-        });
-    }
-
-    /*]]>*/
-</script>
 </html>

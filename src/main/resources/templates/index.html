@@ -30,73 +30,13 @@
     <script type="text/javascript" th:src="@{/static/vendor/owl.carousel/owl.carousel.min.js}"></script>
     <script type="text/javascript" th:src="@{/static/vendor/owl.carousel2.thumbs/owl.carousel2.thumbs.js}"></script>
     <script type="text/javascript" th:src="@{/static/js/front.js}"></script>
-    <script type="text/javascript">
+    <script th:inline="javascript">
         if (window.name != "refresh") {
             location.reload();
             window.name = "refresh";
         } else {
             window.name = "";
         }
-        $(function () {
-            $(function(){
-                $(window).scroll(function(){
-                    if($(window).scrollTop() > 100){
-                        $("#gotop").fadeIn(1000);//一秒渐入动画
-                    }else{
-                        $("#gotop").fadeOut(1000);//一秒渐隐动画
-                    }
-                });
-
-                $("#gotop").click(function(){
-                    $('body,html').animate({scrollTop:0},1000);
-                });
-            });
-        });
-        //点击换一张验证码
-        function changeImg() {
-            var imgSrc = $("#imgObj");
-            var src = imgSrc.attr("src");
-            imgSrc.attr("src",chgUrl(src));
-            $("#info").html("");
-        }
-        //时间戳
-        //为了使每次生成图片不一致，即不让浏览器读缓存，所以需要加上时间戳
-        function chgUrl(url) {
-            var timestamp = (new Date()).valueOf();
-            url = url.substring(0, 17);
-            if ((url.indexOf("&") >= 0)) {
-                url = url + "×tamp=" + timestamp;
-            } else {
-                url = url + "?timestamp=" + timestamp;
-            }
-            return url;
-        }
-        //验证码验证
-        function isRightCode() {
-            var code = $("#veryCode").attr("value");
-            //alert(code);
-            code = "c=" + code;
-            $.ajax( {
-                type : "POST",
-                url : "ResultServlet",
-                data : code,
-                success : callback
-            });
-        }
-        //验证以后处理提交信息或错误信息
-        function callback(data) {
-            if(data.toString()==1)
-            {
-                $("#info").html("xw素材网提醒您：成功了！");
-                return;
-            }else
-            {
-                $("#info").html(data);
-                return;
-            }
-        }
-    </script>
-    <script th:inline="javascript">
         window.onload = function () {
             var error = [[${error}]];
             if (error != null) {
@@ -113,11 +53,29 @@
                 alert("登录失败,用户名或密码错误!请重新登录...");
             }
         }
+        //返回顶部图标出现或者消失
+        $(function () {
+            $(function(){
+                $(window).scroll(function(){
+                    if($(window).scrollTop() > 100){
+                        $("#gotop").fadeIn(1000);//一秒渐入动画
+                    }else{
+                        $("#gotop").fadeOut(1000);//一秒渐隐动画
+                    }
+                });
+
+                $("#gotop").click(function(){
+                    $('body,html').animate({scrollTop:0},1000);
+                });
+            });
+        });
+        //客户注销登录
         function logout() {
             if (confirm("你确定要退出系统吗?")) {
                 window.location.href = "/customer/logout";
             }
         }
+        //添加商品到购物车
         function addShoppingCart(goodsId) {
             $.post("/shopping/addShoppingCartItem", {goodsId: goodsId}, function (result) {
                 if (result.success) {
@@ -127,6 +85,43 @@
                     alert("添加失败!")
                 }
             },"json");
+        }
+        //检验用户名是否存在
+        function checkUserName(userName) {
+            if (userName == "") {
+                $("#userErrorInfo").html("用户名不能为空！");
+                $("#userSuccessInfo").html("");
+                $("#userName").focus();
+                return;
+            }
+            $.post("/customer/existUserWithUserName", {userName: userName},
+                function (result) {
+                    if (result.success) {
+                        $("#userErrorInfo").html("该用户名已被注册,请重新输入!");
+                        $("#userSuccessInfo").html("");
+                        $("#userName").focus();
+                    } else {
+                        $("#userSuccessInfo").html("该用户名可以使用!");
+                        $("#userErrorInfo").html("");
+                    }
+                }
+            );
+        }
+        //验证密码长度,不能小于6位
+        function checkPassword(password) {
+            if (password == '') {
+                $("#passwordErrorInfo").html("密码不能为空!");
+            } else if (password.length < 6) {
+                $("#passwordErrorInfo").html("密码长度要大于5!");
+            } else {
+                $("#passwordErrorInfo").html("");
+            }
+        }
+        //删除购物车中的商品
+        function removeShoppingCartItem(goodsId) {
+            if (confirm("您确定要要从购物车中删除这个商品吗?")) {
+                window.location.href = "/shopping/removeShoppingCartItem?goodsId=" + goodsId;
+            }
         }
     </script>
 </head>

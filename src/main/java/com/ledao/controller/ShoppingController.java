@@ -8,7 +8,6 @@ import com.ledao.service.GoodsService;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
-import org.springframework.web.servlet.ModelAndView;
 
 import javax.annotation.Resource;
 import javax.servlet.http.HttpSession;
@@ -30,6 +29,12 @@ public class ShoppingController {
     @Resource
     private GoodsService goodsService;
 
+    @RequestMapping("/buy")
+    public String buy(HttpSession session, Integer goodsId) {
+        checkShoppingCart(session, goodsId);
+        return "redirect:/shoppingCart";
+    }
+
     /**
      * 往购物车中添加商品
      *
@@ -41,9 +46,31 @@ public class ShoppingController {
     @RequestMapping("/addShoppingCartItem")
     public Map<String, Object> addShoppingCartItem(HttpSession session, Integer goodsId) {
         checkShoppingCart(session, goodsId);
-        Map<String,Object> resultMap=new HashMap<>(16);
+        Map<String, Object> resultMap = new HashMap<>(16);
         resultMap.put("success", true);
         return resultMap;
+    }
+
+    /**
+     * 删除购物车中的商品
+     *
+     * @param session
+     * @param goodsId
+     * @return
+     */
+    @RequestMapping("/removeShoppingCartItem")
+    public String removeShoppingCartItem(HttpSession session, Integer goodsId) {
+        ShoppingCart shoppingCart = (ShoppingCart) session.getAttribute("shoppingCart");
+        List<ShoppingCartItem> shoppingCartItemList = shoppingCart.getShoppingCartItems();
+        for (int i = 0; i < shoppingCartItemList.size(); i++) {
+            if (goodsId.equals(shoppingCartItemList.get(i).getGoods().getId())) {
+                shoppingCartItemList.remove(i);
+                break;
+            }
+        }
+        shoppingCart.setShoppingCartItems(shoppingCartItemList);
+        session.setAttribute("shoppingCart", shoppingCart);
+        return "redirect:/shoppingCart";
     }
 
     /**

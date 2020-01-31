@@ -60,7 +60,7 @@
                                         </p>
                                         <p class="buttons">
                                             <a th:href="'/goods/'+${goods.id}" class="btn btn-outline-success">详情</a>
-                                            <a href="#" class="btn btn-primary" th:if="${session.currentCustomer!=null}"><i class="fa fa-shopping-cart"></i>添加到购物车</a>
+                                            <a th:href="'javascript:addShoppingCart('+${goods.id}+')'" class="btn btn-primary" th:if="${session.currentCustomer!=null}"><i class="fa fa-shopping-cart"></i>添加到购物车</a>
                                             <a href="/login" class="btn btn-danger" title="点击按钮后跳转到登录界面" th:if="${session.currentCustomer==null}"><i class="fa fa-globe"></i>登录后方可购物</a>
                                         </p>
                                     </div>
