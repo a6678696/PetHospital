@@ -58,4 +58,19 @@ public class IndexController {
         mav.setViewName("index");
         return mav;
     }
+
+    /**
+     * 用户注册
+     *
+     * @return
+     */
+    @RequestMapping("/shoppingCart")
+    public ModelAndView shoppingCart() {
+        ModelAndView mav = new ModelAndView();
+        mav.addObject("title", "用户登录");
+        mav.addObject("mainPage", "page/goods/shoppingCart");
+        mav.addObject("mainPageKey", "#b");
+        mav.setViewName("index");
+        return mav;
+    }
 }

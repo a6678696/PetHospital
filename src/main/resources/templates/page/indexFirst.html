@@ -73,7 +73,9 @@
                     <div class="container">
                         <div class="row">
                             <div class="col-md-12">
-                                <h2 class="mb-0">医疗团队</h2>
+                                <div>
+                                    <h2 class="mb-0">医疗团队</h2>
+                                </div>
                             </div>
                         </div>
                     </div>
@@ -84,16 +86,18 @@
                             <div class="product">
                                 <div class="flip-container">
                                     <div class="flipper">
-                                        <div class="front"><a href="detail.html"><img th:src="@{'/static/images/userImage/'+${doctor.getImageName()}}"
-                                                                                      alt="" class="img-fluid"></a>
+                                        <div class="front"><a href="detail.html"><img
+                                                th:src="@{'/static/images/userImage/'+${doctor.getImageName()}}"
+                                                alt="" class="img-fluid"></a>
                                         </div>
                                         <div class="back"><a href="detail.html"><img
                                                 th:src="@{'/static/images/userImage/'+${doctor.getImageName()}}"
                                                 alt="" class="img-fluid"></a></div>
                                     </div>
                                 </div>
-                                <a href="detail.html" class="invisible"><img th:src="@{'/static/images/userImage/'+${doctor.getImageName()}}" alt=""
-                                                                             class="img-fluid"></a>
+                                <a href="detail.html" class="invisible"><img
+                                        th:src="@{'/static/images/userImage/'+${doctor.getImageName()}}" alt=""
+                                        class="img-fluid"></a>
                                 <div class="text">
                                     <h3><a href="detail.html" th:text="${doctor.getTrueName()}"></a></h3>
                                 </div>
@@ -184,7 +188,7 @@
             <div class="box text-center">
                 <div class="container">
                     <div class="col-md-12">
-                        <h2 class="text-uppercase"  style="color: #64c4af;font-weight: normal">了解我们</h2>
+                        <h2 class="text-uppercase" style="color: #64c4af;font-weight: normal">了解我们</h2>
                     </div>
                 </div>
             </div>
@@ -194,7 +198,8 @@
                     <div id="blog-homepage" class="row">
                         <div class="col-sm-6" th:each="articleType:${application.articleTypeList1}">
                             <div class="post">
-                                <h4><a th:href="'/article/list/1?typeId='+${articleType.getId()}" th:text="${articleType.getName()}"></a></h4>
+                                <h4><a th:href="'/article/list/1?typeId='+${articleType.getId()}"
+                                       th:text="${articleType.getName()}"></a></h4>
                                 <hr>
                                 <div th:each="article:${articleType.articleList}" th:if="${articleStat.count<=5}">
                                     <p class="intro"><strong
@@ -204,7 +209,8 @@
                                             th:text="${article.getTitle()}"></span></a>
                                     </p>
                                 </div>
-                                <p class="read-more"><a th:href="'/article/list/1?typeId='+${articleType.getId()}" class="btn btn-primary">更多...</a>
+                                <p class="read-more"><a th:href="'/article/list/1?typeId='+${articleType.getId()}"
+                                                        class="btn btn-primary">更多...</a>
                                 </p>
                             </div>
                         </div>

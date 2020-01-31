@@ -17,8 +17,12 @@
                             <ol class="breadcrumb">
                                 <i class="fa fa-eye" style="padding-top: 2px"></i>当前位置:&nbsp;&nbsp;
                                 <li class="breadcrumb-item"><a href="/">主页</a></li>
-                                <li aria-current="page" class="breadcrumb-item active"><a th:href="'/goods/list/1?typeId='+${bigTypeId}" th:text="${bigTypeName}" th:if="${bigTypeId>1}"></a><a href="#" th:text="${bigTypeName}" th:if="${bigTypeId==1}"></a></li>
-                                <li class="breadcrumb-item"><a th:href="'/goods/list/1?typeId='+${goods.type.id}" th:text="${goods.type.name}"></a></li>
+                                <li aria-current="page" class="breadcrumb-item active"><a
+                                        th:href="'/goods/list/1?typeId='+${bigTypeId}" th:text="${bigTypeName}"
+                                        th:if="${bigTypeId>1}"></a><a href="#" th:text="${bigTypeName}"
+                                                                      th:if="${bigTypeId==1}"></a></li>
+                                <li class="breadcrumb-item"><a th:href="'/goods/list/1?typeId='+${goods.type.id}"
+                                                               th:text="${goods.type.name}"></a></li>
                                 <li aria-current="page" class="breadcrumb-item active" th:text="${goods.name}"></li>
                             </ol>
                         </nav>
@@ -33,10 +37,15 @@
                                 <h3 class="h4 card-title">商品分类</h3>
                             </div>
                             <div class="card-body">
-                                <ul class="nav nav-pills flex-column category-menu" th:each="goodsType:${goodsTypeList}">
-                                    <li><a th:href="'/goods/list/1?typeId='+${goodsType.id}" class="nav-link active" th:text="${goodsType.name}"> <span class="badge badge-secondary">42</span></a>
-                                        <ul class="list-unstyled" th:each="smallGoodsType:${goodsType.smallGoodsTypeList}">
-                                            <li><a th:href="'/goods/list/1?typeId='+${smallGoodsType.id}" class="nav-link" th:text="${smallGoodsType.name}"></a></li>
+                                <ul class="nav nav-pills flex-column category-menu"
+                                    th:each="goodsType:${goodsTypeList}">
+                                    <li><a th:href="'/goods/list/1?typeId='+${goodsType.id}" class="nav-link active"
+                                           th:text="${goodsType.name}"> <span
+                                            class="badge badge-secondary">42</span></a>
+                                        <ul class="list-unstyled"
+                                            th:each="smallGoodsType:${goodsType.smallGoodsTypeList}">
+                                            <li><a th:href="'/goods/list/1?typeId='+${smallGoodsType.id}"
+                                                   class="nav-link" th:text="${smallGoodsType.name}"></a></li>
                                         </ul>
                                     </li>
                                 </ul>
@@ -48,9 +57,12 @@
                         <div id="productMain" class="row">
                             <div class="col-md-6">
                                 <div data-slider-id="1" class="owl-carousel shop-detail-carousel">
-                                    <div class="item"> <img th:src="@{'/static/images/goodsImage/'+${goods.imageName}}" alt="" class="img-fluid"></div>
-                                    <div class="item"> <img th:src="@{'/static/images/goodsImage/'+${goods.imageName}}" alt="" class="img-fluid"></div>
-                                    <div class="item"> <img th:src="@{'/static/images/goodsImage/'+${goods.imageName}}" alt="" class="img-fluid"></div>
+                                    <div class="item"><img th:src="@{'/static/images/goodsImage/'+${goods.imageName}}"
+                                                           alt="" class="img-fluid"></div>
+                                    <div class="item"><img th:src="@{'/static/images/goodsImage/'+${goods.imageName}}"
+                                                           alt="" class="img-fluid"></div>
+                                    <div class="item"><img th:src="@{'/static/images/goodsImage/'+${goods.imageName}}"
+                                                           alt="" class="img-fluid"></div>
                                 </div>
                                 <div class="ribbon new" th:if="${goods.isNew==1}">
                                     <div class="theribbon">新品</div>
@@ -74,15 +86,26 @@
                                     <p class="goToDescription"><a href="#details" class="scroll-to">查看商品详情</a></p>
                                     <p class="price" th:text="'￥'+${goods.sellingPrice}"></p>
                                     <p class="text-center buttons">
-                                        <a href="basket.html" class="btn btn-outline-success" th:if="${session.currentCustomer!=null}"><i class="fa fa-location-arrow"></i>立即购买</a>
-                                        <a href="basket.html" class="btn btn-outline-primary" th:if="${session.currentCustomer!=null}"><i class="fa fa-shopping-cart"></i>添加到购物车</a>
-                                        <a href="/login" class="btn btn-danger" title="点击按钮后跳转到登录界面" th:if="${session.currentCustomer==null}"><i class="fa fa-globe"></i>登录后方可购物</a>
+                                        <a href="basket.html" class="btn btn-outline-success"
+                                           th:if="${session.currentCustomer!=null}"><i class="fa fa-location-arrow"></i>立即购买</a>
+                                        <a href="javascript:addShoppingCart(32)"
+                                           class="btn btn-outline-primary" th:if="${session.currentCustomer!=null}"><i
+                                                class="fa fa-shopping-cart"></i>添加到购物车</a>
+                                        <a href="/login" class="btn btn-danger" title="点击按钮后跳转到登录界面"
+                                           th:if="${session.currentCustomer==null}"><i
+                                                class="fa fa-globe"></i>登录后方可购物</a>
                                     </p>
                                 </div>
                                 <div data-slider-id="1" class="owl-thumbs">
-                                    <button class="owl-thumb-item"><img th:src="@{'/static/images/goodsImage/'+${goods.imageName}}" alt="" class="img-fluid"></button>
-                                    <button class="owl-thumb-item"><img th:src="@{'/static/images/goodsImage/'+${goods.imageName}}" alt="" class="img-fluid"></button>
-                                    <button class="owl-thumb-item"><img th:src="@{'/static/images/goodsImage/'+${goods.imageName}}" alt="" class="img-fluid"></button>
+                                    <button class="owl-thumb-item"><img
+                                            th:src="@{'/static/images/goodsImage/'+${goods.imageName}}" alt=""
+                                            class="img-fluid"></button>
+                                    <button class="owl-thumb-item"><img
+                                            th:src="@{'/static/images/goodsImage/'+${goods.imageName}}" alt=""
+                                            class="img-fluid"></button>
+                                    <button class="owl-thumb-item"><img
+                                            th:src="@{'/static/images/goodsImage/'+${goods.imageName}}" alt=""
+                                            class="img-fluid"></button>
                                 </div>
                             </div>
                         </div>
@@ -93,16 +116,25 @@
                                     <h3><i class="fa fa-heartbeat"></i>猜您喜欢</h3>
                                 </div>
                             </div>
-                            <div class="col-md-3 col-sm-6" th:each="recommendGoods:${recommendGoodsList}" th:if="${recommendGoodsStat.count<=3}">
+                            <div class="col-md-3 col-sm-6" th:each="recommendGoods:${recommendGoodsList}"
+                                 th:if="${recommendGoodsStat.count<=3}">
                                 <div class="product same-height">
                                     <div class="flip-container">
                                         <div class="flipper">
-                                            <div class="front"><a th:href="'/goods/'+${recommendGoods.id}"><img th:src="@{'/static/images/goodsImage/'+${recommendGoods.imageName}}" alt="" class="img-fluid"></a></div>
-                                            <div class="back"><a th:href="'/goods/'+${recommendGoods.id}"><img th:src="@{'/static/images/goodsImage/'+${recommendGoods.imageName}}" alt="" class="img-fluid"></a></div>
+                                            <div class="front"><a th:href="'/goods/'+${recommendGoods.id}"><img
+                                                    th:src="@{'/static/images/goodsImage/'+${recommendGoods.imageName}}"
+                                                    alt="" class="img-fluid"></a></div>
+                                            <div class="back"><a th:href="'/goods/'+${recommendGoods.id}"><img
+                                                    th:src="@{'/static/images/goodsImage/'+${recommendGoods.imageName}}"
+                                                    alt="" class="img-fluid"></a></div>
                                         </div>
-                                    </div><a th:href="'/goods/'+${recommendGoods.id}" class="invisible"><img th:src="@{'/static/images/goodsImage/'+${recommendGoods.imageName}}" alt="" class="img-fluid"></a>
+                                    </div>
+                                    <a th:href="'/goods/'+${recommendGoods.id}" class="invisible"><img
+                                            th:src="@{'/static/images/goodsImage/'+${recommendGoods.imageName}}" alt=""
+                                            class="img-fluid"></a>
                                     <div class="text">
-                                        <a th:href="'/goods/'+${recommendGoods.id}" style="color: black"><h3 th:text="${recommendGoods.name}"></h3></a>
+                                        <a th:href="'/goods/'+${recommendGoods.id}" style="color: black"><h3
+                                                th:text="${recommendGoods.name}"></h3></a>
                                         <p class="price" th:text="'￥'+${recommendGoods.sellingPrice}"></p>
                                     </div>
                                 </div>
@@ -134,12 +166,20 @@
                                 <div class="product same-height">
                                     <div class="flip-container">
                                         <div class="flipper">
-                                            <div class="front"><a th:href="'/goods/'+${currentBrowse.id}"><img th:src="@{'/static/images/goodsImage/'+${currentBrowse.imageName}}" alt="" class="img-fluid"></a></div>
-                                            <div class="back"><a th:href="'/goods/'+${currentBrowse.id}"><img th:src="@{'/static/images/goodsImage/'+${currentBrowse.imageName}}" alt="" class="img-fluid"></a></div>
+                                            <div class="front"><a th:href="'/goods/'+${currentBrowse.id}"><img
+                                                    th:src="@{'/static/images/goodsImage/'+${currentBrowse.imageName}}"
+                                                    alt="" class="img-fluid"></a></div>
+                                            <div class="back"><a th:href="'/goods/'+${currentBrowse.id}"><img
+                                                    th:src="@{'/static/images/goodsImage/'+${currentBrowse.imageName}}"
+                                                    alt="" class="img-fluid"></a></div>
                                         </div>
-                                    </div><a th:href="'/goods/'+${currentBrowse.id}" class="invisible"><img th:src="@{'/static/images/goodsImage/'+${currentBrowse.imageName}}" alt="" class="img-fluid"></a>
+                                    </div>
+                                    <a th:href="'/goods/'+${currentBrowse.id}" class="invisible"><img
+                                            th:src="@{'/static/images/goodsImage/'+${currentBrowse.imageName}}" alt=""
+                                            class="img-fluid"></a>
                                     <div class="text">
-                                        <a th:href="'/goods/'+${currentBrowse.id}" style="color: black"><h3 th:text="${currentBrowse.name}"></h3></a>
+                                        <a th:href="'/goods/'+${currentBrowse.id}" style="color: black"><h3
+                                                th:text="${currentBrowse.name}"></h3></a>
                                         <p class="price" th:text="'￥'+${currentBrowse.sellingPrice}"></p>
                                     </div>
                                 </div>
@@ -169,4 +209,20 @@
     </div>
 </div>
 </body>
+<script th:src="@{/static/js/jquery.js}"></script>
+<script>
+    /*<![CDATA[*/
+    function addShoppingCart(goodsId) {
+        $.post("/shopping/addShoppingCartItem", {goodsId: goodsId}, function (result) {
+            if (result.success) {
+                alert("已成功加入购物车!");
+                location.reload();
+            } else {
+                alert("添加失败!")
+            }
+        });
+    }
+
+    /*]]>*/
+</script>
 </html>

@@ -7,6 +7,7 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 /**
  * @author LeDao
  */
+
 @SpringBootApplication
 @MapperScan("com.ledao.mapper")
 public class PetHospitalApplication {

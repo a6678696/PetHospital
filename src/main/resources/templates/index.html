@@ -118,13 +118,15 @@
                 window.location.href = "/customer/logout";
             }
         }
-        //检验登录状态
-        function checkLogin() {
-            var userName=document.getElementById("userName1");
-            if (userName == '') {
-                alert("请先登录!!");
-                window.location.href = "/customer/login";
-            }
+        function addShoppingCart(goodsId) {
+            $.post("/shopping/addShoppingCartItem", {goodsId: goodsId}, function (result) {
+                if (result.success) {
+                    alert("已成功加入购物车!");
+                    location.reload();
+                } else {
+                    alert("添加失败!")
+                }
+            },"json");
         }
     </script>
 </head>

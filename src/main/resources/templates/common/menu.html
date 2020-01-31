@@ -132,7 +132,7 @@
                     <div id="search-not-mobile" class="navbar-collapse collapse"></div><a data-toggle="collapse" href="#search" class="btn navbar-btn btn-primary d-none d-lg-inline-block" title="搜索文章和商品"><span class="sr-only">Toggle search</span><i class="fa fa-search"></i></a>
                     <div id="basket-overview" class="navbar-collapse collapse d-none d-lg-block">
                         <a href="/goods/list/1?typeId=21" class="btn btn-primary navbar-btn" title="LeDao医院商城"><i class="fa fa-shopping-bag"></i></a>
-                        <a href="basket.html" class="btn btn-primary navbar-btn" th:if="${session.currentCustomer!=null}"><i class="fa fa-shopping-cart"></i><span>我的购物车</span></a>
+                        <a href="/shoppingCart" class="btn btn-primary navbar-btn" th:if="${session.currentCustomer!=null}"><i class="fa fa-shopping-cart"></i><span>我的购物车</span></a>
                         <a href="/login" class="btn btn-primary navbar-btn" th:if="${session.currentCustomer==null}"><span>登录</span></a>
                     </div>
                 </div>
