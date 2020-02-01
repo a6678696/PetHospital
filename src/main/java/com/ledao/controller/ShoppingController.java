@@ -70,6 +70,7 @@ public class ShoppingController {
         }
         shoppingCart.setShoppingCartItems(shoppingCartItemList);
         session.setAttribute("shoppingCart", shoppingCart);
+        this.getCount(session);
         return "redirect:/shoppingCart";
     }
 
@@ -95,7 +96,11 @@ public class ShoppingController {
         //当购物车中已经存在要加入购物车的商品,就让该商品的数量+1
         for (ShoppingCartItem shoppingCartItem : shoppingCartItemList) {
             if (shoppingCartItem.getGoods().getId().equals(goods.getId())) {
-                shoppingCartItem.setCount(shoppingCartItem.getCount() + 1);
+                if (goods.getInventoryQuantity() > shoppingCartItem.getCount()) {
+                    shoppingCartItem.setCount(shoppingCartItem.getCount() + 1);
+                } else {
+                    shoppingCartItem.setCount(shoppingCartItem.getCount());
+                }
                 flag = false;
                 break;
             }
@@ -109,6 +114,64 @@ public class ShoppingController {
         }
         //将购物车放入session中
         session.setAttribute("shoppingCart", shoppingCart);
+        this.getCount(session);
     }
 
+    /**
+     * 刷新购物车商品信息
+     *
+     * @param session
+     * @param goodsId
+     * @param count
+     * @return
+     */
+    @RequestMapping("/updateShoppingCartItem")
+    public String updateShoppingCartItem(HttpSession session, Integer goodsId, Integer count,Integer key) {
+        Goods goods = goodsService.findById(goodsId);
+        ShoppingCart shoppingCart = (ShoppingCart) session.getAttribute("shoppingCart");
+        List<ShoppingCartItem> shoppingCartItemList = shoppingCart.getShoppingCartItems();
+        for (ShoppingCartItem shoppingCartItem : shoppingCartItemList) {
+            if (shoppingCartItem.getGoods().getId().equals(goodsId)) {
+                if (key == 0) {
+                    if (goods.getInventoryQuantity() >= count) {
+                        shoppingCartItem.setCount(count);
+                    } else {
+                        shoppingCartItem.setCount(shoppingCartItem.getCount());
+                    }
+                    if (count == 0) {
+                        shoppingCartItem.setCount(1);
+                    }
+                } else if (key==1) {
+                    if (goods.getInventoryQuantity() >= count) {
+                        shoppingCartItem.setCount(count);
+                    } else if (goods.getInventoryQuantity() < count) {
+                        shoppingCartItem.setCount(shoppingCartItem.getGoods().getInventoryQuantity());
+                    } else if (count == 0) {
+                        removeShoppingCartItem(session, goodsId);
+                    } else if (count<0){
+                        removeShoppingCartItem(session, goodsId);
+                    }
+                }
+                break;
+            }
+        }
+        session.setAttribute("shoppingCart", shoppingCart);
+        this.getCount(session);
+        return "redirect:/shoppingCart";
+    }
+
+    /**
+     * 计算购物车的商品总金额
+     *
+     * @param session
+     */
+    private void getCount(HttpSession session) {
+        ShoppingCart shoppingCart2 = (ShoppingCart) session.getAttribute("shoppingCart");
+        shoppingCart2.setTotal(0);
+        List<ShoppingCartItem> shoppingCartItemList2 = shoppingCart2.getShoppingCartItems();
+        for (ShoppingCartItem shoppingCartItem : shoppingCartItemList2) {
+            shoppingCart2.setTotal((int) (shoppingCart2.getTotal() + shoppingCartItem.getCount() * shoppingCartItem.getGoods().getSellingPrice()));
+        }
+        session.setAttribute("shoppingCart", shoppingCart2);
+    }
 }

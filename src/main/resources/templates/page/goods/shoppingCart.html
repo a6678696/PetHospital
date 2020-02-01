@@ -7,7 +7,7 @@
 </head>
 <body>
 <div id="b">
-    <div id="all" style="padding-top: 40px">
+    <div id="all" style="padding-top: 20px">
         <div id="content">
             <div class="container">
                 <div class="row">
@@ -31,15 +31,15 @@
                                     <tbody>
                                     <tr>
                                         <td>商品总计</td>
-                                        <th>￥446.00</th>
+                                        <th>￥<span th:text="${session.shoppingCart.getTotal()}"></span></th>
                                     </tr>
                                     <tr>
                                         <td>运费</td>
-                                        <th>￥10.00</th>
+                                        <th>￥0.00</th>
                                     </tr>
                                     <tr class="total">
                                         <td>总金额</td>
-                                        <th>￥456.00</th>
+                                        <th>￥<span th:text="${session.shoppingCart.getTotal()}"></span></th>
                                     </tr>
                                     </tbody>
                                 </table>
@@ -50,14 +50,15 @@
                     <div id="basket" class="col-lg-9">
                         <div class="box container">
                             <form method="post" action="checkout1.html">
-                                <h1>我的购物车</h1>
-                                <p class="text-muted">当前有 <span th:text="${session.shoppingCart.getShoppingCartItems().size()}"></span> 种商品</p>
+                                <p class="text-muted">当前有 <span
+                                        th:text="${session.shoppingCart.getShoppingCartItems().size()}"></span> 种商品</p>
                                 <div class="table-responsive">
                                     <table class="table">
                                         <thead>
                                         <tr>
                                             <th colspan="2">商品信息</th>
-                                            <th>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;数量</th>
+                                            <th>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;数量</th>
+                                            <th>库存</th>
                                             <th>&nbsp;&nbsp;&nbsp;单价</th>
                                             <th>&nbsp;&nbsp;折扣</th>
                                             <th colspan="2">&nbsp;&nbsp;小计</th>
@@ -65,33 +66,64 @@
                                         </thead>
                                         <tbody>
                                         <tr th:each="shoppingCartItems:${session.shoppingCart.getShoppingCartItems()}">
-                                            <td><a th:href="@{'/goods/'+${shoppingCartItems.getGoods().getId()}}"><img th:src="@{'/static/images/goodsImage/'+${shoppingCartItems.getGoods().getImageName()}}" style="height: 60px;width: 60px" alt="White Blouse Armani"></a></td>
-                                            <td><a th:href="@{'/goods/'+${shoppingCartItems.getGoods().getId()}}" th:title="${shoppingCartItems.getGoods().getName()}"><span th:text="${shoppingCartItems.getGoods().getName()}"></span></a></td>
+                                            <td><a th:href="@{'/goods/'+${shoppingCartItems.getGoods().getId()}}"><img
+                                                    th:src="@{'/static/images/goodsImage/'+${shoppingCartItems.getGoods().getImageName()}}"
+                                                    style="height: 60px;width: 60px" alt="White Blouse Armani"></a></td>
+                                            <td><a th:href="@{'/goods/'+${shoppingCartItems.getGoods().getId()}}"
+                                                   th:title="${shoppingCartItems.getGoods().getName()}"><span
+                                                    th:text="${shoppingCartItems.getGoods().getName()}"></span></a></td>
                                             <td>
                                                 <div class="form-inline">
-                                                    <button class="btn-danger" style="width: 24px">-</button>&nbsp;<input type="text" th:value="${shoppingCartItems.getCount()}" class="form-control" style="width: 50px;text-align:center;">&nbsp;<button class="btn-success" style="width: 24px">+</button>
+                                                    <input type="hidden" id="goods_id" th:value="${shoppingCartItems.getGoods().getId()}"/>
+                                                    <input type="hidden" id="goods_stock" th:value="${shoppingCartItems.getGoods().getInventoryQuantity()}"/>
+                                                    <button id="minCount" class="btn-danger min" style="width: 24px">-</button>&nbsp;
+                                                    <input id="count" type="text"
+                                                                          th:value="${shoppingCartItems.getCount()}"
+                                                                          class="text_box"
+                                                                          style="width: 50px;text-align:center;">&nbsp;
+                                                    <button id="addCount" class="btn-success add" style="width: 24px">+</button>
                                                 </div>
                                             </td>
-                                            <td>￥<span th:text="${shoppingCartItems.getGoods().getSellingPrice()}"></span></td>
+                                            <td><span
+                                                    th:text="'&nbsp;&nbsp;&nbsp;'+${shoppingCartItems.getGoods().getInventoryQuantity()}"
+                                                    style="color: blue"></span></td>
+                                            <td>￥<span
+                                                    th:text="${shoppingCartItems.getGoods().getSellingPrice()}"></span>
+                                            </td>
                                             <td>￥0.00</td>
-                                            <td>￥<span th:text="${shoppingCartItems.getGoods().getSellingPrice()}*${shoppingCartItems.getCount()}"></span></td>
-                                            <td><a th:href="'javascript:removeShoppingCartItem('+${shoppingCartItems.getGoods().getId()}+')'" title="从购物车中移除该商品"><i class="fa fa-trash-o" style="color: red;font-size: 20px"></i></a></td>
+                                            <td>￥<span
+                                                    th:text="${shoppingCartItems.getGoods().getSellingPrice()}*${shoppingCartItems.getCount()}"></span>
+                                            </td>
+                                            <td>
+                                                <a th:href="'javascript:removeShoppingCartItem('+${shoppingCartItems.getGoods().getId()}+')'"
+                                                   title="从购物车中移除该商品"><i class="fa fa-trash-o"
+                                                                         style="color: red;font-size: 20px"></i></a>
+                                            </td>
                                         </tr>
                                         </tbody>
                                         <tfoot>
                                         <tr>
                                             <th colspan="5">总金额</th>
-                                            <th colspan="2">￥446.00</th>
+                                            <th colspan="2">￥<span th:text="${session.shoppingCart.getTotal()}"></span></th>
                                         </tr>
                                         </tfoot>
                                     </table>
                                 </div>
+                                <div class="form-inline">
+                                    <p style="font-size: 17px">收货人:</p>&nbsp;<p style="font-size: 17px" th:text="${session.currentCustomer.getContact()}"></p>
+                                    <p style="margin-left: 20px;font-size: 17px">收货地址:</p>&nbsp;<p style="font-size: 17px" th:text="${session.currentCustomer.getAddress()}"></p>
+                                    <p style="margin-left: 20px;font-size: 17px">联系电话:</p>&nbsp;<p style="font-size: 17px" th:text="${session.currentCustomer.getNumber()}"></p>
+                                </div>
                                 <!-- /.table-responsive-->
                                 <div class="box-footer d-flex justify-content-between flex-column flex-lg-row">
-                                    <div class="left"><a href="/goods/list/1?typeId=21" class="btn btn-outline-secondary"><i class="fa fa-chevron-left"></i>继续购物</a></div>
+                                    <div class="left"><a href="/goods/list/1?typeId=21"
+                                                         class="btn btn-outline-secondary"><i
+                                            class="fa fa-chevron-left"></i>继续购物</a></div>
                                     <div class="right">
-                                        <button class="btn btn-outline-secondary"><i class="fa fa-refresh"></i>刷新购物车</button>
-                                        <button type="submit" class="btn btn-primary">立即支付<i class="fa fa-chevron-right"></i></button>
+                                        <a href="/shopping/updateShoppingCartItem" class="btn btn-outline-secondary"><i
+                                                class="fa fa-refresh"></i>刷新购物车</a>
+                                        <button type="submit" class="btn btn-primary">立即支付<i
+                                                class="fa fa-chevron-right"></i></button>
                                     </div>
                                 </div>
                             </form>
@@ -107,12 +139,20 @@
                                 <div class="product same-height">
                                     <div class="flip-container">
                                         <div class="flipper">
-                                            <div class="front"><a th:href="@{'/goods/'+${currentBrowse.id}}"><img th:src="@{'/static/images/goodsImage/'+${currentBrowse.imageName}}" alt="" class="img-fluid"></a></div>
-                                            <div class="back"><a th:href="@{'/goods/'+${currentBrowse.id}}"><img th:src="@{'/static/images/goodsImage/'+${currentBrowse.imageName}}" alt="" class="img-fluid"></a></div>
+                                            <div class="front"><a th:href="@{'/goods/'+${currentBrowse.id}}"><img
+                                                    th:src="@{'/static/images/goodsImage/'+${currentBrowse.imageName}}"
+                                                    alt="" class="img-fluid"></a></div>
+                                            <div class="back"><a th:href="@{'/goods/'+${currentBrowse.id}}"><img
+                                                    th:src="@{'/static/images/goodsImage/'+${currentBrowse.imageName}}"
+                                                    alt="" class="img-fluid"></a></div>
                                         </div>
-                                    </div><a th:href="@{'/goods/'+${currentBrowse.id}}" class="invisible"><img th:src="@{'/static/images/goodsImage/'+${currentBrowse.imageName}}" alt="" class="img-fluid"></a>
+                                    </div>
+                                    <a th:href="@{'/goods/'+${currentBrowse.id}}" class="invisible"><img
+                                            th:src="@{'/static/images/goodsImage/'+${currentBrowse.imageName}}" alt=""
+                                            class="img-fluid"></a>
                                     <div class="text">
-                                        <a th:href="@{'/goods/'+${currentBrowse.id}}" style="color: black"><h3 th:text="${currentBrowse.name}"></h3></a>
+                                        <a th:href="@{'/goods/'+${currentBrowse.id}}" style="color: black"><h3
+                                                th:text="${currentBrowse.name}"></h3></a>
                                         <p class="price" th:text="'￥'+${currentBrowse.sellingPrice}"></p>
                                     </div>
                                 </div>

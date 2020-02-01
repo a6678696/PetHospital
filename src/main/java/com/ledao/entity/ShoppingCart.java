@@ -23,5 +23,13 @@ public class ShoppingCart implements Serializable {
      */
     private Integer customerId;
 
+    /**
+     * 购物车内商品集合
+     */
     private List<ShoppingCartItem> shoppingCartItems=new ArrayList<>();
+
+    /**
+     * 购物车内商品总金额
+     */
+    private Integer total;
 }

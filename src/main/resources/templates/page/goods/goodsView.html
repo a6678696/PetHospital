@@ -7,7 +7,7 @@
 </head>
 <body>
 <div id="b">
-    <div id="all" style="padding-top: 40px">
+    <div id="all" style="padding-top: 20px">
         <div id="content">
             <div class="container">
                 <div class="row">
@@ -85,11 +85,19 @@
                                     <h1 class="text-center" th:text="${goods.name}"></h1>
                                     <p class="goToDescription"><a href="#details" class="scroll-to">查看商品详情</a></p>
                                     <p class="price" th:text="'￥'+${goods.sellingPrice}"></p>
+                                    <div class="form-inline">
+                                        <p>当前库存:</p>&nbsp;
+                                        <p th:text="${goods.inventoryQuantity}+'&nbsp;'" style="color: red" th:if="${goods.inventoryQuantity<1}"></p>
+                                        <p th:text="${goods.inventoryQuantity}+'&nbsp;'" style="color: #0c9076" th:if="${goods.inventoryQuantity>0}"></p>
+                                        <p th:text="${goods.unit}"></p>
+                                    </div>
+                                        <h3 style="color: red" th:if="${goods.inventoryQuantity<1}">当前商品库存为0,不可购买</h3>
                                     <p class="text-center buttons">
-                                        <a th:href="@{'/shopping/buy?goodsId='+${goods.id}}" class="btn btn-outline-success"
-                                           th:if="${session.currentCustomer!=null}"><i class="fa fa-location-arrow"></i>立即购买</a>
+                                        <a th:href="@{'/shopping/buy?goodsId='+${goods.id}}"
+                                           class="btn btn-outline-success"
+                                           th:if="${session.currentCustomer!=null&&goods.inventoryQuantity>0}"><i class="fa fa-location-arrow"></i>立即购买</a>
                                         <a th:href="'javascript:addShoppingCart('+${goods.id}+')'"
-                                           class="btn btn-outline-primary" th:if="${session.currentCustomer!=null}"><i
+                                           class="btn btn-outline-primary" th:if="${session.currentCustomer!=null&&goods.inventoryQuantity>0}"><i
                                                 class="fa fa-shopping-cart"></i>添加到购物车</a>
                                         <a href="/login" class="btn btn-danger" title="点击按钮后跳转到登录界面"
                                            th:if="${session.currentCustomer==null}"><i

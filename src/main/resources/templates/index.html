@@ -26,7 +26,7 @@
     <script type="text/javascript" th:src="@{https://oss.maxcdn.com/respond/1.4.2/respond.min.js}"></script><![endif]-->
     <script type="text/javascript" th:src="@{/static/vendor/jquery/jquery.min.js}"></script>
     <script type="text/javascript" th:src="@{/static/vendor/bootstrap/js/bootstrap.bundle.min.js}"></script>
-    <script type="text/javascript" th:src="@{/static/vendor/jquery.cookie/jquery.cookie.js}"> </script>
+    <script type="text/javascript" th:src="@{/static/vendor/jquery.cookie/jquery.cookie.js}"></script>
     <script type="text/javascript" th:src="@{/static/vendor/owl.carousel/owl.carousel.min.js}"></script>
     <script type="text/javascript" th:src="@{/static/vendor/owl.carousel2.thumbs/owl.carousel2.thumbs.js}"></script>
     <script type="text/javascript" th:src="@{/static/js/front.js}"></script>
@@ -49,32 +49,34 @@
             var successLogin = [[${successLogin}]];
             if (successLogin == true) {
                 alert("登录成功,跳转到主页...");
-            }else if (successLogin == false) {
+            } else if (successLogin == false) {
                 alert("登录失败,用户名或密码错误!请重新登录...");
             }
         }
         //返回顶部图标出现或者消失
         $(function () {
-            $(function(){
-                $(window).scroll(function(){
-                    if($(window).scrollTop() > 100){
+            $(function () {
+                $(window).scroll(function () {
+                    if ($(window).scrollTop() > 100) {
                         $("#gotop").fadeIn(1000);//一秒渐入动画
-                    }else{
+                    } else {
                         $("#gotop").fadeOut(1000);//一秒渐隐动画
                     }
                 });
 
-                $("#gotop").click(function(){
-                    $('body,html').animate({scrollTop:0},1000);
+                $("#gotop").click(function () {
+                    $('body,html').animate({scrollTop: 0}, 1000);
                 });
             });
         });
+
         //客户注销登录
         function logout() {
             if (confirm("你确定要退出系统吗?")) {
                 window.location.href = "/customer/logout";
             }
         }
+
         //添加商品到购物车
         function addShoppingCart(goodsId) {
             $.post("/shopping/addShoppingCartItem", {goodsId: goodsId}, function (result) {
@@ -84,8 +86,9 @@
                 } else {
                     alert("添加失败!")
                 }
-            },"json");
+            }, "json");
         }
+
         //检验用户名是否存在
         function checkUserName(userName) {
             if (userName == "") {
@@ -107,6 +110,7 @@
                 }
             );
         }
+
         //验证密码长度,不能小于6位
         function checkPassword(password) {
             if (password == '') {
@@ -117,16 +121,70 @@
                 $("#passwordErrorInfo").html("");
             }
         }
+
         //删除购物车中的商品
         function removeShoppingCartItem(goodsId) {
             if (confirm("您确定要要从购物车中删除这个商品吗?")) {
                 window.location.href = "/shopping/removeShoppingCartItem?goodsId=" + goodsId;
             }
         }
+
+        //刷新购物车商品信息
+        function refreshShoppingCart(goodsId, count,key) {
+            $.post("/shopping/updateShoppingCartItem", {goodsId: goodsId, count: count,key:key},
+                function (result) {
+                    if (result.success) {
+
+                    } else {
+
+                    }
+                }
+            );
+        }
+
+        //点击添加按钮、减少按钮、输入商品数量实现修改购物车商品数量
+        $(document).ready(function () {
+            $(".add").click(function () {
+                var goodsId = $(this).parent().find('input[id=goods_id]').val();
+                var count = $(this).parent().find('input[class=text_box]').val();
+                var stock=$(this).parent().find('input[id=goods_stock]').val();
+                count = parseInt(count) + 1;
+                if (count > stock) {
+                    alert("购买的商品数量不能大于库存数量!");
+                    location.reload();
+                }
+                refreshShoppingCart(goodsId, count,0);
+            });
+            $(".min").click(function () {
+                var goodsId = $(this).parent().find('input[id=goods_id]').val();
+                var count = $(this).parent().find('input[class=text_box]').val();
+                count = parseInt(count) - 1;
+                if (count == 0) {
+                    alert("商品数量不能为0!");
+                }
+                refreshShoppingCart(goodsId, count,0);
+            });
+            $(".text_box").blur(function () {
+                var goodsId = $(this).parent().find('input[id=goods_id]').val();
+                var count = $(this).parent().find('input[class=text_box]').val();
+                var stock=$(this).parent().find('input[id=goods_stock]').val();
+                if (count < 0) {
+                    alert("商品数量不能小于1!");
+                    count=1;
+                    location.reload();
+                }
+                if (count > stock) {
+                    alert("购买的商品数量不能大于库存数量!");
+                    location.reload();
+                }
+                refreshShoppingCart(goodsId, count,1);
+                location.reload();
+            });
+        });
     </script>
 </head>
 <body>
-<span  name="gotop"></span>
+<span name="gotop"></span>
 <header class="header mb-5">
     <div th:include="common/head::#h"></div>
     <div th:include="common/menu::#m"></div>
@@ -134,7 +192,8 @@
     <div th:include="common/foot::#f"></div>
 </header>
 <a href="#gotop" title="返回顶部">
-    <img th:src="@{/static/images/img/top.png}" id="gotop" alt="" style="position: fixed;bottom: 10%;display: none;height: 40px;margin-left: 90%">
+    <img th:src="@{/static/images/img/top.png}" id="gotop" alt=""
+         style="position: fixed;bottom: 10%;display: none;height: 40px;margin-left: 90%">
 </a>
 </body>
 </html>
