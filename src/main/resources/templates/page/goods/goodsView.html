@@ -79,6 +79,11 @@
                                     <div class="ribbon-background"></div>
                                 </div>
                                 <!-- /.ribbon-->
+                                <div class="ribbon noStock" th:if="${goods.inventoryQuantity<1}">
+                                    <div class="theribbon">售罄</div>
+                                    <div class="ribbon-background"></div>
+                                </div>
+                                <!-- /.ribbon-->
                             </div>
                             <div class="col-md-6">
                                 <div class="box">
@@ -90,6 +95,10 @@
                                         <p th:text="${goods.inventoryQuantity}+'&nbsp;'" style="color: red" th:if="${goods.inventoryQuantity<1}"></p>
                                         <p th:text="${goods.inventoryQuantity}+'&nbsp;'" style="color: #0c9076" th:if="${goods.inventoryQuantity>0}"></p>
                                         <p th:text="${goods.unit}"></p>
+                                    </div>
+                                    <div class="form-inline">
+                                        <p>厂家:</p>&nbsp;
+                                        <p th:text="${goods.producer}"></p>
                                     </div>
                                         <h3 style="color: red" th:if="${goods.inventoryQuantity<1}">当前商品库存为0,不可购买</h3>
                                     <p class="text-center buttons">
@@ -162,6 +171,11 @@
                                     <div class="ribbon-background"></div>
                                 </div>
                                 <!-- /.ribbon-->
+                                <div class="ribbon noStock" th:if="${recommendGoods.inventoryQuantity<1}">
+                                    <div class="theribbon">售罄</div>
+                                    <div class="ribbon-background"></div>
+                                </div>
+                                <!-- /.ribbon-->
                             </div>
                         </div>
                         <div class="row same-height-row">
@@ -204,6 +218,11 @@
                                 <!-- /.ribbon-->
                                 <div class="ribbon gift" th:if="${currentBrowse.specialPrice==1}">
                                     <div class="theribbon">特价</div>
+                                    <div class="ribbon-background"></div>
+                                </div>
+                                <!-- /.ribbon-->
+                                <div class="ribbon noStock" th:if="${currentBrowse.inventoryQuantity<1}">
+                                    <div class="theribbon">售罄</div>
                                     <div class="ribbon-background"></div>
                                 </div>
                                 <!-- /.ribbon-->

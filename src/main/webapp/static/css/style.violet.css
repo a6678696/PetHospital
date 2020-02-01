@@ -582,6 +582,19 @@ h1 {
   border-color: #145523 #145523 transparent transparent;
 }
 
+.ribbon.noStock {
+  top: 150px;
+}
+
+.ribbon.noStock .theribbon {
+  background-color: red;
+  text-shadow: 0px 1px 2px #bbb;
+}
+
+.ribbon.noStock .theribbon:after {
+  border-color: #145523 #145523 transparent transparent;
+}
+
 /*
 *
 * ======================================================================

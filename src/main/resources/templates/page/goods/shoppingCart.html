@@ -7,7 +7,9 @@
 </head>
 <body>
 <div id="b">
-    <div id="all" style="padding-top: 20px">
+    <h1 style="text-align: center;padding-top: 100px"  th:if="${session.shoppingCart==null}">当前购物车有<span style="color: red">0</span>种商品,<a href="/goods/list/1?typeId=21">点我去购物!</a></h1>
+    <h1 style="text-align: center;padding-top: 100px"  th:if="${session.shoppingCart.getShoppingCartItems().size()==0}">当前购物车有<span style="color: red">0</span>种商品,<a href="/goods/list/1?typeId=21">点我去购物!</a></h1>
+    <div id="all" style="padding-top: 20px" th:if="${session.shoppingCart.getShoppingCartItems().size()>0&&session.shoppingCart!=null}">
         <div id="content">
             <div class="container">
                 <div class="row">
@@ -68,7 +70,7 @@
                                         <tr th:each="shoppingCartItems:${session.shoppingCart.getShoppingCartItems()}">
                                             <td><a th:href="@{'/goods/'+${shoppingCartItems.getGoods().getId()}}"><img
                                                     th:src="@{'/static/images/goodsImage/'+${shoppingCartItems.getGoods().getImageName()}}"
-                                                    style="height: 60px;width: 60px" alt="White Blouse Armani"></a></td>
+                                                    style="height: 40px;width: 40px" alt="White Blouse Armani"></a></td>
                                             <td><a th:href="@{'/goods/'+${shoppingCartItems.getGoods().getId()}}"
                                                    th:title="${shoppingCartItems.getGoods().getName()}"><span
                                                     th:text="${shoppingCartItems.getGoods().getName()}"></span></a></td>
@@ -103,8 +105,9 @@
                                         </tbody>
                                         <tfoot>
                                         <tr>
-                                            <th colspan="5">总金额</th>
-                                            <th colspan="2">￥<span th:text="${session.shoppingCart.getTotal()}"></span></th>
+                                            <th colspan="5"></th>
+                                            <th>总金额</th>
+                                            <th>￥<span th:text="${session.shoppingCart.getTotal()}"></span></th>
                                         </tr>
                                         </tfoot>
                                     </table>
@@ -169,6 +172,11 @@
                                 <!-- /.ribbon-->
                                 <div class="ribbon gift" th:if="${currentBrowse.specialPrice==1}">
                                     <div class="theribbon">特价</div>
+                                    <div class="ribbon-background"></div>
+                                </div>
+                                <!-- /.ribbon-->
+                                <div class="ribbon noStock" th:if="${currentBrowse.inventoryQuantity<1}">
+                                    <div class="theribbon">售罄</div>
                                     <div class="ribbon-background"></div>
                                 </div>
                                 <!-- /.ribbon-->

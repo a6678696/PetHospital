@@ -52,6 +52,10 @@
             } else if (successLogin == false) {
                 alert("登录失败,用户名或密码错误!请重新登录...");
             }
+            var successModify = [[${successModify}]];
+            if (successModify == true) {
+                alert("个人信息修改成功!");
+            }
         }
         //返回顶部图标出现或者消失
         $(function () {
@@ -185,15 +189,15 @@
 </head>
 <body>
 <span name="gotop"></span>
+<a href="#gotop" title="返回顶部">
+    <img th:src="@{/static/images/img/top.png}" id="gotop" alt=""
+         style="position: fixed;bottom: 10%;display: none;height: 40px;margin-left: 90%">
+</a>
 <header class="header mb-5">
     <div th:include="common/head::#h"></div>
     <div th:include="common/menu::#m"></div>
     <div th:include="${mainPage}::${mainPageKey}"></div>
     <div th:include="common/foot::#f"></div>
 </header>
-<a href="#gotop" title="返回顶部">
-    <img th:src="@{/static/images/img/top.png}" id="gotop" alt=""
-         style="position: fixed;bottom: 10%;display: none;height: 40px;margin-left: 90%">
-</a>
 </body>
 </html>

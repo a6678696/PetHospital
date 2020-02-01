@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<!--suppress ALL-->
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<div id="b">
+    <div id="all" style="padding-top: 20px">
+        <div id="content">
+            <div class="container">
+                <div class="row">
+                    <div class="col-lg-12">
+                        <!-- breadcrumb-->
+                        <nav aria-label="breadcrumb">
+                            <ol class="breadcrumb">
+                                <i class="fa fa-eye" style="padding-top: 2px"></i>当前位置:&nbsp;&nbsp;
+                                <li class="breadcrumb-item"><a href="/">主页</a></li>
+                                <li class="breadcrumb-item"><span>个人中心</span></li>
+                            </ol>
+                        </nav>
+                    </div>
+                    <div class="col-lg-3">
+                        <!--
+                        *** BLOG MENU ***
+                        _________________________________________________________
+                        -->
+                        <div class="card sidebar-menu mb-4">
+                            <div class="card-header">
+                                <h3 class="h4 panel-title"></h3>
+                            </div>
+                            <div class="card-body">
+                                <ul class="nav flex-column nav-pills">
+                                    <img th:src="@{'/static/images/customerImage/'+${session.currentCustomer.getImageName()}}"
+                                         alt="">
+                                    <li><a href="/customer/personalCenter/ModifyMessage" class="nav-link active" style="font-size: 17px"><i class="fa fa-edit"></i>修改个人信息</a></li>
+                                    <li><a href="/customer/personalCenter/ModifyMessage" class="nav-link active" style="font-size: 17px"><img th:src="@{/static/images/img/pet.png}" style="height: 22px" alt="">&nbsp;我的宠物</a></li>
+                                </ul>
+                            </div>
+                        </div>
+                        <!-- /.col-lg-3-->
+                    </div>
+                    <div id="blog-post" class="col-lg-9">
+                        <div class="box">
+                            <div class="form-inline">
+                                <h2>(●'◡'●)欢迎您,</h2>
+                                <h2 th:text="${session.currentCustomer.getContact()}"></h2>
+                            </div>
+                            <form action="/customer/save" method="post" enctype="multipart/form-data">
+                                <div class="form-group">
+                                    <label>用户名:</label>
+                                    <input type="text" class="form-control" readonly="readonly"
+                                           th:value="${session.currentCustomer==null?'':session.currentCustomer.getUserName()}">
+                                </div>
+                                <div class="form-group">
+                                    <label>真实姓名:</label>
+                                    <input type="text" class="form-control" readonly="readonly"
+                                           th:value="${session.currentCustomer==null?'':session.currentCustomer.getContact()}" placeholder="必填">
+                                </div>
+                                <div class="form-group">
+                                    <label>联系方式:</label>
+                                    <input type="text" class="form-control" readonly="readonly"
+                                           th:value="${session.currentCustomer==null?'':session.currentCustomer.getNumber()}" placeholder="必填">
+                                </div>
+                                <div class="form-group">
+                                    <label>收货地址:</label>
+                                    <input type="text" class="form-control" readonly="readonly"
+                                           th:value="${session.currentCustomer==null?'':session.currentCustomer.getAddress()}" placeholder="必填">
+                                </div>
+                                <div class="form-group">
+                                    <label>公司名称:</label>
+                                    <input type="text" class="form-control" readonly="readonly" value="无" th:if="${session.currentCustomer.getName()==''}">
+                                    <input type="text" class="form-control" readonly="readonly" th:if="${session.currentCustomer.getName()!=''}"
+                                           th:value="${session.currentCustomer==null?'':session.currentCustomer.getName()}">
+                                </div>
+                            </form>
+                        </div>
+                        <!-- /.box-->
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+</body>
+</html>

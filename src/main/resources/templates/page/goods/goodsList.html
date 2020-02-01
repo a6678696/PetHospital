@@ -78,6 +78,11 @@
                                         <div class="ribbon-background"></div>
                                     </div>
                                     <!-- /.ribbon-->
+                                    <div class="ribbon noStock" th:if="${goods.inventoryQuantity<1}">
+                                        <div class="theribbon">售罄</div>
+                                        <div class="ribbon-background"></div>
+                                    </div>
+                                    <!-- /.ribbon-->
                                 </div>
                                 <!-- /.product            -->
                             </div>
@@ -122,6 +127,11 @@
                                 <!-- /.ribbon-->
                                 <div class="ribbon gift" th:if="${currentBrowse.specialPrice==1}">
                                     <div class="theribbon">特价</div>
+                                    <div class="ribbon-background"></div>
+                                </div>
+                                <!-- /.ribbon-->
+                                <div class="ribbon noStock" th:if="${currentBrowse.inventoryQuantity<1}">
+                                    <div class="theribbon">售罄</div>
                                     <div class="ribbon-background"></div>
                                 </div>
                                 <!-- /.ribbon-->

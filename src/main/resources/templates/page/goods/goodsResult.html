@@ -59,8 +59,6 @@
                                             <del></del>￥<span th:text="${goods.sellingPrice}"></span>
                                         </p>
                                         <p class="buttons">
-                                            <a th:href="'/goods/'+${goods.id}" class="btn btn-outline-secondary">详情</a>
-                                            <a href="#" class="btn btn-primary" th:if="${session.currentCustomer!=null}"><i class="fa fa-shopping-cart"></i>添加到购物车</a>
                                             <a href="/login" class="btn btn-danger" title="点击按钮后跳转到登录界面" th:if="${session.currentCustomer==null}"><i class="fa fa-globe"></i>登录后方可购物</a>
                                         </p>
                                     </div>
@@ -77,6 +75,11 @@
                                     <!-- /.ribbon-->
                                     <div class="ribbon gift" th:if="${goods.specialPrice==1}">
                                         <div class="theribbon">特价</div>
+                                        <div class="ribbon-background"></div>
+                                    </div>
+                                    <!-- /.ribbon-->
+                                    <div class="ribbon noStock" th:if="${goods.inventoryQuantity<1}">
+                                        <div class="theribbon">售罄</div>
                                         <div class="ribbon-background"></div>
                                     </div>
                                     <!-- /.ribbon-->

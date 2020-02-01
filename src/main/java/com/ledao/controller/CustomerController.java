@@ -47,7 +47,7 @@ public class CustomerController {
      * @return
      */
     @RequestMapping("/save")
-    public ModelAndView save(@Valid Customer customer, BindingResult bindingResult, @RequestParam("customerImage") MultipartFile file) throws Exception {
+    public ModelAndView save(@Valid Customer customer, BindingResult bindingResult, @RequestParam("customerImage") MultipartFile file,HttpSession session) throws Exception {
         ModelAndView mav = new ModelAndView();
         if (bindingResult.hasErrors()) {
             mav.addObject("customer", customer);
@@ -57,34 +57,44 @@ public class CustomerController {
         } else if (!customer.getPassword2().equals(customer.getPassword())) {
             mav.addObject("customer", customer);
             mav.addObject("error", "密码和确认密码不相同,请重新输入!");
-            mav.addObject("title", "用户注册");
-            mav.addObject("mainPage", "page/register");
-        } else if (customerService.getCountByUserName(customer.getUserName()) != 0) {
+            if (customer.getId() == null) {
+                mav.addObject("title", "用户注册");
+                mav.addObject("mainPage", "page/register");
+            } else {
+                mav.addObject("title", "修改个人信息");
+                mav.addObject("mainPage", "page/customer/personalCenterModifyMessage");
+            }
+        } else if (customerService.getCountByUserName(customer.getUserName()) != 0&&customer.getId()==null) {
             mav.addObject("customer", customer);
             mav.addObject("error", "您要注册的用户名已经存在,请重新输入!");
             mav.addObject("title", "用户注册");
             mav.addObject("mainPage", "page/register");
         } else {
             if (!file.isEmpty()) {
+                if (customer.getId() != null) {
+                    FileUtils.deleteQuietly(new File(customerImageFilePath + customerService.findById(customer.getId()).getImageName()));
+                }
                 // 获取上传的文件名
                 String fileName = file.getOriginalFilename();
                 // 获取文件的后缀
                 String suffixName = fileName.substring(fileName.lastIndexOf("."));
                 String newFileName = DateUtil.getCurrentDateStr2() + suffixName;
                 FileUtils.copyInputStreamToFile(file.getInputStream(), new File(customerImageFilePath + newFileName));
-                if (customer.getId() != null) {
-                    FileUtils.deleteQuietly(new File(customerImageFilePath + customerService.findById(customer.getId()).getImageName()));
-                }
                 customer.setImageName(newFileName);
             }
             if (customer.getId() == null) {
                 customerService.add(customer);
+                mav.addObject("successRegister", true);
+                mav.addObject("title", "用户登录");
+                mav.addObject("mainPage", "page/login");
             } else {
                 customerService.update(customer);
+                mav.addObject("successModify", true);
+                mav.addObject("title", "修改个人信息");
+                mav.addObject("mainPage", "page/customer/personalCenterFirst");
+                customer.setImageName(customerService.findById(customer.getId()).getImageName());
+                session.setAttribute("currentCustomer",customer);
             }
-            mav.addObject("successRegister", true);
-            mav.addObject("title", "用户登录");
-            mav.addObject("mainPage", "page/login");
         }
         mav.addObject("mainPageKey", "#b");
         mav.setViewName("index");
@@ -131,6 +141,26 @@ public class CustomerController {
         session.invalidate();
         mav.addObject("title", "用户登录");
         mav.addObject("mainPage", "page/indexFirst");
+        mav.addObject("mainPageKey", "#b");
+        mav.setViewName("index");
+        return mav;
+    }
+
+    @RequestMapping("/personalCenter")
+    public ModelAndView personalCenter() {
+        ModelAndView mav = new ModelAndView();
+        mav.addObject("title", "个人中心");
+        mav.addObject("mainPage", "page/customer/personalCenterFirst");
+        mav.addObject("mainPageKey", "#b");
+        mav.setViewName("index");
+        return mav;
+    }
+
+    @RequestMapping("/personalCenter/ModifyMessage")
+    public ModelAndView personalCenterModifyMessage() {
+        ModelAndView mav = new ModelAndView();
+        mav.addObject("title", "修改个人信息");
+        mav.addObject("mainPage", "page/customer/personalCenterModifyMessage");
         mav.addObject("mainPageKey", "#b");
         mav.setViewName("index");
         return mav;
