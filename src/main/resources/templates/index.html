@@ -115,25 +115,6 @@
             );
         }
 
-        function checkPetAddValue() {
-            var petName=$("#petName").val();
-            var petAge=$("#petAge").val();
-            var petTypeName=$("#petTypeName").val();
-            if (petName == null || petName == '') {
-                alert("宠物名称不能为空!");
-                return false;
-            }
-            if (petAge == null || petAge == '') {
-                alert("宠物年龄不能为空!");
-                return false;
-            }
-            if (petTypeName == null || petTypeName == '') {
-                alert("宠物类型不能为空!");
-                return false;
-            }
-            return true;
-        }
-
         function checkCustomerAddValue() {
             var userName = $("#userName").val();
             var password1 = $("#password1").val();

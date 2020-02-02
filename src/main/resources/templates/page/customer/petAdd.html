@@ -46,14 +46,14 @@
                     <div id="blog-post" class="col-lg-9">
                         <div class="box">
                             <h1 style="text-align: center">添加宠物信息</h1>
-                            <form action="/pet/save" method="post" enctype="multipart/form-data" onsubmit="return checkPetAddValue()">
+                            <form action="/pet/save" method="post" enctype="multipart/form-data">
                                 <div class="form-group">
                                     <label>宠物名称:</label>
-                                    <input id="petName" name="name" type="text" class="form-control" th:value="${pet==null?'':pet.name}" placeholder="必填">
+                                    <input id="petName" name="name" type="text" class="form-control" required="required" th:value="${pet==null?'':pet.name}" placeholder="必填">
                                 </div>
                                 <div class="form-group">
                                     <label>年龄:</label>
-                                    <input id="petAge" name="age" type="text" class="form-control" th:value="${pet==null?'':pet.age}" placeholder="必填">
+                                    <input id="petAge" name="age" type="text" class="form-control" required="required" th:value="${pet==null?'':pet.age}" placeholder="必填">
                                 </div>
                                 <div class="form-group">
                                     <label>头像:</label>
@@ -61,7 +61,7 @@
                                 </div>
                                 <div class="form-group">
                                     <label>宠物类型:</label>
-                                    <input id="petTypeName" name="typeName" type="text" class="form-control" th:value="${pet==null?'':pet.typeName}" placeholder="必填">
+                                    <input id="petTypeName" name="typeName" type="text" required="required" class="form-control" th:value="${pet==null?'':pet.typeName}" placeholder="必填">
                                 </div>
                                 <div class="text-center">
                                     <button type="submit" class="btn btn-primary">立即添加</button>
