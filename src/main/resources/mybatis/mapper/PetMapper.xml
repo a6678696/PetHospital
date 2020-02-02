@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.ledao.mapper.PetMapper">
+
+    <resultMap id="PetResult" type="Pet">
+        <result property="id" column="id"/>
+        <result property="name" column="name"/>
+        <result property="age" column="age"/>
+        <result property="imageName" column="imageName"/>
+        <result property="typeName" column="typeName"/>
+        <association property="customer" column="customerId" select="com.ledao.mapper.CustomerMapper.findById"></association>
+    </resultMap>
+    <select id="list" parameterType="map" resultMap="PetResult">
+        select * from t_pet
+        <where>
+            <if test="customer!=null">
+                and customerId=#{customer.id}
+            </if>
+        </where>
+    </select>
+    <select id="getCount" parameterType="map" resultType="java.lang.Long">
+        select count(*) from t_pet
+        <where>
+            <if test="customer!=null">
+                and customerId=#{customer.id}
+            </if>
+        </where>
+    </select>
+    <insert id="add" parameterType="Pet">
+        insert into t_pet (name, typeName, customerId, age, imageName) values (#{name},#{typeName},#{customer.id},#{age},#{imageName});
+    </insert>
+    <update id="update" parameterType="Pet">
+        update t_pet
+        <set>
+            <if test="name != null and name != ''">
+                name=#{name},
+            </if>
+            <if test="age != null">
+                age=#{age},
+            </if>
+            <if test="typeName != null and typeName != ''">
+                typeName=#{typeName},
+            </if>
+            <if test="customer!=null">
+                customerId=#{customer.id},
+            </if>
+            <if test="imageName != null and imageName != ''">
+                imageName=#{imageName},
+            </if>
+        </set>
+        where id=#{id}
+    </update>
+    <delete id="delete" parameterType="integer">
+        delete from t_pet where id=#{id}
+    </delete>
+    <select id="findById" parameterType="integer" resultMap="PetResult">
+        select * from t_pet where id=#{id}
+    </select>
+
+</mapper>

@@ -2,8 +2,10 @@ package com.ledao.controller;
 
 import com.ledao.entity.Customer;
 import com.ledao.entity.Log;
+import com.ledao.entity.Pet;
 import com.ledao.service.CustomerService;
 import com.ledao.service.LogService;
+import com.ledao.service.PetService;
 import com.ledao.util.DateUtil;
 import org.apache.commons.io.FileUtils;
 import org.apache.shiro.authz.annotation.RequiresPermissions;
@@ -21,6 +23,7 @@ import javax.servlet.http.HttpSession;
 import javax.validation.Valid;
 import java.io.File;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 /**
@@ -40,6 +43,9 @@ public class CustomerController {
     @Resource
     private CustomerService customerService;
 
+    @Resource
+    private PetService petService;
+
     /**
      * 添加或者修改客户信息
      *
@@ -47,58 +53,38 @@ public class CustomerController {
      * @return
      */
     @RequestMapping("/save")
-    public ModelAndView save(@Valid Customer customer, BindingResult bindingResult, @RequestParam("customerImage") MultipartFile file,HttpSession session) throws Exception {
-        ModelAndView mav = new ModelAndView();
-        if (bindingResult.hasErrors()) {
-            mav.addObject("customer", customer);
-            mav.addObject("error", bindingResult.getFieldError().getDefaultMessage());
-            mav.addObject("title", "用户注册");
-            mav.addObject("mainPage", "page/register");
-        } else if (!customer.getPassword2().equals(customer.getPassword())) {
-            mav.addObject("customer", customer);
-            mav.addObject("error", "密码和确认密码不相同,请重新输入!");
-            if (customer.getId() == null) {
-                mav.addObject("title", "用户注册");
-                mav.addObject("mainPage", "page/register");
-            } else {
-                mav.addObject("title", "修改个人信息");
-                mav.addObject("mainPage", "page/customer/personalCenterModifyMessage");
+    public ModelAndView save(Customer customer, @RequestParam("customerImage") MultipartFile file, HttpSession session) throws Exception {
+        if (!file.isEmpty()) {
+            if (customer.getId() != null) {
+                FileUtils.deleteQuietly(new File(customerImageFilePath + customerService.findById(customer.getId()).getImageName()));
             }
-        } else if (customerService.getCountByUserName(customer.getUserName()) != 0&&customer.getId()==null) {
-            mav.addObject("customer", customer);
-            mav.addObject("error", "您要注册的用户名已经存在,请重新输入!");
-            mav.addObject("title", "用户注册");
-            mav.addObject("mainPage", "page/register");
-        } else {
-            if (!file.isEmpty()) {
-                if (customer.getId() != null) {
-                    FileUtils.deleteQuietly(new File(customerImageFilePath + customerService.findById(customer.getId()).getImageName()));
-                }
-                // 获取上传的文件名
-                String fileName = file.getOriginalFilename();
-                // 获取文件的后缀
-                String suffixName = fileName.substring(fileName.lastIndexOf("."));
-                String newFileName = DateUtil.getCurrentDateStr2() + suffixName;
-                FileUtils.copyInputStreamToFile(file.getInputStream(), new File(customerImageFilePath + newFileName));
-                customer.setImageName(newFileName);
-            }
-            if (customer.getId() == null) {
-                customerService.add(customer);
-                mav.addObject("successRegister", true);
-                mav.addObject("title", "用户登录");
-                mav.addObject("mainPage", "page/login");
-            } else {
-                customerService.update(customer);
-                mav.addObject("successModify", true);
-                mav.addObject("title", "修改个人信息");
-                mav.addObject("mainPage", "page/customer/personalCenterFirst");
-                customer.setImageName(customerService.findById(customer.getId()).getImageName());
-                session.setAttribute("currentCustomer",customer);
-            }
+            // 获取上传的文件名
+            String fileName = file.getOriginalFilename();
+            // 获取文件的后缀
+            String suffixName = fileName.substring(fileName.lastIndexOf("."));
+            String newFileName = DateUtil.getCurrentDateStr2() + suffixName;
+            FileUtils.copyInputStreamToFile(file.getInputStream(), new File(customerImageFilePath + newFileName));
+            customer.setImageName(newFileName);
         }
-        mav.addObject("mainPageKey", "#b");
-        mav.setViewName("index");
-        return mav;
+        if (customer.getId() == null) {
+            customerService.add(customer);
+            ModelAndView mav = new ModelAndView("redirect:/login");
+            mav.addObject("successRegister", true);
+            mav.addObject("title", "用户登录");
+            mav.addObject("mainPage", "page/login");
+            mav.addObject("mainPageKey", "#b");
+            return mav;
+        } else {
+            customerService.update(customer);
+            ModelAndView mav = new ModelAndView("redirect:/customer/personalCenter");
+            mav.addObject("successModify", true);
+            mav.addObject("title", "个人中心");
+            mav.addObject("mainPage", "page/customer/personalCenterFirst");
+            customer.setImageName(customerService.findById(customer.getId()).getImageName());
+            session.setAttribute("currentCustomer", customer);
+            mav.addObject("mainPageKey", "#b");
+            return mav;
+        }
     }
 
     /**
@@ -135,10 +121,16 @@ public class CustomerController {
         return mav;
     }
 
+    /**
+     * 退出登录返回的页面
+     *
+     * @param session
+     * @return
+     */
     @RequestMapping("/logout")
     public ModelAndView logout(HttpSession session) {
-        ModelAndView mav = new ModelAndView();
         session.invalidate();
+        ModelAndView mav = new ModelAndView("");
         mav.addObject("title", "用户登录");
         mav.addObject("mainPage", "page/indexFirst");
         mav.addObject("mainPageKey", "#b");
@@ -146,6 +138,11 @@ public class CustomerController {
         return mav;
     }
 
+    /**
+     * 跳转到修改个人中心页面
+     *
+     * @return
+     */
     @RequestMapping("/personalCenter")
     public ModelAndView personalCenter() {
         ModelAndView mav = new ModelAndView();
@@ -156,6 +153,11 @@ public class CustomerController {
         return mav;
     }
 
+    /**
+     * 跳转到修改个人信息页面
+     *
+     * @return
+     */
     @RequestMapping("/personalCenter/ModifyMessage")
     public ModelAndView personalCenterModifyMessage() {
         ModelAndView mav = new ModelAndView();
@@ -177,5 +179,75 @@ public class CustomerController {
             resultMap.put("success", false);
         }
         return resultMap;
+    }
+
+    /**
+     * 查看我的宠物
+     *
+     * @return
+     */
+    @RequestMapping("/myPet")
+    public ModelAndView myPet(HttpSession session) {
+        ModelAndView mav = new ModelAndView();
+        Map<String, Object> map = new HashMap<>(16);
+        map.put("customer", session.getAttribute("currentCustomer"));
+        List<Pet> petList = petService.list(map);
+        mav.addObject("petList", petList);
+        mav.addObject("title", "我的宠物");
+        mav.addObject("mainPage", "page/customer/myPet");
+        mav.addObject("mainPageKey", "#b");
+        mav.setViewName("index");
+        return mav;
+    }
+
+    /**
+     * 添加宠物信息页面
+     *
+     * @return
+     */
+    @RequestMapping("/petAdd")
+    public ModelAndView petAdd() {
+        ModelAndView mav = new ModelAndView();
+        mav.addObject("title", "添加宠物信息");
+        mav.addObject("mainPage", "page/customer/petAdd");
+        mav.addObject("mainPageKey", "#b");
+        mav.setViewName("index");
+        return mav;
+    }
+
+    /**
+     * 修改宠物信息页面
+     *
+     * @param petId
+     * @return
+     */
+    @RequestMapping("/petModify")
+    public ModelAndView petModify(Integer petId) {
+        Pet pet = petService.findById(petId);
+        ModelAndView mav = new ModelAndView();
+        mav.addObject("pet", pet);
+        mav.addObject("title", "修改宠物信息");
+        mav.addObject("mainPage", "page/customer/petModify");
+        mav.addObject("mainPageKey", "#b");
+        mav.setViewName("index");
+        return mav;
+    }
+
+    /**
+     * 查看宠物信息页面
+     *
+     * @param petId
+     * @return
+     */
+    @RequestMapping("/petDetails")
+    public ModelAndView petDetails(Integer petId) {
+        Pet pet = petService.findById(petId);
+        ModelAndView mav = new ModelAndView();
+        mav.addObject("pet", pet);
+        mav.addObject("title", "查看宠物信息");
+        mav.addObject("mainPage", "page/customer/petDetails");
+        mav.addObject("mainPageKey", "#b");
+        mav.setViewName("index");
+        return mav;
     }
 }

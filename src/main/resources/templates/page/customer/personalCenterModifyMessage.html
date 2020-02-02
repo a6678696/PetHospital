@@ -33,10 +33,9 @@
                             </div>
                             <div class="card-body">
                                 <ul class="nav flex-column nav-pills">
-                                    <img th:src="@{'/static/images/customerImage/'+${session.currentCustomer.getImageName()}}"
-                                         alt="">
+                                    <a href="/customer/personalCenter"><img th:src="@{'/static/images/customerImage/'+${session.currentCustomer.getImageName()}}" alt=""></a>
                                     <li><a href="/customer/personalCenter/ModifyMessage" class="nav-link active" style="font-size: 17px"><i class="fa fa-edit"></i>修改个人信息</a></li>
-                                    <li><a href="/customer/personalCenter/ModifyMessage" class="nav-link active" style="font-size: 17px"><img th:src="@{/static/images/img/pet.png}" style="height: 22px" alt="">&nbsp;我的宠物</a></li>
+                                    <li><a href="/customer/myPet" class="nav-link active" style="font-size: 17px"><img th:src="@{/static/images/img/pet.png}" style="height: 22px" alt="">&nbsp;我的宠物</a></li>
                                 </ul>
                             </div>
                         </div>
@@ -49,22 +48,22 @@
                                 <div class="form-group">
                                     <label>用户名:</label>
                                     <input type="hidden" name="id" th:value="${session.currentCustomer==null?'':session.currentCustomer.getId()}">
-                                    <input id="userName" name="userName" type="text" class="form-control" readonly="readonly"
+                                    <input id="userName" name="userName" required="required" type="text" class="form-control" readonly="readonly"
                                            th:value="${session.currentCustomer==null?'':session.currentCustomer.getUserName()}">
                                 </div>
                                 <div class="form-group">
                                     <label>密码:</label><span id="passwordErrorInfo" style="color: red"></span>
-                                    <input id="password1" name="password" type="password" class="form-control" onblur="checkPassword(this.value)"
+                                    <input id="password1" name="password" type="password" required="required" class="form-control" onblur="checkPassword(this.value)"
                                            th:value="${session.currentCustomer==null?'':session.currentCustomer.getPassword()}" placeholder="必填">
                                 </div>
                                 <div class="form-group">
                                     <label>确认密码:</label>
-                                    <input id="password2" name="password2" type="password" class="form-control"
+                                    <input id="password2" name="password2" type="password" required="required" class="form-control"
                                            th:value="${session.currentCustomer==null?'':session.currentCustomer.getPassword()}" placeholder="必填">
                                 </div>
                                 <div class="form-group">
                                     <label>真实姓名:</label>
-                                    <input id="contact" name="contact" type="text" class="form-control"
+                                    <input id="contact" name="contact" type="text" required="required" class="form-control"
                                            th:value="${session.currentCustomer==null?'':session.currentCustomer.getContact()}" placeholder="必填">
                                 </div>
                                 <div class="form-group">
@@ -73,12 +72,12 @@
                                 </div>
                                 <div class="form-group">
                                     <label>联系方式:</label>
-                                    <input id="number" name="number" type="text" class="form-control"
+                                    <input id="number" name="number" type="text" required="required" class="form-control"
                                            th:value="${session.currentCustomer==null?'':session.currentCustomer.getNumber()}" placeholder="必填">
                                 </div>
                                 <div class="form-group">
                                     <label>收货地址:</label>
-                                    <input id="address" name="address" type="text" class="form-control"
+                                    <input id="address" name="address" type="text" required="required" class="form-control"
                                            th:value="${session.currentCustomer==null?'':session.currentCustomer.getAddress()}" placeholder="必填">
                                 </div>
                                 <div class="form-group">

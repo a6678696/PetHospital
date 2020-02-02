@@ -54,7 +54,7 @@
                                         </div>
                                     </div><a th:href="'/goods/'+${goods.id}" class="invisible"><img th:src="@{'/static/images/goodsImage/'+${goods.imageName}}" alt="" class="img-fluid"></a>
                                     <div class="text">
-                                        <h3><a th:href="'/goods/'+${goods.id}" th:text="${goods.name}"></a></h3>
+                                        <h3><a th:href="'/goods/'+${goods.id}" th:title="${goods.name}" th:text="${goods.name}"></a></h3>
                                         <p class="price">
                                             <del></del>￥<span th:text="${goods.sellingPrice}"></span>
                                         </p>

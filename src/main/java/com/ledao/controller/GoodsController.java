@@ -180,33 +180,4 @@ public class GoodsController {
 
         session.setAttribute("currentBrowse", currentBrowseGoods);
     }
-
-    /**
-     * 获取推荐的商品,根据客户点击的商品的类别推荐
-     *
-     * @param goods
-     * @param num
-     * @return
-     */
-    private void getRecommendGoods(Goods goods, int num, HttpSession session) {
-        Map<String, Object> map = new HashMap<>(16);
-        map.put("typeId", goods.getType().getId());
-        List<Goods> goodsList = goodsService.list(map);
-        List<Goods> resultList = new LinkedList<>();
-        Random random = new Random(goodsList.size());
-        //要推荐的商品数量大于0才推荐
-        if (num > 0) {
-            for (int i = 0; i < num; i++) {
-                int n = random.nextInt(goodsList.size());
-                Goods goods1 = goodsList.get(n);
-                //如果商品已存在,索引减1,重新添加
-                if (resultList.contains(goods1)) {
-                    i--;
-                } else {
-                    resultList.add(goods1);
-                }
-            }
-        }
-        session.setAttribute("recommendGoodsList", resultList);
-    }
 }

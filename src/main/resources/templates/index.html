@@ -44,7 +44,7 @@
             }
             var successRegister = [[${successRegister}]];
             if (successRegister == true) {
-                alert("注册成功,跳转到登录界面...");
+                alert("添加成功!");
             }
             var successLogin = [[${successLogin}]];
             if (successLogin == true) {
@@ -54,7 +54,7 @@
             }
             var successModify = [[${successModify}]];
             if (successModify == true) {
-                alert("个人信息修改成功!");
+                alert("修改成功!");
             }
         }
         //返回顶部图标出现或者消失
@@ -115,15 +115,47 @@
             );
         }
 
-        //验证密码长度,不能小于6位
-        function checkPassword(password) {
-            if (password == '') {
-                $("#passwordErrorInfo").html("密码不能为空!");
-            } else if (password.length < 6) {
-                $("#passwordErrorInfo").html("密码长度要大于5!");
-            } else {
-                $("#passwordErrorInfo").html("");
+        function checkPetAddValue() {
+            var petName=$("#petName").val();
+            var petAge=$("#petAge").val();
+            var petTypeName=$("#petTypeName").val();
+            if (petName == null || petName == '') {
+                alert("宠物名称不能为空!");
+                return false;
             }
+            if (petAge == null || petAge == '') {
+                alert("宠物年龄不能为空!");
+                return false;
+            }
+            if (petTypeName == null || petTypeName == '') {
+                alert("宠物类型不能为空!");
+                return false;
+            }
+            return true;
+        }
+
+        function checkCustomerAddValue() {
+            var userName = $("#userName").val();
+            var password1 = $("#password1").val();
+            var password2 = $("#password2").val();
+            if (password1.length < 6) {
+                alert("密码长度要大于5!");
+                return false;
+            }
+            if (password1 != password2) {
+                alert("密码和确认密码不相同,请重新输入!");
+                return false;
+            }
+            $.post("/customer/existUserWithUserName", {userName: userName},
+                function (result) {
+                    if (result.success) {
+                        alert("您要注册的用户名已被注册,请重新输入!");
+                        return false;
+                    }
+                }
+            );
+            alert("注册成功!现在可以登录了...");
+            return true;
         }
 
         //删除购物车中的商品
@@ -134,8 +166,8 @@
         }
 
         //刷新购物车商品信息
-        function refreshShoppingCart(goodsId, count,key) {
-            $.post("/shopping/updateShoppingCartItem", {goodsId: goodsId, count: count,key:key},
+        function refreshShoppingCart(goodsId, count, key) {
+            $.post("/shopping/updateShoppingCartItem", {goodsId: goodsId, count: count, key: key},
                 function (result) {
                     if (result.success) {
 
@@ -151,40 +183,41 @@
             $(".add").click(function () {
                 var goodsId = $(this).parent().find('input[id=goods_id]').val();
                 var count = $(this).parent().find('input[class=text_box]').val();
-                var stock=$(this).parent().find('input[id=goods_stock]').val();
+                var stock = $(this).parent().find('input[id=goods_stock]').val();
                 count = parseInt(count) + 1;
                 if (count > stock) {
-                    alert("购买的商品数量不能大于库存数量!");
                     location.reload();
                 }
-                refreshShoppingCart(goodsId, count,0);
+                refreshShoppingCart(goodsId, count, 0);
             });
             $(".min").click(function () {
                 var goodsId = $(this).parent().find('input[id=goods_id]').val();
                 var count = $(this).parent().find('input[class=text_box]').val();
                 count = parseInt(count) - 1;
-                if (count == 0) {
-                    alert("商品数量不能为0!");
-                }
-                refreshShoppingCart(goodsId, count,0);
+                refreshShoppingCart(goodsId, count, 0);
             });
             $(".text_box").blur(function () {
                 var goodsId = $(this).parent().find('input[id=goods_id]').val();
                 var count = $(this).parent().find('input[class=text_box]').val();
-                var stock=$(this).parent().find('input[id=goods_stock]').val();
+                var stock = $(this).parent().find('input[id=goods_stock]').val();
                 if (count < 0) {
-                    alert("商品数量不能小于1!");
-                    count=1;
+                    count = 1;
                     location.reload();
                 }
                 if (count > stock) {
-                    alert("购买的商品数量不能大于库存数量!");
                     location.reload();
                 }
-                refreshShoppingCart(goodsId, count,1);
+                refreshShoppingCart(goodsId, count, 1);
                 location.reload();
             });
         });
+
+        //客户注销登录
+        function deletePet(petId) {
+            if (confirm("您确定要删除这个宠物吗?")) {
+                window.location.href = "/pet/deletePet?petId=" + petId;
+            }
+        }
     </script>
 </head>
 <body>

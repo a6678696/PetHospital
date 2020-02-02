@@ -50,7 +50,7 @@
                 and concat(`code`, `name`) like concat('%',#{codeOrName},'%')
             </if>
         </where>
-        order by releaseDate,inventoryQuantity desc
+        order by inventoryQuantity desc,releaseDate desc
         <if test="start!=null and size!=null ">
             limit #{start},#{size}
         </if>

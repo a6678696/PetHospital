@@ -37,6 +37,8 @@ customerImageFilePath: F://idea workspase for Actual combat/PetHospital/src/main
 userImageFilePath: F://idea workspase for Actual combat/PetHospital/src/main/webapp/static/images/userImage/
 #商品图片存储地址
 goodsImageFilePath: F://idea workspase for Actual combat/PetHospital/src/main/webapp/static/images/goodsImage/
+#宠物图片存储地址
+petImageFilePath: F://idea workspase for Actual combat/PetHospital/src/main/webapp/static/images/petImage/
 
 #mybatis的相关配置
 mybatis:

@@ -17,7 +17,9 @@
                             <ol class="breadcrumb">
                                 <i class="fa fa-eye" style="padding-top: 2px"></i>当前位置:&nbsp;&nbsp;
                                 <li class="breadcrumb-item"><a href="/">主页</a></li>
-                                <li class="breadcrumb-item"><span>个人中心</span></li>
+                                <li class="breadcrumb-item"><a href="/customer/personalCenter">个人中心</a></li>
+                                <li class="breadcrumb-item"><a href="/customer/myPet">我的宠物</a></li>
+                                <li class="breadcrumb-item"><span th:text="${title}"></span></li>
                             </ol>
                         </nav>
                     </div>
@@ -40,43 +42,36 @@
                         </div>
                         <!-- /.col-lg-3-->
                     </div>
+                    <!-- /.col-lg-3-->
                     <div id="blog-post" class="col-lg-9">
                         <div class="box">
-                            <div class="form-inline">
-                                <h2>(●'◡'●)欢迎您,</h2>
-                                <h2 th:text="${session.currentCustomer.getContact()}"></h2>
-                            </div>
-                            <form action="/customer/save" method="post" enctype="multipart/form-data">
+                            <h1 style="text-align: center">修改宠物信息</h1>
+                            <form action="/pet/save" method="post" enctype="multipart/form-data" onsubmit="return checkPetAddValue()">
                                 <div class="form-group">
-                                    <label>用户名:</label>
-                                    <input type="text" class="form-control" readonly="readonly"
-                                           th:value="${session.currentCustomer==null?'':session.currentCustomer.getUserName()}">
+                                    <label>宠物名称:</label>
+                                    <input type="hidden" name="id" th:value="${pet==null?'':pet.id}">
+                                    <input id="petName" name="name" type="text" class="form-control" th:value="${pet==null?'':pet.name}" placeholder="必填">
                                 </div>
                                 <div class="form-group">
-                                    <label>真实姓名:</label>
-                                    <input type="text" class="form-control" readonly="readonly"
-                                           th:value="${session.currentCustomer==null?'':session.currentCustomer.getContact()}" placeholder="必填">
+                                    <label>年龄:</label>
+                                    <input id="petAge" name="age" type="text" class="form-control" th:value="${pet==null?'':pet.age}" placeholder="必填">
                                 </div>
                                 <div class="form-group">
-                                    <label>联系方式:</label>
-                                    <input type="text" class="form-control" readonly="readonly"
-                                           th:value="${session.currentCustomer==null?'':session.currentCustomer.getNumber()}" placeholder="必填">
+                                    <label>头像:</label>
+                                    <input type="file" name="petImage">
                                 </div>
                                 <div class="form-group">
-                                    <label>收货地址:</label>
-                                    <input type="text" class="form-control" readonly="readonly"
-                                           th:value="${session.currentCustomer==null?'':session.currentCustomer.getAddress()}" placeholder="必填">
+                                    <label>宠物类型:</label>
+                                    <input id="petTypeName" name="typeName" type="text" class="form-control" th:value="${pet==null?'':pet.typeName}" placeholder="必填">
                                 </div>
-                                <div class="form-group">
-                                    <label>公司名称:</label>
-                                    <input type="text" class="form-control" readonly="readonly" value="无" th:if="${session.currentCustomer.getName()==''}">
-                                    <input type="text" class="form-control" readonly="readonly" th:if="${session.currentCustomer.getName()!=''}"
-                                           th:value="${session.currentCustomer==null?'':session.currentCustomer.getName()}">
+                                <div class="text-center">
+                                    <button type="submit" class="btn btn-primary">立即修改</button>
                                 </div>
                             </form>
                         </div>
                         <!-- /.box-->
                     </div>
+                    <!-- /.col-lg-9-->
                 </div>
             </div>
         </div>

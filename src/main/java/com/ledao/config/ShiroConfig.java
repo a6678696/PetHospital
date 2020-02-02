@@ -40,7 +40,7 @@ public class ShiroConfig {
         shiroFilterFactoryBean.setSecurityManager(securityManager);
 
         // 如果不设置默认会自动寻找Web工程根目录下的"/login.jsp"页面
-        shiroFilterFactoryBean.setLoginUrl("/shoppingCart");
+        shiroFilterFactoryBean.setLoginUrl("/");
 
 
         // 拦截器.
@@ -55,6 +55,7 @@ public class ShiroConfig {
         filterChainDefinitionMap.put("/article/**", "anon");
         filterChainDefinitionMap.put("/shopping/**", "anon");
         filterChainDefinitionMap.put("/customer/**", "anon");
+        filterChainDefinitionMap.put("/pet/**", "anon");
         filterChainDefinitionMap.put("/goods/**", "anon");
         filterChainDefinitionMap.put("/login.html", "anon");
         filterChainDefinitionMap.put("/static/**", "anon");

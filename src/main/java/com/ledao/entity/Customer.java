@@ -30,18 +30,14 @@ public class Customer implements Serializable {
     /**
      * 用户名
      */
-    @NotEmpty(message = "请输入用户名!")
     private String userName;
     /**
      * 密码
      */
-    @NotEmpty(message = "请输入密码!")
-    @Size(min = 6,message = "密码长度要大于5!")
     private String password;
     /**
      * 确认密码
      */
-    @NotEmpty(message = "请输入确认密码!")
     private String password2;
     /**
      * 用户头像
@@ -50,17 +46,14 @@ public class Customer implements Serializable {
     /**
      * 联系人
      */
-    @NotEmpty(message = "请输入真实姓名!")
     private String contact;
     /**
      * 联系电话
      */
-    @NotEmpty(message = "请输入联系电话!")
     private String number;
     /**
      * 联系地址
      */
-    @NotEmpty(message = "请输入收货地址!")
     private String address;
     /**
      * 备注

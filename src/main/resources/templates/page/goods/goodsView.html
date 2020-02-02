@@ -151,7 +151,7 @@
                                             class="img-fluid"></a>
                                     <div class="text">
                                         <a th:href="'/goods/'+${recommendGoods.id}" style="color: black"><h3
-                                                th:text="${recommendGoods.name}"></h3></a>
+                                                th:text="${recommendGoods.name}" th:title="${recommendGoods.name}"></h3></a>
                                         <p class="price" th:text="'￥'+${recommendGoods.sellingPrice}"></p>
                                     </div>
                                 </div>
@@ -201,7 +201,7 @@
                                             class="img-fluid"></a>
                                     <div class="text">
                                         <a th:href="'/goods/'+${currentBrowse.id}" style="color: black"><h3
-                                                th:text="${currentBrowse.name}"></h3></a>
+                                                th:text="${currentBrowse.name}" th:title="${currentBrowse.name}"></h3></a>
                                         <p class="price" th:text="'￥'+${currentBrowse.sellingPrice}"></p>
                                     </div>
                                 </div>

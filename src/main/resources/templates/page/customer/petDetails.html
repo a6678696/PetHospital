@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<!--suppress ALL-->
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<div id="b">
+    <div id="all" style="padding-top: 20px">
+        <div id="content">
+            <div class="container">
+                <div class="row">
+                    <div class="col-lg-12">
+                        <!-- breadcrumb-->
+                        <nav aria-label="breadcrumb">
+                            <ol class="breadcrumb">
+                                <i class="fa fa-eye" style="padding-top: 2px"></i>当前位置:&nbsp;&nbsp;
+                                <li class="breadcrumb-item"><a href="/">主页</a></li>
+                                <li class="breadcrumb-item"><a href="/customer/personalCenter">个人中心</a></li>
+                                <li class="breadcrumb-item"><a href="/customer/myPet">我的宠物</a></li>
+                                <li class="breadcrumb-item"><span th:text="${title}"></span></li>
+                            </ol>
+                        </nav>
+                    </div>
+                    <div class="col-lg-3">
+                        <!--
+                        *** BLOG MENU ***
+                        _________________________________________________________
+                        -->
+                        <div class="card sidebar-menu mb-4">
+                            <div class="card-header">
+                                <h3 class="h4 panel-title"></h3>
+                            </div>
+                            <div class="card-body">
+                                <ul class="nav flex-column nav-pills">
+                                    <a href="/customer/personalCenter"><img
+                                            th:src="@{'/static/images/customerImage/'+${session.currentCustomer.getImageName()}}"
+                                            alt=""></a>
+                                    <li><a href="/customer/personalCenter/ModifyMessage" class="nav-link active"
+                                           style="font-size: 17px"><i class="fa fa-edit"></i>修改个人信息</a></li>
+                                    <li><a href="/customer/myPet" class="nav-link active" style="font-size: 17px"><img
+                                            th:src="@{/static/images/img/pet.png}" style="height: 22px" alt="">&nbsp;我的宠物</a>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+                        <!-- /.col-lg-3-->
+                    </div>
+                    <!-- /.col-lg-3-->
+                    <div id="blog-post" class="col-lg-9">
+                        <div class="box">
+                            <h1 style="text-align: center">查看宠物信息</h1>
+                            <div class="form-group">
+                                <label>宠物名称:</label>
+                                <input type="hidden" name="id" th:value="${pet==null?'':pet.id}">
+                                <input id="petName" name="name" type="text" class="form-control" readonly="readonly"
+                                       th:value="${pet==null?'':pet.name}" placeholder="必填">
+                            </div>
+                            <div class="form-group">
+                                <label>年龄:</label>
+                                <input id="petAge" name="age" type="text" class="form-control" readonly="readonly"
+                                       th:value="${pet==null?'':pet.age}" placeholder="必填">
+                            </div>
+                            <div class="form-group">
+                                <label>宠物类型:</label>
+                                <input id="petTypeName" name="typeName" type="text" class="form-control"
+                                       readonly="readonly" th:value="${pet==null?'':pet.typeName}" placeholder="必填">
+                            </div>
+                        </div>
+                        <!-- /.box-->
+                    </div>
+                    <!-- /.col-lg-9-->
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+</body>
+</html>

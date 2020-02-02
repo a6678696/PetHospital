@@ -33,11 +33,12 @@
                                     <tbody>
                                     <tr>
                                         <td>商品总计</td>
-                                        <th>￥<span th:text="${session.shoppingCart.getTotal()}"></span></th>
+                                        <th th:if="${session.freight>0}">￥<span th:text="${session.shoppingCart.getTotal()-session.freight}"></span></th>
+                                        <th th:if="${session.freight==0}">￥<span th:text="${session.shoppingCart.getTotal()}"></span></th>
                                     </tr>
                                     <tr>
                                         <td>运费</td>
-                                        <th>￥0.00</th>
+                                        <th th:text="'￥'+${session.freight}"></th>
                                     </tr>
                                     <tr class="total">
                                         <td>总金额</td>
@@ -52,51 +53,51 @@
                     <div id="basket" class="col-lg-9">
                         <div class="box container">
                             <form method="post" action="checkout1.html">
-                                <p class="text-muted">当前有 <span
-                                        th:text="${session.shoppingCart.getShoppingCartItems().size()}"></span> 种商品</p>
+                                <p class="text-muted">当前有 <span th:text="${session.shoppingCart.getShoppingCartItems().size()}" style="color: red;font-size: 20px"></span> 种商品  <span style="color: red;font-size: 20px" th:if="${session.freight>0}">(当前未满88元,需要追加10元运费)</span></p>
                                 <div class="table-responsive">
                                     <table class="table">
                                         <thead>
                                         <tr>
-                                            <th colspan="2">商品信息</th>
-                                            <th>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;数量</th>
-                                            <th>库存</th>
-                                            <th>&nbsp;&nbsp;&nbsp;单价</th>
-                                            <th>&nbsp;&nbsp;折扣</th>
-                                            <th colspan="2">&nbsp;&nbsp;小计</th>
+                                            <th style="text-align: center">商品信息</th>
+                                            <th style="text-align: center">商品名称</th>
+                                            <th style="text-align: center">数量</th>
+                                            <th style="text-align: center">库存</th>
+                                            <th style="text-align: center">单价</th>
+                                            <th style="text-align: center">折扣</th>
+                                            <th style="text-align: center">小计</th>
+                                            <th style="text-align: center">删除</th>
                                         </tr>
                                         </thead>
                                         <tbody>
                                         <tr th:each="shoppingCartItems:${session.shoppingCart.getShoppingCartItems()}">
-                                            <td><a th:href="@{'/goods/'+${shoppingCartItems.getGoods().getId()}}"><img
+                                            <td style="text-align: center"><a th:href="@{'/goods/'+${shoppingCartItems.getGoods().getId()}}"><img
                                                     th:src="@{'/static/images/goodsImage/'+${shoppingCartItems.getGoods().getImageName()}}"
                                                     style="height: 40px;width: 40px" alt="White Blouse Armani"></a></td>
-                                            <td><a th:href="@{'/goods/'+${shoppingCartItems.getGoods().getId()}}"
+                                            <td style="text-align: center"><a th:href="@{'/goods/'+${shoppingCartItems.getGoods().getId()}}"
                                                    th:title="${shoppingCartItems.getGoods().getName()}"><span
-                                                    th:text="${shoppingCartItems.getGoods().getName()}"></span></a></td>
-                                            <td>
-                                                <div class="form-inline">
+                                                    th:text="${#strings.abbreviate(shoppingCartItems.getGoods().getName(),12)}"></span></a></td>
+                                            <td style="text-align: center">
                                                     <input type="hidden" id="goods_id" th:value="${shoppingCartItems.getGoods().getId()}"/>
                                                     <input type="hidden" id="goods_stock" th:value="${shoppingCartItems.getGoods().getInventoryQuantity()}"/>
-                                                    <button id="minCount" class="btn-danger min" style="width: 24px">-</button>&nbsp;
-                                                    <input id="count" type="text"
+<!--                                                    <button id="minCount" class="btn-danger min" style="width: 24px">-</button>&nbsp;-->
+                                                    <!--<input id="count" type="text"
                                                                           th:value="${shoppingCartItems.getCount()}"
                                                                           class="text_box"
-                                                                          style="width: 50px;text-align:center;">&nbsp;
-                                                    <button id="addCount" class="btn-success add" style="width: 24px">+</button>
-                                                </div>
+                                                                          style="width: 50px;text-align:center;">&nbsp;-->
+                                                    <input type="number" class="text_box" th:value="${shoppingCartItems.getCount()}" min="1" th:max="${shoppingCartItems.getGoods().getInventoryQuantity()}" style="width: 50px;text-align:center;">
+<!--                                                    <button id="addCount" class="btn-success add" style="width: 24px">+</button>-->
                                             </td>
-                                            <td><span
-                                                    th:text="'&nbsp;&nbsp;&nbsp;'+${shoppingCartItems.getGoods().getInventoryQuantity()}"
+                                            <td style="text-align: center"><span
+                                                    th:text="${shoppingCartItems.getGoods().getInventoryQuantity()}"
                                                     style="color: blue"></span></td>
-                                            <td>￥<span
+                                            <td style="text-align: center">￥<span
                                                     th:text="${shoppingCartItems.getGoods().getSellingPrice()}"></span>
                                             </td>
-                                            <td>￥0.00</td>
-                                            <td>￥<span
+                                            <td style="text-align: center">￥0.00</td>
+                                            <td style="text-align: center">￥<span
                                                     th:text="${shoppingCartItems.getGoods().getSellingPrice()}*${shoppingCartItems.getCount()}"></span>
                                             </td>
-                                            <td>
+                                            <td style="text-align: center">
                                                 <a th:href="'javascript:removeShoppingCartItem('+${shoppingCartItems.getGoods().getId()}+')'"
                                                    title="从购物车中移除该商品"><i class="fa fa-trash-o"
                                                                          style="color: red;font-size: 20px"></i></a>
@@ -106,8 +107,9 @@
                                         <tfoot>
                                         <tr>
                                             <th colspan="5"></th>
-                                            <th>总金额</th>
-                                            <th>￥<span th:text="${session.shoppingCart.getTotal()}"></span></th>
+                                            <th style="text-align: center">总金额</th>
+                                            <th style="text-align: center">￥<span th:text="${session.shoppingCart.getTotal()}"></span></th>
+                                            <th></th>
                                         </tr>
                                         </tfoot>
                                     </table>
@@ -123,7 +125,7 @@
                                                          class="btn btn-outline-secondary"><i
                                             class="fa fa-chevron-left"></i>继续购物</a></div>
                                     <div class="right">
-                                        <a href="/shopping/updateShoppingCartItem" class="btn btn-outline-secondary"><i
+                                        <a href="/shopping/updateShoppingCartItem" class="btn btn-outline-success"><i
                                                 class="fa fa-refresh"></i>刷新购物车</a>
                                         <button type="submit" class="btn btn-primary">立即支付<i
                                                 class="fa fa-chevron-right"></i></button>
@@ -155,7 +157,7 @@
                                             class="img-fluid"></a>
                                     <div class="text">
                                         <a th:href="@{'/goods/'+${currentBrowse.id}}" style="color: black"><h3
-                                                th:text="${currentBrowse.name}"></h3></a>
+                                                th:text="${currentBrowse.name}" th:title="${currentBrowse.name}"></h3></a>
                                         <p class="price" th:text="'￥'+${currentBrowse.sellingPrice}"></p>
                                     </div>
                                 </div>

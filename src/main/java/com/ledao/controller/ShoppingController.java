@@ -172,6 +172,15 @@ public class ShoppingController {
         for (ShoppingCartItem shoppingCartItem : shoppingCartItemList2) {
             shoppingCart2.setTotal((int) (shoppingCart2.getTotal() + shoppingCartItem.getCount() * shoppingCartItem.getGoods().getSellingPrice()));
         }
+        //商品总金额不满88就要交10元运费
+        int freight=10;
+        int minTotal=88;
+        if (shoppingCart2.getTotal() < minTotal) {
+            shoppingCart2.setTotal(shoppingCart2.getTotal() + freight);
+            session.setAttribute("freight", freight);
+        } else {
+            session.setAttribute("freight", 0);
+        }
         session.setAttribute("shoppingCart", shoppingCart2);
     }
 }

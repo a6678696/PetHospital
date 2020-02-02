@@ -33,7 +33,7 @@
                             </div>
                             <div class="card-body">
                                 <ul class="nav nav-pills flex-column category-menu" th:each="goodsType:${goodsTypeList}">
-                                    <li><a th:href="'/goods/list/1?typeId='+${goodsType.id}" class="nav-link active" th:text="${goodsType.name}"> <span class="badge badge-secondary">42</span></a>
+                                    <li><a th:href="'/goods/list/1?typeId='+${goodsType.id}" class="nav-link active" th:text="${goodsType.name}"></a>
                                         <ul class="list-unstyled" th:each="smallGoodsType:${goodsType.smallGoodsTypeList}">
                                             <li><a th:href="'/goods/list/1?typeId='+${smallGoodsType.id}" class="nav-link" th:text="${smallGoodsType.name}"></a></li>
                                         </ul>
@@ -54,7 +54,7 @@
                                         </div>
                                     </div><a th:href="'/goods/'+${goods.id}" class="invisible"><img th:src="@{'/static/images/goodsImage/'+${goods.imageName}}" alt="" class="img-fluid"></a>
                                     <div class="text">
-                                        <h3><a th:href="'/goods/'+${goods.id}" th:text="${goods.name}"></a></h3>
+                                        <h3><a th:href="'/goods/'+${goods.id}" th:title="${goods.name}" th:text="${goods.name}"></a></h3>
                                         <p class="price">
                                             <del></del>￥<span th:text="${goods.sellingPrice}"></span>
                                         </p>
@@ -110,7 +110,7 @@
                                         </div>
                                     </div><a th:href="'/goods/'+${currentBrowse.id}" class="invisible"><img th:src="@{'/static/images/goodsImage/'+${currentBrowse.imageName}}" alt="" class="img-fluid"></a>
                                     <div class="text">
-                                        <a th:href="'/goods/'+${currentBrowse.id}" style="color: black"><h3 th:text="${currentBrowse.name}"></h3></a>
+                                        <a th:href="'/goods/'+${currentBrowse.id}" style="color: black"><h3 th:text="${currentBrowse.name}" th:title="${currentBrowse.name}"></h3></a>
                                         <p class="price" th:text="'￥'+${currentBrowse.sellingPrice}"></p>
                                     </div>
                                 </div>

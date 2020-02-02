@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<!--suppress ALL-->
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<div id="b">
+    <div id="all" style="padding-top: 20px">
+        <div id="content">
+            <div class="container">
+                <div class="row">
+                    <div class="col-lg-12">
+                        <!-- breadcrumb-->
+                        <nav aria-label="breadcrumb">
+                            <ol class="breadcrumb">
+                                <i class="fa fa-eye" style="padding-top: 2px"></i>当前位置:&nbsp;&nbsp;
+                                <li class="breadcrumb-item"><a href="/">主页</a></li>
+                                <li class="breadcrumb-item"><a href="/customer/personalCenter">个人中心</a></li>
+                                <li class="breadcrumb-item"><span th:text="${title}"></span></li>
+                            </ol>
+                        </nav>
+                    </div>
+                    <div class="col-lg-3">
+                        <!--
+                        *** BLOG MENU ***
+                        _________________________________________________________
+                        -->
+                        <div class="card sidebar-menu mb-4">
+                            <div class="card-header">
+                                <h3 class="h4 panel-title"></h3>
+                            </div>
+                            <div class="card-body">
+                                <ul class="nav flex-column nav-pills">
+                                    <a href="/customer/personalCenter"><img
+                                            th:src="@{'/static/images/customerImage/'+${session.currentCustomer.getImageName()}}"
+                                            alt=""></a>
+                                    <li><a href="/customer/personalCenter/ModifyMessage" class="nav-link active"
+                                           style="font-size: 17px"><i class="fa fa-edit"></i>修改个人信息</a></li>
+                                    <li><a href="/customer/myPet" class="nav-link active" style="font-size: 17px"><img
+                                            th:src="@{/static/images/img/pet.png}" style="height: 22px" alt="">&nbsp;我的宠物</a>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+                        <!-- /.col-lg-3-->
+                    </div>
+                    <div id="basket" class="col-lg-9" th:if="${petList.size()<1}">
+                        <div class="box container">
+                            <h3>您还没有宠物,<a href="/customer/petAdd">点我去添加</a></h3>
+                        </div>
+                    </div>
+                    <div id="basket" class="col-lg-9" th:if="${petList.size()>=1}">
+                        <div class="box container">
+                            <form method="post" action="checkout1.html">
+                                <p class="text-muted">当前有 <span
+                                        th:text="${petList.size()}"></span> 个宠物</p>
+                                <div>
+                                    <table class="table">
+                                        <thead>
+                                        <tr>
+                                            <th style="text-align: center">宠物头像</th>
+                                            <th style="text-align: center">名称</th>
+                                            <th style="text-align: center">类型</th>
+                                            <th style="text-align: center">年龄</th>
+                                            <th style="text-align: center">操作</th>
+                                        </tr>
+                                        </thead>
+                                        <tbody>
+                                        <tr th:each="pet:${petList}">
+                                            <td style="text-align: center">
+                                                <a th:href="@{'/customer/petDetails?petId='+${pet.id}}">
+                                                <img th:src="@{'/static/images/petImage/'+${pet.imageName}}"
+                                                    style="height: 40px;width: 40px" alt="White Blouse Armani"></a>
+                                            </td>
+                                            <td style="text-align: center">
+                                                <span th:text="${pet.name}"></span>
+                                            </td>
+                                            <td style="text-align: center;margin-top: 1px">
+                                                <span style="padding-top: 2px" th:text="${pet.typeName}"></span>
+                                            </td>
+                                            <td style="text-align: center">
+                                                <span th:text="${pet.age}"></span>
+                                            <td style="text-align: center">
+                                                <a th:href="@{'/customer/petDetails?petId='+${pet.id}}" th:title="'查看该宠物('+${pet.name}+')'"><i class="fa fa-search" style="font-size: 20px;color: #0099FF"></i></a>
+                                                <a th:href="@{'/customer/petModify?petId='+${pet.id}}"
+                                                   th:title="'修改该宠物('+${pet.name}+')'"><i class="fa fa-pencil"
+                                                                                          style="font-size: 20px"></i></a>
+                                                <a th:href="'javascript:deletePet('+${pet.id}+')'"
+                                                   th:title="'删除该宠物('+${pet.name}+')'"><i class="fa fa-trash-o"
+                                                                                          style="color: red;font-size: 20px"></i></a>
+                                            </td>
+                                        </tr>
+                                        </tbody>
+                                    </table>
+                                </div>
+                                <!-- /.table-responsive-->
+                                <div class="box-footer d-flex justify-content-between flex-column flex-lg-row">
+                                    <div>
+                                        <a href="/customer/petAdd" type="button" class="btn btn-primary"><img
+                                                th:src="@{/static/images/img/petAdd.png}"
+                                                style="height: 14px;margin-bottom: 4px" alt="">添加宠物</a>
+                                    </div>
+                                </div>
+                            </form>
+                        </div>
+                        <!-- /.box-->
+                    </div>
+                    <!-- /.col-lg-9-->
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+</body>
+</html>
