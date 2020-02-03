@@ -193,11 +193,26 @@
             });
         });
 
-        //客户注销登录
+        //客户删除自己的宠物
         function deletePet(petId) {
             if (confirm("您确定要删除这个宠物吗?")) {
                 window.location.href = "/pet/deletePet?petId=" + petId;
             }
+        }
+
+        //添加收藏
+        function addFavorite(goodsId) {
+            var str='div'+goodsId;
+            var url = "/goods/addFavorite?goodsId=" + goodsId+"&str="+str;
+            $(".div11").load(url);
+            location.reload();
+        }
+        //取消收藏
+        function deleteFavorite(goodsId) {
+            var str='div'+goodsId;
+            var url = "/goods/deleteFavorite?goodsId=" + goodsId+"&str="+str;
+            $(".div11").load(url);
+            location.reload();
         }
     </script>
 </head>

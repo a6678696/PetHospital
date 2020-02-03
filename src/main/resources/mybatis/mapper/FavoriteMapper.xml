@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!--suppress ALL-->
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.ledao.mapper.FavoriteMapper">
+
+    <resultMap id="FavoriteResult" type="Favorite">
+        <result property="id" column="id"/>
+        <result property="addDate" column="addDate"/>
+        <association property="customer" column="customerId" select="com.ledao.mapper.CustomerMapper.findById"></association>
+        <association property="goods" column="goodsId" select="com.ledao.mapper.GoodsMapper.findById"></association>
+    </resultMap>
+    <select id="list" parameterType="map" resultMap="FavoriteResult">
+        select * from t_favorite
+        <where>
+            <if test="customer!=null">
+                customerId=#{customer.id}
+            </if>
+        </where>
+        order by addDate desc
+        <if test="start!=null and size!=null">
+            limit #{start},#{size}
+        </if>
+    </select>
+    <select id="getCount" parameterType="map" resultType="java.lang.Long">
+        select count(*) from t_favorite
+        <where>
+            <if test="customer!=null">
+                customerId=#{customer.id}
+            </if>
+        </where>
+    </select>
+    <insert id="add" parameterType="Favorite">
+        insert into t_favorite (customerId, goodsId, addDate) values (#{customer.id},#{goods.id},now());
+    </insert>
+    <delete id="delete" parameterType="integer">
+        delete from t_favorite where customerId=#{param1} and goodsId=#{param2}
+    </delete>
+
+</mapper>

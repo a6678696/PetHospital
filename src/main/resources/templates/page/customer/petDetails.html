@@ -24,28 +24,7 @@
                         </nav>
                     </div>
                     <div class="col-lg-3">
-                        <!--
-                        *** BLOG MENU ***
-                        _________________________________________________________
-                        -->
-                        <div class="card sidebar-menu mb-4">
-                            <div class="card-header">
-                                <h3 class="h4 panel-title"></h3>
-                            </div>
-                            <div class="card-body">
-                                <ul class="nav flex-column nav-pills">
-                                    <a href="/customer/personalCenter"><img
-                                            th:src="@{'/static/images/customerImage/'+${session.currentCustomer.getImageName()}}"
-                                            alt=""></a>
-                                    <li><a href="/customer/personalCenter/ModifyMessage" class="nav-link active"
-                                           style="font-size: 17px"><i class="fa fa-edit"></i>修改个人信息</a></li>
-                                    <li><a href="/customer/myPet" class="nav-link active" style="font-size: 17px"><img
-                                            th:src="@{/static/images/img/pet.png}" style="height: 22px" alt="">&nbsp;我的宠物</a>
-                                    </li>
-                                </ul>
-                            </div>
-                        </div>
-                        <!-- /.col-lg-3-->
+                        <div th:include="page/customer/menuLeft::#m"></div>
                     </div>
                     <!-- /.col-lg-3-->
                     <div id="blog-post" class="col-lg-9">

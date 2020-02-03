@@ -101,10 +101,13 @@
                                         <p th:text="${goods.producer}"></p>
                                     </div>
                                         <h3 style="color: red" th:if="${goods.inventoryQuantity<1}">当前商品库存为0,不可购买</h3>
+                                    <div th:fragment="'div'+${goods.id}" th:id="'div'+${goods.id}" class="div11">
                                     <p class="text-center buttons">
                                         <a th:href="@{'/shopping/buy?goodsId='+${goods.id}}"
                                            class="btn btn-outline-success"
-                                           th:if="${session.currentCustomer!=null&&goods.inventoryQuantity>0}"><i class="fa fa-location-arrow"></i>立即购买</a>
+                                           th:if="${session.currentCustomer!=null&&goods.inventoryQuantity>0}"><i class="fa fa-location-arrow"></i>购买</a>
+                                        <a th:href="'javascript:addFavorite('+${goods.id}+')'" class="btn btn-outline-danger" th:if="${session.currentCustomer!=null&&goods.isFavorite==0}"><i class="fa fa-heart"></i>收藏</a>
+                                        <a th:href="'javascript:deleteFavorite('+${goods.id}+')'" class="btn btn-info" th:if="${session.currentCustomer!=null&&goods.isFavorite==1}"><i class="fa fa-heart"></i>取消收藏</a>
                                         <a th:href="'javascript:addShoppingCart('+${goods.id}+')'"
                                            class="btn btn-outline-primary" th:if="${session.currentCustomer!=null&&goods.inventoryQuantity>0}"><i
                                                 class="fa fa-shopping-cart"></i>添加到购物车</a>
@@ -112,6 +115,7 @@
                                            th:if="${session.currentCustomer==null}"><i
                                                 class="fa fa-globe"></i>登录后方可购物</a>
                                     </p>
+                                    </div>
                                 </div>
                                 <div data-slider-id="1" class="owl-thumbs">
                                     <button class="owl-thumb-item"><img

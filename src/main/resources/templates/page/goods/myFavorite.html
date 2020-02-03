@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <!--suppress ALL-->
-<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<html xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
     <title>Title</title>
@@ -17,73 +17,80 @@
                             <ol class="breadcrumb">
                                 <i class="fa fa-eye" style="padding-top: 2px"></i>当前位置:&nbsp;&nbsp;
                                 <li class="breadcrumb-item"><a href="/">主页</a></li>
-                                <li aria-current="page" class="breadcrumb-item active"><a th:href="'/goods/list/1?typeId='+${bigTypeId}" th:text="${bigTypeName}" th:if="${bigTypeId>1}"></a><a href="#" th:text="${bigTypeName}" th:if="${bigTypeId==1}"></a></li>
-                                <li aria-current="page" class="breadcrumb-item active" th:text="${typeName}"></li>--当前类别下有<span th:text="${total}" style="color: red"></span>个商品
+                                <li class="breadcrumb-item"><a href="/customer/personalCenter">个人中心</a></li>
+                                <li class="breadcrumb-item"><span th:text="${title}"></span></li>
                             </ol>
                         </nav>
                     </div>
                     <div class="col-lg-3">
-                        <!--
-                        *** MENUS AND FILTERS ***
-                        _________________________________________________________
-                        -->
-                        <div class="card sidebar-menu mb-4">
-                            <div class="card-header">
-                                <h3 class="h4 card-title">商品分类</h3>
-                            </div>
-                            <div class="card-body">
-                                <ul class="nav nav-pills flex-column category-menu" th:each="goodsType:${goodsTypeList}">
-                                    <li><a th:href="'/goods/list/1?typeId='+${goodsType.id}" class="nav-link active" th:text="${goodsType.name}"></a>
-                                        <ul class="list-unstyled" th:each="smallGoodsType:${goodsType.smallGoodsTypeList}">
-                                            <li><a th:href="'/goods/list/1?typeId='+${smallGoodsType.id}" class="nav-link" th:text="${smallGoodsType.name}"></a></li>
-                                        </ul>
-                                    </li>
-                                </ul>
-                            </div>
-                        </div>
-                        <!-- *** MENUS AND FILTERS END ***-->
+                        <div th:include="page/customer/menuLeft::#m"></div>
                     </div>
                     <div class="col-lg-9">
+                        <div class="box">
+                            <h2>我的收藏</h2>
+                            <p class="lead"><span>当前有</span><span th:text="${total}" style="color: red"></span><span>个商品</span></p>
+
+                        </div>
                         <div class="row products">
-                            <div class="col-lg-4 col-md-6" th:each="goods:${goodsList}">
+                            <div class="col-lg-4 col-md-6" th:each="favorite:${favoriteList}">
                                 <div class="product">
                                     <div class="flip-container">
                                         <div class="flipper">
-                                            <div class="front"><a th:href="'/goods/'+${goods.id}"><img th:src="@{'/static/images/goodsImage/'+${goods.imageName}}" alt="" class="img-fluid"></a></div>
-                                            <div class="back"><a th:href="'/goods/'+${goods.id}"><img th:src="@{'/static/images/goodsImage/'+${goods.imageName}}" alt="" class="img-fluid"></a></div>
+                                            <div class="front"><a th:href="'/goods/'+${favorite.goods.id}"><img
+                                                    th:src="@{'/static/images/goodsImage/'+${favorite.goods.imageName}}"
+                                                    alt="" class="img-fluid"></a></div>
+                                            <div class="back"><a th:href="'/goods/'+${favorite.goods.id}"><img
+                                                    th:src="@{'/static/images/goodsImage/'+${favorite.goods.imageName}}"
+                                                    alt="" class="img-fluid"></a></div>
                                         </div>
-                                    </div><a th:href="'/goods/'+${goods.id}" class="invisible"><img th:src="@{'/static/images/goodsImage/'+${goods.imageName}}" alt="" class="img-fluid"></a>
+                                    </div>
+                                    <a th:href="'/goods/'+${favorite.goods.id}" class="invisible"><img
+                                            th:src="@{'/static/images/goodsImage/'+${favorite.goods.imageName}}" alt=""
+                                            class="img-fluid"></a>
                                     <div class="text">
-                                        <h3><a th:href="'/goods/'+${goods.id}" th:title="${goods.name}" th:text="${goods.name}"></a></h3>
+                                        <h3><a th:href="'/goods/'+${favorite.goods.id}"
+                                               th:title="${favorite.goods.name}" th:text="${favorite.goods.name}"></a>
+                                        </h3>
                                         <p class="price">
-                                            <del></del>￥<span th:text="${goods.sellingPrice}"></span>
+                                            <del></del>
+                                            ￥<span th:text="${favorite.goods.sellingPrice}"></span>
                                         </p>
-                                        <div th:fragment="'div'+${goods.id}" th:id="'div'+${goods.id}" class="div11">
+                                        <div th:fragment="'div'+${favorite.goods.id}" th:id="'div'+${favorite.goods.id}"
+                                             class="div11">
                                             <p class="buttons">
-                                                <a href="/login" class="btn btn-danger" title="点击按钮后跳转到登录界面" th:if="${session.currentCustomer==null}"><i class="fa fa-globe"></i>登录后方可购物</a>
-                                                <a th:href="'/goods/'+${goods.id}" class="btn btn-outline-secondary" th:if="${session.currentCustomer!=null}">详情</a>
-                                                <a th:href="'javascript:addFavorite('+${goods.id}+')'" class="btn btn-outline-danger" th:if="${session.currentCustomer!=null&&goods.isFavorite==0}"><i class="fa fa-heart"></i>点击收藏</a>
-                                                <a th:href="'javascript:deleteFavorite('+${goods.id}+')'" class="btn btn-info" th:if="${session.currentCustomer!=null&&goods.isFavorite==1}"><i class="fa fa-heart"></i>取消收藏</a>
+                                                <a href="/login" class="btn btn-danger" title="点击按钮后跳转到登录界面"
+                                                   th:if="${session.currentCustomer==null}"><i class="fa fa-globe"></i>登录后方可购物</a>
+                                                <a th:href="'/goods/'+${favorite.goods.id}"
+                                                   class="btn btn-outline-secondary"
+                                                   th:if="${session.currentCustomer!=null}">详情</a>
+                                                <a th:href="'javascript:addFavorite('+${favorite.goods.id}+')'"
+                                                   class="btn btn-outline-danger"
+                                                   th:if="${session.currentCustomer!=null&&favorite.goods.isFavorite==0}"><i
+                                                        class="fa fa-heart"></i>点击收藏</a>
+                                                <a th:href="'javascript:deleteFavorite('+${favorite.goods.id}+')'"
+                                                   class="btn btn-info"
+                                                   th:if="${session.currentCustomer!=null&&favorite.goods.isFavorite==1}"><i
+                                                        class="fa fa-heart"></i>取消收藏</a>
                                             </p>
                                         </div>
                                     </div>
                                     <!-- /.text-->
-                                    <div class="ribbon new" th:if="${goods.isNew==1}">
+                                    <div class="ribbon new" th:if="${favorite.goods.isNew==1}">
                                         <div class="theribbon">新品</div>
                                         <div class="ribbon-background"></div>
                                     </div>
                                     <!-- /.ribbon-->
-                                    <div class="ribbon sale" th:if="${goods.hot==1}">
+                                    <div class="ribbon sale" th:if="${favorite.goods.hot==1}">
                                         <div class="theribbon">热卖</div>
                                         <div class="ribbon-background"></div>
                                     </div>
                                     <!-- /.ribbon-->
-                                    <div class="ribbon gift" th:if="${goods.specialPrice==1}">
+                                    <div class="ribbon gift" th:if="${favorite.goods.specialPrice==1}">
                                         <div class="theribbon">特价</div>
                                         <div class="ribbon-background"></div>
                                     </div>
                                     <!-- /.ribbon-->
-                                    <div class="ribbon noStock" th:if="${goods.inventoryQuantity<1}">
+                                    <div class="ribbon noStock" th:if="${favorite.goods.inventoryQuantity<1}">
                                         <div class="theribbon">售罄</div>
                                         <div class="ribbon-background"></div>
                                     </div>
@@ -93,7 +100,7 @@
                             </div>
                             <!-- /.products-->
                         </div>
-                        <div class="pages" th:if="${total>6}">
+                        <div class="pages" th:if="${total>5}">
                             <nav aria-label="Page navigation example" class="d-flex justify-content-center">
                                 <ul class="pagination">
                                     <div th:utext="${pageCode}" class="form-inline"></div>
@@ -110,12 +117,21 @@
                                 <div class="product same-height">
                                     <div class="flip-container">
                                         <div class="flipper">
-                                            <div class="front"><a th:href="'/goods/'+${currentBrowse.id}"><img th:src="@{'/static/images/goodsImage/'+${currentBrowse.imageName}}" alt="" class="img-fluid"></a></div>
-                                            <div class="back"><a th:href="'/goods/'+${currentBrowse.id}"><img th:src="@{'/static/images/goodsImage/'+${currentBrowse.imageName}}" alt="" class="img-fluid"></a></div>
+                                            <div class="front"><a th:href="'/goods/'+${currentBrowse.id}"><img
+                                                    th:src="@{'/static/images/goodsImage/'+${currentBrowse.imageName}}"
+                                                    alt="" class="img-fluid"></a></div>
+                                            <div class="back"><a th:href="'/goods/'+${currentBrowse.id}"><img
+                                                    th:src="@{'/static/images/goodsImage/'+${currentBrowse.imageName}}"
+                                                    alt="" class="img-fluid"></a></div>
                                         </div>
-                                    </div><a th:href="'/goods/'+${currentBrowse.id}" class="invisible"><img th:src="@{'/static/images/goodsImage/'+${currentBrowse.imageName}}" alt="" class="img-fluid"></a>
+                                    </div>
+                                    <a th:href="'/goods/'+${currentBrowse.id}" class="invisible"><img
+                                            th:src="@{'/static/images/goodsImage/'+${currentBrowse.imageName}}" alt=""
+                                            class="img-fluid"></a>
                                     <div class="text">
-                                        <a th:href="'/goods/'+${currentBrowse.id}" style="color: black"><h3 th:text="${currentBrowse.name}" th:title="${currentBrowse.name}"></h3></a>
+                                        <a th:href="'/goods/'+${currentBrowse.id}" style="color: black"><h3
+                                                th:text="${currentBrowse.name}" th:title="${currentBrowse.name}"></h3>
+                                        </a>
                                         <p class="price" th:text="'￥'+${currentBrowse.sellingPrice}"></p>
                                     </div>
                                 </div>

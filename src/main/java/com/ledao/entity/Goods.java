@@ -105,6 +105,10 @@ public class Goods implements Serializable {
      * 发布日期
      */
     private Date releaseDate;
+    /**
+     * 是否已收藏 0代表不是 1代表是
+     */
+    private Integer isFavorite=0;
 
     @Override
     public String toString() {

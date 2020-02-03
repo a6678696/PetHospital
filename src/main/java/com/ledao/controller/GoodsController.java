@@ -1,8 +1,8 @@
 package com.ledao.controller;
 
+import com.ledao.entity.*;
 import com.ledao.entity.Goods;
-import com.ledao.entity.Goods;
-import com.ledao.entity.GoodsType;
+import com.ledao.service.FavoriteService;
 import com.ledao.service.GoodsService;
 import com.ledao.service.GoodsTypeService;
 import com.ledao.util.PageUtil;
@@ -33,6 +33,9 @@ public class GoodsController {
 
     @Resource
     private GoodsTypeService goodsTypeService;
+
+    @Resource
+    private FavoriteService favoriteService;
 
     /**
      * 搜索商品
@@ -77,7 +80,7 @@ public class GoodsController {
      * @return
      */
     @RequestMapping("/list/{id}")
-    public ModelAndView list(@PathVariable(value = "id", required = false) Integer page, @RequestParam(value = "typeId", required = false) Integer typeId) {
+    public ModelAndView list(@PathVariable(value = "id", required = false) Integer page, @RequestParam(value = "typeId", required = false) Integer typeId,HttpSession session) {
         ModelAndView mav = new ModelAndView();
         Map<String, Object> map = new HashMap<>(16);
         map.put("typeId", typeId);
@@ -87,8 +90,9 @@ public class GoodsController {
         map.put("size", pageSize);
         if (goodsTypeService.findById(typeId).getState() == 1) {
             //商品大类分类
-            List<Goods> goodsList=goodsService.listByBigTypeId(map);
+            List<Goods> goodsList = goodsService.listByBigTypeId(map);
             Long total = goodsService.getCountByBigTypeId(map);
+            this.setGoodsFavorite(goodsList,session);
             mav.addObject("goodsList", goodsList);
             mav.addObject("total", total);
             mav.addObject("pageCode", PageUtil.genPagination("/goods/list", total, page, pageSize, typeId));
@@ -96,6 +100,7 @@ public class GoodsController {
             //商品小类分类
             List<Goods> goodsList = goodsService.list(map);
             Long total = goodsService.getCount(map);
+            this.setGoodsFavorite(goodsList,session);
             mav.addObject("goodsList", goodsList);
             mav.addObject("total", total);
             mav.addObject("pageCode", PageUtil.genPagination("/goods/list", total, page, pageSize, typeId));
@@ -118,6 +123,24 @@ public class GoodsController {
     }
 
     /**
+     * 给商品设置是否已收藏标签(0否,1是)
+     *
+     * @param goodsList
+     */
+    private void setGoodsFavorite(List<Goods> goodsList,HttpSession session) {
+        Map<String,Object> map=new HashMap<>(16);
+        map.put("customer", session.getAttribute("currentCustomer"));
+        List<Favorite> favoriteList = favoriteService.list(map);
+        for (Favorite favorite : favoriteList) {
+            for (Goods goods : goodsList) {
+                if (goods.getId().equals(favorite.getGoods().getId())) {
+                    goods.setIsFavorite(1);
+                }
+            }
+        }
+    }
+
+    /**
      * 查看商品详情
      *
      * @param id
@@ -137,6 +160,9 @@ public class GoodsController {
         Collections.shuffle(goodsList);
         goodsList.remove(goods);
         this.saveCurrentBrowseGoods(goods, session);
+        List<Goods> goodsList1 = new ArrayList<>();
+        goodsList1.add(goods);
+        this.setGoodsFavorite(goodsList1,session);
         mav.addObject("bigTypeName", goodsTypeService.findById(goodsTypeService.findById(goods.getType().getId()).getPId()).getName());
         mav.addObject("bigTypeId", goodsTypeService.findById(goodsTypeService.findById(goods.getType().getId()).getPId()).getId());
         mav.addObject("goods", goods);
@@ -179,5 +205,66 @@ public class GoodsController {
         }
 
         session.setAttribute("currentBrowse", currentBrowseGoods);
+    }
+
+    /**
+     * 添加商品到我的收藏
+     *
+     * @param goodsId
+     * @param session
+     */
+    @RequestMapping("/addFavorite")
+    public String addFavorite(Integer goodsId, String str, HttpSession session) {
+        Customer currentCustomer = (Customer) session.getAttribute("currentCustomer");
+        Favorite favorite = new Favorite();
+        favorite.setCustomer(currentCustomer);
+        favorite.setGoods(goodsService.findById(goodsId));
+        favoriteService.add(favorite);
+        String url = "redirect:/goods/list/1?typeId=" + goodsService.findById(goodsId).getType().getId().toString() + "::" + str;
+        return url;
+    }
+
+    /**
+     * 从我的收藏中删除商品
+     *
+     * @param goodsId
+     * @param session
+     */
+    @RequestMapping("/deleteFavorite")
+    public String deleteFavorite(Integer goodsId, String str, HttpSession session) {
+        Customer currentCustomer = (Customer) session.getAttribute("currentCustomer");
+        favoriteService.delete(currentCustomer.getId(), goodsId);
+        String url = "redirect:/goods/list/1?typeId=" + goodsService.findById(goodsId).getType().getId().toString() + "::" + str;
+        return url;
+    }
+
+    /**
+     * 我的收藏
+     *
+     * @return
+     */
+    @RequestMapping("/myFavorite/list/{id}")
+    public ModelAndView myFavorite(@PathVariable(value = "id",required = false)Integer page,HttpSession session) {
+        ModelAndView mav = new ModelAndView();
+        Map<String,Object> map=new HashMap<>(16);
+        int pageSize = 6;
+        map.put("start", (page - 1) * pageSize);
+        map.put("size", pageSize);
+        map.put("customer", session.getAttribute("currentCustomer"));
+        Long total = favoriteService.getCount(map);
+        List<Favorite> favoriteList = favoriteService.list(map);
+        List<Goods> goodsList = new ArrayList<>();
+        for (Favorite favorite : favoriteList) {
+            goodsList.add(favorite.getGoods());
+        }
+        this.setGoodsFavorite(goodsList,session);
+        mav.addObject("favoriteList", favoriteList);
+        mav.addObject("total", total);
+        mav.addObject("pageCode", PageUtil.genPagination2("/goods/myFavorite/list", total, page, pageSize));
+        mav.addObject("title", "我的收藏");
+        mav.addObject("mainPage", "page/goods/myFavorite");
+        mav.addObject("mainPageKey", "#b");
+        mav.setViewName("index");
+        return mav;
     }
 }
