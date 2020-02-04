@@ -27,59 +27,63 @@
                     </div>
                     <div id="basket" class="col-lg-9" th:if="${reservationList.size()<1}">
                         <div class="box container">
-                            <h3>您还没有预约单,<a href="/customer/petAdd">点我去添加</a></h3>
+                            <h3>您还没有预约单,<a href="/reservation/addDoctorReservation">点我去添加</a></h3>
                         </div>
                     </div>
                     <div id="basket" class="col-lg-9" th:if="${reservationList.size()>=1}">
                         <div class="box container">
-                            <form method="post" action="checkout1.html">
-                                <p class="text-muted">当前有 <span
-                                        th:text="${reservationList.size()}"></span> 条预约记录</p>
+                            <p class="text-muted">当前有 <span
+                                    th:text="${reservationList.size()}"></span> 条预约记录</p>
+                            <div>
+                                <table class="table">
+                                    <thead>
+                                    <tr>
+                                        <th style="text-align: center">预约类型</th>
+                                        <th style="text-align: center">预约的宠物名</th>
+                                        <th style="text-align: center">预约时间</th>
+                                        <th style="text-align: center">预约状态</th>
+                                        <th style="text-align: center">操作</th>
+                                    </tr>
+                                    </thead>
+                                    <tbody>
+                                    <tr th:each="reservation:${reservationList}">
+                                        <td style="text-align: center">
+                                            <span th:text="${reservation.type}"></span>
+                                        </td>
+                                        <td style="text-align: center">
+                                            <span th:text="${reservation.pet.name}"></span>
+                                        </td>
+                                        <td style="text-align: center">
+                                            <span th:text="${#dates.format(reservation.reserveDate,'yyyy-MM-dd')}"></span>
+                                        </td>
+                                        <td style="text-align: center">
+                                            <span th:if="${reservation.status==0}">未处理(⊙﹏⊙)</span>
+                                            <span th:if="${reservation.status==1}"
+                                                  style="color: #0c9076">预约成功(๑•̀ㅂ•́)و✧</span>
+                                            <span th:if="${reservation.status==2}" style="color: red">预约失败〒▽〒</span>
+                                        </td>
+                                        <td style="text-align: center">
+                                            <a th:href="@{'/reservation/reservationDetails?reservationId='+${reservation.id}}"><i
+                                                    class="fa fa-search" style="font-size: 20px;color: #0099FF"></i></a>
+                                            <a th:href="@{'/reservation/reservationModify?reservationId='+${reservation.id}}"
+                                               th:if="${reservation.status==0}"><i class="fa fa-pencil"
+                                                                                   style="font-size: 20px"></i></a>
+                                            <a th:href="@{'javascript:deleteReservation('+${reservation.id}+')'}" th:if="${reservation.status==0}"><i class="fa fa-trash-o"
+                                                                                            style="color: red;font-size: 20px"></i></a>
+                                        </td>
+                                    </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                            <!-- /.table-responsive-->
+                            <div class="box-footer d-flex justify-content-between flex-column flex-lg-row">
                                 <div>
-                                    <table class="table">
-                                        <thead>
-                                        <tr>
-                                            <th style="text-align: center">预约类型</th>
-                                            <th style="text-align: center">预约的宠物名</th>
-                                            <th style="text-align: center">预约时间</th>
-                                            <th style="text-align: center">预约状态</th>
-                                            <th style="text-align: center">操作</th>
-                                        </tr>
-                                        </thead>
-                                        <tbody>
-                                        <tr th:each="reservation:${reservationList}">
-                                            <td style="text-align: center">
-                                                <span th:text="${reservation.type}"></span>
-                                            </td>
-                                            <td style="text-align: center">
-                                                <span th:text="${reservation.pet.name}"></span>
-                                            </td>
-                                            <td style="text-align: center">
-                                                <span th:text="${#dates.format(reservation.reserveDate,'yyyy-MM-dd')}"></span>
-                                            </td>
-                                            <td style="text-align: center">
-                                                <span th:if="${reservation.status==0}">未处理(⊙﹏⊙)</span>
-                                                <span th:if="${reservation.status==1}" style="color: #0c9076">预约成功(๑•̀ㅂ•́)و✧</span>
-                                                <span th:if="${reservation.status==2}" style="color: red">预约失败〒▽〒</span>
-                                            </td>
-                                            <td style="text-align: center">
-                                                <a th:href="@{'/reservation/reservationDetails?reservationId='+${reservation.id}}"><i class="fa fa-search" style="font-size: 20px;color: #0099FF"></i></a>
-                                                <a th:href="@{'/reservation/reservationModify?reservationId='+${reservation.id}}" th:if="${reservation.status==0}"><i class="fa fa-pencil" style="font-size: 20px"></i></a>
-                                                <a href="#" th:if="${reservation.status==0}"><i class="fa fa-trash-o" style="color: red;font-size: 20px"></i></a>
-                                            </td>
-                                        </tr>
-                                        </tbody>
-                                    </table>
+                                    <a href="/reservation/addDoctorReservation" type="button"
+                                       class="btn btn-primary"><img
+                                            th:src="@{/static/images/img/petAdd.png}"
+                                            style="height: 14px;margin-bottom: 4px" alt="">添加预约单</a>
                                 </div>
-                                <!-- /.table-responsive-->
-                                <div class="box-footer d-flex justify-content-between flex-column flex-lg-row">
-                                    <div>
-                                        <a href="/reservation/addDoctorReservation" type="button" class="btn btn-primary"><img
-                                                th:src="@{/static/images/img/petAdd.png}"
-                                                style="height: 14px;margin-bottom: 4px" alt="">添加预约单</a>
-                                    </div>
-                                </div>
-                            </form>
+                            </div>
                         </div>
                         <!-- /.box-->
                     </div>

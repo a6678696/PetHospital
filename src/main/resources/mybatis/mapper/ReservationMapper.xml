@@ -87,6 +87,7 @@
                 remarks=#{remarks},
             </if>
         </set>
+        where id=#{id}
     </update>
     <delete id="delete" parameterType="integer">
         delete from t_reservation where id=#{id}

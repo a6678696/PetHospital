@@ -52,7 +52,7 @@
                     <!-- /.col-md-3-->
                     <div id="basket" class="col-lg-9">
                         <div class="box container">
-                            <form method="post" action="checkout1.html">
+                            <form method="post" action="/shoppingCart">
                                 <p class="text-muted">当前有 <span th:text="${session.shoppingCart.getShoppingCartItems().size()}" style="color: red;font-size: 20px"></span> 种商品  <span style="color: red;font-size: 20px" th:if="${session.freight>0}">(当前未满88元,需要追加10元运费)</span></p>
                                 <div class="table-responsive">
                                     <table class="table">
@@ -79,13 +79,13 @@
                                             <td style="text-align: center">
                                                     <input type="hidden" id="goods_id" th:value="${shoppingCartItems.getGoods().getId()}"/>
                                                     <input type="hidden" id="goods_stock" th:value="${shoppingCartItems.getGoods().getInventoryQuantity()}"/>
-<!--                                                    <button id="minCount" class="btn-danger min" style="width: 24px">-</button>&nbsp;-->
-                                                    <!--<input id="count" type="text"
+                                                    <button id="minCount" class="btn-danger min" style="width: 24px">-</button>&nbsp;
+                                                    <input id="count" type="text"
                                                                           th:value="${shoppingCartItems.getCount()}"
                                                                           class="text_box"
-                                                                          style="width: 50px;text-align:center;">&nbsp;-->
-                                                    <input type="number" class="text_box" th:value="${shoppingCartItems.getCount()}" min="1" th:max="${shoppingCartItems.getGoods().getInventoryQuantity()}" style="width: 50px;text-align:center;">
-<!--                                                    <button id="addCount" class="btn-success add" style="width: 24px">+</button>-->
+                                                                          style="width: 50px;text-align:center;">&nbsp;
+<!--                                                    <input type="number" class="text_box" th:value="${shoppingCartItems.getCount()}" min="1" th:max="${shoppingCartItems.getGoods().getInventoryQuantity()}" style="width: 50px;text-align:center;">-->
+                                                    <button id="addCount" class="btn-success add" style="width: 24px">+</button>
                                             </td>
                                             <td style="text-align: center"><span
                                                     th:text="${shoppingCartItems.getGoods().getInventoryQuantity()}"
@@ -127,8 +127,8 @@
                                     <div class="right">
                                         <a href="/shopping/updateShoppingCartItem" class="btn btn-outline-success"><i
                                                 class="fa fa-refresh"></i>刷新购物车</a>
-                                        <button type="submit" class="btn btn-primary">立即支付<i
-                                                class="fa fa-chevron-right"></i></button>
+                                        <a href="#" class="btn btn-primary">立即支付<i
+                                                class="fa fa-chevron-right"></i></a>
                                     </div>
                                 </div>
                             </form>

@@ -64,7 +64,12 @@ public class ReservationController {
             reservationService.add(reservation);
             return mav;
         } else {
-            ModelAndView mav = new ModelAndView("redirect:/reservation/reserveSuccess");
+            ModelAndView mav = new ModelAndView("redirect:/reservation/myReservation");
+            SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy-MM-dd");
+            Date date = simpleDateFormat.parse(reservation.getDate());
+            Pet pet = petService.findById(reservation.getPetId());
+            reservation.setPet(pet);
+            reservation.setReserveDate(date);
             reservationService.update(reservation);
             return mav;
         }
@@ -170,14 +175,31 @@ public class ReservationController {
      * @return
      */
     @RequestMapping("/reservationModify")
-    public ModelAndView reservationModify(Integer reservationId) {
+    public ModelAndView reservationModify(Integer reservationId, HttpSession session) {
         Reservation reservation = reservationService.findById(reservationId);
+        Map<String, Object> map = new HashMap<>(16);
+        map.put("customer", session.getAttribute("currentCustomer"));
+        List<Pet> petList = petService.list(map);
         ModelAndView mav = new ModelAndView();
         mav.addObject("reservation", reservation);
+        mav.addObject("petList", petList);
         mav.addObject("title", "修改预约单信息");
         mav.addObject("mainPage", "page/reservation/reservationModify");
         mav.addObject("mainPageKey", "#b");
         mav.setViewName("index");
+        return mav;
+    }
+
+    /**
+     * 删除未处理的预约单
+     *
+     * @param reservationId
+     * @return
+     */
+    @RequestMapping("/delete")
+    public ModelAndView delete(Integer reservationId) {
+        ModelAndView mav = new ModelAndView("redirect:/reservation/myReservation");
+        reservationService.delete(reservationId);
         return mav;
     }
 }
