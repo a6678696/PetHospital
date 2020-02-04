@@ -45,7 +45,7 @@ public class GoodsController {
      * @return
      */
     @RequestMapping("/search")
-    public ModelAndView search(@Valid Goods searchGoods, BindingResult bindingResult) {
+    public ModelAndView search(@Valid Goods searchGoods, BindingResult bindingResult,HttpSession session) {
         ModelAndView mav = new ModelAndView();
         if (bindingResult.hasErrors()) {
             mav.addObject("error", bindingResult.getFieldError().getDefaultMessage());
@@ -60,6 +60,7 @@ public class GoodsController {
             for (GoodsType goodsType : goodsTypeList) {
                 goodsType.setSmallGoodsTypeList(goodsTypeService.findByParentId(goodsType.getId()));
             }
+            this.setGoodsFavorite(goodsList,session);
             mav.addObject("goodsList", goodsList);
             mav.addObject("goodsTypeList", goodsTypeList);
             mav.addObject("title", "关于(" + searchGoods.getName() + ")的商品");

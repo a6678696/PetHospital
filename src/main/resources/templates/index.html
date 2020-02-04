@@ -30,6 +30,7 @@
     <script type="text/javascript" th:src="@{/static/vendor/owl.carousel/owl.carousel.min.js}"></script>
     <script type="text/javascript" th:src="@{/static/vendor/owl.carousel2.thumbs/owl.carousel2.thumbs.js}"></script>
     <script type="text/javascript" th:src="@{/static/js/front.js}"></script>
+    <script th:src="@{/static/js/My97DatePicker/WdatePicker.js}"></script>
     <script th:inline="javascript">
         if (window.name != "refresh") {
             location.reload();
@@ -55,6 +56,10 @@
             var successModify = [[${successModify}]];
             if (successModify == true) {
                 alert("修改成功!");
+            }
+            var reserveSuccess = [[${reserveSuccess}]];
+            if (reserveSuccess == true) {
+                alert("预约单填写成功!");
             }
         }
         //返回顶部图标出现或者消失
@@ -115,6 +120,7 @@
             );
         }
 
+        //注册验证
         function checkCustomerAddValue() {
             var userName = $("#userName").val();
             var password1 = $("#password1").val();

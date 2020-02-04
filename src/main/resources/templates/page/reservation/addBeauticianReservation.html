@@ -34,6 +34,9 @@
                                     <li>
                                         <a href="/reservation/addBeauticianReservation" class="nav-link">预约美容师</a>
                                     </li>
+                                    <li>
+                                        <a href="/reservation/myReservation" class="nav-link">返回我的预约记录</a>
+                                    </li>
                                 </ul>
                             </div>
                         </div>
@@ -41,26 +44,28 @@
                     </div>
                     <div id="blog-post" class="col-lg-9">
                         <div class="box">
-                            <h1 style="text-align: center">添加宠物信息</h1>
-                            <form action="/pet/save" method="post" enctype="multipart/form-data">
-                                <div class="form-group">
-                                    <label>宠物名称:</label>
-                                    <input id="petName" name="name" type="text" class="form-control" required="required" th:value="${pet==null?'':pet.name}" placeholder="必填">
+                            <h1 style="text-align: center">预约美容师</h1>
+                            <form action="/reservation/save" method="post">
+                                <div class="form-group form-inline">
+                                    <label>宠物名称:</label>&nbsp;
+                                    <select id="petId" name="petId" required="required" class="form-control">
+                                        <option value="">选择您的宠物...</option>
+                                        <div th:each="pet:${petList}">
+                                            <option th:text="${pet.name}" th:value="${pet.id}"></option>
+                                        </div>
+                                    </select>
+                                </div>
+                                <div class="form-group form-inline">
+                                    <label>预约日期:</label>
+                                    <input type="date" id="date" name="date" required="required" class="form-control" style="width: 160px;height: 30px"/>
                                 </div>
                                 <div class="form-group">
-                                    <label>年龄:</label>
-                                    <input id="petAge" name="age" type="text" class="form-control" required="required" th:value="${pet==null?'':pet.age}" placeholder="必填">
-                                </div>
-                                <div class="form-group">
-                                    <label>头像:</label>
-                                    <input type="file" name="petImage">
-                                </div>
-                                <div class="form-group">
-                                    <label>宠物类型:</label>
-                                    <input id="petTypeName" name="typeName" type="text" required="required" class="form-control" th:value="${pet==null?'':pet.typeName}" placeholder="必填">
+                                    <label>预约描述:</label>
+                                    <textarea id="description" name="description" class="form-control" rows="5" required="required" placeholder="您的宠物是否有过敏史?有的话请详细填写,没有请填无..."></textarea>
+                                    <input name="type" type="hidden" class="form-control" required="required" value="预约美容师" placeholder="必填">
                                 </div>
                                 <div class="text-center">
-                                    <button type="submit" class="btn btn-primary">立即添加</button>
+                                    <button type="submit" class="btn btn-primary">立即预约</button>
                                 </div>
                             </form>
                         </div>

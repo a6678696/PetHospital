@@ -58,9 +58,14 @@
                                         <p class="price">
                                             <del></del>￥<span th:text="${goods.sellingPrice}"></span>
                                         </p>
-                                        <p class="buttons">
-                                            <a href="/login" class="btn btn-danger" title="点击按钮后跳转到登录界面" th:if="${session.currentCustomer==null}"><i class="fa fa-globe"></i>登录后方可购物</a>
-                                        </p>
+                                        <div th:fragment="'div'+${goods.id}" th:id="'div'+${goods.id}" class="div11">
+                                            <p class="buttons">
+                                                <a href="/login" class="btn btn-danger" title="点击按钮后跳转到登录界面" th:if="${session.currentCustomer==null}"><i class="fa fa-globe"></i>登录后方可购物</a>
+                                                <a th:href="'/goods/'+${goods.id}" class="btn btn-outline-secondary" th:if="${session.currentCustomer!=null}">详情</a>
+                                                <a th:href="'javascript:addFavorite('+${goods.id}+')'" class="btn btn-outline-danger" th:if="${session.currentCustomer!=null&&goods.isFavorite==0}"><i class="fa fa-heart"></i>点击收藏</a>
+                                                <a th:href="'javascript:deleteFavorite('+${goods.id}+')'" class="btn btn-info" th:if="${session.currentCustomer!=null&&goods.isFavorite==1}"><i class="fa fa-heart"></i>取消收藏</a>
+                                            </p>
+                                        </div>
                                     </div>
                                     <!-- /.text-->
                                     <div class="ribbon new" th:if="${goods.isNew==1}">

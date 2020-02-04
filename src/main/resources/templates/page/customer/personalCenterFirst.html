@@ -30,34 +30,31 @@
                                 <h2>(●'◡'●)欢迎您,</h2>
                                 <h2 th:text="${session.currentCustomer.getContact()}"></h2>
                             </div>
-                            <form action="/customer/save" method="post" enctype="multipart/form-data">
-                                <div class="form-group">
-                                    <label>用户名:</label>
-                                    <input type="text" class="form-control" readonly="readonly"
-                                           th:value="${session.currentCustomer==null?'':session.currentCustomer.getUserName()}">
-                                </div>
-                                <div class="form-group">
-                                    <label>真实姓名:</label>
-                                    <input type="text" class="form-control" readonly="readonly"
-                                           th:value="${session.currentCustomer==null?'':session.currentCustomer.getContact()}" placeholder="必填">
-                                </div>
-                                <div class="form-group">
-                                    <label>联系方式:</label>
-                                    <input type="text" class="form-control" readonly="readonly"
-                                           th:value="${session.currentCustomer==null?'':session.currentCustomer.getNumber()}" placeholder="必填">
-                                </div>
-                                <div class="form-group">
-                                    <label>收货地址:</label>
-                                    <input type="text" class="form-control" readonly="readonly"
-                                           th:value="${session.currentCustomer==null?'':session.currentCustomer.getAddress()}" placeholder="必填">
-                                </div>
-                                <div class="form-group">
-                                    <label>公司名称:</label>
-                                    <input type="text" class="form-control" readonly="readonly" value="无" th:if="${session.currentCustomer.getName()==''}">
-                                    <input type="text" class="form-control" readonly="readonly" th:if="${session.currentCustomer.getName()!=''}"
-                                           th:value="${session.currentCustomer==null?'':session.currentCustomer.getName()}">
-                                </div>
-                            </form>
+                            <hr>
+                            <div class="form-group">
+                                <kbd style="font-size: 20px">用户名:</kbd>
+                                <span style="font-size: 20px" th:text="${session.currentCustomer==null?'':session.currentCustomer.getUserName()}"></span>
+                            </div>
+                            <div class="form-group">
+                                <kbd style="font-size: 20px">真实姓名:</kbd>
+                                <span style="font-size: 20px" th:text="${session.currentCustomer==null?'':session.currentCustomer.getContact()}"></span>
+                            </div>
+                            <div class="form-group">
+                                <kbd style="font-size: 20px">联系方式:</kbd>
+                                <span style="font-size: 20px" th:text="${session.currentCustomer==null?'':session.currentCustomer.getNumber()}"></span>
+                            </div>
+                            <div class="form-group">
+                                <kbd style="font-size: 20px">收货地址:</kbd>
+                                <span style="font-size: 20px" th:text="${session.currentCustomer==null?'':session.currentCustomer.getAddress()}"></span>
+                            </div>
+                            <div class="form-group">
+                                <kbd style="font-size: 20px">公司名称:</kbd>
+                                <span value="无" th:if="${session.currentCustomer.getName()==''}"
+                                      style="font-size: 20px"></span>
+                                <span th:if="${session.currentCustomer.getName()!=''}"
+                                      th:text="${session.currentCustomer==null?'':session.currentCustomer.getName()}"
+                                      style="font-size: 20px"></span>
+                            </div>
                         </div>
                         <!-- /.box-->
                     </div>

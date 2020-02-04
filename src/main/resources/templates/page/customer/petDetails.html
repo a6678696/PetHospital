@@ -30,21 +30,18 @@
                     <div id="blog-post" class="col-lg-9">
                         <div class="box">
                             <h1 style="text-align: center">查看宠物信息</h1>
+                            <hr>
                             <div class="form-group">
-                                <label>宠物名称:</label>
-                                <input type="hidden" name="id" th:value="${pet==null?'':pet.id}">
-                                <input id="petName" name="name" type="text" class="form-control" readonly="readonly"
-                                       th:value="${pet==null?'':pet.name}" placeholder="必填">
+                                <kbd style="font-size: 20px">宠物名称:</kbd>
+                                <span style="font-size: 20px" th:text="${pet==null?'':pet.name}"></span>
                             </div>
                             <div class="form-group">
-                                <label>年龄:</label>
-                                <input id="petAge" name="age" type="text" class="form-control" readonly="readonly"
-                                       th:value="${pet==null?'':pet.age}" placeholder="必填">
+                                <kbd style="font-size: 20px">年龄:</kbd>
+                                <span style="font-size: 20px" th:text="${pet==null?'':pet.age}"></span>
                             </div>
                             <div class="form-group">
-                                <label>宠物类型:</label>
-                                <input id="petTypeName" name="typeName" type="text" class="form-control"
-                                       readonly="readonly" th:value="${pet==null?'':pet.typeName}" placeholder="必填">
+                                <kbd style="font-size: 20px">宠物类型:</kbd>
+                                <span style="font-size: 20px" th:text="${pet==null?'':pet.typeName}"></span>
                             </div>
                         </div>
                         <!-- /.box-->

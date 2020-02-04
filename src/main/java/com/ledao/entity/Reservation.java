@@ -35,6 +35,10 @@ public class Reservation {
      */
     private Integer petId;
     /**
+     * 传入的日期
+     */
+    private String date;
+    /**
      * 预约时间
      */
     private Date reserveDate;
@@ -58,4 +62,5 @@ public class Reservation {
      * 备注(如果预约不成功可以输入原因)
      */
     private String remarks;
+
 }

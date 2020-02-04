@@ -53,4 +53,12 @@ public interface ReservationService {
      * @return
      */
     Integer delete(Integer id);
+
+    /**
+     * 根据id查找实体
+     *
+     * @param id
+     * @return
+     */
+    Reservation findById(Integer id);
 }

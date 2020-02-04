@@ -34,7 +34,7 @@ import java.util.Map;
 @RestController
 @RequestMapping("/admin/goods")
 public class GoodsAdminController {
-    
+
     @Value("${goodsImageFilePath}")
     private String goodsImageFilePath;
 

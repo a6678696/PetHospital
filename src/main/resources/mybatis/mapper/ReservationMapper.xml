@@ -34,6 +34,7 @@
                 and status=#{status}
             </if>
         </where>
+        order by reserveDate desc
         <if test="start!=null and size!=null">
             limit #{start},#{size}
         </if>
@@ -90,5 +91,8 @@
     <delete id="delete" parameterType="integer">
         delete from t_reservation where id=#{id}
     </delete>
+    <select id="findById" parameterType="integer" resultMap="ReservationResult">
+        select * from t_reservation where id=#{id}
+    </select>
 
 </mapper>

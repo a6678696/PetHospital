@@ -46,4 +46,9 @@ public class ReservationServiceImpl implements ReservationService {
     public Integer delete(Integer id) {
         return reservationMapper.delete(id);
     }
+
+    @Override
+    public Reservation findById(Integer id) {
+        return reservationMapper.findById(id);
+    }
 }

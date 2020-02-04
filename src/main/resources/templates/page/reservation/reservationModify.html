@@ -17,7 +17,7 @@
                             <ol class="breadcrumb">
                                 <i class="fa fa-eye" style="padding-top: 2px"></i>当前位置:&nbsp;&nbsp;
                                 <li class="breadcrumb-item"><a href="/">主页</a></li>
-                                <li class="breadcrumb-item"><span>预约医生</span></li>
+                                <li class="breadcrumb-item"><span>修改预约单</span></li>
                             </ol>
                         </nav>
                     </div>
@@ -44,24 +44,23 @@
                     </div>
                     <div id="blog-post" class="col-lg-9">
                         <div class="box">
-                            <h1 style="text-align: center">预约医生</h1>
+                            <h1 style="text-align: center">修改预约单</h1>
                             <form action="/reservation/save" method="post">
                                 <div class="form-group form-inline">
                                     <label>宠物名称:</label>&nbsp;
-                                    <select id="petId" name="petId" required="required" class="form-control">
-                                        <option value="">选择您的宠物...</option>
-                                        <div th:each="pet:${petList}">
-                                            <option th:text="${pet.name}" th:value="${pet.id}"></option>
+                                    <select id="reservationId" name="reservationId" required="required" th:value="${reservation.id}" class="form-control">
+                                        <div th:each="reservation:${reservationList}">
+                                            <option th:text="${reservation.name}" th:value="${reservation.id}"></option>
                                         </div>
                                     </select>
                                 </div>
                                 <div class="form-group form-inline">
                                     <label>预约日期:</label>
-                                    <input type="date" id="date" name="date" required="required" class="form-control" style="width: 160px;height: 30px"/>
+                                    <input type="date" id="date" name="date" required="required" th:value="${reservation.reserveDate}" class="form-control" style="width: 160px;height: 30px"/>
                                 </div>
                                 <div class="form-group">
                                     <label>预约描述:</label>
-                                    <textarea id="description" name="description" class="form-control" rows="5" required="required" placeholder="请填写您的宠物病况..."></textarea>
+                                    <textarea id="description" name="description" class="form-control" rows="5" required="required" th:value="${reservation.description}" placeholder="请填写您的宠物病况..."></textarea>
                                     <input name="type" type="hidden" class="form-control" required="required" value="预约医生" placeholder="必填">
                                 </div>
                                 <div class="text-center">

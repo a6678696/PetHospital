@@ -2084,7 +2084,7 @@
     </column>
     <column id="491" parent="272" name="reserveDate">
       <Position>7</Position>
-      <DataType>date|0s</DataType>
+      <DataType>datetime|0s</DataType>
       <ColumnKind>normal</ColumnKind>
     </column>
     <column id="492" parent="272" name="description">
