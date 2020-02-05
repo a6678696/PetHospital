@@ -61,4 +61,12 @@ public interface PetService {
      * @return
      */
     Pet findById(Integer id);
+
+    /**
+     * 根据宠物名查找宠物
+     *
+     * @param name
+     * @return
+     */
+    Pet findByName(String name);
 }

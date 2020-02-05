@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<!--suppress ALL-->
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>预约单管理</title>
+    <link rel="stylesheet" type="text/css" href="/static/jquery-easyui-1.7.0/themes/metro-blue/easyui.css">
+    <link rel="stylesheet" type="text/css" href="/static/jquery-easyui-1.7.0/themes/icon.css">
+    <script type="text/javascript" src="/static/jquery-easyui-1.7.0/jquery.min.js"></script>
+    <script type="text/javascript" src="/static/jquery-easyui-1.7.0/jquery.easyui.min.js"></script>
+    <script type="text/javascript" src="/static/jquery-easyui-1.7.0/locale/easyui-lang-zh_CN.js"></script>
+    <script type="text/javascript">
+        var url;
+
+        function searchReservation() {
+            $("#dg").datagrid('load',{
+                "customer.contact": $("#s_contact").val(),
+                "pet.name": $("#s_petName").val()
+            });
+        }
+
+        function resetValue() {
+
+            $("#name").val("");
+            $("#remarks").val("");
+        }
+
+        function closeReservationDialog() {
+            $("#dlg").dialog("close");
+            resetValue();
+        }
+
+        function saveReservation() {
+            $("#fm").form("submit", {
+                url: url,
+                onSubmit: function () {
+                    return $(this).form("validate");
+                },
+                success: function (result) {
+                    var result = eval('(' + result + ')');
+                    if (result.success) {
+                        $.messager.alert("系统提示", "保存成功！");
+                        resetValue();
+                        $("#dlg").dialog("close");
+                        $("#dg").datagrid("reload");
+                    } else {
+                        $.messager.alert("系统提示", "上传的图片过大,不能超过1.048576M");
+                    }
+                }
+            });
+        }
+
+        function openReservationModifyDialog() {
+            var selectedRows = $("#dg").datagrid("getSelections");
+            if (selectedRows.length != 1) {
+                $.messager.alert("系统提示", "请选择一个要接受的预约！");
+                return;
+            }
+            var row = selectedRows[0];
+            url = "/admin/reservation/save?id=" + row.id;
+        }
+
+        $(document).ready(function () {
+
+            $("#dg").datagrid({
+                onDblClickRow: function (index, row) {
+                    $("#dlg").dialog("open").dialog("setTitle", "修改预约单信息");
+                    $("#fm").form("load", row);
+                    url = "/admin/reservation/save?id=" + row.id;
+                }
+            });
+
+        });
+
+        function formatCustomer(val,row) {
+            return val.contact;
+        }
+
+        function formatPet(val,row) {
+            return val.name;
+        }
+
+        function formatStatus(val,row) {
+            if (val == 0) {
+                return "未处理";
+            }
+        }
+
+        function formatReserveDate(val,row) {
+            return val.substring(0, 4) + "年" + val.substring(5, 7) + "月" + val.substring(8, 10)+"日";
+        }
+    </script>
+</head>
+<body style="margin: 1px">
+<table id="dg" title="预约单管理" class="easyui-datagrid"
+       fitColumns="true" pagination="true" rownumbers="true" singleselect="true"
+       url="/admin/reservation/listNotHandleDoctor" fit="true" toolbar="#tb">
+    <thead>
+    <th field="id" width="10" align="center">编号</th>
+    <th field="customer" width="10" align="center" formatter="formatCustomer">客户名称</th>
+    <th field="pet" width="10" align="center" formatter="formatPet">宠物名称</th>
+    <th field="reserveDate" width="12" align="center" formatter="formatReserveDate">预约日期</th>
+    <th field="status" width="8" align="center" formatter="formatStatus">预约状态</th>
+    <th field="description" width="80" align="center">病情描述</th>
+    </thead>
+</table>
+
+<div id="tb">
+    <div>
+        <a href="javascript:openReservationModifyDialog()" class="easyui-linkbutton" iconCls="icon-ok"
+           plain="true">接受预约</a>
+    </div>
+    <div>
+        &nbsp;客户名称：&nbsp;<input type="text" id="s_contact" size="20" onkeydown="if(event.keyCode==13) searchReservation()"/>
+        &nbsp;宠物名称：&nbsp;<input type="text" id="s_petName" size="20" onkeydown="if(event.keyCode==13) searchReservation()"/>
+        <a href="javascript:searchReservation()" class="easyui-linkbutton" iconCls="icon-search" plain="true">搜索</a>
+    </div>
+</div>
+
+<div id="dlg-buttons">
+    <a href="javascript:saveReservation()" class="easyui-linkbutton" iconCls="icon-ok">保存</a>
+    <a href="javascript:closeReservationDialog()" class="easyui-linkbutton" iconCls="icon-cancel">关闭</a>
+</div>
+</body>
+</html>

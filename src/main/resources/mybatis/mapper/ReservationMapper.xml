@@ -15,17 +15,17 @@
         <association property="pet" column="petId" select="com.ledao.mapper.PetMapper.findById"></association>
         <association property="user" column="userId" select="com.ledao.mapper.UserMapper.findById"></association>
     </resultMap>
-    <select id="list" parameterType="map" resultType="com.ledao.entity.Reservation">
+    <select id="list" parameterType="map" resultMap="ReservationResult">
         select * from t_reservation
         <where>
             <if test="type!=null and type!=''">
                 and type=#{type}
             </if>
-            <if test="customer!=null">
-                and customerId=#{customer.id}
+            <if test="customerId!=null">
+                and customerId=#{customerId}
             </if>
-            <if test="pet!=null">
-                and petId=#{pet.id}
+            <if test="petId!=null">
+                and petId=#{petId}
             </if>
             <if test="user!=null">
                 and userId=#{user.id}

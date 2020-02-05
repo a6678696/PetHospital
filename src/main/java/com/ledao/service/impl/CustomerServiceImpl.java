@@ -28,6 +28,11 @@ public class CustomerServiceImpl implements CustomerService {
     }
 
     @Override
+    public Customer findByContact(String contact) {
+        return customerMapper.findByContact(contact);
+    }
+
+    @Override
     public List<Customer> findByUserName(String userName) {
         return customerMapper.findByUserName(userName);
     }

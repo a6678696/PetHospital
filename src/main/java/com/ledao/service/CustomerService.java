@@ -23,6 +23,14 @@ public interface CustomerService {
     List<Customer> findByName(String name);
 
     /**
+     * 根据联系人查找客户
+     *
+     * @param contact
+     * @return
+     */
+    Customer findByContact(String contact);
+
+    /**
      * 根据名称模糊查询客户信息
      *
      * @param userName

@@ -31,7 +31,7 @@ public class Reservation {
      */
     private Pet pet;
     /**
-     * 要预约的宠物ID
+     * 宠物id添加或修改预约单时用到
      */
     private Integer petId;
     /**

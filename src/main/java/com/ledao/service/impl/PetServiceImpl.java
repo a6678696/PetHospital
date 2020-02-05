@@ -51,4 +51,9 @@ public class PetServiceImpl implements PetService {
     public Pet findById(Integer id) {
         return petMapper.findById(id);
     }
+
+    @Override
+    public Pet findByName(String name) {
+        return petMapper.findByName(name);
+    }
 }

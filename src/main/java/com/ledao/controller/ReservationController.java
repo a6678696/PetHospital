@@ -67,8 +67,7 @@ public class ReservationController {
             ModelAndView mav = new ModelAndView("redirect:/reservation/myReservation");
             SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy-MM-dd");
             Date date = simpleDateFormat.parse(reservation.getDate());
-            Pet pet = petService.findById(reservation.getPetId());
-            reservation.setPet(pet);
+            reservation.setPet(petService.findById(reservation.getPetId()));
             reservation.setReserveDate(date);
             reservationService.update(reservation);
             return mav;
@@ -137,10 +136,11 @@ public class ReservationController {
     public ModelAndView myReservation(HttpSession session) {
         ModelAndView mav = new ModelAndView();
         Map<String, Object> map = new HashMap<>(16);
-        map.put("customer", session.getAttribute("currentCustomer"));
+        Customer customer = (Customer) session.getAttribute("currentCustomer");
+        map.put("customerId", customer.getId());
         List<Reservation> reservationList = reservationService.list(map);
         for (Reservation reservation : reservationList) {
-            reservation.setPet(petService.findById(reservation.getPetId()));
+            reservation.setPet(petService.findById(reservation.getPet().getId()));
         }
         mav.addObject("reservationList", reservationList);
         mav.addObject("title", "我的预约");

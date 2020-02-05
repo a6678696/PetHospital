@@ -56,5 +56,8 @@
     <select id="findById" parameterType="integer" resultMap="PetResult">
         select * from t_pet where id=#{id}
     </select>
+    <select id="findByName" parameterType="string" resultMap="PetResult">
+        select * from t_pet where name=#{name}
+    </select>
 
 </mapper>

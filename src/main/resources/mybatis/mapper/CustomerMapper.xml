@@ -100,5 +100,8 @@
     <select id="getCountByUserName" parameterType="string" resultType="java.lang.Long">
         select count(*) from t_customer where userName=#{userName}
     </select>
+    <select id="findByContact" parameterType="string" resultMap="CustomerResult">
+        select * from t_customer where contact=#{contact}
+    </select>
 
 </mapper>
