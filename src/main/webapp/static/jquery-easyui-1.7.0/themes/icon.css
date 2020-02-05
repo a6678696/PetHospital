@@ -102,16 +102,9 @@
 .icon-submit{
 	background:url('usericons/submit.png') no-repeat center center;
 }
-.icon-exit{
-	background:url('usericons/exit.png') no-repeat center center;
-}
 
 .icon-navigation{
 	background:url('usericons/navigation.gif') no-repeat center center;
-}
-
-.icon-modifyPassword{
-	background:url('usericons/modifyPassword.png') no-repeat center center;
 }
 
 .icon-folderOpen{
@@ -196,6 +189,10 @@
 
 .menu-6{
 	background:url('usericons/menu-6.gif') no-repeat center center;
+}
+
+.menu-7{
+	background:url('usericons/menu-7.gif') no-repeat center center;
 }
 
 .menu-11{
@@ -322,13 +319,25 @@
 }
 
 .menu-63{
-	background:url('usericons/menu-63.png') no-repeat center center;
+	background:url('usericons/menu-63.gif') no-repeat center center;
 }
 
-.menu-64{
-	background:url('usericons/menu-64.png') no-repeat center center;
+.menu-71{
+	background:url('usericons/menu-71.gif') no-repeat center center;
 }
 
-.menu-65{
-	background:url('usericons/log.png') no-repeat center center;
+.menu-72{
+	background:url('usericons/menu-72.gif') no-repeat center center;
+}
+
+.menu-73{
+	background:url('usericons/menu-73.gif') no-repeat center center;
+}
+
+.menu-74{
+	background:url('usericons/menu-74.gif') no-repeat center center;
+}
+
+.menu-75{
+	background:url('usericons/menu-75.gif') no-repeat center center;
 }
