@@ -146,10 +146,6 @@ public class ShoppingController {
                         shoppingCartItem.setCount(count);
                     } else if (goods.getInventoryQuantity() < count) {
                         shoppingCartItem.setCount(shoppingCartItem.getGoods().getInventoryQuantity());
-                    } else if (count == 0) {
-                        removeShoppingCartItem(session, goodsId);
-                    } else if (count<0){
-                        removeShoppingCartItem(session, goodsId);
                     }
                 }
                 break;

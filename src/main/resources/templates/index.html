@@ -147,7 +147,7 @@
             }
         }
 
-        //刷新购物车商品信息
+        //刷新购物车商品信息,key==0时表示点击按钮改变数量,key==1时表示用户输入改变数量
         function refreshShoppingCart(goodsId, count, key) {
             $.post("/shopping/updateShoppingCartItem", {goodsId: goodsId, count: count, key: key},
                 function (result) {

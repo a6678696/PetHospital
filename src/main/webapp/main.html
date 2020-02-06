@@ -55,11 +55,11 @@
 
             $("#userInfo").load("/user/loadUserInfo"); // 加载用户信息
 
-            var content = "<iframe frameborder=0 scrolling='auto' style='width:100%;height:99%' src='/common/stockSearch.html'></iframe>";
+            var content = "<iframe frameborder=0 scrolling='auto' style='width:100%;height:99%' src='/common/welcome.html'></iframe>";
 
             $("#tabs").tabs("add", {
                 title: "首页",
-                iconCls: "menu-25",
+                iconCls: "icon-home",
                 closable: false,
                 content: content
             });
@@ -71,9 +71,9 @@
                     $("#tree").tree("expandAll");
                 },
                 onClick: function (node) {
-                    if (node.id == 6040) {
+                    if (node.id == 7040) {
                         openPasswordModifyDialog();
-                    } else if (node.id == 6050) {
+                    } else if (node.id == 7050) {
                         logout();
                     } else if (node.attributes.url) {
                         openTab(node);

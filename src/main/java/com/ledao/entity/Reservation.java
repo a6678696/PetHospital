@@ -62,5 +62,9 @@ public class Reservation {
      * 备注(如果预约不成功可以输入原因)
      */
     private String remarks;
+    /**
+     * 判断预约单是否被取消,用来清空预约单中的接受预约人
+     */
+    private Integer isCancel;
 
 }

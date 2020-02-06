@@ -86,6 +86,9 @@
             <if test="remarks != null and remarks != ''">
                 remarks=#{remarks},
             </if>
+            <if test="isCancel != null">
+                userId=null,
+            </if>
         </set>
         where id=#{id}
     </update>

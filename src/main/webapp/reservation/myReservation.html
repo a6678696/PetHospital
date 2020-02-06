@@ -30,6 +30,8 @@
         function formatStatus(val,row) {
             if (val == 0) {
                 return "未处理";
+            }else if (val == 1) {
+                return "<span style='color: springgreen'>已接受</span>";
             }
         }
 
@@ -37,24 +39,24 @@
             return val.substring(0, 4) + "年" + val.substring(5, 7) + "月" + val.substring(8, 10)+"日";
         }
 
-        function acceptReservation(status) {
+        function cancelReservation(status) {
             var selectedRows = $("#dg").datagrid("getSelections");
             if (selectedRows.length != 1) {
-                $.messager.alert("系统提示", "请选择一个要接受的预约！");
+                $.messager.alert("系统提示", "请选择一个要取消的预约！");
                 return;
             }
             var id = selectedRows[0].id;
-            $.messager.confirm("系统提示", "您确定要接受预约吗?", function (r) {
+            $.messager.confirm("系统提示", "您确定要取消这个预约吗?", function (r) {
                 if (r) {
                     $.post("/admin/reservation/acceptReservation", {
                         status: status,
                         reservationId: id
                     }, function (result) {
                         if (result.success) {
-                            $.messager.alert("系统提示", "接受预约成功！");
+                            $.messager.alert("系统提示", "取消预约成功！");
                             $("#dg").datagrid("reload");
                         } else {
-                            $.messager.alert("系统提示", "接受预约失败！");
+                            $.messager.alert("系统提示", "取消预约失败！");
                         }
                     }, "json");
                 }
@@ -65,7 +67,7 @@
 <body style="margin: 1px">
 <table id="dg" title="预约单管理" class="easyui-datagrid"
        fitColumns="true" pagination="true" rownumbers="true" singleselect="true"
-       url="/admin/reservation/listNotHandleDoctor" fit="true" toolbar="#tb">
+       url="/admin/reservation/listMyReservation" fit="true" toolbar="#tb">
     <thead>
     <th field="id" width="10" align="center">编号</th>
     <th field="customer" width="10" align="center" formatter="formatCustomer">客户名称</th>
@@ -78,8 +80,8 @@
 
 <div id="tb">
     <div>
-        <a href="javascript:acceptReservation(1)" class="easyui-linkbutton" iconCls="icon-ok"
-           plain="true">接受预约</a>
+        <a href="javascript:cancelReservation(0)" class="easyui-linkbutton" iconCls="icon-ok"
+           plain="true">取消预约</a>
     </div>
     <div>
         &nbsp;客户名称：&nbsp;<input type="text" id="s_contact" size="20" onkeydown="if(event.keyCode==13) searchReservation()"/>
