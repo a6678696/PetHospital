@@ -100,7 +100,7 @@
                                         <p>厂家:</p>&nbsp;
                                         <p th:text="${goods.producer}"></p>
                                     </div>
-                                        <h3 style="color: red" th:if="${goods.inventoryQuantity<1}">当前商品库存为0,不可购买</h3>
+                                        <h3 style="color: red" th:if="${goods.inventoryQuantity<1&&session.currentCustomer!=null}">当前商品库存为0,不可购买</h3>
                                     <div th:fragment="'div'+${goods.id}" th:id="'div'+${goods.id}" class="div11">
                                     <p class="text-center buttons">
                                         <a th:href="@{'/shopping/buy?goodsId='+${goods.id}}"

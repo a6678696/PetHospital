@@ -54,7 +54,7 @@
                             $.messager.alert("系统提示", "接受预约成功！");
                             $("#dg").datagrid("reload");
                         } else {
-                            $.messager.alert("系统提示", "接受预约失败！");
+                            $.messager.alert("系统提示", result.errorInfo);
                         }
                     }, "json");
                 }

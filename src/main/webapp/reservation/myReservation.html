@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <!--suppress ALL-->
-<html lang="en">
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
     <title>预约医生</title>
@@ -48,7 +48,7 @@
             var id = selectedRows[0].id;
             $.messager.confirm("系统提示", "您确定要取消这个预约吗?", function (r) {
                 if (r) {
-                    $.post("/admin/reservation/acceptReservation", {
+                    $.post("/admin/reservation/dealReservation", {
                         status: status,
                         reservationId: id
                     }, function (result) {
@@ -56,7 +56,7 @@
                             $.messager.alert("系统提示", "取消预约成功！");
                             $("#dg").datagrid("reload");
                         } else {
-                            $.messager.alert("系统提示", "取消预约失败！");
+                            $.messager.alert("系统提示", result.errorInfo);
                         }
                     }, "json");
                 }

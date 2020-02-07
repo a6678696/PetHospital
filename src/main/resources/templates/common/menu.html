@@ -185,7 +185,7 @@
                     <div id="basket-overview" class="navbar-collapse collapse d-none d-lg-block">
                         <a href="/goods/list/1?typeId=21" class="btn btn-primary navbar-btn" title="LeDao医院商城"><i
                                 class="fa fa-shopping-bag"></i>商城</a>
-                        <a href="/goods/myFavorite/list/1" class="btn btn-primary navbar-btn" title="我的收藏"><i
+                        <a href="/goods/myFavorite/list/1" class="btn btn-primary navbar-btn" title="我的收藏" th:if="${session.currentCustomer!=null}"><i
                                 class="fa fa-heart"></i>收藏</a>
                         <a href="/shoppingCart" class="btn btn-primary navbar-btn"
                            th:if="${session.currentCustomer!=null}"><i class="fa fa-shopping-cart"></i><span>购物车<span

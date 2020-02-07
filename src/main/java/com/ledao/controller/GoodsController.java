@@ -90,7 +90,7 @@ public class GoodsController {
         map.put("start", (page - 1) * pageSize);
         map.put("size", pageSize);
         if (goodsTypeService.findById(typeId).getState() == 1) {
-            //商品大类分类
+            //根据商品大类分类
             List<Goods> goodsList = goodsService.listByBigTypeId(map);
             Long total = goodsService.getCountByBigTypeId(map);
             this.setGoodsFavorite(goodsList,session);
@@ -98,7 +98,7 @@ public class GoodsController {
             mav.addObject("total", total);
             mav.addObject("pageCode", PageUtil.genPagination("/goods/list", total, page, pageSize, typeId));
         } else {
-            //商品小类分类
+            //根据商品小类分类
             List<Goods> goodsList = goodsService.list(map);
             Long total = goodsService.getCount(map);
             this.setGoodsFavorite(goodsList,session);
@@ -200,8 +200,8 @@ public class GoodsController {
             currentBrowseGoods.add(0, goods);
         }
 
-        int maxSize = 4;
-        if (currentBrowseGoods.size() == maxSize) {
+        int maxSize = 3;
+        if (currentBrowseGoods.size() > maxSize) {
             currentBrowseGoods.remove(3);
         }
 

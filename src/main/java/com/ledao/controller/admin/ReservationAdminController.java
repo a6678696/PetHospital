@@ -136,9 +136,9 @@ public class ReservationAdminController {
      * @param reservationId
      * @return
      */
-    @RequestMapping("/acceptReservation")
+    @RequestMapping("/dealReservation")
     @RequiresPermissions(value = {"医生预约单", "美容师预约单", "我的预约单"}, logical = Logical.OR)
-    public Map<String, Object> acceptReservation(Integer status, Integer reservationId, HttpSession session) {
+    public Map<String, Object> dealReservation(Integer status, Integer reservationId, HttpSession session) {
         Map<String, Object> resultMap = new HashMap<>(16);
         Reservation reservation = reservationService.findById(reservationId);
         reservation.setStatus(status);
@@ -146,6 +146,10 @@ public class ReservationAdminController {
             reservation.setIsCancel(1);
         } else if (status==1){
             User user = (User) session.getAttribute("currentUser");
+            if (user == null) {
+                resultMap.put("errorInfo", "登录状态已过期,请重新登录!");
+                return resultMap;
+            }
             reservation.setUser(user);
         }
         reservationService.update(reservation);
