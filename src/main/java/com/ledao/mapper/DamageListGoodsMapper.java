@@ -1,6 +1,5 @@
 package com.ledao.mapper;
-
-import com.ledao.entity.DamageList;
+;
 import com.ledao.entity.DamageListGoods;
 
 import java.util.List;

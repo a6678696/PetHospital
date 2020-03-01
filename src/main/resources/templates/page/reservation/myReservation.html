@@ -61,6 +61,7 @@
                                             <span th:if="${reservation.status==1}"
                                                   style="color: #0c9076">预约成功(๑•̀ㅂ•́)و✧</span>
                                             <span th:if="${reservation.status==2}" style="color: red">预约失败〒▽〒</span>
+                                            <span th:if="${reservation.status==3}" style="color: darksalmon">预约结束┏(＾0＾)┛</span>
                                         </td>
                                         <td style="text-align: center">
                                             <a th:href="@{'/reservation/reservationDetails?reservationId='+${reservation.id}}"><i

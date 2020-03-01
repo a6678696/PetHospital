@@ -13,47 +13,49 @@
         var url;
 
         function searchReservation() {
-            $("#dg").datagrid('load',{
+            $("#dg").datagrid('load', {
                 "customer.contact": $("#s_contact").val(),
                 "pet.name": $("#s_petName").val()
             });
         }
 
-        function formatCustomer(val,row) {
+        function formatCustomer(val, row) {
             return val.contact;
         }
 
-        function formatPet(val,row) {
+        function formatPet(val, row) {
             return val.name;
         }
 
-        function formatStatus(val,row) {
+        function formatStatus(val, row) {
             if (val == 0) {
                 return "未处理";
-            }else if (val == 1) {
+            } else if (val == 1) {
                 return "<span style='color: springgreen'>已接受</span>";
+            } else if (val == 3) {
+                return "<span style='color: darksalmon'>预约结束</span>";
             }
         }
 
-        function formatReserveDate(val,row) {
-            return val.substring(0, 4) + "年" + val.substring(5, 7) + "月" + val.substring(8, 10)+"日";
+        function formatReserveDate(val, row) {
+            return val.substring(0, 4) + "年" + val.substring(5, 7) + "月" + val.substring(8, 10) + "日";
         }
 
         function cancelReservation(status) {
             var selectedRows = $("#dg").datagrid("getSelections");
             if (selectedRows.length != 1) {
-                $.messager.alert("系统提示", "请选择一个要取消的预约！");
+                $.messager.alert("系统提示", "请选择一个要结束的预约！");
                 return;
             }
             var id = selectedRows[0].id;
-            $.messager.confirm("系统提示", "您确定要取消这个预约吗?", function (r) {
+            $.messager.confirm("系统提示", "您确定要结束这个预约吗?", function (r) {
                 if (r) {
                     $.post("/admin/reservation/dealReservation", {
                         status: status,
                         reservationId: id
                     }, function (result) {
                         if (result.success) {
-                            $.messager.alert("系统提示", "取消预约成功！");
+                            $.messager.alert("系统提示", "结束预约成功！");
                             $("#dg").datagrid("reload");
                         } else {
                             $.messager.alert("系统提示", result.errorInfo);
@@ -80,12 +82,15 @@
 
 <div id="tb">
     <div>
-        <a href="javascript:cancelReservation(0)" class="easyui-linkbutton" iconCls="icon-ok"
-           plain="true">取消预约</a>
+        <a href="javascript:cancelReservation(3)" class="easyui-linkbutton" iconCls="icon-cancel"
+           plain="true">结束预约</a>
+        <strong style="color: orange">(如果要取消预约,请联系系统管理员取消您的预约!!)</strong>
     </div>
     <div>
-        &nbsp;客户名称：&nbsp;<input type="text" id="s_contact" size="20" onkeydown="if(event.keyCode==13) searchReservation()"/>
-        &nbsp;宠物名称：&nbsp;<input type="text" id="s_petName" size="20" onkeydown="if(event.keyCode==13) searchReservation()"/>
+        &nbsp;客户名称：&nbsp;<input type="text" id="s_contact" size="20"
+                                onkeydown="if(event.keyCode==13) searchReservation()"/>
+        &nbsp;宠物名称：&nbsp;<input type="text" id="s_petName" size="20"
+                                onkeydown="if(event.keyCode==13) searchReservation()"/>
         <a href="javascript:searchReservation()" class="easyui-linkbutton" iconCls="icon-search" plain="true">搜索</a>
     </div>
 </div>

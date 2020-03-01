@@ -84,7 +84,7 @@ public class ReservationAdminController {
     }
 
     /**
-     * 查看未处理的医生预约单
+     * 查看未处理的美容师预约单
      *
      * @param reservation
      * @param page
@@ -144,7 +144,7 @@ public class ReservationAdminController {
         reservation.setStatus(status);
         if (status == 0) {
             reservation.setIsCancel(1);
-        } else if (status==1){
+        } else if (status == 1) {
             User user = (User) session.getAttribute("currentUser");
             if (user == null) {
                 resultMap.put("errorInfo", "登录状态已过期,请重新登录!");
@@ -167,6 +167,7 @@ public class ReservationAdminController {
      * @return
      */
     @RequestMapping("/listMyReservation")
+    @RequiresPermissions(value = "我的预约单")
     public Map<String, Object> listMyReservation(Reservation reservation, @RequestParam(value = "page", required = false) Integer page, @RequestParam(value = "rows", required = false) Integer rows, HttpSession session) {
         PageBean pageBean = new PageBean(page, rows);
         Map<String, Object> resultMap = new HashMap<>(16);
@@ -198,6 +199,51 @@ public class ReservationAdminController {
         map.put("size", pageBean.getPageSize());
         List<Reservation> reservationList = reservationService.list(map);
         resultMap.put("rows", reservationList);
+        resultMap.put("total", reservationService.getCount(map));
+        return resultMap;
+    }
+
+    /**
+     * 查看全部预约单
+     *
+     * @param reservation
+     * @param page
+     * @param rows
+     * @return
+     */
+    @RequestMapping("/list")
+    @RequiresPermissions(value = "预约单管理")
+    public Map<String, Object> list(Reservation reservation, @RequestParam(value = "page", required = false) Integer page, @RequestParam(value = "rows", required = false) Integer rows) {
+        PageBean pageBean = new PageBean(page, rows);
+        Map<String, Object> resultMap = new HashMap<>(16);
+        Map<String, Object> map = new HashMap<>(16);
+        if (reservation.getCustomer() != null) {
+            if (!StringUtil.isEmpty(reservation.getCustomer().getContact())) {
+                Customer customer = customerService.findByContact(reservation.getCustomer().getContact());
+                if (customer != null) {
+                    int customerId = customer.getId();
+                    map.put("customerId", customerId);
+                } else {
+                    map.put("customerId", -1);
+                }
+            }
+        }
+        if (reservation.getPet() != null) {
+            if (!StringUtil.isEmpty(reservation.getPet().getName())) {
+                Pet pet = petService.findByName(reservation.getPet().getName());
+                if (pet != null) {
+                    int petId = pet.getId();
+                    map.put("petId", petId);
+                } else {
+                    map.put("petId", -1);
+                }
+            }
+        }
+        map.put("type", reservation.getType());
+        map.put("status", reservation.getStatus());
+        map.put("start", pageBean.getStart());
+        map.put("size", pageBean.getPageSize());
+        resultMap.put("rows", reservationService.list(map));
         resultMap.put("total", reservationService.getCount(map));
         return resultMap;
     }

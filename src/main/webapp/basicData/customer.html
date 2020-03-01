@@ -58,7 +58,6 @@
 
         function openCustomerAddDialog() {
             $("#dlg").dialog("open").dialog("setTitle", "添加客户信息");
-            $("#name").val("无(默认为'无',有公司的请输入)");
             url = "/admin/customer/save";
         }
 
@@ -122,7 +121,8 @@
     <th field="name" width="100" align="center">公司名称</th>
     <th field="contact" width="50" align="center">联系人</th>
     <th field="userName" width="100" align="center">用户名</th>
-    <th field="number" width="50" align="center">联系电话</th>
+    <th field="password" width="100" align="center">密码</th>
+    <th field="number" width="60" align="center">联系电话</th>
     <th field="address" width="150" align="center">联系地址</th>
     <th field="remarks" width="150" align="center">备注</th>
     </thead>
@@ -151,7 +151,7 @@
                 <td>公司名称：</td>
                 <td>
                     <input type="text" id="name" name="name" class="easyui-validatebox" required="true"
-                           style="width: 250px"/>
+                           style="width: 250px" placeholder="没有公司的话,请填'无'"/>
                 </td>
             </tr>
             <tr>

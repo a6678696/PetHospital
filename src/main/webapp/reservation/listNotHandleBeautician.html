@@ -46,7 +46,7 @@
             var id = selectedRows[0].id;
             $.messager.confirm("系统提示", "您确定要接受预约吗?", function (r) {
                 if (r) {
-                    $.post("/admin/reservation/acceptReservation", {
+                    $.post("/admin/reservation/dealReservation", {
                         status: status,
                         reservationId: id
                     }, function (result) {
@@ -80,6 +80,7 @@
     <div>
         <a href="javascript:acceptReservation(1)" class="easyui-linkbutton" iconCls="icon-ok"
            plain="true">接受预约</a>
+        <strong style="color: orange">(接受预约后无法自行取消预约,请慎重考虑后再接受预约!!)</strong>
     </div>
     <div>
         &nbsp;客户名称：&nbsp;<input type="text" id="s_contact" size="20"

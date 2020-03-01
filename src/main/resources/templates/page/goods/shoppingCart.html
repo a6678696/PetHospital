@@ -42,7 +42,7 @@
                                     </tr>
                                     <tr class="total">
                                         <td>总金额</td>
-                                        <th>￥<span th:text="${session.shoppingCart.getTotal()}"></span></th>
+                                        <th style="color: orangered">￥<span th:text="${session.shoppingCart.getTotal()}" style="color: orangered"></span></th>
                                     </tr>
                                     </tbody>
                                 </table>
@@ -107,8 +107,8 @@
                                         <tfoot>
                                         <tr>
                                             <th colspan="5"></th>
-                                            <th style="text-align: center">总金额</th>
-                                            <th style="text-align: center">￥<span th:text="${session.shoppingCart.getTotal()}"></span></th>
+                                            <th style="text-align: center;color: orangered">总金额</th>
+                                            <th style="text-align: center;color: orangered">￥<span th:text="${session.shoppingCart.getTotal()}"></span></th>
                                             <th></th>
                                         </tr>
                                         </tfoot>
