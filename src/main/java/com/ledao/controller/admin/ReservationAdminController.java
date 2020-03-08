@@ -2,6 +2,7 @@ package com.ledao.controller.admin;
 
 import com.ledao.entity.*;
 import com.ledao.service.CustomerService;
+import com.ledao.service.LogService;
 import com.ledao.service.PetService;
 import com.ledao.service.ReservationService;
 import com.ledao.util.StringUtil;
@@ -36,6 +37,9 @@ public class ReservationAdminController {
 
     @Resource
     private PetService petService;
+
+    @Resource
+    private LogService logService;
 
     /**
      * 查看未处理的医生预约单
@@ -245,6 +249,32 @@ public class ReservationAdminController {
         map.put("size", pageBean.getPageSize());
         resultMap.put("rows", reservationService.list(map));
         resultMap.put("total", reservationService.getCount(map));
+        return resultMap;
+    }
+
+    /**
+     * 删除客户未处理的预约单
+     *
+     * @param ids
+     * @return
+     */
+    @RequestMapping("/delete")
+    @RequiresPermissions(value = "预约单管理")
+    public Map<String, Object> delete(String ids) {
+        Map<String, Object> resultMap = new HashMap<>(16);
+        String[] idsStr = ids.split(",");
+        for (int i = 0; i < idsStr.length; i++) {
+            int id = Integer.parseInt(idsStr[i]);
+            Reservation reservation = reservationService.findById(id);
+            if (reservation.getStatus() == 0) {
+                logService.add(new Log(Log.DELETE_ACTION, "删除预约单" + reservation));
+                reservationService.delete(id);
+            } else {
+                resultMap.put("errorInfo", "您要删除的预约单已处理,不能删除!");
+                return resultMap;
+            }
+        }
+        resultMap.put("success", true);
         return resultMap;
     }
 }

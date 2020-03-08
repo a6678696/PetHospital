@@ -1,11 +1,8 @@
 package com.ledao.controller;
 
-import com.ledao.entity.ShoppingCart;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
-
-import javax.servlet.http.HttpSession;
 
 /**
  * 首页Controller
@@ -48,7 +45,7 @@ public class IndexController {
     }
 
     /**
-     * 用户注册
+     * 用户登录
      *
      * @return
      */
@@ -63,7 +60,7 @@ public class IndexController {
     }
 
     /**
-     * 用户注册
+     * 用户购物车
      *
      * @return
      */
@@ -72,6 +69,21 @@ public class IndexController {
         ModelAndView mav = new ModelAndView();
         mav.addObject("title", "我的购物车");
         mav.addObject("mainPage", "page/goods/shoppingCart");
+        mav.addObject("mainPageKey", "#b");
+        mav.setViewName("index");
+        return mav;
+    }
+
+    /**
+     * 跳转到联系我们
+     *
+     * @return
+     */
+    @RequestMapping("/contact")
+    public ModelAndView contact() {
+        ModelAndView mav = new ModelAndView();
+        mav.addObject("title", "联系我们");
+        mav.addObject("mainPage", "page/contact");
         mav.addObject("mainPageKey", "#b");
         mav.setViewName("index");
         return mav;

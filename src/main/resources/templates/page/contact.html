@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<!--suppress ALL-->
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<div id="b">
+    <div id="all">
+        <div id="content">
+            <div class="container">
+                <div class="row">
+                    <div class="col-lg-12">
+                        <!-- breadcrumb-->
+                        <nav aria-label="breadcrumb">
+                            <ol class="breadcrumb">
+                                <li class="breadcrumb-item"><a href="/">主页</a></li>
+                                <li aria-current="page" class="breadcrumb-item active">联系我们</li>
+                            </ol>
+                        </nav>
+                    </div>
+                    <div class="col-lg-3">
+                        <div th:include="page/customer/menuLeft::#m"></div>
+                    </div>
+                    <div class="col-lg-9">
+                        <div id="contact" class="box">
+                            <h1>联系我们</h1>
+                            <hr>
+                            <div class="row">
+                                <div class="col-md-4">
+                                    <h3><i class="fa fa-map-marker"></i>地址</h3>
+                                    <p><strong>广西北流市民乐镇民北路100号</strong></p>
+                                </div>
+                                <!-- /.col-sm-4-->
+                                <div class="col-md-4">
+                                    <h3><i class="fa fa-phone"></i>联系电话</h3>
+                                    <p><strong>0775-6678686</strong></p>
+                                </div>
+                                <!-- /.col-sm-4-->
+                                <div class="col-md-4">
+                                    <h3><i class="fa fa-envelope"></i>邮箱</h3>
+                                    <p><strong>1203007686@qq.com</strong></p>
+                                </div>
+                                <!-- /.col-sm-4-->
+                                <hr>
+                                <div id="wrap" class="my-map col-xs-3">
+                                    <div id="mapContainer"></div>
+                                </div>
+                            </div>
+                            <!-- /.row-->
+                            <hr>
+                            <h2>向我们建议或反馈</h2>
+                            <form action="/suggestion/save" method="post">
+                                <div class="row">
+                                    <div class="col-md-12">
+                                        <div class="form-group">
+                                            <textarea id="content" name="content" required="required" class="form-control" placeholder="输入内容..." style="height: 100px"></textarea>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-12 text-center">
+                                        <button type="submit" class="btn btn-primary"><i class="fa fa-envelope-o"></i>发送</button>
+                                    </div>
+                                </div>
+                                <!-- /.row-->
+                            </form>
+                        </div>
+                    </div>
+                    <!-- /.col-md-9-->
+
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+</body>
+</html>

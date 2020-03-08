@@ -3,7 +3,7 @@
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
-    <title>预约医生</title>
+    <title>我的预约单(后台)</title>
     <link rel="stylesheet" type="text/css" href="/static/jquery-easyui-1.7.0/themes/metro-blue/easyui.css">
     <link rel="stylesheet" type="text/css" href="/static/jquery-easyui-1.7.0/themes/icon.css">
     <script type="text/javascript" src="/static/jquery-easyui-1.7.0/jquery.min.js"></script>
@@ -41,7 +41,7 @@
             return val.substring(0, 4) + "年" + val.substring(5, 7) + "月" + val.substring(8, 10) + "日";
         }
 
-        function cancelReservation(status) {
+        function endReservation(status) {
             var selectedRows = $("#dg").datagrid("getSelections");
             if (selectedRows.length != 1) {
                 $.messager.alert("系统提示", "请选择一个要结束的预约！");
@@ -82,7 +82,7 @@
 
 <div id="tb">
     <div>
-        <a href="javascript:cancelReservation(3)" class="easyui-linkbutton" iconCls="icon-cancel"
+        <a href="javascript:endReservation(3)" class="easyui-linkbutton" iconCls="icon-cancel"
            plain="true">结束预约</a>
         <strong style="color: orange">(如果要取消预约,请联系系统管理员取消您的预约!!)</strong>
     </div>

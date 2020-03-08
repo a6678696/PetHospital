@@ -60,10 +60,12 @@
                                         <ul class="list-unstyled mb-3" th:if="${session.currentCustomer!=null}">
                                             <li class="nav-item"><a href="/reservation/addDoctorReservation" class="nav-link">预约医生</a></li>
                                             <li class="nav-item"><a href="/reservation/addBeauticianReservation" class="nav-link">预约美容师</a></li>
+                                            <li class="nav-item"><a href="/reservation/myReservation" class="nav-link">我的预约</a></li>
                                         </ul>
                                         <ul class="list-unstyled mb-3" th:if="${session.currentCustomer==null}">
                                             <li class="nav-item"><a href="/login" class="nav-link">预约医生(请先登录)</a></li>
                                             <li class="nav-item"><a href="/login" class="nav-link">预约美容师(请先登录)</a></li>
+                                            <li class="nav-item"><a href="/login" class="nav-link">我的预约(请先登录)</a></li>
                                         </ul>
                                     </div>
                                     <div class="col-md-6 col-lg-3">

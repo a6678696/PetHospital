@@ -1,9 +1,6 @@
 package com.ledao.entity;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.Data;
-
-import java.beans.Transient;
 
 /**
  * 退货单商品实体

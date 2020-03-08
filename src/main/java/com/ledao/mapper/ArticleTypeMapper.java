@@ -23,7 +23,7 @@ public interface ArticleTypeMapper {
     List<ArticleType> list(Map<String, Object> map);
 
     /**
-     * 获取位置记录数
+     * 获取记录数
      *
      * @param map
      * @return

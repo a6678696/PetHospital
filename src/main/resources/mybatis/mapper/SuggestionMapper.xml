@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!--suppress ALL-->
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.ledao.mapper.SuggestionMapper">
+    <resultMap id="SuggestionResult" type="Suggestion">
+        <result property="id" column="id"/>
+        <result property="content" column="content"/>
+        <result property="reply" column="reply"/>
+        <association property="customer" column="customerId" select="com.ledao.mapper.CustomerMapper.findById"></association>
+        <association property="user" column="userId" select="com.ledao.mapper.UserMapper.findById"></association>
+    </resultMap>
+    <select id="list" parameterType="map" resultMap="SuggestionResult">
+        select * from t_suggestion
+        <where>
+            <if test="customerId!=null">
+                and customerId=#{customerId}
+            </if>
+        </where>
+        order by createDate desc
+        <if test="start!=null and size!=null">
+            limit #{start},#{size}
+        </if>
+    </select>
+    <select id="getCount" parameterType="map" resultType="java.lang.Long">
+        select count(*) from t_suggestion
+        <where>
+            <if test="customerId!=null">
+                and customerId=#{customerId}
+            </if>
+        </where>
+    </select>
+    <insert id="add" parameterType="Suggestion">
+        insert into t_suggestion (content, customerId, userId, reply, createDate) values (#{content},#{customer.id},#{user.id},#{reply},now());
+    </insert>
+    <update id="update" parameterType="Suggestion">
+        <set>
+            <if test="content != null and content != ''">
+                content=#{content},
+            </if>
+            <if test="reply != null and reply != ''">
+                reply=#{reply},
+            </if>
+        </set>
+        where id=#{id}
+    </update>
+    <delete id="delete" parameterType="integer">
+        delete from t_suggestion where id=#{id}
+    </delete>
+    <select id="findById" parameterType="integer" resultMap="SuggestionResult">
+        select * from t_suggestion where id=#{id}
+    </select>
+    <select id="getCountTodaySuggestion" parameterType="integer" resultType="java.lang.Long">
+        select count(*) from t_suggestion where customerId=#{customerId} and to_days(createDate)=to_days(now())
+    </select>
+</mapper>

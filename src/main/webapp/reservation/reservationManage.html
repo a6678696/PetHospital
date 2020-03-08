@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<!--suppress ALL-->
+<!--SUPPRESS ALL-->
 <html lang="en">
 <head>
     <meta charset="UTF-8">
@@ -57,6 +57,55 @@
                 return "合计";
             }
         }
+
+        function deleteReservation() {
+            var selectedRows = $("#dg").datagrid("getSelections");
+            if (selectedRows.length == 0) {
+                $.messager.alert("系统提示", "请选择要删除的数据!");
+                return;
+            }
+            var strIds = [];
+            for (var i = 0; i < selectedRows.length; i++) {
+                strIds.push(selectedRows[i].id);
+            }
+            var ids = strIds.join(",");
+            $.messager.confirm("系统提示", "您确定要删除这<span style='color: red'>" + selectedRows.length + "</span>条数据吗?", function (r) {
+                if (r) {
+                    $.post("/admin/reservation/delete", {ids: ids}, function (result) {
+                        if (result.success) {
+                            $.messager.alert("系统提示", "数据已成功删除!");
+                            $("#dg").datagrid("reload");
+                        } else {
+                            $.messager.alert("系统提示", result.errorInfo);
+                        }
+                    }, "json");
+                }
+            });
+        }
+
+        function dealReservation(status) {
+            var selectedRows = $("#dg").datagrid("getSelections");
+            if (selectedRows.length != 1) {
+                $.messager.alert("系统提示", "请选择一个要重置的预约！");
+                return;
+            }
+            var id = selectedRows[0].id;
+            $.messager.confirm("系统提示", "您确定要重置预约吗?", function (r) {
+                if (r) {
+                    $.post("/admin/reservation/dealReservation", {
+                        status: status,
+                        reservationId: id
+                    }, function (result) {
+                        if (result.success) {
+                            $.messager.alert("系统提示", "重置预约成功！");
+                            $("#dg").datagrid("reload");
+                        } else {
+                            $.messager.alert("系统提示", result.errorInfo);
+                        }
+                    }, "json");
+                }
+            });
+        }
     </script>
 </head>
 <body style="margin: 1px">
@@ -78,10 +127,9 @@
 
 <div id="tb">
     <div>
-        <a href="javascript:openReservationAddDialog()" class="easyui-linkbutton" iconCls="icon-add" plain="true">添加</a>
-        <a href="javascript:openReservationModifyDialog()" class="easyui-linkbutton" iconCls="icon-edit"
-           plain="true">修改</a>
+        <a href="javascript:dealReservation(0)" class="easyui-linkbutton" iconCls="icon-reset" plain="true">重置预约单</a>
         <a href="javascript:deleteReservation()" class="easyui-linkbutton" iconCls="icon-remove" plain="true">删除</a>
+        <strong style="font-size: 13px;color: orange">友情提示:如果要删除已处理的预约单,请先将其重置</strong>
     </div>
     <div>
         &nbsp;预约单类型:&nbsp;
