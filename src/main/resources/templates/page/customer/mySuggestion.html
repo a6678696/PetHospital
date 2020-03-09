@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<!--suppress ALL-->
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<div id="b">
+    <div id="all" style="padding-top: 20px">
+        <div id="content">
+            <div class="container">
+                <div class="row">
+                    <div class="col-lg-12">
+                        <!-- breadcrumb-->
+                        <nav aria-label="breadcrumb">
+                            <ol class="breadcrumb">
+                                <i class="fa fa-eye" style="padding-top: 2px"></i>当前位置:&nbsp;&nbsp;
+                                <li class="breadcrumb-item"><a href="/">主页</a></li>
+                                <li class="breadcrumb-item"><a href="/customer/personalCenter">个人中心</a></li>
+                                <li class="breadcrumb-item"><span th:text="${title}"></span></li>
+                            </ol>
+                        </nav>
+                    </div>
+                    <div class="col-lg-3">
+                        <div th:include="page/customer/menuLeft::#m"></div>
+                    </div>
+                    <div id="basket" class="col-lg-9" th:if="${mySuggestionList.size()<1}">
+                        <div class="box container">
+                            <h3>您还没有留言记录,<a href="/contact">点我去留言</a></h3>
+                        </div>
+                    </div>
+                    <div id="basket" class="col-lg-9" th:if="${mySuggestionList.size()>=1}">
+                        <div class="box container">
+                            <div class="form-inline">
+                                <h3>我的留言</h3>
+                                <h3 style="color: #6b3f78">(今日已留言次数:<span th:text="${todaySubmitTimes}" style="color: red"></span>,剩余留言次数:<span th:text="${remainingSubmitTimes}" style="color: #0c9c6e"></span>)</h3>
+                            </div>
+                            <div class="box-footer d-flex justify-content-between flex-column flex-lg-row">
+                                <ul>
+                                    <li th:each="mySuggestion:${mySuggestionList}">
+                                        <dl>
+                                            <dd>
+                                                <kbd style="font-size: 15px">留言时间:</kbd><span style="font-size: 15px"
+                                                                                              th:text="${#dates.format(mySuggestion.createDate,'yyyy-MM-dd HH:mm:ss')}"></span>
+                                            </dd>
+                                            <dd>
+                                                <kbd style="font-size: 15px">留言内容:</kbd><span style="font-size: 15px"
+                                                                                              th:text="${mySuggestion.content}"></span>
+                                            </dd>
+                                            <dd>
+                                                <kbd style="font-size: 15px">官方回复:</kbd><span style="font-size: 15px"
+                                                                                              th:text="${mySuggestion.reply}"></span><span
+                                                    style="font-size: 15px"
+                                                    th:if="${mySuggestion.reply==null}">暂无</span>
+                                            </dd>
+                                        </dl>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+                        <div class="pages" th:if="${total>3}">
+                            <nav aria-label="Page navigation example" class="d-flex justify-content-center">
+                                <ul class="pagination">
+                                    <div th:utext="${pageCode}" class="form-inline"></div>
+                                </ul>
+                            </nav>
+                        </div>
+                        <!-- /.box-->
+                    </div>
+                    <!-- /.col-lg-9-->
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+</body>
+</html>

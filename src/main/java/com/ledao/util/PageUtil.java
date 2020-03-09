@@ -63,7 +63,7 @@ public class PageUtil {
             return "未查询到数据";
         }else{
             StringBuffer pageCode=new StringBuffer();
-            pageCode.append("<li class='page-item'><a href='"+targetUrl+"' class='page-link'>首页</a></li>");
+            pageCode.append("<li class='page-item'><a href='"+targetUrl+"/"+"1"+"' class='page-link'>首页</a></li>");
             if(currentPage>1){
                 pageCode.append("<li class='page-item'><a href='"+targetUrl+"/"+(currentPage-1)+"' class='page-link'><span aria-hidden='true'>«</span><span class='sr-only'>Previous</span></a></li>");
             }else{
