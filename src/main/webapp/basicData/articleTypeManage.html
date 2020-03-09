@@ -77,7 +77,7 @@
                 strIds.push(selectedRows[i].id);
             }
             var ids = strIds.join(",");
-            $.messager.confirm("系统提示", "您确定要删除<span style='color: red'>" + selectedRows.length + "</span>这条数据吗?", function (r) {
+            $.messager.confirm("系统提示", "您确定要删除这<span style='color: red'>" + selectedRows.length + "</span>条数据吗?", function (r) {
                 if (r) {
                     $.post("/admin/articleType/delete", {ids: ids}, function (result) {
                         if (result.success) {

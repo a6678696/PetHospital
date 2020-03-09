@@ -33,7 +33,11 @@
         insert into t_suggestion (content, customerId, userId, reply, createDate) values (#{content},#{customer.id},#{user.id},#{reply},now());
     </insert>
     <update id="update" parameterType="Suggestion">
+        update t_suggestion
         <set>
+            <if test="user!= null">
+                userId=#{user.id},
+            </if>
             <if test="content != null and content != ''">
                 content=#{content},
             </if>

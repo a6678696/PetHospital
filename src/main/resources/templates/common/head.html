@@ -18,7 +18,7 @@
                         <li class="list-inline-item" th:if="${session.currentCustomer!=null}"><span style="color: white">(●'◡'●)</span><span th:text="'欢迎您,'+${session.currentCustomer.getContact()}" style="color: white"></span></li>
                         <li class="list-inline-item" th:if="${session.currentCustomer!=null}"><a href="javascript:logout()">注销</a></li>
                         <li class="list-inline-item" th:if="${session.currentCustomer!=null}"><a href="/customer/personalCenter">个人中心</a></li>
-                        <li class="list-inline-item" th:if="${session.currentCustomer==null}"><a href="/login">联系我们</a></li>
+                        <li class="list-inline-item" th:if="${session.currentCustomer==null}"><a href="/login">联系我们(请先登录)</a></li>
                         <li class="list-inline-item" th:if="${session.currentCustomer!=null}"><a href="/contact">联系我们</a></li>
                     </ul>
                 </div>

@@ -76,6 +76,7 @@ public class ArticleTypeAdminController {
         Long total = articleTypeService.getCount(map);
         resultMap.put("rows", articleTypeList);
         resultMap.put("total", total);
+        logService.add(new Log(Log.SEARCH_ACTION, "查询文章类型"));
         return resultMap;
     }
 
