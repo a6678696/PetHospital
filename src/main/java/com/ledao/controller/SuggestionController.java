@@ -1,6 +1,5 @@
 package com.ledao.controller;
 
-import com.alibaba.druid.sql.dialect.h2.visitor.H2ASTVisitor;
 import com.ledao.entity.Customer;
 import com.ledao.entity.Suggestion;
 import com.ledao.service.SuggestionService;
@@ -17,6 +16,8 @@ import java.util.List;
 import java.util.Map;
 
 /**
+ * 前台客户留言Controller层
+ *
  * @author LeDao
  * @company
  * @create 2020-03-08 11:29
@@ -32,7 +33,7 @@ public class SuggestionController {
     public ModelAndView myWord(@PathVariable(value = "id", required = false) Integer page, HttpSession session) {
         ModelAndView mav = new ModelAndView();
         Map<String, Object> map = new HashMap<>(16);
-        int pageSize=3;
+        int pageSize = 3;
         map.put("start", (page - 1) * pageSize);
         map.put("size", pageSize);
         Customer currentCustomer = (Customer) session.getAttribute("currentCustomer");
@@ -40,7 +41,7 @@ public class SuggestionController {
         List<Suggestion> mySuggestionList = suggestionService.list(map);
         Long total = suggestionService.getCount(map);
         mav.addObject("todaySubmitTimes", suggestionService.getCountTodaySuggestion(currentCustomer.getId()));
-        mav.addObject("remainingSubmitTimes", 5-suggestionService.getCountTodaySuggestion(currentCustomer.getId()));
+        mav.addObject("remainingSubmitTimes", 5 - suggestionService.getCountTodaySuggestion(currentCustomer.getId()));
         mav.addObject("mySuggestionList", mySuggestionList);
         mav.addObject("total", total);
         mav.addObject("pageCode", PageUtil.genPagination2("/suggestion/mySuggestion/list", total, page, pageSize));
@@ -64,7 +65,7 @@ public class SuggestionController {
         Customer currentCustomer = (Customer) session.getAttribute("currentCustomer");
         if (suggestion.getId() == null) {
             //每日最大留言次数
-            int maxSubmitTimes=5;
+            int maxSubmitTimes = 5;
             if (suggestionService.getCountTodaySuggestion(currentCustomer.getId()) >= maxSubmitTimes) {
                 return mav;
             } else {
