@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<!--suppress ALL-->
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>问诊详情</title>
+</head>
+<body>
+<div id="b">
+    <div id="all" style="padding-top: 20px">
+        <div id="content">
+            <div class="container">
+                <div class="row">
+                    <div class="col-lg-12">
+                        <!-- breadcrumb-->
+                        <nav aria-label="breadcrumb">
+                            <ol class="breadcrumb">
+                                <i class="fa fa-eye" style="padding-top: 2px"></i>当前位置:&nbsp;&nbsp;
+                                <li class="breadcrumb-item"><a href="/">主页</a></li>
+                                <li class="breadcrumb-item"><span>查看问诊详细信息</span></li>
+                            </ol>
+                        </nav>
+                    </div>
+                    <div class="col-lg-3">
+                        <div th:include="page/customer/menuLeft::#m"></div>
+                    </div>
+                    <div id="blog-post" class="col-lg-9">
+                        <div class="box">
+                            <div>
+                                <h2 style="text-align: center">查看问诊详细信息</h2>
+                                <h4 style="text-align: center;color: red">(问诊结果仅供参考,如要治疗请到正规医院,自行治疗所产生的一切后果与我们医院无关!!)</h4>
+                                <div class="form-group">
+                                    <kbd style="font-size: 20px">宠物名称:</kbd>&nbsp;
+                                    <span th:text="${inquiry.pet.name}" style="font-size: 20px"></span>
+                                </div>
+                                <div class="form-group">
+                                    <kbd style="font-size: 20px">问诊日期:</kbd>
+                                    <span th:text="${#dates.format(inquiry.createDate,'yyyy年MM月dd日 HH:mm:ss')}" style="font-size: 20px"></span>
+                                </div>
+                                <div class="form-group">
+                                    <kbd style="font-size: 20px">病情图片:</kbd>
+                                    <img th:src="@{'/static/images/inquiryImage/'+${inquiry.imageName}}"
+                                         style="height: 200px;width: 200px" alt="White Blouse Armani">
+                                </div>
+                                <div class="form-group">
+                                    <kbd style="font-size: 20px">病情描述:</kbd>
+                                    <span th:text="${inquiry.content}" style="font-size: 20px"></span>
+                                </div>
+                                <div class="form-group">
+                                    <kbd style="font-size: 20px">诊断状态:</kbd>
+                                    <span th:if="${inquiry.status==0}" style="font-size: 20px">未诊断(⊙﹏⊙)</span>
+                                    <span th:if="${inquiry.status==1}" style="color: #0c9076;font-size: 20px">已诊断(๑•̀ㅂ•́)و✧</span>
+                                </div>
+                                <div class="form-group"th:if="${inquiry.user.trueName!=null}">
+                                    <kbd style="font-size: 20px">诊断医生:</kbd>
+                                    <span th:text="${inquiry.user.trueName}" style="font-size: 20px"></span>
+                                </div>
+                                <div class="form-group" th:if="${inquiry.reply!=null}">
+                                    <kbd style="font-size: 20px">医生答复:</kbd>
+                                    <span th:text="${inquiry.reply}" style="font-size: 20px"></span>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- /.box-->
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+</body>
+</html>

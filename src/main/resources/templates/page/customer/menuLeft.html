@@ -21,19 +21,23 @@
                     <a href="/customer/personalCenter"><img
                             th:src="@{'/static/images/customerImage/'+${session.currentCustomer.getImageName()}}"
                             alt=""></a>
-                    <li><a href="/customer/personalCenter/ModifyMessage" class="nav-link active"
-                           style="font-size: 17px"><i class="fa fa-edit"></i>修改个人信息</a></li>
-                    <li><a href="/customer/myPet" class="nav-link active" style="font-size: 17px"><img
+                    <li><a href="/customer/personalCenter/ModifyMessage" class="nav-link active" style="font-size: 17px"><img
+                            th:src="@{/static/images/img/modify.png}" style="height: 22px" alt="">&nbsp;修改个人信息</a>
+                    </li>
+                    <li><a href="/customer/myPet/list/1" class="nav-link active" style="font-size: 17px"><img
                             th:src="@{/static/images/img/pet.png}" style="height: 22px" alt="">&nbsp;我的宠物</a>
                     </li>
-                    <li>
-                        <a href="/goods/myFavorite/list/1" class="nav-link active" style="font-size: 17px"><i class="fa fa-heart-o"></i>我的收藏</a>
+                    <li><a href="/goods/myFavorite/list/1" class="nav-link active" style="font-size: 17px"><img
+                            th:src="@{/static/images/img/like.png}" style="height: 22px" alt="">&nbsp;我的收藏</a>
                     </li>
-                    <li>
-                        <a href="/reservation/myReservation" class="nav-link active" style="font-size: 17px"><i class="fa fa-clock-o"></i>预约记录</a>
+                    <li><a href="/reservation/myReservation/list/1" class="nav-link active" style="font-size: 17px"><img
+                            th:src="@{/static/images/img/reservation.png}" style="height: 22px" alt="">&nbsp;预约记录</a>
                     </li>
-                    <li>
-                        <a href="/suggestion/mySuggestion/list/1" class="nav-link active" style="font-size: 17px"><i class="fa fa-commenting-o"></i>我的留言</a>
+                    <li><a href="/inquiry/myInquiry/list/1" class="nav-link active" style="font-size: 17px"><img
+                            th:src="@{/static/images/img/inquiry.png}" style="height: 22px" alt="">&nbsp;问诊记录</a>
+                    </li>
+                    <li><a href="/suggestion/mySuggestion/list/1" class="nav-link active" style="font-size: 17px"><img
+                            th:src="@{/static/images/img/comment.png}" style="height: 22px" alt="">&nbsp;我的留言</a>
                     </li>
                 </ul>
             </div>

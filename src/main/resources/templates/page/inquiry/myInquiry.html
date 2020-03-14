@@ -25,51 +25,49 @@
                     <div class="col-lg-3">
                         <div th:include="page/customer/menuLeft::#m"></div>
                     </div>
-                    <div id="basket" class="col-lg-9" th:if="${total<1}">
+                    <div id="basket" class="col-lg-9" th:if="${inquiryList.size()<1}">
                         <div class="box container">
-                            <h3>您还没有宠物,<a href="/customer/petAdd">点我去添加</a></h3>
+                            <h3>您还没有问诊记录,<a href="/inquiry/createInquiry">点我去添加</a></h3>
                         </div>
                     </div>
-                    <div id="basket" class="col-lg-9" th:if="${petList.size()>=1}">
+                    <div id="basket" class="col-lg-9" th:if="${inquiryList.size()>=1}">
                         <div class="box container">
-                            <form method="post" action="checkout1.html">
                                 <p class="text-muted">您一共有 <span
-                                        th:text="${total}" style="color: red"></span> 个宠物</p>
+                                        th:text="${total}" style="color: orangered"></span> 个问诊记录</p>
                                 <div>
                                     <table class="table">
                                         <thead>
                                         <tr>
                                             <th style="text-align: center">宠物头像</th>
-                                            <th style="text-align: center">名称</th>
-                                            <th style="text-align: center">类型</th>
-                                            <th style="text-align: center">年龄</th>
+                                            <th style="text-align: center">宠物名称</th>
+                                            <th style="text-align: center">问诊时间</th>
                                             <th style="text-align: center">操作</th>
                                         </tr>
                                         </thead>
                                         <tbody>
-                                        <tr th:each="pet:${petList}">
+                                        <tr th:each="inquiry:${inquiryList}">
                                             <td style="text-align: center">
-                                                <a th:href="@{'/customer/petDetails?petId='+${pet.id}}">
-                                                <img th:src="@{'/static/images/petImage/'+${pet.imageName}}"
-                                                    style="height: 40px;width: 40px" alt="White Blouse Armani"></a>
+                                                <a th:href="@{'/inquiry/inquiryDetails?inquiryId='+${inquiry.id}}">
+                                                    <img th:src="@{'/static/images/petImage/'+${inquiry.pet.imageName}}"
+                                                         style="height: 40px;width: 40px" alt="White Blouse Armani"></a>
                                             </td>
                                             <td style="text-align: center">
-                                                <span th:text="${pet.name}"></span>
+                                                <span th:text="${inquiry.pet.name}"></span>
                                             </td>
                                             <td style="text-align: center;margin-top: 1px">
-                                                <span style="padding-top: 2px" th:text="${pet.typeName}"></span>
+                                                <span style="padding-top: 2px"
+                                                      th:text="${#dates.format(inquiry.createDate,'yyyy-MM-dd HH:mm:ss')}"></span>
                                             </td>
                                             <td style="text-align: center">
-                                                <span th:text="${pet.age}"></span>
-                                            </td>
-                                            <td style="text-align: center">
-                                                <a th:href="@{'/customer/petDetails?petId='+${pet.id}}" th:title="'查看该宠物('+${pet.name}+')'"><i class="fa fa-search" style="font-size: 20px;color: #0099FF"></i></a>
-                                                <a th:href="@{'/customer/petModify?petId='+${pet.id}}"
-                                                   th:title="'修改该宠物('+${pet.name}+')'"><i class="fa fa-pencil"
-                                                                                          style="font-size: 20px"></i></a>
-                                                <a th:href="'javascript:deletePet('+${pet.id}+')'"
-                                                   th:title="'删除该宠物('+${pet.name}+')'"><i class="fa fa-trash-o"
-                                                                                          style="color: red;font-size: 20px"></i></a>
+                                                <a th:href="@{'/inquiry/inquiryDetails?inquiryId='+${inquiry.id}}"
+                                                   title="查看详情"><i class="fa fa-search"
+                                                                   style="font-size: 20px;color: #0099FF"></i></a>
+                                                <a th:href="@{'/inquiry/inquiryModify?inquiryId='+${inquiry.id}}"
+                                                   th:if="${inquiry.status==0}" title="修改"><i class="fa fa-pencil"
+                                                                                   style="font-size: 20px"></i></a>
+                                                <a th:href="@{'javascript:deleteInquiry('+${inquiry.id}+')'}"
+                                                   th:if="${inquiry.status==0}" title="删除"><i class="fa fa-trash-o"
+                                                                                       style="color: red;font-size: 20px"></i></a>
                                             </td>
                                         </tr>
                                         </tbody>
@@ -78,12 +76,9 @@
                                 <!-- /.table-responsive-->
                                 <div class="box-footer d-flex justify-content-between flex-column flex-lg-row">
                                     <div>
-                                        <a href="/customer/petAdd" type="button" class="btn btn-primary"><img
-                                                th:src="@{/static/images/img/petAdd.png}"
-                                                style="height: 14px;margin-bottom: 4px" alt="">添加宠物</a>
+                                        <a href="/inquiry/createInquiry" type="button" class="btn btn-primary">去问诊</a>
                                     </div>
                                 </div>
-                            </form>
                         </div>
                         <div class="pages" th:if="${total>3}">
                             <nav aria-label="Page navigation example" class="d-flex justify-content-center">

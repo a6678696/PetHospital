@@ -32,8 +32,8 @@
                     </div>
                     <div id="basket" class="col-lg-9" th:if="${reservationList.size()>=1}">
                         <div class="box container">
-                            <p class="text-muted">当前有 <span
-                                    th:text="${reservationList.size()}"></span> 条预约记录</p>
+                            <p class="text-muted">您一共有 <span
+                                    th:text="${reservationList.size()}" style="color: red"></span> 条预约记录</p>
                             <div>
                                 <table class="table">
                                     <thead>
@@ -80,11 +80,16 @@
                             <div class="box-footer d-flex justify-content-between flex-column flex-lg-row">
                                 <div>
                                     <a href="/reservation/addDoctorReservation" type="button"
-                                       class="btn btn-primary"><img
-                                            th:src="@{/static/images/img/petAdd.png}"
-                                            style="height: 14px;margin-bottom: 4px" alt="">添加预约单</a>
+                                       class="btn btn-primary">去预约</a>
                                 </div>
                             </div>
+                        </div>
+                        <div class="pages" th:if="${total>5}">
+                            <nav aria-label="Page navigation example" class="d-flex justify-content-center">
+                                <ul class="pagination">
+                                    <div th:utext="${pageCode}" class="form-inline"></div>
+                                </ul>
+                            </nav>
                         </div>
                         <!-- /.box-->
                     </div>

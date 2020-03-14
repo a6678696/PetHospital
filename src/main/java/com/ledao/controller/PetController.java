@@ -43,8 +43,7 @@ public class PetController {
      * @return
      */
     @RequestMapping("/save")
-    public ModelAndView save(HttpSession session, Pet pet, @RequestParam("petImage") MultipartFile file) throws Exception {
-        ModelAndView mav = new ModelAndView("redirect:/customer/myPet");
+    public String save(HttpSession session, Pet pet, @RequestParam("petImage") MultipartFile file) throws Exception {
         if (!file.isEmpty()) {
             if (pet.getId() != null) {
                 FileUtils.deleteQuietly(new File(petImageFilePath + petService.findById(pet.getId()).getImageName()));
@@ -63,18 +62,11 @@ public class PetController {
         } else {
             petService.update(pet);
         }
-        Map<String, Object> map = new HashMap<>(16);
-        map.put("customer", session.getAttribute("currentCustomer"));
-        List<Pet> petList = petService.list(map);
-        mav.addObject("petList", petList);
-        mav.addObject("title", "我的宠物");
-        mav.addObject("mainPage", "page/customer/myPet");
-        mav.addObject("mainPageKey", "#b");
-        return mav;
+        return "redirect:/customer/myPet";
     }
 
     /**
-     * 删除商品信息
+     * 删除宠物信息
      *
      * @param petId
      * @return

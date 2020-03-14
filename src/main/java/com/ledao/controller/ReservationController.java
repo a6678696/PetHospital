@@ -5,10 +5,12 @@ import com.ledao.entity.Pet;
 import com.ledao.entity.Reservation;
 import com.ledao.service.PetService;
 import com.ledao.service.ReservationService;
+import com.ledao.util.PageUtil;
 import org.springframework.beans.propertyeditors.CustomDateEditor;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.WebDataBinder;
 import org.springframework.web.bind.annotation.InitBinder;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
 
@@ -132,17 +134,23 @@ public class ReservationController {
      *
      * @return
      */
-    @RequestMapping("/myReservation")
-    public ModelAndView myReservation(HttpSession session) {
+    @RequestMapping("/myReservation/list/{id}")
+    public ModelAndView myReservation(@PathVariable(value = "id",required = false)Integer page, HttpSession session) {
         ModelAndView mav = new ModelAndView();
         Map<String, Object> map = new HashMap<>(16);
+        int pageSize = 5;
+        map.put("start", (page - 1) * pageSize);
+        map.put("size", pageSize);
         Customer customer = (Customer) session.getAttribute("currentCustomer");
         map.put("customerId", customer.getId());
         List<Reservation> reservationList = reservationService.list(map);
         for (Reservation reservation : reservationList) {
             reservation.setPet(petService.findById(reservation.getPet().getId()));
         }
+        Long total = reservationService.getCount(map);
         mav.addObject("reservationList", reservationList);
+        mav.addObject("total", total);
+        mav.addObject("pageCode", PageUtil.genPagination2("/reservation/myReservation/list", total, page, pageSize));
         mav.addObject("title", "我的预约");
         mav.addObject("mainPage", "page/reservation/myReservation");
         mav.addObject("mainPageKey", "#b");

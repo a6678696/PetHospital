@@ -37,7 +37,7 @@
                                         <ul class="list-unstyled mb-3" th:if="${session.currentCustomer!=null}">
                                             <li class="nav-item"><a href="/customer/personalCenter" class="nav-link">个人信息</a>
                                             </li>
-                                            <li class="nav-item"><a href="/customer/myPet" class="nav-link">我的宠物</a>
+                                            <li class="nav-item"><a href="/customer/myPet/list/1" class="nav-link">我的宠物</a>
                                             </li>
                                             <li class="nav-item"><a href="/goods/myFavorite/list/1" class="nav-link">我的收藏</a>
                                             </li>
@@ -60,7 +60,7 @@
                                         <ul class="list-unstyled mb-3" th:if="${session.currentCustomer!=null}">
                                             <li class="nav-item"><a href="/reservation/addDoctorReservation" class="nav-link">预约医生</a></li>
                                             <li class="nav-item"><a href="/reservation/addBeauticianReservation" class="nav-link">预约美容师</a></li>
-                                            <li class="nav-item"><a href="/reservation/myReservation" class="nav-link">我的预约</a></li>
+                                            <li class="nav-item"><a href="/reservation/myReservation/list/1" class="nav-link">我的预约</a></li>
                                         </ul>
                                         <ul class="list-unstyled mb-3" th:if="${session.currentCustomer==null}">
                                             <li class="nav-item"><a href="/login" class="nav-link">预约医生(请先登录)</a></li>
@@ -73,7 +73,7 @@
                                         <ul class="list-unstyled mb-3" th:if="${session.currentCustomer!=null}">
                                             <li class="nav-item"><a href="/inquiry/createInquiry" class="nav-link">客户问诊</a>
                                             </li>
-                                            <li class="nav-item"><a href="/myInquiry" class="nav-link">问诊记录</a>
+                                            <li class="nav-item"><a href="/inquiry/myInquiry/list/1" class="nav-link">问诊记录</a>
                                             </li>
                                         </ul>
                                         <ul class="list-unstyled mb-3" th:if="${session.currentCustomer==null}">

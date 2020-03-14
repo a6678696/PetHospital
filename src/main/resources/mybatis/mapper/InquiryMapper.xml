@@ -1,4 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" ?>
+<!--suppress ALL-->
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
 <mapper namespace="com.ledao.mapper.InquiryMapper">
 
@@ -9,8 +10,8 @@
         <result property="imageName" column="imageName"/>
         <result property="reply" column="reply"/>
         <result property="price" column="price"/>
-        <association property="customer" column="customerId"
-                     select="com.ledao.mapper.CustomerMapper.findById"></association>
+        <result property="status" column="status"/>
+        <association property="customer" column="customerId" select="com.ledao.mapper.CustomerMapper.findById"></association>
         <association property="pet" column="petId" select="com.ledao.mapper.PetMapper.findById"></association>
         <association property="user" column="userId" select="com.ledao.mapper.UserMapper.findById"></association>
     </resultMap>
@@ -18,7 +19,10 @@
         select * from t_inquiry
         <where>
             <if test="customer!=null">
-                and customerId=#{customerId}
+                and customerId=#{customer.id}
+            </if>
+            <if test="status!=null">
+                and status=#{status}
             </if>
         </where>
         order by createDate desc
@@ -30,12 +34,15 @@
         select count(*) from t_inquiry
         <where>
             <if test="customer!=null">
-                and customerId=#{customerId}
+                and customerId=#{customer.id}
+            </if>
+            <if test="status!=null">
+                and status=#{status}
             </if>
         </where>
     </select>
     <insert id="add" parameterType="Inquiry">
-        insert into t_inquiry (createDate, customerId, petId, content, imageName, userId, reply, price) values (now(),#{customer.id},#{pet.id},#{content},#{imageName},#{user.id},#{reply},#{price});
+        insert into t_inquiry (createDate, customerId, petId, content, imageName, userId, reply, price,status) values (now(),#{customer.id},#{pet.id},#{content},#{imageName},#{user.id},#{reply},#{price},0);
     </insert>
     <update id="update" parameterType="Inquiry">
         update t_inquiry
@@ -60,6 +67,9 @@
             </if>
             <if test="price != null and price != ''">
                 price=#{price},
+            </if>
+            <if test="status != null">
+                status=#{status},
             </if>
         </set>
         where id=#{id}

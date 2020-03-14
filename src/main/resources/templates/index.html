@@ -252,12 +252,21 @@
             $("#petIdModify").val(petId);
             var type = $("#typeModify2").val();
             $("#typeModify").val(type);
+            var inquiryContent2 = $("#inquiryContent2").val();
+            $("#inquiryContent").val(inquiryContent2);
         });
 
         //客户删除自己的预约单(系统未处理的)
         function deleteReservation(reservationId) {
             if (confirm("您确定要删除这个预约单吗?")) {
                 window.location.href = "/reservation/delete?reservationId=" + reservationId;
+            }
+        }
+
+        //客户删除自己的问诊记录(系统未处理的)
+        function deleteInquiry(inquiryId) {
+            if (confirm("您确定要删除这条问诊记录吗?")) {
+                window.location.href = "/inquiry/deleteInquiry?inquiryId=" + inquiryId;
             }
         }
     </script>

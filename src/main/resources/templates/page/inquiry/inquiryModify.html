@@ -17,7 +17,7 @@
                             <ol class="breadcrumb">
                                 <i class="fa fa-eye" style="padding-top: 2px"></i>当前位置:&nbsp;&nbsp;
                                 <li class="breadcrumb-item"><a href="/">主页</a></li>
-                                <li class="breadcrumb-item"><span>客户问诊</span></li>
+                                <li class="breadcrumb-item"><span>修改问诊信息</span></li>
                             </ol>
                         </nav>
                     </div>
@@ -26,28 +26,29 @@
                     </div>
                     <div id="blog-post" class="col-lg-9">
                         <div class="box">
-                            <h2 style="text-align: center">客户问诊</h2>
-                            <h4 style="text-align: center;color: red">(问诊结果仅供参考,如要治疗请到正规医院,自行治疗所产生的一切后果与我们医院无关!!)</h4>
+                            <h2 style="text-align: center">修改问诊信息</h2>
                             <form action="/inquiry/save" method="post" enctype="multipart/form-data">
                                 <div class="form-group form-inline">
                                     <label>宠物名称:</label>&nbsp;
-                                    <select id="petId" name="petId" required="required" class="form-control">
-                                        <option value="">选择您的宠物...</option>
+                                    <select id="petIdModify" name="petId" required="required" class="form-control">
                                         <div th:each="pet:${petList}">
                                             <option th:text="${pet.name}" th:value="${pet.id}"></option>
                                         </div>
                                     </select>
+                                    <input type="hidden" id="petIdModify2" th:value="${inquiry.pet.id}">
+                                    <input type="hidden" id="id" name="id" th:value="${inquiry.id}">
                                 </div>
                                 <div class="form-group">
                                     <label>病情照片:</label>
-                                    <input type="file" name="inquiryImage" required="required">
+                                    <input type="file" name="inquiryImage">
                                 </div>
                                 <div class="form-group">
                                     <label>病情描述:</label>
-                                    <textarea id="content" name="content" class="form-control" rows="5" required="required" placeholder="请填写您的宠物病况..."></textarea>
+                                    <textarea id="inquiryContent" name="content" class="form-control" rows="5" required="required" th:value="${inquiry.content}" placeholder="请填写您的宠物病况..."></textarea>
+                                    <input type="hidden" id="inquiryContent2" th:value="${inquiry.content}">
                                 </div>
                                 <div class="text-center">
-                                    <button type="submit" class="btn btn-primary">提交</button>
+                                    <button type="submit" class="btn btn-primary">立即修改</button>
                                 </div>
                             </form>
                         </div>

@@ -3,12 +3,15 @@ package com.ledao.controller;
 import com.ledao.entity.Customer;
 import com.ledao.entity.Inquiry;
 import com.ledao.entity.Pet;
+import com.ledao.entity.Reservation;
 import com.ledao.service.InquiryService;
 import com.ledao.service.PetService;
 import com.ledao.util.DateUtil;
+import com.ledao.util.PageUtil;
 import org.apache.commons.io.FileUtils;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.multipart.MultipartFile;
@@ -18,6 +21,7 @@ import javax.annotation.Resource;
 import javax.servlet.http.HttpSession;
 import java.io.File;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 /**
@@ -49,7 +53,7 @@ public class InquiryController {
     public ModelAndView createInquiry(HttpSession session) {
         ModelAndView mav = new ModelAndView();
         Customer currentCustomer = (Customer) session.getAttribute("currentCustomer");
-        Map<String,Object> map=new HashMap<>(16);
+        Map<String, Object> map = new HashMap<>(16);
         map.put("customer", currentCustomer);
         mav.addObject("petList", petService.list(map));
         mav.addObject("title", "客户问诊");
@@ -85,14 +89,90 @@ public class InquiryController {
             Pet pet = petService.findById(inquiry.getPetId());
             inquiry.setPet(pet);
             inquiryService.add(inquiry);
-            ModelAndView mav = new ModelAndView("redirect:/inquiry/createInquiry");
+            ModelAndView mav = new ModelAndView("redirect:/inquiry/myInquiry/list/1");
             return mav;
         } else {
             Pet pet = petService.findById(inquiry.getPetId());
             inquiry.setPet(pet);
             inquiryService.update(inquiry);
-            ModelAndView mav = new ModelAndView("redirect:/customer/personalCenter");
+            ModelAndView mav = new ModelAndView("redirect:/inquiry/myInquiry/list/1");
             return mav;
         }
+    }
+
+    /**
+     * 客户查看自己的问诊记录
+     *
+     * @param session
+     * @return
+     */
+    @RequestMapping("/myInquiry/list/{id}")
+    public ModelAndView myInquiry(@PathVariable(value = "id",required = false)Integer page, HttpSession session) {
+        ModelAndView mav = new ModelAndView();
+        Map<String, Object> map = new HashMap<>(16);
+        int pageSize = 3;
+        map.put("start", (page - 1) * pageSize);
+        map.put("size", pageSize);
+        map.put("customer", session.getAttribute("currentCustomer"));
+        List<Inquiry> inquiryList = inquiryService.list(map);
+        Long total = inquiryService.getCount(map);
+        mav.addObject("inquiryList", inquiryList);
+        mav.addObject("total", total);
+        mav.addObject("pageCode", PageUtil.genPagination2("/inquiry/myInquiry/list", total, page, pageSize));
+        mav.addObject("title", "问诊记录");
+        mav.addObject("mainPage", "page/inquiry/myInquiry");
+        mav.addObject("mainPageKey", "#b");
+        mav.setViewName("index");
+        return mav;
+    }
+
+    /**
+     * 查看问诊信息页面
+     *
+     * @param inquiryId
+     * @return
+     */
+    @RequestMapping("/inquiryDetails")
+    public ModelAndView inquiryDetails(Integer inquiryId) {
+        Inquiry inquiry = inquiryService.findById(inquiryId);
+        ModelAndView mav = new ModelAndView();
+        mav.addObject("inquiry", inquiry);
+        mav.addObject("title", "查看问诊信息");
+        mav.addObject("mainPage", "page/inquiry/inquiryDetails");
+        mav.addObject("mainPageKey", "#b");
+        mav.setViewName("index");
+        return mav;
+    }
+
+    /**
+     * 修改问诊信息页面
+     *
+     * @param inquiryId
+     * @return
+     */
+    @RequestMapping("/inquiryModify")
+    public ModelAndView inquiryModify(Integer inquiryId, HttpSession session) {
+        Inquiry inquiry = inquiryService.findById(inquiryId);
+        Map<String, Object> map = new HashMap<>(16);
+        map.put("customer", session.getAttribute("currentCustomer"));
+        List<Pet> petList = petService.list(map);
+        ModelAndView mav = new ModelAndView();
+        mav.addObject("inquiry", inquiry);
+        mav.addObject("petList", petList);
+        mav.addObject("title", "修改预约单信息");
+        mav.addObject("mainPage", "page/inquiry/inquiryModify");
+        mav.addObject("mainPageKey", "#b");
+        mav.setViewName("index");
+        return mav;
+    }
+
+    @RequestMapping("/deleteInquiry")
+    public String deleteInquiry(Integer inquiryId) {
+        Inquiry inquiry = inquiryService.findById(inquiryId);
+        if (inquiry.getImageName() != null) {
+            FileUtils.deleteQuietly(new File(inquiryImageFilePath + inquiryService.findById(inquiry.getId()).getImageName()));
+        }
+        inquiryService.delete(inquiryId);
+        return "redirect:/inquiry/myInquiry/list/1";
     }
 }

@@ -54,4 +54,8 @@ public class Inquiry {
      * 医疗价格区间
      */
     private String price;
+    /**
+     * 问诊状态
+     */
+    private Integer status;
 }

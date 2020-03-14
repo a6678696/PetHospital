@@ -7,11 +7,13 @@ import com.ledao.service.CustomerService;
 import com.ledao.service.LogService;
 import com.ledao.service.PetService;
 import com.ledao.util.DateUtil;
+import com.ledao.util.PageUtil;
 import org.apache.commons.io.FileUtils;
 import org.apache.shiro.authz.annotation.RequiresPermissions;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Controller;
 import org.springframework.validation.BindingResult;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
@@ -168,6 +170,12 @@ public class CustomerController {
         return mav;
     }
 
+    /**
+     * 客户注册时判断用户名是否已经存在
+     *
+     * @param userName
+     * @return
+     */
     @ResponseBody
     @RequestMapping("/existUserWithUserName")
     public Map<String, Object> existUserWithUserName(String userName) {
@@ -186,13 +194,19 @@ public class CustomerController {
      *
      * @return
      */
-    @RequestMapping("/myPet")
-    public ModelAndView myPet(HttpSession session) {
+    @RequestMapping("/myPet/list/{id}")
+    public ModelAndView myPet(@PathVariable(value = "id", required = false) Integer page, HttpSession session) {
         ModelAndView mav = new ModelAndView();
         Map<String, Object> map = new HashMap<>(16);
+        int pageSize = 3;
+        map.put("start", (page - 1) * pageSize);
+        map.put("size", pageSize);
         map.put("customer", session.getAttribute("currentCustomer"));
         List<Pet> petList = petService.list(map);
+        Long total = petService.getCount(map);
         mav.addObject("petList", petList);
+        mav.addObject("total", total);
+        mav.addObject("pageCode", PageUtil.genPagination2("/customer/myPet/list", total, page, pageSize));
         mav.addObject("title", "我的宠物");
         mav.addObject("mainPage", "page/customer/myPet");
         mav.addObject("mainPageKey", "#b");
