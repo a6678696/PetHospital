@@ -5,86 +5,7 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="0a04dcdb-703f-4bd2-b3be-43a82c777491" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/src/main/resources/templates/page/inquiry/inquiryDetails.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/templates/page/inquiry/inquiryModify.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/templates/page/inquiry/myInquiry.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/webapp/static/images/img/comment.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/webapp/static/images/img/inquiry.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/webapp/static/images/img/like.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/webapp/static/images/img/modify.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/webapp/static/images/img/reservation.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/webapp/static/images/inquiryImage/20200314185431.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/webapp/static/images/inquiryImage/20200314190305.jpg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/webapp/static/images/inquiryImage/20200314193320.jpg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/webapp/static/images/inquiryImage/20200314193424.jpg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/webapp/static/images/inquiryImage/20200314203349.jpg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/webapp/static/images/inquiryImage/20200314210949.jpg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/webapp/static/images/petImage/20200314225619.jpg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/webapp/static/images/petImage/20200314225651.jpg" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/dataSources/3f17d22d-fd6c-438d-aade-dee31a9e9b2d.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dataSources/3f17d22d-fd6c-438d-aade-dee31a9e9b2d.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/ledao/controller/CustomerController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/ledao/controller/CustomerController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/ledao/controller/InquiryController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/ledao/controller/InquiryController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/ledao/controller/PetController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/ledao/controller/PetController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/ledao/controller/ReservationController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/ledao/controller/ReservationController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/ledao/entity/Inquiry.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/ledao/entity/Inquiry.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/mybatis/mapper/InquiryMapper.xml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/mybatis/mapper/InquiryMapper.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/mybatis/mapper/PetMapper.xml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/mybatis/mapper/PetMapper.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/templates/common/menu.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/templates/common/menu.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/templates/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/templates/index.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/templates/page/customer/menuLeft.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/templates/page/customer/menuLeft.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/templates/page/customer/myPet.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/templates/page/customer/myPet.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/templates/page/customer/personalCenterModifyMessage.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/templates/page/customer/personalCenterModifyMessage.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/templates/page/customer/petAdd.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/templates/page/customer/petAdd.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/templates/page/customer/petDetails.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/templates/page/customer/petDetails.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/templates/page/customer/petModify.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/templates/page/customer/petModify.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/templates/page/goods/goodsView.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/templates/page/goods/goodsView.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/templates/page/goods/myFavorite.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/templates/page/goods/myFavorite.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/templates/page/inquiry/createInquiry.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/templates/page/inquiry/createInquiry.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/templates/page/reservation/addBeauticianReservation.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/templates/page/reservation/addBeauticianReservation.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/templates/page/reservation/addDoctorReservation.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/templates/page/reservation/addDoctorReservation.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/templates/page/reservation/myReservation.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/templates/page/reservation/myReservation.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/templates/page/reservation/reservationModify.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/templates/page/reservation/reservationModify.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/templates/page/reservation/reserveSuccess.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/templates/page/reservation/reserveSuccess.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/static/images/img/AjaxLoader.gif" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/static/images/img/banner.jpg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/static/images/img/banner2.jpg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/static/images/img/basketsquare.jpg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/static/images/img/blog-avatar.jpg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/static/images/img/blog-avatar2.jpg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/static/images/img/blog.jpg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/static/images/img/blog2.jpg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/static/images/img/detailbig1.jpg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/static/images/img/detailbig2.jpg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/static/images/img/detailbig3.jpg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/static/images/img/detailsquare.jpg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/static/images/img/detailsquare2.jpg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/static/images/img/detailsquare3.jpg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/static/images/img/getinspired1.jpg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/static/images/img/getinspired2.jpg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/static/images/img/getinspired3.jpg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/static/images/img/grabbing.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/static/images/img/logo-small.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/static/images/img/logo.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/static/images/img/main-slider1.jpg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/static/images/img/main-slider2.jpg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/static/images/img/main-slider3.jpg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/static/images/img/main-slider4.jpg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/static/images/img/product1.jpg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/static/images/img/product1_2.jpg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/static/images/img/product1_21.jpg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/static/images/img/product2.jpg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/static/images/img/product2_2.jpg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/static/images/img/product3.jpg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/static/images/img/product3_2.jpg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/static/images/img/shoppingCartEmpty.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/static/images/img/shoppingCartFull.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/static/images/img/slider1.jpg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/static/images/img/slider2.jpg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/static/images/img/slider3.jpg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/static/images/img/slider4.jpg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/static/images/img/template-mac.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/static/images/inquiryImage/20200310234628.jpg" beforeDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -343,21 +264,7 @@
       <workItem from="1583768268476" duration="10232000" />
       <workItem from="1583835052240" duration="1165000" />
       <workItem from="1583840873410" duration="9083000" />
-      <workItem from="1584161863986" duration="28524000" />
-    </task>
-    <task id="LOCAL-00002" summary="LeDao宠物医院管理系统">
-      <created>1579193110672</created>
-      <option name="number" value="00002" />
-      <option name="presentableId" value="LOCAL-00002" />
-      <option name="project" value="LOCAL" />
-      <updated>1579193110672</updated>
-    </task>
-    <task id="LOCAL-00003" summary="LeDao宠物医院管理系统">
-      <created>1579193334851</created>
-      <option name="number" value="00003" />
-      <option name="presentableId" value="LOCAL-00003" />
-      <option name="project" value="LOCAL" />
-      <updated>1579193334851</updated>
+      <workItem from="1584161863986" duration="28593000" />
     </task>
     <task id="LOCAL-00004" summary="LeDao宠物医院管理系统">
       <created>1579193469546</created>
@@ -688,7 +595,21 @@
       <option name="project" value="LOCAL" />
       <updated>1583856572183</updated>
     </task>
-    <option name="localTasksCounter" value="51" />
+    <task id="LOCAL-00051" summary="LeDao宠物医院管理系统">
+      <created>1584198571475</created>
+      <option name="number" value="00051" />
+      <option name="presentableId" value="LOCAL-00051" />
+      <option name="project" value="LOCAL" />
+      <updated>1584198571475</updated>
+    </task>
+    <task id="LOCAL-00052" summary="LeDao宠物医院管理系统">
+      <created>1584198590956</created>
+      <option name="number" value="00052" />
+      <option name="presentableId" value="LOCAL-00052" />
+      <option name="project" value="LOCAL" />
+      <updated>1584198590956</updated>
+    </task>
+    <option name="localTasksCounter" value="53" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -740,18 +661,18 @@
       <screen x="0" y="0" width="1536" height="824" />
     </state>
     <state x="499" y="159" key="#com.intellij.refactoring.safeDelete.UnsafeUsagesDialog/0.0.1536.824@0.0.1536.824" timestamp="1579172113914" />
-    <state x="207" y="84" width="1010" height="632" key="CommitChangelistDialog2" timestamp="1584198567255">
+    <state x="207" y="84" width="1010" height="632" key="CommitChangelistDialog2" timestamp="1584198616827">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state x="207" y="84" width="1010" height="632" key="CommitChangelistDialog2/0.0.1536.824@0.0.1536.824" timestamp="1584198567255" />
+    <state x="207" y="84" width="1010" height="632" key="CommitChangelistDialog2/0.0.1536.824@0.0.1536.824" timestamp="1584198616827" />
     <state width="1067" height="466" key="DebuggerActiveHint" timestamp="1584193767844">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
     <state width="1067" height="466" key="DebuggerActiveHint/0.0.1536.824@0.0.1536.824" timestamp="1584193767844" />
-    <state x="147" y="71" key="DiffContextDialog" timestamp="1580920950102">
+    <state x="147" y="71" key="DiffContextDialog" timestamp="1584198612366">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state x="147" y="71" key="DiffContextDialog/0.0.1536.824@0.0.1536.824" timestamp="1580920950102" />
+    <state x="147" y="71" key="DiffContextDialog/0.0.1536.824@0.0.1536.824" timestamp="1584198612366" />
     <state x="549" y="168" width="773" height="488" key="FileChooserDialogImpl" timestamp="1583770654063">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
@@ -760,54 +681,54 @@
       <screen x="0" y="0" width="1536" height="824" />
     </state>
     <state x="589" y="326" width="382" height="172" key="Github.CreateGistDialog/0.0.1536.824@0.0.1536.824" timestamp="1579192359130" />
-    <state width="1493" height="214" key="GridCell.Tab.0.bottom" timestamp="1584198575915">
+    <state width="1493" height="214" key="GridCell.Tab.0.bottom" timestamp="1584198623677">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state width="1493" height="214" key="GridCell.Tab.0.bottom/0.0.1536.824@0.0.1536.824" timestamp="1584198575915" />
-    <state width="1493" height="214" key="GridCell.Tab.0.center" timestamp="1584198575915">
+    <state width="1493" height="214" key="GridCell.Tab.0.bottom/0.0.1536.824@0.0.1536.824" timestamp="1584198623677" />
+    <state width="1493" height="214" key="GridCell.Tab.0.center" timestamp="1584198623677">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state width="1493" height="214" key="GridCell.Tab.0.center/0.0.1536.824@0.0.1536.824" timestamp="1584198575915" />
-    <state width="1493" height="214" key="GridCell.Tab.0.left" timestamp="1584198575915">
+    <state width="1493" height="214" key="GridCell.Tab.0.center/0.0.1536.824@0.0.1536.824" timestamp="1584198623677" />
+    <state width="1493" height="214" key="GridCell.Tab.0.left" timestamp="1584198623677">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state width="1493" height="214" key="GridCell.Tab.0.left/0.0.1536.824@0.0.1536.824" timestamp="1584198575915" />
-    <state width="1493" height="214" key="GridCell.Tab.0.right" timestamp="1584198575915">
+    <state width="1493" height="214" key="GridCell.Tab.0.left/0.0.1536.824@0.0.1536.824" timestamp="1584198623677" />
+    <state width="1493" height="214" key="GridCell.Tab.0.right" timestamp="1584198623677">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state width="1493" height="214" key="GridCell.Tab.0.right/0.0.1536.824@0.0.1536.824" timestamp="1584198575915" />
-    <state width="1493" height="214" key="GridCell.Tab.1.bottom" timestamp="1584198575915">
+    <state width="1493" height="214" key="GridCell.Tab.0.right/0.0.1536.824@0.0.1536.824" timestamp="1584198623677" />
+    <state width="1493" height="214" key="GridCell.Tab.1.bottom" timestamp="1584198623677">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state width="1493" height="214" key="GridCell.Tab.1.bottom/0.0.1536.824@0.0.1536.824" timestamp="1584198575915" />
-    <state width="1493" height="214" key="GridCell.Tab.1.center" timestamp="1584198575915">
+    <state width="1493" height="214" key="GridCell.Tab.1.bottom/0.0.1536.824@0.0.1536.824" timestamp="1584198623677" />
+    <state width="1493" height="214" key="GridCell.Tab.1.center" timestamp="1584198623677">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state width="1493" height="214" key="GridCell.Tab.1.center/0.0.1536.824@0.0.1536.824" timestamp="1584198575915" />
-    <state width="1493" height="214" key="GridCell.Tab.1.left" timestamp="1584198575915">
+    <state width="1493" height="214" key="GridCell.Tab.1.center/0.0.1536.824@0.0.1536.824" timestamp="1584198623677" />
+    <state width="1493" height="214" key="GridCell.Tab.1.left" timestamp="1584198623677">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state width="1493" height="214" key="GridCell.Tab.1.left/0.0.1536.824@0.0.1536.824" timestamp="1584198575915" />
-    <state width="1493" height="214" key="GridCell.Tab.1.right" timestamp="1584198575915">
+    <state width="1493" height="214" key="GridCell.Tab.1.left/0.0.1536.824@0.0.1536.824" timestamp="1584198623677" />
+    <state width="1493" height="214" key="GridCell.Tab.1.right" timestamp="1584198623677">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state width="1493" height="214" key="GridCell.Tab.1.right/0.0.1536.824@0.0.1536.824" timestamp="1584198575915" />
-    <state width="1493" height="214" key="GridCell.Tab.2.bottom" timestamp="1584198575915">
+    <state width="1493" height="214" key="GridCell.Tab.1.right/0.0.1536.824@0.0.1536.824" timestamp="1584198623677" />
+    <state width="1493" height="214" key="GridCell.Tab.2.bottom" timestamp="1584198623677">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state width="1493" height="214" key="GridCell.Tab.2.bottom/0.0.1536.824@0.0.1536.824" timestamp="1584198575915" />
-    <state width="1493" height="214" key="GridCell.Tab.2.center" timestamp="1584198575915">
+    <state width="1493" height="214" key="GridCell.Tab.2.bottom/0.0.1536.824@0.0.1536.824" timestamp="1584198623677" />
+    <state width="1493" height="214" key="GridCell.Tab.2.center" timestamp="1584198623677">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state width="1493" height="214" key="GridCell.Tab.2.center/0.0.1536.824@0.0.1536.824" timestamp="1584198575915" />
-    <state width="1493" height="214" key="GridCell.Tab.2.left" timestamp="1584198575915">
+    <state width="1493" height="214" key="GridCell.Tab.2.center/0.0.1536.824@0.0.1536.824" timestamp="1584198623677" />
+    <state width="1493" height="214" key="GridCell.Tab.2.left" timestamp="1584198623677">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state width="1493" height="214" key="GridCell.Tab.2.left/0.0.1536.824@0.0.1536.824" timestamp="1584198575915" />
-    <state width="1493" height="214" key="GridCell.Tab.2.right" timestamp="1584198575915">
+    <state width="1493" height="214" key="GridCell.Tab.2.left/0.0.1536.824@0.0.1536.824" timestamp="1584198623677" />
+    <state width="1493" height="214" key="GridCell.Tab.2.right" timestamp="1584198623677">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state width="1493" height="214" key="GridCell.Tab.2.right/0.0.1536.824@0.0.1536.824" timestamp="1584198575915" />
+    <state width="1493" height="214" key="GridCell.Tab.2.right/0.0.1536.824@0.0.1536.824" timestamp="1584198623677" />
     <state x="299" y="68" key="Maven.ArtifactSearchDialog" timestamp="1580625148690">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
@@ -816,10 +737,10 @@
       <screen x="0" y="0" width="1536" height="824" />
     </state>
     <state x="270" y="0" key="SettingsEditor/0.0.1536.824@0.0.1536.824" timestamp="1581162595368" />
-    <state x="361" y="146" key="Vcs.Push.Dialog.v2" timestamp="1584198574315">
+    <state x="361" y="146" key="Vcs.Push.Dialog.v2" timestamp="1584198592466">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state x="361" y="146" key="Vcs.Push.Dialog.v2/0.0.1536.824@0.0.1536.824" timestamp="1584198574315" />
+    <state x="361" y="146" key="Vcs.Push.Dialog.v2/0.0.1536.824@0.0.1536.824" timestamp="1584198592466" />
     <state width="775" height="419" key="XDebugger.FullValuePopup" timestamp="1583770156381">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
