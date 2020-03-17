@@ -21,6 +21,9 @@
             <if test="customer!=null">
                 and customerId=#{customer.id}
             </if>
+            <if test="customerId!=null">
+                and customerId=#{customerId}
+            </if>
             <if test="status!=null">
                 and status=#{status}
             </if>
@@ -35,6 +38,9 @@
         <where>
             <if test="customer!=null">
                 and customerId=#{customer.id}
+            </if>
+            <if test="customerId!=null">
+                and customerId=#{customerId}
             </if>
             <if test="status!=null">
                 and status=#{status}

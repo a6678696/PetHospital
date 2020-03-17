@@ -82,7 +82,7 @@ public class SuggestionAdminController {
         Map<String, Object> resultMap = new HashMap<>(16);
         User currentUser = (User) session.getAttribute("currentUser");
         suggestion.setUser(currentUser);
-        int key = 0;
+        int key;
         logService.add(new Log(Log.UPDATE_ACTION, "修改客户留言" + suggestion));
         if (currentUser != null) {
             key = suggestionService.update(suggestion);

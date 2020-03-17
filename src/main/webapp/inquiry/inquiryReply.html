@@ -3,7 +3,7 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>客户留言管理</title>
+    <title>客户网上问诊</title>
     <link rel="stylesheet" type="text/css" href="/static/jquery-easyui-1.7.0/themes/metro-blue/easyui.css">
     <link rel="stylesheet" type="text/css" href="/static/jquery-easyui-1.7.0/themes/icon.css">
     <script type="text/javascript" src="/static/jquery-easyui-1.7.0/jquery.min.js"></script>
@@ -11,16 +11,28 @@
     <script type="text/javascript" src="/static/jquery-easyui-1.7.0/locale/easyui-lang-zh_CN.js"></script>
     <script type="text/javascript">
 
+        $(document).ready(function () {
+
+            $("#dg").datagrid({
+                onDblClickRow: function (index, row) {
+                    $("#dlg").dialog("open").dialog("setTitle", "回复客户网上问诊");
+                    $("#fm").form("load", row);
+                    url = "/admin/inquiry/save?id=" + row.id;
+                }
+            });
+
+        });
+
         var url;
 
-        function searchSuggestion() {
+        function searchInquiry() {
             $("#dg").datagrid('load',{
                 "customer.contact": $("#s_name").val()
             });
         }
 
-        function formatCustomer(val, row) {
-            return val.contact;
+        function formatDate(val, row) {
+            return val.substring(0, 4) + "年" + val.substring(5, 7) + "月" + val.substring(8, 10) + "日 "+val.substring(11,13)+":"+val.substring(14,16)+":"+val.substring(17,19);
         }
 
         function formatUser(val, row) {
@@ -31,31 +43,63 @@
             }
         }
 
-        function formatDate(val, row) {
-            return val.substring(0, 4) + "年" + val.substring(5, 7) + "月" + val.substring(8, 10) + "日";
+        function formatPet(val, row) {
+            if (val == null) {
+                return "";
+            } else {
+                return val.name;
+            }
+        }
+
+        function formatImageName(val, row) {
+            return "<img width=100 height=50 src='/static/images/inquiryImage/" + val + "'/>";
+        }
+
+        function formatUser(val, row) {
+            if (val == null) {
+                return "";
+            } else {
+                return val.trueName;
+            }
         }
 
         function formatReply(val, row) {
             if (val == null) {
-                return "<a href='javascript:openSuggestionModifyDialog()'>回复</a>";
+                return "<a href='javascript:openInquiryModifyDialog()'>回复</a>";
             } else {
                 return val;
             }
         }
 
-        function openSuggestionModifyDialog() {
+        function formatPrice(val, row) {
+            if (val == null) {
+                return "";
+            } else {
+                return val;
+            }
+        }
+
+        function formatCustomer(val, row) {
+            return val.contact;
+        }
+
+        function formatPet(val, row) {
+            return val.name;
+        }
+
+        function openInquiryModifyDialog() {
             var selectedRows = $("#dg").datagrid("getSelections");
             if (selectedRows.length != 1) {
                 $.messager.alert("系统提示", "请选择一条要修改的数据！");
                 return;
             }
             var row = selectedRows[0];
-            $("#dlg").dialog("open").dialog("setTitle", "回复客户");
+            $("#dlg").dialog("open").dialog("setTitle", "回复客户网上问诊");
             $("#fm").form("load", row);
-            url = "/admin/suggestion/save?id=" + row.id;
+            url = "/admin/inquiry/save?id=" + row.id;
         }
 
-        function saveSuggestion() {
+        function saveInquiry() {
             $("#fm").form("submit", {
                 url: url,
                 onSubmit: function () {
@@ -75,16 +119,7 @@
             });
         }
 
-        function resetValue() {
-            $("#reply").val("");
-        }
-
-        function closeSuggestionDialog() {
-            $("#dlg").dialog("close");
-            resetValue();
-        }
-
-        function deleteSuggestion() {
+        function deleteInquiry() {
             var selectedRows = $("#dg").datagrid("getSelections");
             if (selectedRows.length == 0) {
                 $.messager.alert("系统提示", "请选择要删除的数据！");
@@ -97,7 +132,7 @@
             var ids = strIds.join(",");
             $.messager.confirm("系统提示", "您确定要删除这<span style='color: red'>" + selectedRows.length + "</span>条数据吗?", function (r) {
                 if (r) {
-                    $.post("/admin/suggestion/delete", {ids: ids}, function (result) {
+                    $.post("/admin/inquiry/delete", {ids: ids}, function (result) {
                         if (result.success) {
                             $.messager.alert("系统提示", "数据已成功删除！");
                             $("#dg").datagrid("reload");
@@ -109,61 +144,63 @@
             });
         }
 
-        $(document).ready(function () {
+        function resetValue() {
+            $("#reply").val("");
+            $("#price").val("");
+            $("#content").val("");
+        }
 
-            $("#dg").datagrid({
-                onDblClickRow: function (index, row) {
-                    $("#dlg").dialog("open").dialog("setTitle", "修改客户留言信息");
-                    $("#fm").form("load", row);
-                    url = "/admin/suggestion/save?id=" + row.id;
-                }
-            });
-
-        });
+        function closeInquiryDialog() {
+            $("#dlg").dialog("close");
+            resetValue();
+        }
     </script>
 </head>
 <body style="margin: 1px">
-<table id="dg" title="客户留言管理" class="easyui-datagrid"
+<table id="dg" title="未答复的客户网上问诊" class="easyui-datagrid"
        fitColumns="true" pagination="true" rownumbers="true" singleselect="true"
-       url="/admin/suggestion/list" fit="true" toolbar="#tb">
+       url="/admin/inquiry/listWebInquiry" fit="true" toolbar="#tb">
     <thead>
     <th field="id" width="20" align="center" hidden="true">编号</th>
-    <th field="createDate" width="20" align="center" formatter="formatDate">留言时间</th>
-    <th field="customer" width="10" align="center" formatter="formatCustomer">客户名称</th>
+    <th field="createDate" width="35" align="center" formatter="formatDate">问诊时间</th>
+    <th field="customer" width="15" align="center" formatter="formatCustomer">客户名称</th>
+    <th field="pet" width="20" align="center" formatter="formatPet">宠物名称</th>
     <th field="content" width="50" align="center">内容</th>
-    <th field="user" width="10" align="center" formatter="formatUser">回复人</th>
+    <th field="imageName" width="20" align="center" formatter="formatImageName">病情图片</th>
+    <th field="user" width="20" align="center" formatter="formatUser">回复人</th>
     <th field="reply" width="50" align="center" formatter="formatReply">回复内容</th>
+    <th field="price" width="30" align="center" formatter="formatPrice">医疗价格</th>
     </thead>
 </table>
 
 <div id="tb">
     <div>
-        <a href="javascript:openSuggestionModifyDialog()" class="easyui-linkbutton" iconCls="icon-edit"
-           plain="true">修改</a>
-        <a href="javascript:deleteSuggestion()" class="easyui-linkbutton" iconCls="icon-remove" plain="true">删除</a>
-    </div>
-    <div>
         &nbsp;客户名称：&nbsp;<input type="text" id="s_name" size="20"
-                                onkeydown="if(event.keyCode==13) searchSuggestion()"/>
-        <a href="javascript:searchSuggestion()" class="easyui-linkbutton" iconCls="icon-search" plain="true">搜索</a>
+                                onkeydown="if(event.keyCode==13) searchInquiry()"/>
+        <a href="javascript:searchInquiry()" class="easyui-linkbutton" iconCls="icon-search" plain="true">搜索</a>
     </div>
 </div>
 
-
-<div id="dlg" class="easyui-dialog" style="width: 450px;height: 330px;padding: 10px 20px"
+<div id="dlg" class="easyui-dialog" style="width: 600px;height: 330px;padding: 10px 20px"
      closed="true" buttons="#dlg-buttons" data-options="onClose:function(){resetValue()}">
     <form id="fm" method="post">
         <table cellspacing="8px">
             <tr>
                 <td valign="top">留言内容:</td>
                 <td>
-                    <textarea rows="5" cols="40" id="content" name="content" readonly="readonly"></textarea>
+                    <textarea rows="5" cols="60" id="content" name="content" readonly="readonly"></textarea>
                 </td>
             </tr>
             <tr>
-                <td valign="top">回复内容:</td>
+                <td valign="top">病情描述:</td>
                 <td>
-                    <textarea rows="5" cols="40" id="reply" name="reply" class="easyui-validatebox" required="true"></textarea>
+                    <textarea rows="5" cols="60" id="reply" name="reply" class="easyui-validatebox" required="true"></textarea>
+                </td>
+            </tr>
+            <tr>
+                <td valign="top">医疗价格:</td>
+                <td>
+                    <input type="text" id="price" name="price" class="easyui-validatebox" required="true" style="width: 453px">
                 </td>
             </tr>
         </table>
@@ -171,8 +208,8 @@
 </div>
 
 <div id="dlg-buttons">
-    <a href="javascript:saveSuggestion()" class="easyui-linkbutton" iconCls="icon-ok">保存</a>
-    <a href="javascript:closeSuggestionDialog()" class="easyui-linkbutton" iconCls="icon-cancel">关闭</a>
+    <a href="javascript:saveInquiry()" class="easyui-linkbutton" iconCls="icon-ok">保存</a>
+    <a href="javascript:closeInquiryDialog()" class="easyui-linkbutton" iconCls="icon-cancel">关闭</a>
 </div>
 </body>
 </html>
