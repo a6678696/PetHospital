@@ -26,16 +26,10 @@
                         <div class="box">
                             <h1 th:text="${article.title}" style="text-align: center"></h1>
                             <div style="text-align: center">
-                                <p class="author-date">发布日期:&nbsp;<span
-                                        th:text="${#dates.format(article.releaseDate,'yyyy-MM-dd HH:mm:ss')}"></span>&nbsp;&nbsp;阅读次数:&nbsp;<span
-                                        th:text="${article.click}"></span>
-                                    &nbsp;&nbsp;文章类型:&nbsp;
-                                    <span th:switch="${article.typeId}">
-                                    <span th:case="1">医院公告</span>
-                                    <span th:case="2">医院新闻</span>
-                                    <span th:case="3">宠物大全</span>
-                                    <span th:case="4">用药常识</span>
-                                </span>
+                                <p class="author-date">
+                                    发布日期:&nbsp;<span th:text="${#dates.format(article.releaseDate,'yyyy-MM-dd HH:mm:ss')}"></span>
+                                    &nbsp;&nbsp;阅读次数:&nbsp;<span th:text="${article.click}"></span>
+                                    &nbsp;&nbsp;文章类型:&nbsp;<span th:text="${typeName}"></span>
                                 </p>
                             </div>
                             <div id="post-content" th:utext="${article.content}"></div>
