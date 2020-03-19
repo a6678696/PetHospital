@@ -31,6 +31,10 @@ public class Assay {
      */
     private String petName;
     /**
+     * 宠物实体
+     */
+    private Pet pet;
+    /**
      * 化验记录描述
      */
     private String content;

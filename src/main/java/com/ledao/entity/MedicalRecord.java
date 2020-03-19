@@ -31,6 +31,10 @@ public class MedicalRecord {
      */
     private String petName;
     /**
+     * 宠物实体
+     */
+    private Pet pet;
+    /**
      * 病例描述
      */
     private String content;

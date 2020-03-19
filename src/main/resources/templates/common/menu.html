@@ -43,6 +43,8 @@
                                             </li>
                                             <li class="nav-item"><a href="/suggestion/mySuggestion/list/1" class="nav-link">我的留言</a>
                                             </li>
+                                            <li class="nav-item"><a href="/returnVisit/myReturnVisit/list/1" class="nav-link">客户回访记录</a>
+                                            </li>
                                         </ul>
                                         <ul class="list-unstyled mb-3" th:if="${session.currentCustomer==null}">
                                             <li class="nav-item"><a href="/login" class="nav-link">个人信息(请先登录)</a>
@@ -52,6 +54,8 @@
                                             <li class="nav-item"><a href="/login" class="nav-link">我的收藏(请先登录)</a>
                                             </li>
                                             <li class="nav-item"><a href="/login" class="nav-link">我的留言(请先登录)</a>
+                                            </li>
+                                            <li class="nav-item"><a href="/login" class="nav-link">客户回访记录(请先登录)</a>
                                             </li>
                                         </ul>
                                     </div>
@@ -75,11 +79,23 @@
                                             </li>
                                             <li class="nav-item"><a href="/inquiry/myInquiry/list/1" class="nav-link">问诊记录</a>
                                             </li>
+                                            <li class="nav-item"><a href="/medicalRecord/myMedicalRecord/list/1" class="nav-link">病例记录</a>
+                                            </li>
+                                            <li class="nav-item"><a href="/assay/myAssay/list/1" class="nav-link">化验记录</a>
+                                            </li>
+                                            <li class="nav-item"><a href="/vaccine/myVaccine/list/1" class="nav-link">疫苗注射记录</a>
+                                            </li>
                                         </ul>
                                         <ul class="list-unstyled mb-3" th:if="${session.currentCustomer==null}">
                                             <li class="nav-item"><a href="/login" class="nav-link">客户问诊(请先登录)</a>
                                             </li>
                                             <li class="nav-item"><a href="/login" class="nav-link">问诊记录(请先登录)</a>
+                                            </li>
+                                            <li class="nav-item"><a href="/login" class="nav-link">病例记录(请先登录)</a>
+                                            </li>
+                                            <li class="nav-item"><a href="/login" class="nav-link">化验记录(请先登录)</a>
+                                            </li>
+                                            <li class="nav-item"><a href="/login" class="nav-link">疫苗注射记录(请先登录)</a>
                                             </li>
                                         </ul>
                                     </div>

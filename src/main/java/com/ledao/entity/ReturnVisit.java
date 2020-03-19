@@ -31,6 +31,10 @@ public class ReturnVisit {
      */
     private String petName;
     /**
+     * 宠物实体
+     */
+    private Pet pet;
+    /**
      * 客户满意度(1星到5星)
      */
     private Integer satisfaction;

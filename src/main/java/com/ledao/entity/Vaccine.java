@@ -31,6 +31,10 @@ public class Vaccine {
      */
     private String petName;
     /**
+     * 宠物实体
+     */
+    private Pet pet;
+    /**
      * 疫苗注射记录描述
      */
     private String content;
