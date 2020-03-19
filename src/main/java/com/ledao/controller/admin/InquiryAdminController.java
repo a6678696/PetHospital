@@ -116,7 +116,7 @@ public class InquiryAdminController {
      * @return
      */
     @RequestMapping("/listAllInquiry")
-    @RequiresPermissions(value = "问诊管理")
+    @RequiresPermissions(value = "问诊记录管理")
     public Map<String, Object> listAllInquiry(Inquiry inquiry, @RequestParam(value = "page", required = false) Integer page, @RequestParam(value = "rows", required = false) Integer rows) {
         PageBean pageBean = new PageBean(page, rows);
         Map<String, Object> resultMap = new HashMap<>(16);

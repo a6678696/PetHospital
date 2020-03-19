@@ -66,7 +66,7 @@ public class ReservationController {
             reservationService.add(reservation);
             return mav;
         } else {
-            ModelAndView mav = new ModelAndView("redirect:/reservation/myReservation");
+            ModelAndView mav = new ModelAndView("redirect:/reservation/myReservation/list/1");
             SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy-MM-dd");
             Date date = simpleDateFormat.parse(reservation.getDate());
             reservation.setPet(petService.findById(reservation.getPetId()));
@@ -206,7 +206,7 @@ public class ReservationController {
      */
     @RequestMapping("/delete")
     public ModelAndView delete(Integer reservationId) {
-        ModelAndView mav = new ModelAndView("redirect:/reservation/myReservation");
+        ModelAndView mav = new ModelAndView("redirect:/reservation/myReservation/list/1");
         reservationService.delete(reservationId);
         return mav;
     }

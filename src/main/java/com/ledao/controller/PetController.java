@@ -62,7 +62,7 @@ public class PetController {
         } else {
             petService.update(pet);
         }
-        return "redirect:/customer/myPet";
+        return "redirect:/customer/myPet/list/1";
     }
 
     /**
@@ -77,6 +77,6 @@ public class PetController {
             FileUtils.deleteQuietly(new File(petImageFilePath + petService.findById(petId).getImageName()));
         }
         petService.delete(petId);
-        return "redirect:/customer/myPet";
+        return "redirect:/customer/myPet/list/1";
     }
 }
