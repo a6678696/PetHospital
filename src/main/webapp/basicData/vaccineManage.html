@@ -3,7 +3,7 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>文章类型管理</title>
+    <title>疫苗注射记录管理</title>
     <link rel="stylesheet" type="text/css" href="/static/jquery-easyui-1.7.0/themes/metro-blue/easyui.css">
     <link rel="stylesheet" type="text/css" href="/static/jquery-easyui-1.7.0/themes/icon.css">
     <script type="text/javascript" src="/static/jquery-easyui-1.7.0/jquery.min.js"></script>
@@ -12,24 +12,27 @@
     <script type="text/javascript">
         var url;
 
-        function searchArticleType() {
+        function searchVaccine() {
             $("#dg").datagrid('load',{
-                "name": $("#s_name").val()
+                "customerName": $("#s_customerName").val(),
+                "petName": $("#s_petName").val()
             });
         }
 
         function resetValue() {
 
-            $("#name").val("");
-            $("#remarks").val("");
+            $("#customerName").val("");
+            $("#petName").val("");
+            $("#petName").val("");
+            $("#content").val("");
         }
 
-        function closeArticleTypeDialog() {
+        function closeVaccineDialog() {
             $("#dlg").dialog("close");
             resetValue();
         }
 
-        function saveArticleType() {
+        function saveVaccine() {
             $("#fm").form("submit", {
                 url: url,
                 onSubmit: function () {
@@ -49,24 +52,24 @@
             });
         }
 
-        function openArticleTypeAddDialog() {
-            $("#dlg").dialog("open").dialog("setTitle", "添加文章类型信息");
-            url = "/admin/articleType/save";
+        function openVaccineAddDialog() {
+            $("#dlg").dialog("open").dialog("setTitle", "添加疫苗注射记录信息");
+            url = "/admin/vaccine/save";
         }
 
-        function openArticleTypeModifyDialog() {
+        function openVaccineModifyDialog() {
             var selectedRows = $("#dg").datagrid("getSelections");
             if (selectedRows.length != 1) {
                 $.messager.alert("系统提示", "请选择一条要修改的数据！");
                 return;
             }
             var row = selectedRows[0];
-            $("#dlg").dialog("open").dialog("setTitle", "修改文章类型信息");
+            $("#dlg").dialog("open").dialog("setTitle", "修改疫苗注射记录信息");
             $("#fm").form("load", row);
-            url = "/admin/articleType/save?id=" + row.id;
+            url = "/admin/vaccine/save?id=" + row.id;
         }
 
-        function deleteArticleType() {
+        function deleteVaccine() {
             var selectedRows = $("#dg").datagrid("getSelections");
             if (selectedRows.length == 0) {
                 $.messager.alert("系统提示", "请选择要删除的数据！");
@@ -79,7 +82,7 @@
             var ids = strIds.join(",");
             $.messager.confirm("系统提示", "您确定要删除这<span style='color: red'>" + selectedRows.length + "</span>条数据吗?", function (r) {
                 if (r) {
-                    $.post("/admin/articleType/delete", {ids: ids}, function (result) {
+                    $.post("/admin/vaccine/delete", {ids: ids}, function (result) {
                         if (result.success) {
                             $.messager.alert("系统提示", "数据已成功删除！");
                             $("#dg").datagrid("reload");
@@ -95,55 +98,68 @@
 
             $("#dg").datagrid({
                 onDblClickRow: function (index, row) {
-                    $("#dlg").dialog("open").dialog("setTitle", "修改文章类型信息");
+                    $("#dlg").dialog("open").dialog("setTitle", "修改疫苗注射记录信息");
                     $("#fm").form("load", row);
-                    url = "/admin/articleType/save?id=" + row.id;
+                    url = "/admin/vaccine/save?id=" + row.id;
                 }
             });
 
         });
+
+        function formatDate(val, row) {
+            return val.substring(0, 4) + "年" + val.substring(5, 7) + "月" + val.substring(8, 10) + "日 "+val.substring(11,13)+":"+val.substring(14,16)+":"+val.substring(17,19);
+        }
     </script>
 </head>
 <body style="margin: 1px">
-<table id="dg" title="文章类型管理" class="easyui-datagrid"
+<table id="dg" title="疫苗注射记录管理" class="easyui-datagrid"
        fitColumns="true" pagination="true" rownumbers="true"
-       url="/admin/articleType/list" fit="true" toolbar="#tb">
+       url="/admin/vaccine/list" fit="true" toolbar="#tb">
     <thead>
     <th field="cb" checkbox="true" align="center"></th>
-    <th field="id" width="20" align="center">编号</th>
-    <th field="name" width="50" align="center">名称</th>
-    <th field="remarks" width="50" align="center">备注</th>
+    <th field="id" hidden="true" width="20" align="center">编号</th>
+    <th field="createDate" width="20" align="center" formatter="formatDate">创建时间</th>
+    <th field="customerName" width="15" align="center">顾客名称</th>
+    <th field="petName" width="15" align="center">宠物名称</th>
+    <th field="content" width="80" align="center">疫苗注射描述</th>
     </thead>
 </table>
 
 <div id="tb">
     <div>
-        <a href="javascript:openArticleTypeAddDialog()" class="easyui-linkbutton" iconCls="icon-add" plain="true">添加</a>
-        <a href="javascript:openArticleTypeModifyDialog()" class="easyui-linkbutton" iconCls="icon-edit"
+        <a href="javascript:openVaccineAddDialog()" class="easyui-linkbutton" iconCls="icon-add" plain="true">添加</a>
+        <a href="javascript:openVaccineModifyDialog()" class="easyui-linkbutton" iconCls="icon-edit"
            plain="true">修改</a>
-        <a href="javascript:deleteArticleType()" class="easyui-linkbutton" iconCls="icon-remove" plain="true">删除</a>
+        <a href="javascript:deleteVaccine()" class="easyui-linkbutton" iconCls="icon-remove" plain="true">删除</a>
     </div>
     <div>
-        &nbsp;文章类型名称：&nbsp;<input type="text" id="s_name" size="20" onkeydown="if(event.keyCode==13) searchArticleType()"/>
-        <a href="javascript:searchArticleType()" class="easyui-linkbutton" iconCls="icon-search" plain="true">搜索</a>
+        &nbsp;顾客名称：&nbsp;<input type="text" id="s_customerName" size="20" onkeydown="if(event.keyCode==13) searchVaccine()"/>
+        &nbsp;宠物名称：&nbsp;<input type="text" id="s_petName" size="20" onkeydown="if(event.keyCode==13) searchVaccine()"/>
+        <a href="javascript:searchVaccine()" class="easyui-linkbutton" iconCls="icon-search" plain="true">搜索</a>
     </div>
 </div>
 
 
-<div id="dlg" class="easyui-dialog" style="width: 450px;height: 235px;padding: 10px 20px"
+<div id="dlg" class="easyui-dialog" style="width: 500px;height: 265px;padding: 10px 20px"
      closed="true" buttons="#dlg-buttons" data-options="onClose:function(){resetValue()}">
     <form id="fm" method="post">
         <table cellspacing="8px">
             <tr>
-                <td valign="top">名称:</td>
+                <td valign="top">顾客名称:</td>
                 <td>
-                    <input id="name" name="name" class="easyui-validatebox" required="true" style="width: 100px">
+                    <input id="customerName" name="customerName" class="easyui-validatebox" required="true" style="width: 200px">
                 </td>
             </tr>
             <tr>
-                <td valign="top">备注:</td>
+                <td valign="top">宠物名称:</td>
                 <td>
-                    <textarea rows="5" cols="40" id="remarks" name="remarks"></textarea>
+                    <input id="petName" name="petName" class="easyui-validatebox" required="true" style="width: 200px">
+                </td>
+            </tr>
+            <tr>
+                <td valign="top">疫苗注射描述:</td>
+                <td>
+                    <textarea rows="5" cols="40" id="content" name="content" class="easyui-validatebox" required="true"></textarea>
                 </td>
             </tr>
         </table>
@@ -151,8 +167,8 @@
 </div>
 
 <div id="dlg-buttons">
-    <a href="javascript:saveArticleType()" class="easyui-linkbutton" iconCls="icon-ok">保存</a>
-    <a href="javascript:closeArticleTypeDialog()" class="easyui-linkbutton" iconCls="icon-cancel">关闭</a>
+    <a href="javascript:saveVaccine()" class="easyui-linkbutton" iconCls="icon-ok">保存</a>
+    <a href="javascript:closeVaccineDialog()" class="easyui-linkbutton" iconCls="icon-cancel">关闭</a>
 </div>
 </body>
 </html>

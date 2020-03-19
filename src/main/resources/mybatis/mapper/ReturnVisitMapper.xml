@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!--suppress ALL-->
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.ledao.mapper.ReturnVisitMapper">
+    <resultMap id="ReturnVisitResult" type="ReturnVisit">
+        <result column="id" property="id"/>
+        <result column="createDate" property="createDate"/>
+        <result column="customerName" property="customerName"/>
+        <result column="petName" property="petName"/>
+        <result column="satisfaction" property="satisfaction"/>
+        <result column="content" property="content"/>
+    </resultMap>
+    <select id="list" parameterType="map" resultMap="ReturnVisitResult">
+        select * from t_return_visit
+        <where>
+            <if test="customerName!=null and customerName!=''">
+                and customerName like #{customerName}
+            </if>
+            <if test="petName!=null and petName!=''">
+                and petName like #{petName}
+            </if>
+        </where>
+        order by createDate desc
+        <if test="start!=null and size!=null">
+            limit #{start},#{size}
+        </if>
+    </select>
+    <select id="getCount" parameterType="map" resultType="java.lang.Long">
+        select count(*) from t_return_visit
+        <where>
+            <if test="customerName!=null and customerName!=''">
+                and customerName like #{customerName}
+            </if>
+            <if test="petName!=null and petName!=''">
+                and petName like #{petName}
+            </if>
+        </where>
+    </select>
+    <insert id="add" parameterType="ReturnVisit">
+        insert into t_return_visit (createDate, customerName, petName, satisfaction, content) values (now(),#{customerName},#{petName},#{satisfaction},#{content});
+    </insert>
+    <update id="update" parameterType="ReturnVisit">
+        update t_return_visit
+        <set>
+            <if test="customerName != null and customerName != ''">
+                customerName=#{customerName},
+            </if>
+            <if test="petName != null and petName != ''">
+                petName=#{petName},
+            </if>
+            <if test="satisfaction != null">
+                satisfaction=#{satisfaction},
+            </if>
+            <if test="content != null and content != ''">
+                content=#{content},
+            </if>
+        </set>
+        where id=#{id}
+    </update>
+    <delete id="delete" parameterType="integer">
+        delete from t_return_visit where id=#{id}
+    </delete>
+    <select id="findById" parameterType="integer" resultMap="ReturnVisitResult">
+        select * from t_return_visit where id=#{id}
+    </select>
+</mapper>

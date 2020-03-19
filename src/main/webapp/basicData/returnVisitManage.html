@@ -1,0 +1,197 @@
+<!DOCTYPE html>
+<!--suppress ALL-->
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>客户回访记录管理</title>
+    <link rel="stylesheet" type="text/css" href="/static/jquery-easyui-1.7.0/themes/metro-blue/easyui.css">
+    <link rel="stylesheet" type="text/css" href="/static/jquery-easyui-1.7.0/themes/icon.css">
+    <script type="text/javascript" src="/static/jquery-easyui-1.7.0/jquery.min.js"></script>
+    <script type="text/javascript" src="/static/jquery-easyui-1.7.0/jquery.easyui.min.js"></script>
+    <script type="text/javascript" src="/static/jquery-easyui-1.7.0/locale/easyui-lang-zh_CN.js"></script>
+    <script type="text/javascript">
+        var url;
+
+        function searchReturnVisit() {
+            $("#dg").datagrid('load',{
+                "customerName": $("#s_customerName").val(),
+                "petName": $("#s_petName").val()
+            });
+        }
+
+        function resetValue() {
+
+            $("#customerName").val("");
+            $("#petName").val("");
+            $("#satisfaction").numberbox("setValue", "");
+            $("#content").val("");
+        }
+
+        function closeReturnVisitDialog() {
+            $("#dlg").dialog("close");
+            resetValue();
+        }
+
+        function saveReturnVisit() {
+            $("#fm").form("submit", {
+                url: url,
+                onSubmit: function () {
+                    return $(this).form("validate");
+                },
+                success: function (result) {
+                    var result = eval('(' + result + ')');
+                    if (result.success) {
+                        $.messager.alert("系统提示", "保存成功！");
+                        resetValue();
+                        $("#dlg").dialog("close");
+                        $("#dg").datagrid("reload");
+                    } else {
+                        $.messager.alert("系统提示", "保存失败!");
+                    }
+                }
+            });
+        }
+
+        function openReturnVisitAddDialog() {
+            $("#dlg").dialog("open").dialog("setTitle", "添加客户回访记录信息");
+            url = "/admin/returnVisit/save";
+        }
+
+        function openReturnVisitModifyDialog() {
+            var selectedRows = $("#dg").datagrid("getSelections");
+            if (selectedRows.length != 1) {
+                $.messager.alert("系统提示", "请选择一条要修改的数据！");
+                return;
+            }
+            var row = selectedRows[0];
+            $("#dlg").dialog("open").dialog("setTitle", "修改客户回访记录信息");
+            $("#fm").form("load", row);
+            url = "/admin/returnVisit/save?id=" + row.id;
+        }
+
+        function deleteReturnVisit() {
+            var selectedRows = $("#dg").datagrid("getSelections");
+            if (selectedRows.length == 0) {
+                $.messager.alert("系统提示", "请选择要删除的数据！");
+                return;
+            }
+            var strIds = [];
+            for (var i = 0; i < selectedRows.length; i++) {
+                strIds.push(selectedRows[i].id);
+            }
+            var ids = strIds.join(",");
+            $.messager.confirm("系统提示", "您确定要删除这<span style='color: red'>" + selectedRows.length + "</span>条数据吗?", function (r) {
+                if (r) {
+                    $.post("/admin/returnVisit/delete", {ids: ids}, function (result) {
+                        if (result.success) {
+                            $.messager.alert("系统提示", "数据已成功删除！");
+                            $("#dg").datagrid("reload");
+                        } else {
+                            $.messager.alert("系统提示", result.errorInfo);
+                        }
+                    }, "json");
+                }
+            });
+        }
+
+        $(document).ready(function () {
+
+            $("#dg").datagrid({
+                onDblClickRow: function (index, row) {
+                    $("#dlg").dialog("open").dialog("setTitle", "修改客户回访记录信息");
+                    $("#fm").form("load", row);
+                    url = "/admin/returnVisit/save?id=" + row.id;
+                }
+            });
+
+        });
+
+        function formatDate(val, row) {
+            return val.substring(0, 4) + "年" + val.substring(5, 7) + "月" + val.substring(8, 10) + "日 "+val.substring(11,13)+":"+val.substring(14,16)+":"+val.substring(17,19);
+        }
+
+        function formatterSatisfaction(val,row) {
+            if (val == 1) {
+                return "⭐";
+            }else if (val == 2) {
+                return "⭐⭐";
+            }else if (val == 3) {
+                return "⭐⭐⭐";
+            }else if (val == 4) {
+                return "⭐⭐⭐⭐";
+            }else if (val == 5) {
+                return "⭐⭐⭐⭐⭐";
+            }
+        }
+    </script>
+</head>
+<body style="margin: 1px">
+<table id="dg" title="客户回访记录管理" class="easyui-datagrid"
+       fitColumns="true" pagination="true" rownumbers="true"
+       url="/admin/returnVisit/list" fit="true" toolbar="#tb">
+    <thead>
+    <th field="cb" checkbox="true" align="center"></th>
+    <th field="id" hidden="true" width="20" align="center">编号</th>
+    <th field="createDate" width="25" align="center" formatter="formatDate">创建时间</th>
+    <th field="customerName" width="15" align="center">顾客名称</th>
+    <th field="petName" width="15" align="center">宠物名称</th>
+    <th field="satisfaction" width="15" align="center" formatter="formatterSatisfaction">客户满意度</th>
+    <th field="content" width="80" align="center">客户回访描述</th>
+    </thead>
+</table>
+
+<div id="tb">
+    <div>
+        <a href="javascript:openReturnVisitAddDialog()" class="easyui-linkbutton" iconCls="icon-add" plain="true">添加</a>
+        <a href="javascript:openReturnVisitModifyDialog()" class="easyui-linkbutton" iconCls="icon-edit"
+           plain="true">修改</a>
+        <a href="javascript:deleteReturnVisit()" class="easyui-linkbutton" iconCls="icon-remove" plain="true">删除</a>
+    </div>
+    <div>
+        &nbsp;顾客名称：&nbsp;<input type="text" id="s_customerName" size="20" onkeydown="if(event.keyCode==13) searchReturnVisit()"/>
+        &nbsp;宠物名称：&nbsp;<input type="text" id="s_petName" size="20" onkeydown="if(event.keyCode==13) searchReturnVisit()"/>
+        <a href="javascript:searchReturnVisit()" class="easyui-linkbutton" iconCls="icon-search" plain="true">搜索</a>
+    </div>
+</div>
+
+
+<div id="dlg" class="easyui-dialog" style="width: 500px;height: 310px;padding: 10px 20px"
+     closed="true" buttons="#dlg-buttons" data-options="onClose:function(){resetValue()}">
+    <form id="fm" method="post">
+        <table cellspacing="8px">
+            <tr>
+                <td valign="top">顾客名称:</td>
+                <td>
+                    <input id="customerName" name="customerName" class="easyui-validatebox" required="true" style="width: 200px">
+                </td>
+            </tr>
+            <tr>
+                <td valign="top">宠物名称:</td>
+                <td>
+                    <input id="petName" name="petName" class="easyui-validatebox" required="true" style="width: 200px">
+                </td>
+            </tr>
+            <tr>
+                <td valign="top">客户满意度:</td>
+                <td>
+                    <input id="satisfaction" name="satisfaction" class="easyui-numberspinner" style="width:80px;"
+                           required="required" data-options="min:1,max:5,editable:false">
+                    <strong style="font-size: 13px;color: orange">(最低分:1,最高分:5)</strong>
+                </td>
+            </tr>
+            <tr>
+                <td valign="top">客户回访描述:</td>
+                <td>
+                    <textarea rows="5" cols="40" id="content" name="content"></textarea>
+                </td>
+            </tr>
+        </table>
+    </form>
+</div>
+
+<div id="dlg-buttons">
+    <a href="javascript:saveReturnVisit()" class="easyui-linkbutton" iconCls="icon-ok">保存</a>
+    <a href="javascript:closeReturnVisitDialog()" class="easyui-linkbutton" iconCls="icon-cancel">关闭</a>
+</div>
+</body>
+</html>
