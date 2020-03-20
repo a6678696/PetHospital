@@ -1,0 +1,236 @@
+<!DOCTYPE html>
+<!--suppress ALL-->
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>寄养记录管理</title>
+    <link rel="stylesheet" type="text/css" href="/static/jquery-easyui-1.7.0/themes/metro-blue/easyui.css">
+    <link rel="stylesheet" type="text/css" href="/static/jquery-easyui-1.7.0/themes/icon.css">
+    <script type="text/javascript" src="/static/jquery-easyui-1.7.0/jquery.min.js"></script>
+    <script type="text/javascript" src="/static/jquery-easyui-1.7.0/jquery.easyui.min.js"></script>
+    <script type="text/javascript" src="/static/jquery-easyui-1.7.0/locale/easyui-lang-zh_CN.js"></script>
+    <script type="text/javascript">
+        var url;
+
+        function searchFosterCare() {
+            $("#dg").datagrid('load', {
+                "customerName": $("#s_customerName").val(),
+                "petName": $("#s_petName").val(),
+                "status": $("#s_status").combobox("getValue")
+            });
+        }
+
+        function resetValue() {
+
+            $("#petName").val("");
+            $("#customerName").val("");
+            $("#petName").val("");
+            $("#content").val("");
+        }
+
+        function closeFosterCareDialog() {
+            $("#dlg").dialog("close");
+            resetValue();
+        }
+
+        function saveFosterCare() {
+            $("#fm").form("submit", {
+                url: url,
+                onSubmit: function () {
+                    return $(this).form("validate");
+                },
+                success: function (result) {
+                    var result = eval('(' + result + ')');
+                    if (result.success) {
+                        $.messager.alert("系统提示", "保存成功！");
+                        resetValue();
+                        $("#dlg").dialog("close");
+                        $("#dg").datagrid("reload");
+                    } else {
+                        $.messager.alert("系统提示", result.errorInfo);
+                    }
+                }
+            });
+        }
+
+        function openFosterCareAddDialog() {
+            $("#dlg").dialog("open").dialog("setTitle", "添加寄养记录信息");
+            url = "/admin/fosterCare/save";
+        }
+
+        function openFosterCareModifyDialog() {
+            var selectedRows = $("#dg").datagrid("getSelections");
+            if (selectedRows.length != 1) {
+                $.messager.alert("系统提示", "请选择一条要修改的数据！");
+                return;
+            }
+            var row = selectedRows[0];
+            $("#dlg").dialog("open").dialog("setTitle", "修改寄养记录信息");
+            $("#fm").form("load", row);
+            url = "/admin/fosterCare/save?id=" + row.id;
+        }
+
+        function deleteFosterCare() {
+            var selectedRows = $("#dg").datagrid("getSelections");
+            if (selectedRows.length == 0) {
+                $.messager.alert("系统提示", "请选择要删除的数据！");
+                return;
+            }
+            var strIds = [];
+            for (var i = 0; i < selectedRows.length; i++) {
+                strIds.push(selectedRows[i].id);
+            }
+            var ids = strIds.join(",");
+            $.messager.confirm("系统提示", "您确定要删除这<span style='color: red'>" + selectedRows.length + "</span>条数据吗?", function (r) {
+                if (r) {
+                    $.post("/admin/fosterCare/delete", {ids: ids}, function (result) {
+                        if (result.success) {
+                            $.messager.alert("系统提示", "数据已成功删除！");
+                            $("#dg").datagrid("reload");
+                        } else {
+                            $.messager.alert("系统提示", result.errorInfo);
+                        }
+                    }, "json");
+                }
+            });
+        }
+
+        $(document).ready(function () {
+
+            $("#dg").datagrid({
+                onDblClickRow: function (index, row) {
+                    $("#dlg").dialog("open").dialog("setTitle", "修改寄养记录信息");
+                    $("#fm").form("load", row);
+                    url = "/admin/fosterCare/save?id=" + row.id;
+                }
+            });
+
+        });
+
+        function formatDate(val, row) {
+            return val.substring(0, 4) + "年" + val.substring(5, 7) + "月" + val.substring(8, 10) + "日 " + val.substring(11, 13) + ":" + val.substring(14, 16) + ":" + val.substring(17, 19);
+        }
+
+        function formatCustomer(val, row) {
+            return val.contact;
+        }
+
+        function formatPet(val, row) {
+            return val.name;
+        }
+
+        function formatStatus(val, row) {
+            if (val == 0) {
+                return "未付款";
+            } else {
+                return "已付款";
+            }
+        }
+    </script>
+</head>
+<body style="margin: 1px">
+<table id="dg" title="寄养记录管理" class="easyui-datagrid"
+       fitColumns="true" pagination="true" rownumbers="true"
+       url="/admin/fosterCare/list" fit="true" toolbar="#tb">
+    <thead>
+    <th field="cb" checkbox="true" align="center"></th>
+    <th field="id" hidden="true" width="20" align="center">编号</th>
+    <th field="beginDate" width="30" align="center" formatter="formatDate">开始时间</th>
+    <th field="endDate" width="30" align="center" formatter="formatDate">结束时间</th>
+    <th field="customer" width="15" align="center" formatter="formatCustomer">顾客名称</th>
+    <th field="pet" width="15" align="center" formatter="formatPet">宠物名称</th>
+    <th field="price" width="15" align="center">寄养价格</th>
+    <th field="status" width="15" align="center" formatter="formatStatus">是否付款</th>
+    <th field="description" width="80" align="center">寄养描述</th>
+    </thead>
+</table>
+
+<div id="tb">
+    <div>
+        <a href="javascript:openFosterCareAddDialog()" class="easyui-linkbutton" iconCls="icon-add" plain="true">添加</a>
+        <a href="javascript:openFosterCareModifyDialog()" class="easyui-linkbutton" iconCls="icon-edit"
+           plain="true">修改</a>
+        <a href="javascript:deleteFosterCare()" class="easyui-linkbutton" iconCls="icon-remove" plain="true">删除</a>
+    </div>
+    <div>
+        &nbsp;顾客名称：&nbsp;<input type="text" id="s_customerName" size="20"
+                                onkeydown="if(event.keyCode==13) searchFosterCare()"/>
+        &nbsp;宠物名称：&nbsp;<input type="text" id="s_petName" size="20"
+                                onkeydown="if(event.keyCode==13) searchFosterCare()"/>
+        &nbsp;宠物名称：&nbsp;
+        <select id="s_status" class="easyui-combobox" style="width:100px;" panelHeight="auto">
+            <option value="">请选择...</option>
+            <option value="0">未付款</option>
+            <option value="1">已付款</option>
+        </select>
+        <a href="javascript:searchFosterCare()" class="easyui-linkbutton" iconCls="icon-search" plain="true">搜索</a>
+    </div>
+</div>
+
+
+<div id="dlg" class="easyui-dialog" style="width: 500px;height: 435px;padding: 10px 20px"
+     closed="true" buttons="#dlg-buttons" data-options="onClose:function(){resetValue()}">
+    <form id="fm" method="post">
+        <table cellspacing="8px">
+            <tr>
+                <td valign="top">顾客名称:</td>
+                <td>
+                    <input id="customerName2" name="customerName" class="easyui-validatebox" required="true"
+                           style="width: 200px">
+                </td>
+            </tr>
+            <tr>
+                <td valign="top">宠物名称:</td>
+                <td>
+                    <input id="petName2" name="petName" class="easyui-validatebox" required="true" style="width: 200px">
+                </td>
+            </tr>
+            <td>
+                <tr>
+                    <td valign="top">寄养开始日期:</td>
+                    <td>
+                        <input type="text" id="beginDate" name="beginDate"
+                               class="easyui-datetimebox" required="true"
+                               data-options="editable:false" size="26"/>
+                    </td>
+                </tr>
+                <tr>
+                    <td valign="top">寄养结束日期:</td>
+                    <td>
+                        <input type="text" id="endDate" name="endDate"
+                               class="easyui-datetimebox" required="true"
+                               data-options="editable:false" size="26"/>
+                    </td>
+                </tr>
+                <tr>
+                    <td valign="top">寄养价格:</td>
+                    <td>
+                        <input type="text" id="price" name="price" class="easyui-numberbox" data-options="min:0,precision:2" style="width: 200px">
+                    </td>
+                </tr>
+                <tr>
+                    <td valign="top">是否付款:</td>
+                    <td>
+                        <select id="status" name="status" class="easyui-combobox" panelHeight="auto" style="width:200px;">
+                            <option value="0">未付款</option>
+                            <option value="1">已付款</option>
+                        </select>
+                    </td>
+                </tr>
+                <tr>
+                    <td valign="top">寄养描述:</td>
+                    <td>
+                    <textarea rows="5" cols="40" id="description" name="description" class="easyui-validatebox"
+                              required="true"></textarea>
+                    </td>
+                </tr>
+        </table>
+    </form>
+</div>
+
+<div id="dlg-buttons">
+    <a href="javascript:saveFosterCare()" class="easyui-linkbutton" iconCls="icon-ok">保存</a>
+    <a href="javascript:closeFosterCareDialog()" class="easyui-linkbutton" iconCls="icon-cancel">关闭</a>
+</div>
+</body>
+</html>

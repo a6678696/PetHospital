@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!--suppress ALL-->
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.ledao.mapper.FosterCareMapper">
+    <resultMap id="FosterCareResult" type="FosterCare">
+        <result property="id" column="id"/>
+        <result property="beginDate" column="beginDate"/>
+        <result property="endDate" column="endDate"/>
+        <result property="price" column="price"/>
+        <result property="status" column="status"/>
+        <result property="description" column="description"/>
+        <association property="customer" column="customerId" select="com.ledao.mapper.CustomerMapper.findById"></association>
+        <association property="pet" column="petId" select="com.ledao.mapper.PetMapper.findById"></association>
+    </resultMap>
+    <select id="list" parameterType="map" resultMap="FosterCareResult">
+        select * from t_foster_care
+        <where>
+            <if test="customerId!=null">
+                and customerId=#{customerId}
+            </if>
+            <if test="petId!=null">
+                and petId=#{petId}
+            </if>
+            <if test="status!=null">
+                and status=#{status}
+            </if>
+        </where>
+        order by id desc
+        <if test="start!=null and size!=null">
+            limit #{start},#{size}
+        </if>
+    </select>
+    <select id="getCount" parameterType="map" resultType="java.lang.Long">
+        select count(*) from t_foster_care
+        <where>
+            <if test="customerId!=null">
+                and customerId=#{customerId}
+            </if>
+            <if test="petId!=null">
+                and petId=#{petId}
+            </if>
+            <if test="status!=null">
+                and status=#{status}
+            </if>
+        </where>
+    </select>
+    <insert id="add" parameterType="FosterCare">
+        insert into t_foster_care (beginDate, endDate, customerId, petId, price, status, description) values (#{beginDate},#{endDate},#{customer.id},#{pet.id},#{price},#{status},#{description});
+    </insert>
+    <update id="update" parameterType="FosterCare">
+        update t_foster_care
+        <set>
+            <if test="beginDate != null">
+                beginDate=#{beginDate},
+            </if>
+            <if test="endDate != null">
+                endDate=#{endDate},
+            </if>
+            <if test="customer.id != null">
+                customerId=#{customer.id},
+            </if>
+            <if test="pet.id != null">
+                petId=#{pet.id},
+            </if>
+            <if test="price != null">
+                price=#{price},
+            </if>
+            <if test="status != null">
+                status=#{status},
+            </if>
+            <if test="description != null and description != ''">
+                description=#{description},
+            </if>
+        </set>
+        where id=#{id}
+    </update>
+    <delete id="delete" parameterType="integer">
+        delete from t_foster_care where id=#{id}
+    </delete>
+    <select id="findById" parameterType="integer" resultMap="FosterCareResult">
+        select * from t_foster_care where id=#{id}
+    </select>
+</mapper>
