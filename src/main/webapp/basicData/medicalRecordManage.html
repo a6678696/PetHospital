@@ -45,7 +45,7 @@
                         $("#dlg").dialog("close");
                         $("#dg").datagrid("reload");
                     } else {
-                        $.messager.alert("系统提示", "保存失败!");
+                        $.messager.alert("系统提示", result.errorInfo);
                     }
                 }
             });

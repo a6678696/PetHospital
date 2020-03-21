@@ -1,8 +1,8 @@
 package com.ledao.controller.admin;
 
-import com.ledao.entity.ReturnVisit;
-import com.ledao.entity.Log;
-import com.ledao.entity.PageBean;
+import com.ledao.entity.*;
+import com.ledao.service.CustomerService;
+import com.ledao.service.PetService;
 import com.ledao.service.ReturnVisitService;
 import com.ledao.service.LogService;
 import com.ledao.util.StringUtil;
@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import javax.annotation.Resource;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 /**
@@ -28,6 +29,12 @@ public class ReturnVisitAdminController {
 
     @Resource
     private ReturnVisitService returnVisitService;
+
+    @Resource
+    private CustomerService customerService;
+
+    @Resource
+    private PetService petService;
 
     @Resource
     private LogService logService;
@@ -66,6 +73,28 @@ public class ReturnVisitAdminController {
     @RequiresPermissions(value = "客户回访记录管理")
     public Map<String, Object> save(ReturnVisit returnVisit) {
         Map<String, Object> resultMap = new HashMap<>(16);
+        Customer customer = customerService.findByContact(returnVisit.getCustomerName());
+        Pet pet = petService.findByName(returnVisit.getPetName());
+        if (customer == null) {
+            resultMap.put("success", false);
+            resultMap.put("errorInfo", "该客户不存在,请核实!!");
+            return resultMap;
+        }
+        if (pet == null) {
+            resultMap.put("success", false);
+            resultMap.put("errorInfo", "该宠物不存在,请核实!!");
+            return resultMap;
+        } else {
+            Map<String,Object> map=new HashMap<>(16);
+            map.put("customer", customer);
+            List<Pet> petList = petService.list(map);
+            boolean flag=petList.contains(pet);
+            if (flag==false) {
+                resultMap.put("success", false);
+                resultMap.put("errorInfo", "该客户没有这个宠物,请核实!!");
+                return resultMap;
+            }
+        }
         int key;
         if (returnVisit.getId() == null) {
             logService.add(new Log(Log.ADD_ACTION, "添加客户回访记录" + returnVisit));

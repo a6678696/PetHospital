@@ -1,10 +1,10 @@
 package com.ledao.controller.admin;
 
-import com.ledao.entity.Log;
-import com.ledao.entity.Assay;
-import com.ledao.entity.PageBean;
+import com.ledao.entity.*;
+import com.ledao.service.CustomerService;
 import com.ledao.service.LogService;
 import com.ledao.service.AssayService;
+import com.ledao.service.PetService;
 import com.ledao.util.StringUtil;
 import org.apache.shiro.authz.annotation.RequiresPermissions;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import javax.annotation.Resource;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 /**
@@ -28,6 +29,12 @@ public class AssayAdminController {
 
     @Resource
     private AssayService assayService;
+
+    @Resource
+    private CustomerService customerService;
+
+    @Resource
+    private PetService petService;
 
     @Resource
     private LogService logService;
@@ -66,6 +73,28 @@ public class AssayAdminController {
     @RequiresPermissions(value = "化验记录管理")
     public Map<String, Object> save(Assay assay) {
         Map<String, Object> resultMap = new HashMap<>(16);
+        Customer customer = customerService.findByContact(assay.getCustomerName());
+        Pet pet = petService.findByName(assay.getPetName());
+        if (customer == null) {
+            resultMap.put("success", false);
+            resultMap.put("errorInfo", "该客户不存在,请核实!!");
+            return resultMap;
+        }
+        if (pet == null) {
+            resultMap.put("success", false);
+            resultMap.put("errorInfo", "该宠物不存在,请核实!!");
+            return resultMap;
+        } else {
+            Map<String,Object> map=new HashMap<>(16);
+            map.put("customer", customer);
+            List<Pet> petList = petService.list(map);
+            boolean flag=petList.contains(pet);
+            if (flag==false) {
+                resultMap.put("success", false);
+                resultMap.put("errorInfo", "该客户没有这个宠物,请核实!!");
+                return resultMap;
+            }
+        }
         int key;
         if (assay.getId() == null) {
             logService.add(new Log(Log.ADD_ACTION, "添加化验记录" + assay));

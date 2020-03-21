@@ -25,7 +25,11 @@
             $("#petName").val("");
             $("#customerName").val("");
             $("#petName").val("");
-            $("#content").val("");
+            $("#price").numberbox("setValue", "");
+            $("#status").combobox("setValue", "");
+            $('#beginDate').datetimebox('setValue', '');
+            $('#endDate').datetimebox('setValue', '');
+            $("#description").val("");
         }
 
         function closeFosterCareDialog() {
@@ -42,8 +46,8 @@
                 success: function (result) {
                     var result = eval('(' + result + ')');
                     if (result.success) {
-                        $.messager.alert("系统提示", "保存成功！");
                         resetValue();
+                        $.messager.alert("系统提示", "保存成功！");
                         $("#dlg").dialog("close");
                         $("#dg").datagrid("reload");
                     } else {
@@ -89,6 +93,27 @@
                             $("#dg").datagrid("reload");
                         } else {
                             $.messager.alert("系统提示", result.errorInfo);
+                        }
+                    }, "json");
+                }
+            });
+        }
+
+        function payFosterCare() {
+            var selectedRows = $("#dg").datagrid("getSelections");
+            if (selectedRows.length != 1) {
+                $.messager.alert("系统提示", "请选择一条要结算的记录！");
+                return;
+            }
+            var id = selectedRows[0].id;
+            $.messager.confirm("系统提示", "您确定要结算吗？", function (r) {
+                if (r) {
+                    $.post("/admin/fosterCare/payFosterCare", {id: id}, function (result) {
+                        if (result.success) {
+                            $.messager.alert("系统提示", "结算成功!");
+                            search();
+                        } else {
+                            $.messager.alert("系统提示", "结算失败!");
                         }
                     }, "json");
                 }
@@ -151,6 +176,7 @@
         <a href="javascript:openFosterCareModifyDialog()" class="easyui-linkbutton" iconCls="icon-edit"
            plain="true">修改</a>
         <a href="javascript:deleteFosterCare()" class="easyui-linkbutton" iconCls="icon-remove" plain="true">删除</a>
+        <a href="javascript:payFosterCare()" class="easyui-linkbutton" iconCls="icon-remove" plain="true">支付结算</a>
     </div>
     <div>
         &nbsp;顾客名称：&nbsp;<input type="text" id="s_customerName" size="20"
@@ -175,14 +201,14 @@
             <tr>
                 <td valign="top">顾客名称:</td>
                 <td>
-                    <input id="customerName2" name="customerName" class="easyui-validatebox" required="true"
+                    <input id="customerName" name="customerName" class="easyui-validatebox" required="true"
                            style="width: 200px">
                 </td>
             </tr>
             <tr>
                 <td valign="top">宠物名称:</td>
                 <td>
-                    <input id="petName2" name="petName" class="easyui-validatebox" required="true" style="width: 200px">
+                    <input id="petName" name="petName" class="easyui-validatebox" required="true" style="width: 200px">
                 </td>
             </tr>
             <td>
@@ -205,13 +231,16 @@
                 <tr>
                     <td valign="top">寄养价格:</td>
                     <td>
-                        <input type="text" id="price" name="price" class="easyui-numberbox" data-options="min:0,precision:2" style="width: 200px">
+                        <input type="text" id="price" name="price" class="easyui-numberbox"
+                               data-options="min:0,precision:2" style="width: 200px">
                     </td>
                 </tr>
                 <tr>
                     <td valign="top">是否付款:</td>
                     <td>
-                        <select id="status" name="status" class="easyui-combobox" panelHeight="auto" style="width:200px;">
+                        <select id="status" name="status" class="easyui-combobox" panelHeight="auto"
+                                style="width:200px;">
+                            <option value="">请选择...</option>
                             <option value="0">未付款</option>
                             <option value="1">已付款</option>
                         </select>

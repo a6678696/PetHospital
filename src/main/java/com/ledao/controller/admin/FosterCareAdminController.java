@@ -107,57 +107,35 @@ public class FosterCareAdminController {
     @RequiresPermissions(value = "寄养记录管理")
     public Map<String, Object> save(FosterCare fosterCare) {
         Map<String, Object> resultMap = new HashMap<>(16);
+        Customer customer = customerService.findByContact(fosterCare.getCustomerName());
+        Pet pet = petService.findByName(fosterCare.getPetName());
+        if (customer == null) {
+            resultMap.put("success", false);
+            resultMap.put("errorInfo", "该客户不存在,请核实!!");
+            return resultMap;
+        }
+        if (pet == null) {
+            resultMap.put("success", false);
+            resultMap.put("errorInfo", "该宠物不存在,请核实!!");
+            return resultMap;
+        } else {
+            Map<String,Object> map=new HashMap<>(16);
+            map.put("customer", customer);
+            List<Pet> petList = petService.list(map);
+            boolean flag=petList.contains(pet);
+            if (flag==false) {
+                resultMap.put("success", false);
+                resultMap.put("errorInfo", "该客户没有这个宠物,请核实!!");
+                return resultMap;
+            }
+        }
         int key;
         if (fosterCare.getId() == null) {
-            Customer customer = customerService.findByContact(fosterCare.getCustomerName());
-            Pet pet = petService.findByName(fosterCare.getPetName());
-            if (customer == null) {
-                resultMap.put("success", false);
-                resultMap.put("errorInfo", "该客户不存在,请核实!!");
-                return resultMap;
-            }
-            if (pet == null) {
-                resultMap.put("success", false);
-                resultMap.put("errorInfo", "该宠物不存在,请核实!!");
-                return resultMap;
-            } else {
-                Map<String,Object> map2=new HashMap<>(16);
-                map2.put("customer", customer);
-                List<Pet> petList = petService.list(map2);
-                boolean flag=petList.contains(pet);
-                if (flag==false) {
-                    resultMap.put("success", false);
-                    resultMap.put("errorInfo", "该客户没有这个宠物,请核实!!");
-                    return resultMap;
-                }
-            }
             logService.add(new Log(Log.ADD_ACTION, "添加寄养记录" + fosterCare));
             fosterCare.setCustomer(customer);
             fosterCare.setPet(pet);
             key = fosterCareService.add(fosterCare);
         } else {
-            Customer customer = customerService.findByContact(fosterCare.getCustomerName());
-            Pet pet = petService.findByName(fosterCare.getPetName());
-            if (customer == null) {
-                resultMap.put("success", false);
-                resultMap.put("errorInfo", "该客户不存在,请核实!!");
-                return resultMap;
-            }
-            if (pet == null) {
-                resultMap.put("success", false);
-                resultMap.put("errorInfo", "该宠物不存在,请核实!!");
-                return resultMap;
-            } else {
-                Map<String,Object> map2=new HashMap<>(16);
-                map2.put("customer", customer);
-                List<Pet> petList = petService.list(map2);
-                boolean flag=petList.contains(pet);
-                if (flag==false) {
-                    resultMap.put("success", false);
-                    resultMap.put("errorInfo", "该客户没有这个宠物,请核实!!");
-                    return resultMap;
-                }
-            }
             logService.add(new Log(Log.UPDATE_ACTION, "修改寄养记录" + fosterCare));
             fosterCare.setCustomer(customer);
             fosterCare.setPet(pet);
@@ -186,6 +164,18 @@ public class FosterCareAdminController {
             logService.add(new Log(Log.DELETE_ACTION, "删除文章类型" + fosterCareService.findById(Integer.parseInt(idsStr[i]))));
             fosterCareService.delete(Integer.parseInt(idsStr[i]));
         }
+        resultMap.put("success", true);
+        return resultMap;
+    }
+
+    @RequestMapping("/payFosterCare")
+    @RequiresPermissions(value = "寄养记录管理")
+    public Map<String, Object> payFosterCare(String id) {
+        Map<String,Object> resultMap=new HashMap<>(16);
+        FosterCare fosterCare = fosterCareService.findById(Integer.parseInt(id));
+        fosterCare.setStatus(1);
+        fosterCareService.update(fosterCare);
+        logService.add(new Log(Log.UPDATE_ACTION, "支付结算" + fosterCare));
         resultMap.put("success", true);
         return resultMap;
     }
