@@ -61,4 +61,12 @@ public interface EquipmentTypeService {
      * @return
      */
     EquipmentType findById(Integer id);
+
+    /**
+     * 根据名称查找实体
+     *
+     * @param name
+     * @return
+     */
+    List<EquipmentType> findByName(String name);
 }

@@ -51,4 +51,9 @@ public class EquipmentTypeServiceImpl implements EquipmentTypeService {
     public EquipmentType findById(Integer id) {
         return equipmentTypeMapper.findById(id);
     }
+
+    @Override
+    public List<EquipmentType> findByName(String name) {
+        return equipmentTypeMapper.findByName(name);
+    }
 }

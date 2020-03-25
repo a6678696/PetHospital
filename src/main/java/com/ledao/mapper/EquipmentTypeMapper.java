@@ -1,5 +1,6 @@
 package com.ledao.mapper;
 
+import com.ledao.entity.ArticleType;
 import com.ledao.entity.EquipmentType;
 
 import java.util.List;
@@ -61,4 +62,12 @@ public interface EquipmentTypeMapper {
      * @return
      */
     EquipmentType findById(Integer id);
+
+    /**
+     * 根据名称查找实体
+     *
+     * @param name
+     * @return
+     */
+    List<EquipmentType> findByName(String name);
 }

@@ -52,5 +52,13 @@
     <select id="findById" parameterType="integer" resultMap="EquipmentTypeResult">
         select * from t_equipment_type where id=#{id}
     </select>
+    <select id="findByName" parameterType="string" resultMap="EquipmentTypeResult">
+        select * from t_equipment_type
+        <where>
+            <if test="_parameter != null and _parameter != ''">
+                and name like #{name}
+            </if>
+        </where>
+    </select>
 
 </mapper>

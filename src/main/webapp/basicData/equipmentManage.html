@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+<!--suppress ALL-->
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>设备类型管理</title>
+    <link rel="stylesheet" type="text/css" href="/static/jquery-easyui-1.7.0/themes/metro-blue/easyui.css">
+    <link rel="stylesheet" type="text/css" href="/static/jquery-easyui-1.7.0/themes/icon.css">
+    <script type="text/javascript" src="/static/jquery-easyui-1.7.0/jquery.min.js"></script>
+    <script type="text/javascript" src="/static/jquery-easyui-1.7.0/jquery.easyui.min.js"></script>
+    <script type="text/javascript" src="/static/jquery-easyui-1.7.0/locale/easyui-lang-zh_CN.js"></script>
+    <script type="text/javascript">
+
+        var url;
+
+        function searchEquipment() {
+            $("#dg").datagrid('load', {
+                "name": $("#s_name").val(),
+                "equipmentTypeId": $("#s_equipmentTypeId").val()
+            });
+        }
+
+        function resetValue() {
+
+            $("#name").val("");
+            $("#equipmentTypeId").combobox("setValue", "");
+        }
+
+        function closeEquipmentDialog() {
+            $("#dlg").dialog("close");
+            resetValue();
+        }
+
+        function saveEquipment() {
+            $("#fm").form("submit", {
+                url: url,
+                onSubmit: function () {
+                    return $(this).form("validate");
+                },
+                success: function (result) {
+                    var result = eval('(' + result + ')');
+                    if (result.success) {
+                        $.messager.alert("系统提示", "保存成功！");
+                        resetValue();
+                        $("#dlg").dialog("close");
+                        $("#dg").datagrid("reload");
+                    } else {
+                        $.messager.alert("系统提示", result.errorInfo);
+                    }
+                }
+            });
+        }
+
+        function openEquipmentAddDialog() {
+            $("#dlg").dialog("open").dialog("setTitle", "添加设备类型信息");
+            url = "/admin/equipment/save";
+        }
+
+        function openEquipmentModifyDialog() {
+            var selectedRows = $("#dg").datagrid("getSelections");
+            if (selectedRows.length != 1) {
+                $.messager.alert("系统提示", "请选择一条要修改的数据！");
+                return;
+            }
+            var row = selectedRows[0];
+            $("#dlg").dialog("open").dialog("setTitle", "修改设备类型信息");
+            $("#fm").form("load", row);
+            $("#equipmentTypeId").combobox("setValue", row.equipmentType.id);
+            url = "/admin/equipment/save?id=" + row.id;
+        }
+
+        function deleteEquipment() {
+            var selectedRows = $("#dg").datagrid("getSelections");
+            if (selectedRows.length == 0) {
+                $.messager.alert("系统提示", "请选择要删除的数据！");
+                return;
+            }
+            var strIds = [];
+            for (var i = 0; i < selectedRows.length; i++) {
+                strIds.push(selectedRows[i].id);
+            }
+            var ids = strIds.join(",");
+            $.messager.confirm("系统提示", "您确定要删除<span style='color: red'>" + selectedRows.length + "</span>这条数据吗?", function (r) {
+                if (r) {
+                    $.post("/admin/equipment/delete", {ids: ids}, function (result) {
+                        if (result.success) {
+                            $.messager.alert("系统提示", "数据已成功删除！");
+                            $("#dg").datagrid("reload");
+                        } else {
+                            $.messager.alert("系统提示", result.errorInfo);
+                        }
+                    }, "json");
+                }
+            });
+        }
+
+        $(document).ready(function () {
+
+            $("#dg").datagrid({
+                onDblClickRow: function (index, row) {
+                    $("#dlg").dialog("open").dialog("setTitle", "修改设备信息");
+                    $("#fm").form("load", row);
+                    $("#equipmentTypeId").combobox("setValue", row.equipmentType.id);
+                    url = "/admin/equipment/save?id=" + row.id;
+                }
+            });
+
+        });
+
+        function formatEquipment(val, row) {
+            return val.name;
+        }
+    </script>
+</head>
+<body style="margin: 1px">
+<table id="dg" title="设备类型管理" class="easyui-datagrid"
+       fitColumns="true" pagination="true" rownumbers="true" singleselect="true"
+       url="/admin/equipment/list" fit="true" toolbar="#tb">
+    <thead>
+    <th field="cb" checkbox="true" align="center"></th>
+    <th field="id" width="20" hidden="true" align="center">编号</th>
+    <th field="equipmentType" width="50" align="center" formatter="formatEquipment">设备类型</th>
+    <th field="name" width="50" align="center">设备名称</th>
+    </thead>
+</table>
+
+<div id="tb">
+    <div>
+        <a href="javascript:openEquipmentAddDialog()" class="easyui-linkbutton" iconCls="icon-add"
+           plain="true">添加</a>
+        <a href="javascript:openEquipmentModifyDialog()" class="easyui-linkbutton" iconCls="icon-edit"
+           plain="true">修改</a>
+        <a href="javascript:deleteEquipment()" class="easyui-linkbutton" iconCls="icon-remove" plain="true">删除</a>
+    </div>
+    <div>
+        &nbsp;设备名称：&nbsp;
+        <input type="text" id="s_name" size="20" onkeydown="if(event.keyCode==13) searchEquipment()"/>
+        &nbsp;设备类型名称：&nbsp;
+        <input class="easyui-combobox" id="s_equipmentTypeId" style="width: 200px;height: 23px" editable="true"
+               data-options="panelHeight:'auto',valueField:'id',textField:'name',url:'/admin/equipmentType/comboList'"/>
+        <a href="javascript:searchEquipment()" class="easyui-linkbutton" iconCls="icon-search" plain="true">搜索</a>
+    </div>
+</div>
+
+
+<div id="dlg" class="easyui-dialog" style="width: 500px;height: 185px;padding: 10px 20px"
+     closed="true" buttons="#dlg-buttons" data-options="onClose:function(){resetValue()}">
+    <form id="fm" method="post">
+        <table cellspacing="8px">
+            <tr>
+                <td valign="top">设备类型:</td>
+                <td>
+                    <input class="easyui-combobox" id="equipmentTypeId" name="equipmentTypeId" style="width: 240px"
+                           required="true" editable="true"
+                           data-options="required:true,panelHeight:'auto',valueField:'id',textField:'name',url:'/admin/equipmentType/comboList'"/>
+                    <span>111</span>
+                </td>
+            </tr>
+            <tr>
+                <td>设备名称:</td>
+                <td>
+                    <input type="text" id="name" name="name" class="easyui-validatebox" required="true"
+                           style="width: 250px"/>
+                </td>
+            </tr>
+        </table>
+    </form>
+</div>
+
+<div id="dlg-buttons">
+    <a href="javascript:saveEquipment()" class="easyui-linkbutton" iconCls="icon-ok">保存</a>
+    <a href="javascript:closeEquipmentDialog()" class="easyui-linkbutton" iconCls="icon-cancel">关闭</a>
+</div>
+</body>
+</html>

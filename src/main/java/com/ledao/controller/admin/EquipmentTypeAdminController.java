@@ -1,14 +1,17 @@
 package com.ledao.controller.admin;
 
+import com.ledao.entity.ArticleType;
 import com.ledao.entity.EquipmentType;
 import com.ledao.entity.Log;
 import com.ledao.entity.PageBean;
 import com.ledao.run.StartupRunner;
+import com.ledao.service.EquipmentService;
 import com.ledao.service.EquipmentTypeService;
 import com.ledao.service.LogService;
 import com.ledao.util.DateUtil;
 import com.ledao.util.StringUtil;
 import org.apache.commons.io.FileUtils;
+import org.apache.shiro.authz.annotation.Logical;
 import org.apache.shiro.authz.annotation.RequiresPermissions;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -19,6 +22,7 @@ import org.springframework.web.multipart.MultipartFile;
 import javax.annotation.Resource;
 import java.io.File;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 /**
@@ -39,10 +43,28 @@ public class EquipmentTypeAdminController {
     private EquipmentTypeService equipmentTypeService;
 
     @Resource
+    private EquipmentService equipmentService;
+
+    @Resource
     private LogService logService;
 
     @Resource
     private StartupRunner startupRunner;
+
+    /**
+     * 下拉框模糊查询
+     *
+     * @param q
+     * @return
+     */
+    @RequestMapping("/comboList")
+    @RequiresPermissions(value = "设备管理")
+    public List<EquipmentType> comboList(String q) {
+        if (q == null) {
+            q = "";
+        }
+        return equipmentTypeService.findByName(StringUtil.formatLike(q));
+    }
 
     /**
      * 分页查询设备类型信息
@@ -118,11 +140,17 @@ public class EquipmentTypeAdminController {
         String[] idsStr = ids.split(",");
         for (int i = 0; i < idsStr.length; i++) {
             int id = Integer.parseInt(idsStr[i]);
-            logService.add(new Log(Log.DELETE_ACTION, "删除设备类型信息" + equipmentTypeService.findById(id)));
-            if (equipmentTypeService.findById(id).getImageName() != null) {
-                FileUtils.deleteQuietly(new File(equipmentTypeImageFilePath + equipmentTypeService.findById(equipmentTypeService.findById(id).getId()).getImageName()));
+            if (equipmentService.getCountByEquipmentTypeId(id) == 0) {
+                logService.add(new Log(Log.DELETE_ACTION, "删除设备类型信息" + equipmentTypeService.findById(id)));
+                if (equipmentTypeService.findById(id).getImageName() != null) {
+                    FileUtils.deleteQuietly(new File(equipmentTypeImageFilePath + equipmentTypeService.findById(equipmentTypeService.findById(id).getId()).getImageName()));
+                }
+                equipmentTypeService.delete(id);
+            } else {
+                resultMap.put("success", false);
+                resultMap.put("errorInfo", "该设备类型下有设备信息,不能删除!!");
+                return resultMap;
             }
-            equipmentTypeService.delete(id);
         }
         startupRunner.loadData();
         resultMap.put("success", true);
