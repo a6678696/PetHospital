@@ -111,6 +111,7 @@
                     $.post("/admin/fosterCare/payFosterCare", {id: id}, function (result) {
                         if (result.success) {
                             $.messager.alert("系统提示", "结算成功!");
+                            $("#dg").datagrid("reload");
                             search();
                         } else {
                             $.messager.alert("系统提示", "结算失败!");
@@ -146,9 +147,9 @@
 
         function formatStatus(val, row) {
             if (val == 0) {
-                return "未付款";
+                return "<span style='color:red;'>未付款</span>";
             } else {
-                return "已付款";
+                return "<span style='color: #0c9c6e'>已付款</span>";
             }
         }
     </script>

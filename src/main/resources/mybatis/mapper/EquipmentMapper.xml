@@ -5,6 +5,7 @@
     <resultMap id="EquipmentResult" type="Equipment">
         <result property="id" column="id"/>
         <result property="name" column="name"/>
+        <result property="status" column="status"/>
         <association property="equipmentType" column="equipmentTypeId" select="com.ledao.mapper.EquipmentTypeMapper.findById"></association>
     </resultMap>
     <select id="list" parameterType="map" resultMap="EquipmentResult">
@@ -15,6 +16,9 @@
             </if>
             <if test="equipmentTypeId!=null">
                 and equipmentTypeId=#{equipmentTypeId}
+            </if>
+            <if test="status!=null">
+                and status=#{status}
             </if>
         </where>
         <if test="start!=null and size!=null">
@@ -30,10 +34,13 @@
             <if test="equipmentType!=null">
                 and equipmentTypeId=#{equipmentType.id}
             </if>
+            <if test="status!=null">
+                and status=#{status}
+            </if>
         </where>
     </select>
     <insert id="add" parameterType="Equipment">
-        insert into t_equipment (name, equipmentTypeId) values (#{name},#{equipmentType.id});
+        insert into t_equipment (name, equipmentTypeId,status) values (#{name},#{equipmentType.id},#{status});
     </insert>
     <update id="update" parameterType="Equipment">
         update t_equipment
@@ -43,6 +50,9 @@
             </if>
             <if test="equipmentType.id != null">
                 equipmentTypeId=#{equipmentType.id},
+            </if>
+            <if test="status != null">
+                status=#{status},
             </if>
         </set>
         where id=#{id}
@@ -58,5 +68,13 @@
     </select>
     <select id="getCountByName" parameterType="string" resultType="java.lang.Long">
         select count(*) from t_equipment where name=#{name}
+    </select>
+    <select id="findByName" parameterType="string" resultMap="EquipmentResult">
+        select * from t_equipment
+        <where>
+            <if test="_parameter != null and _parameter != ''">
+                and name like #{name}
+            </if>
+        </where>
     </select>
 </mapper>

@@ -49,6 +49,22 @@ public class UserAdminController {
     private LogService logService;
 
     /**
+     * 下拉框模糊查询
+     *
+     * @param q
+     * @return
+     */
+    @RequestMapping("/comboList")
+    @ResponseBody
+    @RequiresPermissions(value = "设备使用记录管理")
+    public List<User> comboList(String q) {
+        if (q == null) {
+            q = "";
+        }
+        return userService.findByName(StringUtil.formatLike(q));
+    }
+
+    /**
      * 分页查询用户信息
      *
      * @param searchUser

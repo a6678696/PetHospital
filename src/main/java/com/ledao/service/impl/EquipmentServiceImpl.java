@@ -53,6 +53,11 @@ public class EquipmentServiceImpl implements EquipmentService {
     }
 
     @Override
+    public List<Equipment> findByName(String name) {
+        return equipmentMapper.findByName(name);
+    }
+
+    @Override
     public Long getCountByName(String name) {
         return equipmentMapper.getCountByName(name);
     }

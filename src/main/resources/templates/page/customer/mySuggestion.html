@@ -46,14 +46,14 @@
                                                                                               th:text="${#dates.format(mySuggestion.createDate,'yyyy-MM-dd HH:mm:ss')}"></span>
                                             </dd>
                                             <dd>
-                                                <kbd style="font-size: 15px">留言内容:</kbd><span style="font-size: 15px"
+                                                <kbd style="font-size: 15px">留言内容:</kbd><span style="font-size: 15px;color: #0f74a8"
                                                                                               th:text="${mySuggestion.content}"></span>
                                             </dd>
                                             <dd>
-                                                <kbd style="font-size: 15px">官方回复:</kbd><span style="font-size: 15px"
+                                                <kbd style="font-size: 15px">官方回复:</kbd><span style="font-size: 15px;color: #0c9c6e"
                                                                                               th:text="${mySuggestion.reply}"></span><span
-                                                    style="font-size: 15px"
-                                                    th:if="${mySuggestion.reply==null}">暂无</span>
+                                                    style="font-size: 15px;color: red"
+                                                    th:if="${mySuggestion.reply==null}">官方尚未回复</span>
                                             </dd>
                                         </dl>
                                     </li>

@@ -77,4 +77,12 @@ public interface UserService {
      * @return
      */
     User findById(Integer id);
+
+    /**
+     * 根据用户真实姓名搜索用户
+     *
+     * @param name
+     * @return
+     */
+    List<User> findByName(String name);
 }

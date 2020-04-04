@@ -28,4 +28,12 @@ public class Equipment {
      * 设备类型id
      */
     private Integer equipmentTypeId;
+    /**
+     * 设备使用状态 0.未使用 1.使用中
+     */
+    private Integer status;
+    /**
+     * 使用设备的用户名称
+     */
+    private String userName;
 }

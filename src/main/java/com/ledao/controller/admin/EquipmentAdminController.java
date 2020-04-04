@@ -1,6 +1,7 @@
 package com.ledao.controller.admin;
 
 import com.ledao.entity.Equipment;
+import com.ledao.entity.EquipmentType;
 import com.ledao.entity.Log;
 import com.ledao.entity.PageBean;
 import com.ledao.service.EquipmentService;
@@ -14,6 +15,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import javax.annotation.Resource;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 /**
@@ -35,6 +37,21 @@ public class EquipmentAdminController {
 
     @Resource
     private LogService logService;
+
+    /**
+     * 下拉框模糊查询
+     *
+     * @param q
+     * @return
+     */
+    @RequestMapping("/comboList")
+    @RequiresPermissions(value = "设备使用记录管理")
+    public List<Equipment> comboList(String q) {
+        if (q == null) {
+            q = "";
+        }
+        return equipmentService.findByName(StringUtil.formatLike(q));
+    }
 
     /**
      * 分页分条件查询设备信息
@@ -109,6 +126,54 @@ public class EquipmentAdminController {
             equipmentService.delete(id);
         }
         resultMap.put("success", true);
+        return resultMap;
+    }
+
+    /**
+     * 分页分条件查询设备信息
+     *
+     * @param equipment
+     * @param page
+     * @param rows
+     * @return
+     */
+    @RequestMapping("/listNoUse")
+    @RequiresPermissions(value = "设备使用管理")
+    public Map<String, Object> listNoUse(Equipment equipment, @RequestParam(value = "page", required = false) Integer page, @RequestParam(value = "rows", required = false) Integer rows) {
+        PageBean pageBean = new PageBean(page, rows);
+        Map<String, Object> resultMap = new HashMap<>(16);
+        Map<String, Object> map = new HashMap<>(16);
+        map.put("status", 0);
+        map.put("name", StringUtil.formatLike(equipment.getName()));
+        map.put("start", pageBean.getStart());
+        map.put("size", pageBean.getPageSize());
+        resultMap.put("rows", equipmentService.list(map));
+        resultMap.put("total", equipmentService.getCount(map));
+        logService.add(new Log(Log.SEARCH_ACTION, "查询空闲的设备信息"));
+        return resultMap;
+    }
+
+    /**
+     * 分页分条件查询设备信息
+     *
+     * @param equipment
+     * @param page
+     * @param rows
+     * @return
+     */
+    @RequestMapping("/listIsUse")
+    @RequiresPermissions(value = "设备使用管理")
+    public Map<String, Object> listIsUse(Equipment equipment, @RequestParam(value = "page", required = false) Integer page, @RequestParam(value = "rows", required = false) Integer rows) {
+        PageBean pageBean = new PageBean(page, rows);
+        Map<String, Object> resultMap = new HashMap<>(16);
+        Map<String, Object> map = new HashMap<>(16);
+        map.put("status", 1);
+        map.put("name", StringUtil.formatLike(equipment.getName()));
+        map.put("start", pageBean.getStart());
+        map.put("size", pageBean.getPageSize());
+        resultMap.put("rows", equipmentService.list(map));
+        resultMap.put("total", equipmentService.getCount(map));
+        logService.add(new Log(Log.SEARCH_ACTION, "查询使用的设备信息"));
         return resultMap;
     }
 }

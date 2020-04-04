@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<!--suppress ALL-->
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>设备使用管理</title>
+    <link rel="stylesheet" type="text/css" href="/static/jquery-easyui-1.7.0/themes/metro-blue/easyui.css">
+    <link rel="stylesheet" type="text/css" href="/static/jquery-easyui-1.7.0/themes/icon.css">
+    <script type="text/javascript" src="/static/jquery-easyui-1.7.0/jquery.min.js"></script>
+    <script type="text/javascript" src="/static/jquery-easyui-1.7.0/jquery.easyui.min.js"></script>
+    <script type="text/javascript" src="/static/jquery-easyui-1.7.0/locale/easyui-lang-zh_CN.js"></script>
+    <script type="text/javascript">
+        function searchEquipment() {
+            $("#dg").datagrid('load', {
+                "name": $("#s_name").val()
+            });
+        }
+
+        function searchEquipment2() {
+            $("#dg2").datagrid('load', {
+                "name": $("#s_name2").val()
+            });
+        }
+
+        function openbeginUseEquipmentLogDig() {
+            var selectedRows = $("#dg").datagrid("getSelections");
+            if (selectedRows.length != 1) {
+                $.messager.alert("系统提示", "请选择一个要使用的设备！");
+                return;
+            }
+            var row = selectedRows[0];
+            $("#dlg").dialog("open").dialog("setTitle", "设备使用信息填写");
+            $("#fm").form("load", row);
+            url = "/admin/useEquipmentLog/beginUseEquipmentLog?id=" + row.id;
+        }
+
+        function resetValue() {
+            $("#userName").val("");
+        }
+
+        function beginUseEquipmentLog() {
+            $("#fm").form("submit", {
+                url: url,
+                onSubmit: function () {
+                    return $(this).form("validate");
+                },
+                success: function (result) {
+                    var result = eval('(' + result + ')');
+                    if (result.success) {
+                        $.messager.alert("系统提示", "设备使用记录信息填写成功!!");
+                        resetValue();
+                        $("#dlg").dialog("close");
+                        $("#dg").datagrid("reload");
+                        $("#dg2").datagrid("reload");
+                    } else {
+                        $.messager.alert("系统提示", result.errorInfo);
+                    }
+                }
+            });
+        }
+
+        function endUseEquipmentLog() {
+            var selectedRows = $("#dg2").datagrid("getSelections");
+            if (selectedRows.length != 1) {
+                $.messager.alert("系统提示", "请选择一个要结束使用的设备!");
+                return;
+            }
+            var row = selectedRows[0];
+            $.messager.confirm("系统提示", "你确定要结束这<span style='color: red'>" + selectedRows.length + "</span>个设备的使用吗?", function (r) {
+                if (r) {
+                    $.post("/admin/useEquipmentLog/endUseEquipmentLog", {equipmentTypeId: row.id}, function (result) {
+                        if (result.success) {
+                            $.messager.alert("系统提示", "设备已成功结束使用！");
+                            $("#dg").datagrid("reload");
+                            $("#dg2").datagrid("reload");
+                        } else {
+                            $.messager.alert("系统提示", "设备恢复失败！");
+                        }
+                    }, "json");
+                }
+            });
+        }
+
+        function closeStoreDialog() {
+            $("#dlg").dialog("close");
+            resetValue();
+        }
+
+        $(document).ready(function () {
+
+            $("#dg").datagrid({
+                onDblClickRow: function (index, row) {
+                    $("#dlg").dialog("open").dialog("setTitle", "设备使用信息填写");
+                    url = "/admin/useEquipmentLog/beginUseEquipmentLog?id=" + row.id;
+                }
+            });
+        });
+
+        function formatEquipment(val, row) {
+            return val.name;
+        }
+    </script>
+</head>
+<body class="easyui-layout" style="padding-top: 2px">
+<div data-options="region:'west'" style="width: 500px" split=true>
+    <table id="dg" title="空闲的设备" class="easyui-datagrid"
+           fitColumns="true" pagination="true" rownumbers="true"
+           url="/admin/equipment/listNoUse" fit="true" toolbar="#tb">
+        <thead>
+        <th field="cb" checkbox="true" align="center"></th>
+        <th field="id" width="20" hidden="true" align="center">编号</th>
+        <th field="equipmentType" width="50" align="center" formatter="formatEquipment">设备类型</th>
+        <th field="name" width="50" align="center">设备名称</th>
+        </thead>
+    </table>
+
+    <div id="tb">
+        <div style="padding: 3px">
+            &nbsp;设备名称：&nbsp;<input type="text" id="s_name" size="20" oninput="searchEquipment()"/>
+            <a href="javascript:openbeginUseEquipmentLogDig()" class="easyui-linkbutton" iconCls="icon-add"
+               plain="true">使用设备</a>
+        </div>
+    </div>
+</div>
+<div data-options="region:'center'">
+    <table id="dg2" title="使用中的设备" class="easyui-datagrid"
+           fitColumns="true" pagination="true" rownumbers="true"
+           url="/admin/equipment/listIsUse" fit="true" toolbar="#tb2">
+        <thead>
+        <th field="cb" checkbox="true" align="center"></th>
+        <th field="id" width="20" hidden="true" align="center">编号</th>
+        <th field="equipmentType" width="50" align="center" formatter="formatEquipment">设备类型</th>
+        <th field="name" width="50" align="center">设备名称</th>
+        </thead>
+    </table>
+
+    <div id="tb2">
+        <div style="padding: 3px">
+            &nbsp;设备名称：&nbsp;<input type="text" id="s_name2" size="20" oninput="searchEquipment2()"/>
+            <a href="javascript:endUseEquipmentLog()" class="easyui-linkbutton" iconCls="icon-remove"
+               plain="true">结束使用</a>
+        </div>
+    </div>
+</div>
+
+
+<div id="dlg" class="easyui-dialog" style="width: 470px;height: 144px;padding: 5px 5px"
+     closed="true" buttons="#dlg-buttons" data-options="onClose:function(){resetValue()}">
+    <form id="fm" method="post">
+        <table cellspacing="8px">
+            <tr>
+                <td>使用的用户名称:</td>
+                <td>
+                    <input type="text" id="userName" name="userName" class="easyui-validatebox" required="true"
+                           style="width: 250px"/>
+                </td>
+            </tr>
+        </table>
+    </form>
+</div>
+
+<div id="dlg-buttons">
+    <a href="javascript:beginUseEquipmentLog()" class="easyui-linkbutton" iconCls="icon-ok">保存</a>
+    <a href="javascript:closeStoreDialog()" class="easyui-linkbutton" iconCls="icon-cancel">关闭</a>
+</div>
+</body>
+</html>

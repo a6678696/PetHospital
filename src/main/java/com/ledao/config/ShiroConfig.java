@@ -44,7 +44,7 @@ public class ShiroConfig {
 
 
         // 拦截器.
-        Map<String, String> filterChainDefinitionMap = new LinkedHashMap<String, String>();
+        Map<String, String> filterChainDefinitionMap = new LinkedHashMap<>();
         // 配置不会被拦截的链接 顺序判断
         filterChainDefinitionMap.put("/", "anon");
         filterChainDefinitionMap.put("/register", "anon");
@@ -63,6 +63,9 @@ public class ShiroConfig {
         filterChainDefinitionMap.put("/inquiry/**", "anon");
         filterChainDefinitionMap.put("/medicalRecord/**", "anon");
         filterChainDefinitionMap.put("/fosterCare/**", "anon");
+        filterChainDefinitionMap.put("/returnVisit/**", "anon");
+        filterChainDefinitionMap.put("/assay/**", "anon");
+        filterChainDefinitionMap.put("/vaccine/**", "anon");
         filterChainDefinitionMap.put("/login.html", "anon");
         filterChainDefinitionMap.put("/static/**", "anon");
         filterChainDefinitionMap.put("/user/login", "anon");

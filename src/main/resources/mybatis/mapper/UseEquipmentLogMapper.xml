@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!--suppress ALL-->
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.ledao.mapper.UseEquipmentLogMapper">
+    <resultMap id="UseEquipmentLogResult" type="UseEquipmentLog">
+        <result property="id" column="id"/>
+        <result property="beginDate" column="beginDate"/>
+        <result property="endDate" column="endDate"/>
+        <association property="user" column="userId" select="com.ledao.mapper.UserMapper.findById"></association>
+        <association property="equipment" column="equipmentId" select="com.ledao.mapper.EquipmentMapper.findById"></association>
+    </resultMap>
+    <select id="list" parameterType="map" resultMap="UseEquipmentLogResult">
+        select * from t_equipmentuselog
+        <where>
+            <if test="user!=null">
+                and userId=#{user.id}
+            </if>
+            <if test="equipment!=null">
+                and equipmentId=#{equipment.id}
+            </if>
+        </where>
+        order by beginDate desc
+        <if test="start!=null and size!=null">
+            limit #{start},#{size}
+        </if>
+    </select>
+    <select id="getCount" parameterType="map" resultType="java.lang.Long">
+        select count(*) from t_equipmentuselog
+        <where>
+            <if test="user!=null">
+                and userId=#{user.id}
+            </if>
+            <if test="equipment!=null">
+                and equipmentId=#{equipment.id}
+            </if>
+        </where>
+    </select>
+    <insert id="add" parameterType="UseEquipmentLog">
+        insert into t_equipmentuselog (beginDate, endDate, userId,equipmentId) values (now(),null,#{user.id},#{equipment.id});
+    </insert>
+    <update id="update" parameterType="UseEquipmentLog">
+        update t_equipmentuselog
+        <set>
+            <if test="user.id != null">
+                userId=#{user.id},
+            </if>
+            <if test="equipment != null">
+                equipmentId=#{equipment.id},
+            </if>
+            <if test="key != null">
+                endDate=now(),
+            </if>
+        </set>
+        where id=#{id}
+    </update>
+    <delete id="delete" parameterType="integer">
+        delete from t_equipmentuselog where id=#{id}
+    </delete>
+    <select id="findById" parameterType="integer" resultMap="UseEquipmentLogResult">
+        select * from t_equipmentuselog where id=#{id}
+    </select>
+</mapper>
