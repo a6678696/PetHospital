@@ -1,0 +1,205 @@
+<!DOCTYPE html>
+<!--suppress ALL-->
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>医院用品管理</title>
+    <link rel="stylesheet" type="text/css" href="/static/jquery-easyui-1.7.0/themes/metro-blue/easyui.css">
+    <link rel="stylesheet" type="text/css" href="/static/jquery-easyui-1.7.0/themes/icon.css">
+    <script type="text/javascript" src="/static/jquery-easyui-1.7.0/jquery.min.js"></script>
+    <script type="text/javascript" src="/static/jquery-easyui-1.7.0/jquery.easyui.min.js"></script>
+    <script type="text/javascript" src="/static/jquery-easyui-1.7.0/locale/easyui-lang-zh_CN.js"></script>
+    <script type="text/javascript">
+
+        var url;
+
+
+        function searchTackle() {
+            $("#dg").datagrid('load', {
+                "name": $("#s_name").val(),
+                "type": $("#s_type").combobox("getValue"),
+                "status": $("#s_status").combobox("getValue")
+            });
+        }
+
+        function resetValue() {
+            $("#name").val("");
+            $("#type").combobox("setValue", "");
+            $("#status").combobox("setValue", "");
+        }
+
+        function closeTackleDialog() {
+            $("#dlg").dialog("close");
+            resetValue();
+        }
+
+        function saveTackle() {
+            $("#fm").form("submit", {
+                url: url,
+                onSubmit: function () {
+                    return $(this).form("validate");
+                },
+                success: function (result) {
+                    var result = eval('(' + result + ')');
+                    if (result.success) {
+                        $.messager.alert("系统提示", "保存成功！");
+                        resetValue();
+                        $("#dlg").dialog("close");
+                        $("#dg").datagrid("reload");
+                    } else {
+                        $.messager.alert("系统提示", result.errorInfo);
+                    }
+                }
+            });
+        }
+
+        function openTackleAddDialog() {
+            $("#dlg").dialog("open").dialog("setTitle", "添加医院用品信息");
+            url = "/admin/tackle/save";
+        }
+
+        function openTackleModifyDialog() {
+            var selectedRows = $("#dg").datagrid("getSelections");
+            if (selectedRows.length != 1) {
+                $.messager.alert("系统提示", "请选择一条要修改的数据！");
+                return;
+            }
+            var row = selectedRows[0];
+            $("#dlg").dialog("open").dialog("setTitle", "修改医院用品信息");
+            $("#fm").form("load", row);
+            url = "/admin/tackle/save?id=" + row.id;
+        }
+
+        function deleteTackle() {
+            var selectedRows = $("#dg").datagrid("getSelections");
+            if (selectedRows.length == 0) {
+                $.messager.alert("系统提示", "请选择要删除的数据！");
+                return;
+            }
+            var strIds = [];
+            for (var i = 0; i < selectedRows.length; i++) {
+                strIds.push(selectedRows[i].id);
+            }
+            var ids = strIds.join(",");
+            $.messager.confirm("系统提示", "您确定要删除<span style='color: red'>" + selectedRows.length + "</span>这条数据吗?", function (r) {
+                if (r) {
+                    $.post("/admin/tackle/delete", {ids: ids}, function (result) {
+                        if (result.success) {
+                            $.messager.alert("系统提示", "数据已成功删除！");
+                            $("#dg").datagrid("reload");
+                        } else {
+                            $.messager.alert("系统提示", result.errorInfo);
+                        }
+                    }, "json");
+                }
+            });
+        }
+
+        $(document).ready(function () {
+
+            $("#dg").datagrid({
+                onDblClickRow: function (index, row) {
+                    $("#dlg").dialog("open").dialog("setTitle", "修改医院用品信息");
+                    $("#fm").form("load", row);
+                    url = "/admin/tackle/save?id=" + row.id;
+                }
+            });
+
+        });
+
+        function formatType(val, row) {
+            if (val == 1) {
+                return "一次性用品";
+            } else {
+                return "非一次性用品";
+            }
+        }
+
+        function formatStatus(val, row) {
+            if (val == 1) {
+                return "在库中";
+            } else {
+                return "出库中";
+            }
+        }
+    </script>
+</head>
+<body style="margin: 1px">
+<table id="dg" title="医院用品管理" class="easyui-datagrid"
+       fitColumns="true" pagination="true" rownumbers="true"
+       url="/admin/tackle/list" fit="true" toolbar="#tb">
+    <thead>
+    <th field="cb" checkbox="true" align="center"></th>
+    <th field="id" width="20" align="center">编号</th>
+    <th field="name" width="100" align="center">医院用品名称</th>
+    <th field="type" width="100" align="center" formatter="formatType">所属类别</th>
+    <th field="status" width="100" align="center" formatter="formatStatus">当前状态</th>
+    </thead>
+</table>
+
+<div id="tb">
+    <div>
+        <a href="javascript:openTackleAddDialog()" class="easyui-linkbutton" iconCls="icon-add" plain="true">添加</a>
+        <a href="javascript:openTackleModifyDialog()" class="easyui-linkbutton" iconCls="icon-edit" plain="true">修改</a>
+        <a href="javascript:deleteTackle()" class="easyui-linkbutton" iconCls="icon-remove" plain="true">删除</a>
+    </div>
+    <div>
+        &nbsp;医院用品名称：&nbsp;<input type="text" id="s_name" size="20" onkeydown="if(event.keyCode==13) searchTackle()"/>
+        &nbsp;类别：&nbsp;
+        <select id="s_type" class="easyui-combobox" style="width:130px;" panelHeight="auto">
+            <option value="">请选择...</option>
+            <option value="1">一次性用品</option>
+            <option value="2">非一次性用品</option>
+        </select>
+        &nbsp;类别：&nbsp;
+        <select id="s_status" class="easyui-combobox" style="width:130px;" panelHeight="auto">
+            <option value="">请选择...</option>
+            <option value="1">在库中</option>
+            <option value="2">出库中</option>
+        </select>
+        <a href="javascript:searchTackle()" class="easyui-linkbutton" iconCls="icon-search" plain="true">搜索</a>
+    </div>
+</div>
+
+
+<div id="dlg" class="easyui-dialog" style="width: 400px;height: 230px;padding: 10px 20px"
+     closed="true" buttons="#dlg-buttons" data-options="onClose:function(){resetValue()}">
+    <form id="fm" method="post">
+        <table cellspacing="8px">
+            <tr>
+                <td>医院用品名称：</td>
+                <td>
+                    <input type="text" id="name" name="name" class="easyui-validatebox" required="true"
+                           style="width: 210px"/>
+                </td>
+            </tr>
+            <tr>
+                <td>所属类型：</td>
+                <td>
+                    <select id="type" class="easyui-combobox" name="type" style="width:210px;" panelHeight="auto">
+                        <option value="">请选择...</option>
+                        <option value="1">一次性用品</option>
+                        <option value="2">非一次性用品</option>
+                    </select>
+                </td>
+            </tr>
+            <tr>
+                <td>当前状态：</td>
+                <td>
+                    <select id="status" class="easyui-combobox" name="status" style="width:210px;" panelHeight="auto">
+                        <option value="">请选择...</option>
+                        <option value="1">在库中</option>
+                        <option value="2">出库中</option>
+                    </select>
+                </td>
+            </tr>
+        </table>
+    </form>
+</div>
+
+<div id="dlg-buttons">
+    <a href="javascript:saveTackle()" class="easyui-linkbutton" iconCls="icon-ok">保存</a>
+    <a href="javascript:closeTackleDialog()" class="easyui-linkbutton" iconCls="icon-cancel">关闭</a>
+</div>
+</body>
+</html>

@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!--suppress ALL-->
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.ledao.mapper.TackleMapper">
+    <resultMap id="TackleResult" type="Tackle">
+        <result property="id" column="id"/>
+        <result property="name" column="name"/>
+        <result property="type" column="type"/>
+        <result property="status" column="status"/>
+    </resultMap>
+    <select id="list" parameterType="map" resultMap="TackleResult">
+        select * from t_tackle
+        <where>
+            <if test="name!=null and name!=''">
+                and name like #{name}
+            </if>
+            <if test="type!=null">
+                and type=#{type}
+            </if>
+            <if test="status!=null">
+                and status=#{status}
+            </if>
+        </where>
+        <if test="start!=null and size!=null">
+            limit #{start},#{size}
+        </if>
+    </select>
+    <select id="getCount" parameterType="map" resultType="java.lang.Long">
+        select count(*) from t_tackle
+        <where>
+            <if test="name!=null and name!=''">
+                and name like #{name}
+            </if>
+            <if test="type!=null">
+                and type=#{type}
+            </if>
+            <if test="status!=null">
+                and status=#{status}
+            </if>
+        </where>
+    </select>
+    <insert id="add" parameterType="Tackle">
+        insert into t_tackle (name, type, status) values (#{name},#{type},#{status});
+    </insert>
+    <update id="update" parameterType="Tackle">
+        update t_tackle
+        <set>
+            <if test="name != null and name != ''">
+                name=#{name},
+            </if>
+            <if test="type != null">
+                type=#{type},
+            </if>
+            <if test="status != null">
+                status=#{status},
+            </if>
+        </set>
+        where id=#{id}
+    </update>
+    <delete id="delete" parameterType="integer">
+        delete from t_tackle where id=#{id}
+    </delete>
+    <select id="findById" parameterType="integer" resultMap="TackleResult">
+        select * from t_tackle where id=#{id}
+    </select>
+</mapper>
