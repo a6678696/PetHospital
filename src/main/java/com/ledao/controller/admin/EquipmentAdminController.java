@@ -130,7 +130,7 @@ public class EquipmentAdminController {
     }
 
     /**
-     * 分页分条件查询设备信息
+     * 分页分条件查询未使用的设备信息
      *
      * @param equipment
      * @param page
@@ -154,7 +154,7 @@ public class EquipmentAdminController {
     }
 
     /**
-     * 分页分条件查询设备信息
+     * 分页分条件查询使用中的设备信息
      *
      * @param equipment
      * @param page

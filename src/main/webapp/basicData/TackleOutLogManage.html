@@ -3,7 +3,7 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>设备使用记录管理</title>
+    <title>医院用品出库记录管理</title>
     <link rel="stylesheet" type="text/css" href="/static/jquery-easyui-1.7.0/themes/metro-blue/easyui.css">
     <link rel="stylesheet" type="text/css" href="/static/jquery-easyui-1.7.0/themes/icon.css">
     <script type="text/javascript" src="/static/jquery-easyui-1.7.0/jquery.min.js"></script>
@@ -12,25 +12,25 @@
     <script type="text/javascript">
         var url;
 
-        function searchUseEquipmentLog() {
+        function searchTackleOutLog() {
             $("#dg").datagrid('load',{
                 "userId": $("#s_userId").val(),
-                "equipmentId": $("#s_equipmentId").val()
+                "tackleId": $("#s_tackleId").val()
             });
         }
 
         function resetValue() {
 
             $("#userId").combobox("setValue", "");
-            $("#equipmentId").combobox("setValue", "");
+            $("#tackleId").combobox("setValue", "");
         }
 
-        function closeUseEquipmentLogDialog() {
+        function closeTackleOutLogDialog() {
             $("#dlg").dialog("close");
             resetValue();
         }
 
-        function saveUseEquipmentLog() {
+        function saveTackleOutLog() {
             $("#fm").form("submit", {
                 url: url,
                 onSubmit: function () {
@@ -50,21 +50,21 @@
             });
         }
 
-        function openUseEquipmentLogModifyDialog() {
+        function openTackleOutLogModifyDialog() {
             var selectedRows = $("#dg").datagrid("getSelections");
             if (selectedRows.length != 1) {
                 $.messager.alert("系统提示", "请选择一条要修改的数据！");
                 return;
             }
             var row = selectedRows[0];
-            $("#dlg").dialog("open").dialog("setTitle", "修改设备使用记录信息");
+            $("#dlg").dialog("open").dialog("setTitle", "修改医院用品使用记录信息");
             $("#fm").form("load", row);
-            $("#equipmentId").combobox("setValue", row.equipment.id);
+            $("#tackleId").combobox("setValue", row.tackle.id);
             $("#userId").combobox("setValue", row.user.id);
-            url = "/admin/useEquipmentLog/save?id=" + row.id;
+            url = "/admin/tackleOutLog/save?id=" + row.id;
         }
 
-        function deleteUseEquipmentLog() {
+        function deleteTackleOutLog() {
             var selectedRows = $("#dg").datagrid("getSelections");
             if (selectedRows.length == 0) {
                 $.messager.alert("系统提示", "请选择要删除的数据！");
@@ -77,7 +77,7 @@
             var ids = strIds.join(",");
             $.messager.confirm("系统提示", "您确定要删除这<span style='color: red'>" + selectedRows.length + "</span>条数据吗?", function (r) {
                 if (r) {
-                    $.post("/admin/useEquipmentLog/delete", {ids: ids}, function (result) {
+                    $.post("/admin/tackleOutLog/delete", {ids: ids}, function (result) {
                         if (result.success) {
                             $.messager.alert("系统提示", "数据已成功删除！");
                             $("#dg").datagrid("reload");
@@ -93,11 +93,11 @@
 
             $("#dg").datagrid({
                 onDblClickRow: function (index, row) {
-                    $("#dlg").dialog("open").dialog("setTitle", "修改设备使用记录信息");
+                    $("#dlg").dialog("open").dialog("setTitle", "修改医院用品使用记录信息");
                     $("#fm").form("load", row);
-                    $("#equipmentId").combobox("setValue", row.equipment.id);
+                    $("#tackleId").combobox("setValue", row.tackle.id);
                     $("#userId").combobox("setValue", row.user.id);
-                    url = "/admin/useEquipmentLog/save?id=" + row.id;
+                    url = "/admin/tackleOutLog/save?id=" + row.id;
                 }
             });
 
@@ -105,7 +105,7 @@
 
         function formatDate(val, row) {
             if (val == null) {
-                return "<span style='color: red'>该设备正在被使用中...</span>";
+                return "<span style='color: red'>该医院用品正在被使用中...</span>";
             } else {
                 return val.substring(0, 4) + "年" + val.substring(5, 7) + "月" + val.substring(8, 10) + "日 "+val.substring(11,13)+":"+val.substring(14,16)+":"+val.substring(17,19);
             }
@@ -115,20 +115,20 @@
             return val.trueName;
         }
 
-        function formatEquipment(val,row) {
+        function formatTackle(val,row) {
             return val.name;
         }
     </script>
 </head>
 <body style="margin: 1px">
-<table id="dg" title="设备使用记录管理" class="easyui-datagrid"
+<table id="dg" title="医院用品使用记录管理" class="easyui-datagrid"
        fitColumns="true" pagination="true" rownumbers="true"
-       url="/admin/useEquipmentLog/list" fit="true" toolbar="#tb">
+       url="/admin/tackleOutLog/list" fit="true" toolbar="#tb">
     <thead>
     <th field="cb" checkbox="true" align="center"></th>
     <th field="id" hidden="true" width="20" align="center">编号</th>
     <th field="user" width="20" align="center" formatter="formatUser">使用的用户</th>
-    <th field="equipment" width="15" align="center" formatter="formatEquipment">使用的设备</th>
+    <th field="tackle" width="15" align="center" formatter="formatTackle">使用的医院用品</th>
     <th field="beginDate" width="15" align="center" formatter="formatDate">开始使用时间</th>
     <th field="endDate" width="15" align="center" formatter="formatDate">结束使用的时间</th>
     </thead>
@@ -136,18 +136,18 @@
 
 <div id="tb">
     <div>
-        <a href="javascript:openUseEquipmentLogModifyDialog()" class="easyui-linkbutton" iconCls="icon-edit"
+        <a href="javascript:openTackleOutLogModifyDialog()" class="easyui-linkbutton" iconCls="icon-edit"
            plain="true">修改</a>
-        <a href="javascript:deleteUseEquipmentLog()" class="easyui-linkbutton" iconCls="icon-remove" plain="true">删除</a>
+        <a href="javascript:deleteTackleOutLog()" class="easyui-linkbutton" iconCls="icon-remove" plain="true">删除</a>
     </div>
     <div>
         &nbsp;用户名称：&nbsp;
         <input class="easyui-combobox" id="s_userId" style="width: 200px;height: 23px" editable="true"
                data-options="panelHeight:'auto',valueField:'id',textField:'trueName',url:'/admin/user/comboList'"/>
-        &nbsp;设备名称：&nbsp;
-        <input class="easyui-combobox" id="s_equipmentId" style="width: 200px;height: 23px" editable="true"
-               data-options="panelHeight:'auto',valueField:'id',textField:'name',url:'/admin/equipment/comboList'"/>
-        <a href="javascript:searchUseEquipmentLog()" class="easyui-linkbutton" iconCls="icon-search" plain="true">搜索</a>
+        &nbsp;医院用品名称：&nbsp;
+        <input class="easyui-combobox" id="s_tackleId" style="width: 200px;height: 23px" editable="true"
+               data-options="panelHeight:'auto',valueField:'id',textField:'name',url:'/admin/tackle/comboList'"/>
+        <a href="javascript:searchTackleOutLog()" class="easyui-linkbutton" iconCls="icon-search" plain="true">搜索</a>
     </div>
 </div>
 
@@ -157,17 +157,17 @@
     <form id="fm" method="post">
         <table cellspacing="8px">
             <tr>
-                <td valign="top">顾客名称:</td>
+                <td valign="top">用户名称:</td>
                 <td>
                     <input class="easyui-combobox" id="userId" name="userId" style="width: 200px;height: 23px" editable="true"
                            data-options="panelHeight:'auto',valueField:'id',textField:'trueName',url:'/admin/user/comboList'"/>
                 </td>
             </tr>
             <tr>
-                <td valign="top">设备名称:</td>
+                <td valign="top">医院用品名称:</td>
                 <td>
-                    <input class="easyui-combobox" id="equipmentId" name="equipmentId" style="width: 200px;height: 23px" editable="true"
-                           data-options="panelHeight:'auto',valueField:'id',textField:'name',url:'/admin/equipment/comboList'"/>
+                    <input class="easyui-combobox" id="tackleId" name="tackleId" style="width: 200px;height: 23px" editable="true"
+                           data-options="panelHeight:'auto',valueField:'id',textField:'name',url:'/admin/tackle/comboList'"/>
                 </td>
             </tr>
         </table>
@@ -175,8 +175,8 @@
 </div>
 
 <div id="dlg-buttons">
-    <a href="javascript:saveUseEquipmentLog()" class="easyui-linkbutton" iconCls="icon-ok">保存</a>
-    <a href="javascript:closeUseEquipmentLogDialog()" class="easyui-linkbutton" iconCls="icon-cancel">关闭</a>
+    <a href="javascript:saveTackleOutLog()" class="easyui-linkbutton" iconCls="icon-ok">保存</a>
+    <a href="javascript:closeTackleOutLogDialog()" class="easyui-linkbutton" iconCls="icon-cancel">关闭</a>
 </div>
 </body>
 </html>

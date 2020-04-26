@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!--suppress ALL-->
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.ledao.mapper.TackleOutLogMapper">
+    <resultMap id="TackleOutLogResult" type="TackleOutLog">
+        <result property="id" column="id"/>
+        <result property="beginDate" column="beginDate"/>
+        <result property="endDate" column="endDate"/>
+        <association property="user" column="userId" select="com.ledao.mapper.UserMapper.findById"></association>
+        <association property="tackle" column="tackleId" select="com.ledao.mapper.TackleMapper.findById"></association>
+    </resultMap>
+    <select id="list" parameterType="map" resultMap="TackleOutLogResult">
+        select * from t_tackleOutlog
+        <where>
+            <if test="user!=null">
+                and userId=#{user.id}
+            </if>
+            <if test="tackle!=null">
+                and tackleId=#{tackle.id}
+            </if>
+        </where>
+        order by beginDate desc
+        <if test="start!=null and size!=null">
+            limit #{start},#{size}
+        </if>
+    </select>
+    <select id="getCount" parameterType="map" resultType="java.lang.Long">
+        select count(*) from t_tackleOutlog
+        <where>
+            <if test="user!=null">
+                and userId=#{user.id}
+            </if>
+            <if test="tackle!=null">
+                and tackleId=#{tackle.id}
+            </if>
+        </where>
+    </select>
+    <insert id="add" parameterType="TackleOutLog">
+        insert into t_tackleOutlog (beginDate, endDate, userId,tackleId) values (now(),null,#{user.id},#{tackle.id});
+    </insert>
+    <update id="update" parameterType="TackleOutLog">
+        update t_tackleOutlog
+        <set>
+            <if test="user.id != null">
+                userId=#{user.id},
+            </if>
+            <if test="tackle != null">
+                tackleId=#{tackle.id},
+            </if>
+            <if test="key != null">
+                endDate=now(),
+            </if>
+        </set>
+        where id=#{id}
+    </update>
+    <delete id="delete" parameterType="integer">
+        delete from t_tackleOutlog where id=#{id}
+    </delete>
+    <select id="findById" parameterType="integer" resultMap="TackleOutLogResult">
+        select * from t_tackleOutlog where id=#{id}
+    </select>
+</mapper>

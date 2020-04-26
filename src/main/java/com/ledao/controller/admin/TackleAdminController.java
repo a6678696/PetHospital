@@ -47,7 +47,6 @@ public class TackleAdminController {
         Map<String, Object> resultMap = new HashMap<>(16);
         Map<String, Object> map = new HashMap<>(16);
         map.put("name", StringUtil.formatLike(tackle.getName()));
-        map.put("type", tackle.getType());
         map.put("status", tackle.getStatus());
         map.put("start", pageBean.getStart());
         map.put("size", pageBean.getPageSize());
@@ -100,6 +99,54 @@ public class TackleAdminController {
             tackleService.delete(id);
         }
         resultMap.put("success", true);
+        return resultMap;
+    }
+
+    /**
+     * 分页分条件查询在库中的医院用品信息
+     *
+     * @param tackle
+     * @param page
+     * @param rows
+     * @return
+     */
+    @RequestMapping("/listNoOut")
+    @RequiresPermissions(value = "医院用品出入库管理")
+    public Map<String, Object> listNoOut(Tackle tackle, @RequestParam(value = "page", required = false) Integer page, @RequestParam(value = "rows", required = false) Integer rows) {
+        PageBean pageBean = new PageBean(page, rows);
+        Map<String, Object> resultMap = new HashMap<>(16);
+        Map<String, Object> map = new HashMap<>(16);
+        map.put("status", 0);
+        map.put("name", StringUtil.formatLike(tackle.getName()));
+        map.put("start", pageBean.getStart());
+        map.put("size", pageBean.getPageSize());
+        resultMap.put("rows", tackleService.list(map));
+        resultMap.put("total", tackleService.getCount(map));
+        logService.add(new Log(Log.SEARCH_ACTION, "查看在库中的医院用品信息"));
+        return resultMap;
+    }
+
+    /**
+     * 分页分条件查询已出库的医院用品信息
+     *
+     * @param tackle
+     * @param page
+     * @param rows
+     * @return
+     */
+    @RequestMapping("/listIsOut")
+    @RequiresPermissions(value = "医院用品出入库管理")
+    public Map<String, Object> listIsOut(Tackle tackle, @RequestParam(value = "page", required = false) Integer page, @RequestParam(value = "rows", required = false) Integer rows) {
+        PageBean pageBean = new PageBean(page, rows);
+        Map<String, Object> resultMap = new HashMap<>(16);
+        Map<String, Object> map = new HashMap<>(16);
+        map.put("status", 1);
+        map.put("name", StringUtil.formatLike(tackle.getName()));
+        map.put("start", pageBean.getStart());
+        map.put("size", pageBean.getPageSize());
+        resultMap.put("rows", tackleService.list(map));
+        resultMap.put("total", tackleService.getCount(map));
+        logService.add(new Log(Log.ADD_ACTION, "查看已出库的医院用品信息"));
         return resultMap;
     }
 }

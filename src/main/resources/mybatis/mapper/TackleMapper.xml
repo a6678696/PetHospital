@@ -5,7 +5,6 @@
     <resultMap id="TackleResult" type="Tackle">
         <result property="id" column="id"/>
         <result property="name" column="name"/>
-        <result property="type" column="type"/>
         <result property="status" column="status"/>
     </resultMap>
     <select id="list" parameterType="map" resultMap="TackleResult">
@@ -13,9 +12,6 @@
         <where>
             <if test="name!=null and name!=''">
                 and name like #{name}
-            </if>
-            <if test="type!=null">
-                and type=#{type}
             </if>
             <if test="status!=null">
                 and status=#{status}
@@ -31,25 +27,19 @@
             <if test="name!=null and name!=''">
                 and name like #{name}
             </if>
-            <if test="type!=null">
-                and type=#{type}
-            </if>
             <if test="status!=null">
                 and status=#{status}
             </if>
         </where>
     </select>
     <insert id="add" parameterType="Tackle">
-        insert into t_tackle (name, type, status) values (#{name},#{type},#{status});
+        insert into t_tackle (name, status) values (#{name},#{status});
     </insert>
     <update id="update" parameterType="Tackle">
         update t_tackle
         <set>
             <if test="name != null and name != ''">
                 name=#{name},
-            </if>
-            <if test="type != null">
-                type=#{type},
             </if>
             <if test="status != null">
                 status=#{status},

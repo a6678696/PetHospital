@@ -21,11 +21,11 @@ public class Tackle {
      */
     private String name;
     /**
-     * 类型 1.一次性用品 2.非一次性用品
-     */
-    private Integer type;
-    /**
-     * 状态 1.在库中 2.已出库
+     * 状态 0.在库中 1.已出库
      */
     private Integer status;
+    /**
+     * 使用设备的用户名称
+     */
+    private String userName;
 }

@@ -88,6 +88,7 @@
             </if>
             <if test="isCancel != null">
                 userId=null,
+                description=null,
             </if>
         </set>
         where id=#{id}

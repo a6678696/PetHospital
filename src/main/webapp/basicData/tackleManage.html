@@ -17,7 +17,6 @@
         function searchTackle() {
             $("#dg").datagrid('load', {
                 "name": $("#s_name").val(),
-                "type": $("#s_type").combobox("getValue"),
                 "status": $("#s_status").combobox("getValue")
             });
         }
@@ -107,19 +106,11 @@
 
         });
 
-        function formatType(val, row) {
-            if (val == 1) {
-                return "一次性用品";
-            } else {
-                return "非一次性用品";
-            }
-        }
-
         function formatStatus(val, row) {
             if (val == 1) {
-                return "在库中";
+                return "<span style='color: #0c9c6e'>在库中</span>";
             } else {
-                return "出库中";
+                return "<span style='color: red'>出库中</span>";
             }
         }
     </script>
@@ -132,7 +123,6 @@
     <th field="cb" checkbox="true" align="center"></th>
     <th field="id" width="20" align="center">编号</th>
     <th field="name" width="100" align="center">医院用品名称</th>
-    <th field="type" width="100" align="center" formatter="formatType">所属类别</th>
     <th field="status" width="100" align="center" formatter="formatStatus">当前状态</th>
     </thead>
 </table>
@@ -145,13 +135,7 @@
     </div>
     <div>
         &nbsp;医院用品名称：&nbsp;<input type="text" id="s_name" size="20" onkeydown="if(event.keyCode==13) searchTackle()"/>
-        &nbsp;类别：&nbsp;
-        <select id="s_type" class="easyui-combobox" style="width:130px;" panelHeight="auto">
-            <option value="">请选择...</option>
-            <option value="1">一次性用品</option>
-            <option value="2">非一次性用品</option>
-        </select>
-        &nbsp;类别：&nbsp;
+        &nbsp;当前状态：&nbsp;
         <select id="s_status" class="easyui-combobox" style="width:130px;" panelHeight="auto">
             <option value="">请选择...</option>
             <option value="1">在库中</option>
@@ -162,7 +146,7 @@
 </div>
 
 
-<div id="dlg" class="easyui-dialog" style="width: 400px;height: 230px;padding: 10px 20px"
+<div id="dlg" class="easyui-dialog" style="width: 400px;height: 193px;padding: 10px 20px"
      closed="true" buttons="#dlg-buttons" data-options="onClose:function(){resetValue()}">
     <form id="fm" method="post">
         <table cellspacing="8px">
@@ -171,16 +155,6 @@
                 <td>
                     <input type="text" id="name" name="name" class="easyui-validatebox" required="true"
                            style="width: 210px"/>
-                </td>
-            </tr>
-            <tr>
-                <td>所属类型：</td>
-                <td>
-                    <select id="type" class="easyui-combobox" name="type" style="width:210px;" panelHeight="auto">
-                        <option value="">请选择...</option>
-                        <option value="1">一次性用品</option>
-                        <option value="2">非一次性用品</option>
-                    </select>
                 </td>
             </tr>
             <tr>

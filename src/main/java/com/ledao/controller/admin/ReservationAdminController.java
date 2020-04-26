@@ -141,7 +141,7 @@ public class ReservationAdminController {
      * @return
      */
     @RequestMapping("/dealReservation")
-    @RequiresPermissions(value = {"医生预约单", "美容师预约单", "我的预约单"}, logical = Logical.OR)
+    @RequiresPermissions(value = {"医生预约单", "美容师预约单", "我的预约单","预约单管理"}, logical = Logical.OR)
     public Map<String, Object> dealReservation(Integer status, Integer reservationId, HttpSession session) {
         Map<String, Object> resultMap = new HashMap<>(16);
         Reservation reservation = reservationService.findById(reservationId);
