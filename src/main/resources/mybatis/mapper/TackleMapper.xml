@@ -53,4 +53,12 @@
     <select id="findById" parameterType="integer" resultMap="TackleResult">
         select * from t_tackle where id=#{id}
     </select>
+    <select id="findByName" parameterType="string" resultMap="TackleResult">
+        select * from t_tackle
+        <where>
+            <if test="_parameter != null and _parameter != ''">
+                and name like #{name}
+            </if>
+        </where>
+    </select>
 </mapper>

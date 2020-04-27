@@ -51,4 +51,9 @@ public class TackleServiceImpl implements TackleService {
     public Tackle findById(Integer id) {
         return tackleMapper.findById(id);
     }
+
+    @Override
+    public List<Tackle> findByName(String name) {
+        return tackleMapper.findByName(name);
+    }
 }

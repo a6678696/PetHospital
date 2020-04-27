@@ -61,4 +61,12 @@ public interface TackleMapper {
      * @return
      */
     Tackle findById(Integer id);
+
+    /**
+     * 根据医院用品名称查找实体
+     *
+     * @param name
+     * @return
+     */
+    List<Tackle> findByName(String name);
 }

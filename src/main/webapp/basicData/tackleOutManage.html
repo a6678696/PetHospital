@@ -99,7 +99,7 @@
 </head>
 <body class="easyui-layout" style="padding-top: 2px">
 <div data-options="region:'west'" style="width: 500px" split=true>
-    <table id="dg" title="空闲的物品" class="easyui-datagrid"
+    <table id="dg" title="在库中" class="easyui-datagrid"
            fitColumns="true" pagination="true" rownumbers="true"
            url="/admin/tackle/listNoOut" fit="true" toolbar="#tb">
         <thead>
@@ -118,7 +118,7 @@
     </div>
 </div>
 <div data-options="region:'center'">
-    <table id="dg2" title="使用中的物品" class="easyui-datagrid"
+    <table id="dg2" title="已出库" class="easyui-datagrid"
            fitColumns="true" pagination="true" rownumbers="true"
            url="/admin/tackle/listIsOut" fit="true" toolbar="#tb2">
         <thead>

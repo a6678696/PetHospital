@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import javax.annotation.Resource;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 /**
@@ -31,6 +32,21 @@ public class TackleAdminController {
 
     @Resource
     private LogService logService;
+
+    /**
+     * 下拉框模糊查询
+     *
+     * @param q
+     * @return
+     */
+    @RequestMapping("/comboList")
+    @RequiresPermissions(value = "设备使用记录管理")
+    public List<Tackle> comboList(String q) {
+        if (q == null) {
+            q = "";
+        }
+        return tackleService.findByName(StringUtil.formatLike(q));
+    }
 
     /**
      * 分页分条件查询医院用品
