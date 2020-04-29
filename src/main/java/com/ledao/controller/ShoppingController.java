@@ -1,19 +1,16 @@
 package com.ledao.controller;
 
-import com.ledao.entity.Customer;
-import com.ledao.entity.Goods;
-import com.ledao.entity.ShoppingCart;
-import com.ledao.entity.ShoppingCartItem;
-import com.ledao.service.GoodsService;
+import com.ledao.entity.*;
+import com.ledao.service.*;
+import com.ledao.util.DateUtil;
+import com.ledao.util.StringUtil;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import javax.annotation.Resource;
 import javax.servlet.http.HttpSession;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 
 /**
  * 客户购物操作Controller层
@@ -29,6 +26,25 @@ public class ShoppingController {
     @Resource
     private GoodsService goodsService;
 
+    @Resource
+    private SaleListService saleListService;
+
+    @Resource
+    private SaleListGoodsService saleListGoodsService;
+
+    @Resource
+    private CustomerService customerService;
+
+    @Resource
+    private UserService userService;
+
+    /**
+     * 立即购买
+     *
+     * @param session
+     * @param goodsId
+     * @return
+     */
     @RequestMapping("/buy")
     public String buy(HttpSession session, Integer goodsId) {
         checkShoppingCart(session, goodsId);
@@ -126,7 +142,7 @@ public class ShoppingController {
      * @return
      */
     @RequestMapping("/updateShoppingCartItem")
-    public String updateShoppingCartItem(HttpSession session, Integer goodsId, Integer count,Integer key) {
+    public String updateShoppingCartItem(HttpSession session, Integer goodsId, Integer count, Integer key) {
         Goods goods = goodsService.findById(goodsId);
         ShoppingCart shoppingCart = (ShoppingCart) session.getAttribute("shoppingCart");
         List<ShoppingCartItem> shoppingCartItemList = shoppingCart.getShoppingCartItems();
@@ -141,7 +157,7 @@ public class ShoppingController {
                     if (count == 0) {
                         shoppingCartItem.setCount(1);
                     }
-                } else if (key==1) {
+                } else if (key == 1) {
                     if (goods.getInventoryQuantity() >= count) {
                         shoppingCartItem.setCount(count);
                     } else if (goods.getInventoryQuantity() < count) {
@@ -162,21 +178,80 @@ public class ShoppingController {
      * @param session
      */
     private void getCount(HttpSession session) {
-        ShoppingCart shoppingCart2 = (ShoppingCart) session.getAttribute("shoppingCart");
-        shoppingCart2.setTotal(0);
-        List<ShoppingCartItem> shoppingCartItemList2 = shoppingCart2.getShoppingCartItems();
-        for (ShoppingCartItem shoppingCartItem : shoppingCartItemList2) {
-            shoppingCart2.setTotal((int) (shoppingCart2.getTotal() + shoppingCartItem.getCount() * shoppingCartItem.getGoods().getSellingPrice()));
+        ShoppingCart shoppingCart = (ShoppingCart) session.getAttribute("shoppingCart");
+        shoppingCart.setTotal(0);
+        List<ShoppingCartItem> shoppingCartItemList = shoppingCart.getShoppingCartItems();
+        for (ShoppingCartItem shoppingCartItem : shoppingCartItemList) {
+            shoppingCart.setTotal((int) (shoppingCart.getTotal() + shoppingCartItem.getCount() * shoppingCartItem.getGoods().getSellingPrice()));
         }
         //商品总金额不满88就要交10元运费
-        int freight=10;
-        int minTotal=88;
-        if (shoppingCart2.getTotal() < minTotal) {
-            shoppingCart2.setTotal(shoppingCart2.getTotal() + freight);
+        int freight = 10;
+        int minTotal = 88;
+        if (shoppingCart.getTotal() < minTotal) {
+            shoppingCart.setTotal(shoppingCart.getTotal() + freight);
             session.setAttribute("freight", freight);
         } else {
             session.setAttribute("freight", 0);
         }
-        session.setAttribute("shoppingCart", shoppingCart2);
+        session.setAttribute("shoppingCart", shoppingCart);
+    }
+
+    /**
+     * 客户提交订单
+     *
+     * @param session
+     * @return
+     */
+    @RequestMapping("/submitOrder")
+    public String submitOrder(HttpSession session) throws Exception {
+        ShoppingCart shoppingCart = (ShoppingCart) session.getAttribute("shoppingCart");
+        SaleList saleList = new SaleList();
+        //设置客户提交的订单并保存
+        saleList.setUser(userService.findById(1));
+        saleList.setCustomer(customerService.findById(shoppingCart.getCustomerId()));
+        saleList.setSaleNumber(this.genCode());
+        saleList.setAmountPaid(shoppingCart.getTotal());
+        saleList.setAmountPayable(shoppingCart.getTotal());
+        saleList.setState(2);
+        saleList.setSaleDate(new Date());
+        saleListService.add(saleList);
+        Customer currentCustomer = (Customer) session.getAttribute("currentCustomer");
+        int saleListId = saleListService.findCurrentOneOrderByCustomerId(currentCustomer.getId()).getId();
+        //保存客户订单中的商品
+        for (ShoppingCartItem shoppingCartItem : shoppingCart.getShoppingCartItems()) {
+            Goods goods = shoppingCartItem.getGoods();
+            SaleListGoods saleListGoods = new SaleListGoods();
+            saleListGoods.setGoodsId(goods.getId());
+            saleListGoods.setCode(goods.getCode());
+            saleListGoods.setModel(goods.getModel());
+            saleListGoods.setName(goods.getName());
+            saleListGoods.setNum(shoppingCartItem.getCount());
+            saleListGoods.setPrice(goods.getSellingPrice());
+            saleListGoods.setTotal(shoppingCartItem.getCount() * goods.getSellingPrice());
+            saleListGoods.setUnit(goods.getUnit());
+            saleListGoods.setSaleList(saleListService.findById(saleListId));
+            saleListGoods.setType(goods.getType());
+            saleListGoodsService.add(saleListGoods);
+        }
+        session.removeAttribute("shoppingCart");
+        return "redirect:/submitSuccess";
+    }
+
+    /**
+     * 获取当天的销售单号
+     *
+     * @return
+     * @throws Exception
+     */
+    public String genCode() throws Exception {
+        StringBuffer code = new StringBuffer("XS");
+        code.append(DateUtil.getCurrentDateStr());
+        String saleNumber = saleListService.getTodayMaxSaleNumber();
+        if (saleNumber != null) {
+            code.append(StringUtil.formatCode(saleNumber));
+        } else {
+            code.append("0001");
+        }
+        return code.toString();
     }
 }

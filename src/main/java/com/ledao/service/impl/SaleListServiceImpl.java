@@ -67,4 +67,9 @@ public class SaleListServiceImpl implements SaleListService {
     public Integer delete(Integer id) {
         return saleListMapper.delete(id);
     }
+
+    @Override
+    public SaleList findCurrentOneOrderByCustomerId(Integer customerId) {
+        return saleListMapper.findCurrentOneOrderByCustomerId(customerId);
+    }
 }

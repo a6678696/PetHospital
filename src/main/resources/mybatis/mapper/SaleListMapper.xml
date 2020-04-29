@@ -92,5 +92,14 @@
     <select id="findBySaleNumber" parameterType="string" resultMap="SaleListResult">
         select * from t_sale_list where saleNumber=#{saleNumber}
     </select>
+    <select id="findCurrentOneOrderByCustomerId" parameterType="integer" resultMap="SaleListResult">
+        select * from t_sale_list
+        <where>
+            <if test="customerId!=null">
+                and customerId=#{customerId}
+            </if>
+        </where>
+        order by saleDate desc limit 1
+    </select>
 
 </mapper>

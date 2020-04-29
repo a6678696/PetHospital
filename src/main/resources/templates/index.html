@@ -103,6 +103,13 @@
             }
         }
 
+        //客户注销登录
+        function submitOrder() {
+            if (confirm("你确定要提交订单吗?(购物车将被清空!)")) {
+                window.location.href = "/shopping/submitOrder";
+            }
+        }
+
         //添加商品到购物车
         function addShoppingCart(goodsId) {
             $.post("/shopping/addShoppingCartItem", {goodsId: goodsId}, function (result) {

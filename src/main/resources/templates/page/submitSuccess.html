@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<!--suppress ALL-->
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<div id="b">
+    <div id="all" style="padding-top: 20px">
+        <div id="content">
+            <div class="container">
+                <div class="row">
+                    <div class="col-lg-12">
+                        <!-- breadcrumb-->
+                        <nav aria-label="breadcrumb">
+                            <ol class="breadcrumb">
+                                <li class="breadcrumb-item"><a href="/">主页</a></li>
+                                <li aria-current="page" class="breadcrumb-item active" th:text="${title}"></li>
+                            </ol>
+                        </nav>
+                    </div>
+                    <div class="col-lg-3"></div>
+                    <div class="col-lg-6">
+                        <div class="box">
+                            <h1 style="text-align: center">订单已成功提交,订单信息如下:</h1>
+                            <p class="lead">欢迎登录<span style="float: right">没有账号?<a href="/register">立即注册!</a></span></p>
+                            <hr>
+                            <form action="/customer/login" method="post">
+                                <div class="form-group">
+                                    <label>用户名:</label>
+                                    <input id="userName" name="userName" required="required" type="text" class="form-control" th:value="${customer==null?'':customer.userName}">
+                                </div>
+                                <div class="form-group">
+                                    <label for="password">密码:</label>
+                                    <input id="password" name="password" type="password" required="required" class="form-control" th:value="${customer==null?'':customer.password}">
+                                </div>
+                                <div class="text-center">
+                                    <button type="submit" class="btn btn-primary"><i class="fa fa-sign-in"></i>立即登录</button>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+</body>
+</html>

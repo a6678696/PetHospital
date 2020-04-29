@@ -87,4 +87,12 @@ public interface SaleListService {
      * @return
      */
     Integer delete(Integer id);
+
+    /**
+     * 查询客户最新添加的一个订单,用来保存订单商品
+     *
+     * @param customerId
+     * @return
+     */
+    SaleList findCurrentOneOrderByCustomerId(Integer customerId);
 }

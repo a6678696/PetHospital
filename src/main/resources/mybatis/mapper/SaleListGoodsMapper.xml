@@ -13,8 +13,7 @@
         <result property="price" column="price"/>
         <result property="num" column="num"/>
         <result property="total" column="total"/>
-        <association property="saleList" column="saleListId"
-                     select="com.ledao.mapper.SaleListMapper.findById"></association>
+        <association property="saleList" column="saleListId" select="com.ledao.mapper.SaleListMapper.findById"></association>
         <association property="type" column="typeId" select="com.ledao.mapper.GoodsTypeMapper.findById"></association>
     </resultMap>
     <select id="listBySaleListId" parameterType="integer" resultMap="SaleListGoodsResult">
