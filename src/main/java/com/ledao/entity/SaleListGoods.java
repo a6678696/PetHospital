@@ -48,6 +48,10 @@ public class SaleListGoods {
      */
     private Integer goodsId;
     /**
+     * 商品实体
+     */
+    private Goods goods;
+    /**
      *商品单位
      */
     private String unit;

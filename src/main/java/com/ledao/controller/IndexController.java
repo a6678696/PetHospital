@@ -88,19 +88,4 @@ public class IndexController {
         mav.setViewName("index");
         return mav;
     }
-
-    /**
-     * 跳转到订单成功提交页面
-     *
-     * @return
-     */
-    @RequestMapping("/submitSuccess")
-    public ModelAndView submitSuccess() {
-        ModelAndView mav = new ModelAndView();
-        mav.addObject("title", "订单成功提交页面");
-        mav.addObject("mainPage", "page/submitSuccess");
-        mav.addObject("mainPageKey", "#b");
-        mav.setViewName("index");
-        return mav;
-    }
 }

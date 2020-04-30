@@ -29,6 +29,13 @@ public class SuggestionController {
     @Resource
     private SuggestionService suggestionService;
 
+    /**
+     * 查看我的留言
+     *
+     * @param page
+     * @param session
+     * @return
+     */
     @RequestMapping("/mySuggestion/list/{id}")
     public ModelAndView myWord(@PathVariable(value = "id", required = false) Integer page, HttpSession session) {
         ModelAndView mav = new ModelAndView();

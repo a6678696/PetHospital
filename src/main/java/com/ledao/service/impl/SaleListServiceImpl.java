@@ -64,6 +64,11 @@ public class SaleListServiceImpl implements SaleListService {
     }
 
     @Override
+    public Long getCount(Map<String, Object> map) {
+        return saleListMapper.getCount(map);
+    }
+
+    @Override
     public Integer delete(Integer id) {
         return saleListMapper.delete(id);
     }

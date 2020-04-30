@@ -81,6 +81,14 @@ public interface SaleListMapper {
     List<SaleList> list(Map<String, Object> map);
 
     /**
+     * 查询记录数
+     *
+     * @param map
+     * @return
+     */
+    Long getCount(Map<String, Object> map);
+
+    /**
      * 根据id删除销售单信息
      *
      * @param id

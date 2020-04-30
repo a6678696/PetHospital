@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<!--suppress ALL-->
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<div id="b">
+    <div id="all" style="padding-top: 20px">
+        <div id="content">
+            <div class="container">
+                <div class="row">
+                    <div class="col-lg-12">
+                        <!-- breadcrumb-->
+                        <nav aria-label="breadcrumb">
+                            <ol class="breadcrumb">
+                                <i class="fa fa-eye" style="padding-top: 2px"></i>当前位置:&nbsp;&nbsp;
+                                <li class="breadcrumb-item"><a href="/">主页</a></li>
+                                <li class="breadcrumb-item"><a href="/customer/personalCenter">个人中心</a></li>
+                                <li class="breadcrumb-item"><span th:text="${title}"></span></li>
+                            </ol>
+                        </nav>
+                    </div>
+                    <div class="col-lg-3">
+                        <div th:include="page/customer/menuLeft::#m"></div>
+                    </div>
+                    <div id="customer-orders" class="col-lg-9">
+                        <div class="box">
+                            <div class="table-responsive">
+                                <p class="text-muted">您一共有 <span
+                                        th:text="${total}" style="color: orangered"></span> 个订单</p>
+                                <table class="table table-hover">
+                                    <thead>
+                                    <tr>
+                                        <th style="text-align: center">订单号</th>
+                                        <th style="text-align: center">创建日期</th>
+                                        <th style="text-align: center">总金额</th>
+                                        <th style="text-align: center">当前状态</th>
+                                        <th style="text-align: center">操作</th>
+                                    </tr>
+                                    </thead>
+                                    <tbody>
+                                    <tr th:each="mySaleList:${mySaleListList}">
+                                        <td style="text-align: center"><span th:text="${mySaleList.saleNumber}"></span>
+                                        </td>
+                                        <td style="text-align: center"><span
+                                                th:text="${#dates.format(mySaleList.saleDate,'yyyy-MM-dd HH:mm:ss')}"></span>
+                                        </td>
+                                        <td style="text-align: center">￥<span th:text="${mySaleList.amountPaid}"></span>
+                                        </td>
+                                        <td style="text-align: center" th:if="${mySaleList.state==1}"><span
+                                                class="badge badge-info" style="font-size: 15px">已支付</span></td>
+                                        <td style="text-align: center" th:if="${mySaleList.state==2}"><span
+                                                class="badge badge-danger" style="font-size: 15px">未支付</span></td>
+                                        <td style="text-align: center"><a th:href="@{'/saleList/mySaleListDetails?saleListId='+${mySaleList.id}}"
+                                                                          class="btn btn-primary"><i
+                                                class="fa fa-search"></i></a><a href="#"
+                                                                                class="btn btn-info">去支付</a>
+                                        </td>
+                                    </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                            <div class="box-footer d-flex justify-content-between flex-column flex-lg-row">
+                                <div>
+                                    <a href="/goods/list/1?typeId=21" type="button" class="btn btn-primary">去购物</a>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="pages" th:if="${total>3}">
+                            <nav aria-label="Page navigation example" class="d-flex justify-content-center">
+                                <ul class="pagination">
+                                    <div th:utext="${pageCode}" class="form-inline"></div>
+                                </ul>
+                            </nav>
+                        </div>
+                    </div>
+                    <!-- /.col-lg-9-->
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+</body>
+</html>

@@ -7,6 +7,7 @@ import com.ledao.util.StringUtil;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.servlet.ModelAndView;
 
 import javax.annotation.Resource;
 import javax.servlet.http.HttpSession;
@@ -234,7 +235,7 @@ public class ShoppingController {
             saleListGoodsService.add(saleListGoods);
         }
         session.removeAttribute("shoppingCart");
-        return "redirect:/submitSuccess";
+        return "redirect:/shopping/submitSuccess";
     }
 
     /**
@@ -253,5 +254,29 @@ public class ShoppingController {
             code.append("0001");
         }
         return code.toString();
+    }
+
+    /**
+     * 跳转到订单成功提交页面
+     *
+     * @return
+     */
+    @RequestMapping("/submitSuccess")
+    public ModelAndView submitSuccess(HttpSession session) {
+        ModelAndView mav = new ModelAndView();
+        Customer currentCustomer = (Customer) session.getAttribute("currentCustomer");
+        SaleList saleList = saleListService.findCurrentOneOrderByCustomerId(currentCustomer.getId());
+        Map<String,Object> map=new HashMap<>(16);
+        map.put("saleListId", saleList.getId());
+        saleList.setSaleListGoodsList(saleListGoodsService.list(map));
+        for (SaleListGoods saleListGoods : saleList.getSaleListGoodsList()) {
+            saleListGoods.setGoods(goodsService.findById(saleListGoods.getGoodsId()));
+        }
+        mav.addObject("saleList", saleList);
+        mav.addObject("title", "订单成功提交页面");
+        mav.addObject("mainPage", "page/submitSuccess");
+        mav.addObject("mainPageKey", "#b");
+        mav.setViewName("index");
+        return mav;
     }
 }

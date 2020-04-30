@@ -20,25 +20,66 @@
                             </ol>
                         </nav>
                     </div>
-                    <div class="col-lg-3"></div>
-                    <div class="col-lg-6">
+                    <div id="customer-order" class="col-lg-1"></div>
+                    <div class="col-lg-10">
                         <div class="box">
                             <h1 style="text-align: center">订单已成功提交,订单信息如下:</h1>
-                            <p class="lead">欢迎登录<span style="float: right">没有账号?<a href="/register">立即注册!</a></span></p>
                             <hr>
-                            <form action="/customer/login" method="post">
-                                <div class="form-group">
-                                    <label>用户名:</label>
-                                    <input id="userName" name="userName" required="required" type="text" class="form-control" th:value="${customer==null?'':customer.userName}">
+                            <div class="table-responsive mb-4">
+                                <table class="table">
+                                    <thead>
+                                    <tr>
+                                        <th style="text-align: center">商品图片</th>
+                                        <th style="text-align: center">商品名称</th>
+                                        <th style="text-align: center">数量</th>
+                                        <th style="text-align: center">单价</th>
+                                        <th style="text-align: center">折扣</th>
+                                        <th style="text-align: center">小计</th>
+                                    </tr>
+                                    </thead>
+                                    <tbody>
+                                    <tr th:each="saleListGoods:${saleList.getSaleListGoodsList()}">
+                                        <td style="text-align: center"><a th:href="@{'/goods/'+${saleListGoods.getGoodsId()}}"><img th:src="@{'/static/images/goodsImage/'+${saleListGoods.getGoods().getImageName()}}" style="height: 40px;width: 40px" alt="图片不存在或已删除"></a></td>
+                                        <td style="text-align: center"><a th:href="@{'/goods/'+${saleListGoods.getGoodsId()}}" th:title="${saleListGoods.name}"><span th:text="${#strings.abbreviate(saleListGoods.getName(),25)}"></span></a></td>
+                                        <td style="text-align: center"><span th:text="${saleListGoods.num}"></span></td>
+                                        <td style="text-align: center">￥<span th:text="${saleListGoods.price}"></span></td>
+                                        <td style="text-align: center">￥0.0</td>
+                                        <td style="text-align: center">￥<span th:text="${saleListGoods.total}"></span></td>
+                                    </tr>
+                                    </tbody>
+                                    <div class="form-inline">
+                                        <p style="font-size: 16px">订单号:</p>&nbsp;<p style="font-size: 16px" th:text="${saleList.saleNumber}"></p>
+                                        <p style="margin-left: 20px;font-size: 16px">收货人:</p>&nbsp;<p style="font-size: 16px" th:text="${session.currentCustomer.getContact()}"></p>
+                                        <p style="margin-left: 20px;font-size: 16px">收货地址:</p>&nbsp;<p style="font-size: 16px" th:text="${session.currentCustomer.getAddress()}"></p>
+                                        <p style="margin-left: 20px;font-size: 16px">联系电话:</p>&nbsp;<p style="font-size: 16px" th:text="${session.currentCustomer.getNumber()}"></p>
+                                    </div>
+                                    <tfoot>
+                                    <tr>
+                                        <th colspan="5" class="text-right" style="color: blue">商品总价</th>
+                                        <th>￥<span th:text="${saleList.amountPaid}"></span></th>
+                                    </tr>
+                                    <tr>
+                                        <th colspan="5" class="text-right" style="color: #0c9c6e">运费</th>
+                                        <th th:if="${saleList.amountPaid<88}">￥10.0</th>
+                                        <th th:if="${saleList.amountPaid>=88}">￥0.0</th>
+                                    </tr>
+                                    <tr>
+                                        <th colspan="5" class="text-right" style="color: orangered">总计</th>
+                                        <th th:if="${saleList.amountPaid>=88}">￥<span th:text="${saleList.amountPaid}"></span></th>
+                                        <th th:if="${saleList.amountPaid<88}">￥<span th:text="${saleList.amountPaid+10}"></span></th>
+                                    </tr>
+                                    </tfoot>
+                                </table>
+                            </div>
+                            <div class="box-footer d-flex justify-content-between flex-column flex-lg-row">
+                                <div class="left"><a href="/saleList/mySaleList/list/1"
+                                                     class="btn btn-outline-info"><i
+                                        class="	fa fa-reorder"></i>我的订单</a></div>
+                                <div class="right">
+                                    <a href="javascript:submitOrder()" class="btn btn-success">马上支付<i
+                                            class="fa fa-chevron-right"></i></a>
                                 </div>
-                                <div class="form-group">
-                                    <label for="password">密码:</label>
-                                    <input id="password" name="password" type="password" required="required" class="form-control" th:value="${customer==null?'':customer.password}">
-                                </div>
-                                <div class="text-center">
-                                    <button type="submit" class="btn btn-primary"><i class="fa fa-sign-in"></i>立即登录</button>
-                                </div>
-                            </form>
+                            </div>
                         </div>
                     </div>
                 </div>

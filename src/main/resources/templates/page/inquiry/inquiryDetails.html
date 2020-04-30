@@ -3,7 +3,7 @@
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
-    <title>问诊详情</title>
+    <title th:title="${title}"></title>
 </head>
 <body>
 <div id="b">
@@ -42,7 +42,7 @@
                                 <div class="form-group">
                                     <kbd style="font-size: 20px">病情图片:</kbd>
                                     <img th:src="@{'/static/images/inquiryImage/'+${inquiry.imageName}}"
-                                         style="height: 200px;width: 200px" alt="White Blouse Armani">
+                                         style="height: 200px;width: 200px" alt="图片不存在或已删除">
                                 </div>
                                 <div class="form-group">
                                     <kbd style="font-size: 20px">病情描述:</kbd>

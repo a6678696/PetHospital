@@ -85,6 +85,9 @@
             </if>
         </where>
         order by saleDate desc
+        <if test="start!=null and size!=null">
+            limit #{start},#{size}
+        </if>
     </select>
     <delete id="delete" parameterType="integer">
         delete from t_sale_list where id=#{id}
@@ -100,6 +103,26 @@
             </if>
         </where>
         order by saleDate desc limit 1
+    </select>
+    <select id="getCount" parameterType="map" resultType="java.lang.Long">
+        select count(*) from t_sale_list
+        <where>
+            <if test="saleNumber!=null and saleNumber!=''">
+                and saleNumber like #{saleNumber}
+            </if>
+            <if test="customer!=null and customer.id!=null ">
+                and customerId=#{customer.id}
+            </if>
+            <if test="state!=null ">
+                and state=#{state}
+            </if>
+            <if test="bSaleDate!=null">
+                and date_format(saleDate,'%Y-%m-%d %H:%i:%S') &gt;= date_format(#{bSaleDate},'%Y-%m-%d %H:%i:%S')
+            </if>
+            <if test="eSaleDate!=null">
+                and date_format(saleDate,'%Y-%m-%d %H:%i:%S') &lt;= date_format(#{eSaleDate},'%Y-%m-%d %H:%i:%S')
+            </if>
+        </where>
     </select>
 
 </mapper>
