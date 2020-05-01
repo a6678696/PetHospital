@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!--suppress ALL-->
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.ledao.mapper.InformationMapper">
+    <resultMap id="InformationResult" type="Information">
+        <result property="id" column="id"/>
+        <result property="content" column="content"/>
+        <result property="sendDate" column="saleDate"/>
+        <result property="state" column="state"/>
+        <association property="customer" column="customerId" select="com.ledao.mapper.CustomerMapper.findById"></association>
+        <association property="user" column="userId" select="com.ledao.mapper.UserMapper.findById"></association>
+    </resultMap>
+    <select id="list" parameterType="map" resultMap="InformationResult">
+        select * from t_information
+        <where>
+            <if test="state!=null">
+                and state=#{state}
+            </if>
+            <if test="customer.id!=null">
+                and customerId=#{customer.id}
+            </if>
+            <if test="user.id!=null">
+                and userId=#{user.id}
+            </if>
+        </where>
+        order by sendDate desc
+        <if test="start!=null and size!=null">
+            limit #{start},#{size}
+        </if>
+    </select>
+    <select id="getCount" parameterType="map" resultType="java.lang.Long">
+        select count(*) from t_information
+        <where>
+            <if test="state!=null">
+                and state=#{state}
+            </if>
+            <if test="customer.id!=null">
+                and customerId=#{customer.id}
+            </if>
+            <if test="user.id!=null">
+                and userId=#{user.id}
+            </if>
+        </where>
+    </select>
+    <insert id="add" parameterType="Information">
+        insert into t_information (content, sendDate, state, customerId, userId) values (#{content},now(),#{state},#{customer.id},#{user.id});
+    </insert>
+    <update id="update" parameterType="Information">
+        update t_information
+        <set>
+            <if test="content != null and content != ''">
+                content=#{content},
+            </if>
+            <if test="state != null">
+                state=#{state},
+            </if>
+            <if test="customer.id != null">
+                customerId=#{customer.id},
+            </if>
+        </set>
+        where id=#{id}
+    </update>
+    <select id="findById" parameterType="integer" resultMap="InformationResult">
+        select * from t_information where id=#{id}
+    </select>
+    <delete id="delete" parameterType="integer">
+        delete from t_information where id =#{id}
+    </delete>
+</mapper>

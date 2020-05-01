@@ -221,4 +221,7 @@
             and FIND_IN_SET( #{typeId}, pId))
         </where>
     </select>
+    <select id="findOldGoods" resultMap="GoodsResult">
+        select * from t_goods where id not in(select id from t_goods where DATE_ADD(releaseDate,interval 3 month)>now()) and isNew=1;
+    </select>
 </mapper>

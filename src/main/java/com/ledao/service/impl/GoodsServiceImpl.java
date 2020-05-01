@@ -106,4 +106,13 @@ public class GoodsServiceImpl implements GoodsService {
     public Integer update(Goods goods) {
         return goodsMapper.update(goods);
     }
+
+    @Override
+    public void GoodsNewToOld() {
+        List<Goods> oldGoodsList = goodsMapper.findOldGoods();
+        for (Goods goods : oldGoodsList) {
+            goods.setIsNew(0);
+            goodsMapper.update(goods);
+        }
+    }
 }

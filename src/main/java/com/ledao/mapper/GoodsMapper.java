@@ -147,4 +147,11 @@ public interface GoodsMapper {
      * @return
      */
     Integer update(Goods goods);
+
+    /**
+     * 查找发布超过3个月的商品
+     *
+     * @return
+     */
+    List<Goods> findOldGoods();
 }

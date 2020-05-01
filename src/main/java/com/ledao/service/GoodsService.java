@@ -147,4 +147,11 @@ public interface GoodsService {
      * @return
      */
     Integer update(Goods goods);
+
+    /**
+     * 将超过发布日期3个月的商品取出"新品"标签
+     *
+     * @return
+     */
+    void GoodsNewToOld();
 }
