@@ -108,7 +108,7 @@ public class GoodsServiceImpl implements GoodsService {
     }
 
     @Override
-    public void GoodsNewToOld() {
+    public void goodsNewToOld() {
         List<Goods> oldGoodsList = goodsMapper.findOldGoods();
         for (Goods goods : oldGoodsList) {
             goods.setIsNew(0);

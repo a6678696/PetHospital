@@ -60,5 +60,5 @@ public interface InformationMapper {
      * @param id
      * @return
      */
-    Information findById(Information id);
+    Information findById(Integer id);
 }

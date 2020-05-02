@@ -5,21 +5,21 @@
     <resultMap id="InformationResult" type="Information">
         <result property="id" column="id"/>
         <result property="content" column="content"/>
-        <result property="sendDate" column="saleDate"/>
-        <result property="state" column="state"/>
+        <result property="sendDate" column="sendDate"/>
+        <result property="isRead" column="isRead"/>
         <association property="customer" column="customerId" select="com.ledao.mapper.CustomerMapper.findById"></association>
         <association property="user" column="userId" select="com.ledao.mapper.UserMapper.findById"></association>
     </resultMap>
     <select id="list" parameterType="map" resultMap="InformationResult">
         select * from t_information
         <where>
-            <if test="state!=null">
-                and state=#{state}
+            <if test="isRead!=null">
+                and isRead=#{isRead}
             </if>
-            <if test="customer.id!=null">
+            <if test="customer!=null">
                 and customerId=#{customer.id}
             </if>
-            <if test="user.id!=null">
+            <if test="user!=null">
                 and userId=#{user.id}
             </if>
         </where>
@@ -31,19 +31,19 @@
     <select id="getCount" parameterType="map" resultType="java.lang.Long">
         select count(*) from t_information
         <where>
-            <if test="state!=null">
-                and state=#{state}
+            <if test="isRead!=null">
+                and isRead=#{isRead}
             </if>
-            <if test="customer.id!=null">
+            <if test="customer!=null">
                 and customerId=#{customer.id}
             </if>
-            <if test="user.id!=null">
+            <if test="user!=null">
                 and userId=#{user.id}
             </if>
         </where>
     </select>
     <insert id="add" parameterType="Information">
-        insert into t_information (content, sendDate, state, customerId, userId) values (#{content},now(),#{state},#{customer.id},#{user.id});
+        insert into t_information (content, sendDate, isRead, customerId, userId) values (#{content},now(),#{isRead},#{customer.id},#{user.id});
     </insert>
     <update id="update" parameterType="Information">
         update t_information
@@ -51,8 +51,8 @@
             <if test="content != null and content != ''">
                 content=#{content},
             </if>
-            <if test="state != null">
-                state=#{state},
+            <if test="isRead != null">
+                isRead=#{isRead},
             </if>
             <if test="customer.id != null">
                 customerId=#{customer.id},

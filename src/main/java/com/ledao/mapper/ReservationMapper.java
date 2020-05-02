@@ -61,4 +61,11 @@ public interface ReservationMapper {
      * @return
      */
     Reservation findById(Integer id);
+
+    /**
+     * 查询当天未提醒客户且当前状态为"预约成功"的预约单
+     *
+     * @return
+     */
+    List<Reservation> notRemindSixHoursAndReserveSuccessfully();
 }

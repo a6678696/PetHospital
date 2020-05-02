@@ -33,6 +33,9 @@
             <if test="status!=null">
                 and status=#{status}
             </if>
+            <if test="isRemind!=null">
+                and isRemind=#{isRemind}
+            </if>
         </where>
         order by reserveDate desc
         <if test="start!=null and size!=null">
@@ -57,10 +60,13 @@
             <if test="status!=null">
                 and status=#{status}
             </if>
+            <if test="isRemind!=null">
+                and isRemind=#{isRemind}
+            </if>
         </where>
     </select>
     <insert id="add" parameterType="Reservation">
-        insert into t_reservation (type, customerId, petId, createDate, reserveDate, description, status) values (#{type},#{customer.id},#{pet.id},now(),#{reserveDate},#{description},0);
+        insert into t_reservation (type, customerId, petId, createDate, reserveDate, description, status,isRemind) values (#{type},#{customer.id},#{pet.id},now(),#{reserveDate},#{description},0,0);
     </insert>
     <update id="update" parameterType="Reservation">
         update t_reservation
@@ -86,6 +92,9 @@
             <if test="remarks != null and remarks != ''">
                 remarks=#{remarks},
             </if>
+            <if test="isRemind != null">
+                isRemind=#{isRemind},
+            </if>
             <if test="isCancel != null">
                 userId=null,
                 description=null,
@@ -99,5 +108,7 @@
     <select id="findById" parameterType="integer" resultMap="ReservationResult">
         select * from t_reservation where id=#{id}
     </select>
-
+    <select id="notRemindSixHoursAndReserveSuccessfully" resultMap="ReservationResult">
+        SELECT * FROM t_reservation t1 WHERE DATE_ADD(NOW(),INTERVAL -8 HOUR)>reserveDate AND t1.status=1 and isRemind=0;
+    </select>
 </mapper>

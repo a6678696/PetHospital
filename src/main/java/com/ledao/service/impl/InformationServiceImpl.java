@@ -48,7 +48,7 @@ public class InformationServiceImpl implements InformationService {
     }
 
     @Override
-    public Information findById(Information id) {
+    public Information findById(Integer id) {
         return informationMapper.findById(id);
     }
 }

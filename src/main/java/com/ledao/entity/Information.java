@@ -29,7 +29,7 @@ public class Information {
     /**
      * 当前状态 0.未读 1.已读
      */
-    private Integer state;
+    private Integer isRead;
     /**
      * 客户实体
      */

@@ -60,5 +60,5 @@ public interface InformationService {
      * @param id
      * @return
      */
-    Information findById(Information id);
+    Information findById(Integer id);
 }

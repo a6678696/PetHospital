@@ -61,4 +61,9 @@ public interface ReservationService {
      * @return
      */
     Reservation findById(Integer id);
+
+    /**
+     * 给当天有预约的客户发提醒消息
+     */
+    void sendInformationToCustomerTodayHaveReservation();
 }

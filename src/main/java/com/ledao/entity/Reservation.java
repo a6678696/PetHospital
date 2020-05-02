@@ -66,5 +66,9 @@ public class Reservation {
      * 判断预约单是否被取消,用来清空预约单中的接受预约人
      */
     private Integer isCancel;
+    /**
+     * 是否提醒客户 0.未提醒 1.已提醒
+     */
+    private Integer isRemind;
 
 }

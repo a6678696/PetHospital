@@ -153,5 +153,5 @@ public interface GoodsService {
      *
      * @return
      */
-    void GoodsNewToOld();
+    void goodsNewToOld();
 }

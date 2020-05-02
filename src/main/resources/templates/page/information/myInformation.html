@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<!--suppress ALL-->
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title th:title="${title}"></title>
+</head>
+<body>
+<div id="b">
+    <div id="all" style="padding-top: 20px">
+        <div id="content">
+            <div class="container">
+                <div class="row">
+                    <div class="col-lg-12">
+                        <!-- breadcrumb-->
+                        <nav aria-label="breadcrumb">
+                            <ol class="breadcrumb">
+                                <i class="fa fa-eye" style="padding-top: 2px"></i>当前位置:&nbsp;&nbsp;
+                                <li class="breadcrumb-item"><a href="/">主页</a></li>
+                                <li class="breadcrumb-item"><a href="/customer/personalCenter">个人中心</a></li>
+                                <li class="breadcrumb-item"><a href="/information/myInformation/list/1"
+                                                               th:text="${title}"></a></li>
+                            </ol>
+                        </nav>
+                    </div>
+                    <div class="col-lg-3">
+                        <div th:include="page/customer/menuLeft::#m"></div>
+                    </div>
+                    <div id="blog-post" class="col-lg-9">
+                        <div class="box">
+                            <div class="table-responsive mb-4">
+                                <table class="table">
+                                    <thead>
+                                    <tr>
+                                        <th style="text-align: center">系统发送时间</th>
+                                        <th style="text-align: center">内容(点击可查看详情)</th>
+                                    </tr>
+                                    </thead>
+                                    <tbody>
+                                    <tr th:each="information:${informationList}">
+                                        <td style="text-align: center"><span
+                                                th:text="${#dates.format(information.sendDate,'yyyy年MM月dd日 HH:mm:ss')}"></span>
+                                        </td>
+                                        <td style="text-align: center"><a
+                                                th:href="@{'/information/informationDetails?id='+${information.id}}"><span
+                                                style="color: red" th:text="${#strings.abbreviate(information.content,35)}"
+                                                th:if="${information.isRead==1}"></span><span
+                                                th:text="${#strings.abbreviate(information.content,35)}"
+                                                th:if="${information.isRead==0}"></span></a>
+                                        </td>
+                                    </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                        <!-- /.box-->
+                        <div class="pages" th:if="${total>6}">
+                            <nav aria-label="Page navigation example" class="d-flex justify-content-center">
+                                <ul class="pagination">
+                                    <div th:utext="${pageCode}" class="form-inline"></div>
+                                </ul>
+                            </nav>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+</body>
+</html>

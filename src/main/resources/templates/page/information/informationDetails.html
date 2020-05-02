@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<!--suppress ALL-->
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title th:title="${title}"></title>
+</head>
+<body>
+<div id="b">
+    <div id="all" style="padding-top: 20px">
+        <div id="content">
+            <div class="container">
+                <div class="row">
+                    <div class="col-lg-12">
+                        <!-- breadcrumb-->
+                        <nav aria-label="breadcrumb">
+                            <ol class="breadcrumb">
+                                <i class="fa fa-eye" style="padding-top: 2px"></i>当前位置:&nbsp;&nbsp;
+                                <li class="breadcrumb-item"><a href="/">主页</a></li>
+                                <li class="breadcrumb-item"><a href="/customer/personalCenter">个人中心</a></li>
+                                <li class="breadcrumb-item"><a href="/information/myInformation/list/1">我的消息</a></li>
+                                <li class="breadcrumb-item"><span>查看消息详情</span></li>
+                            </ol>
+                        </nav>
+                    </div>
+                    <div class="col-lg-3">
+                        <div th:include="page/customer/menuLeft::#m"></div>
+                    </div>
+                    <div id="blog-post" class="col-lg-9">
+                        <div class="box">
+                            <div>
+                                <h2 style="text-align: center">查看消息详情</h2>
+                                <div class="form-group">
+                                    <kbd style="font-size: 20px">发送时间:</kbd>
+                                    <span th:text="${#dates.format(information.sendDate,'yyyy年MM月dd日 HH:mm:ss')}" style="font-size: 20px"></span>
+                                </div>
+                                <div class="form-group">
+                                    <kbd style="font-size: 20px">发送人:</kbd>
+                                    <span th:text="${information.user.trueName}" style="font-size: 20px"></span><span style="font-size: 20px">(系统管理员)</span>
+                                </div>
+                                <div class="form-group">
+                                    <kbd style="font-size: 20px">内容:</kbd>
+                                    <span th:text="${information.content}" style="font-size: 20px"></span>
+                                </div>
+                            </div>
+                            <div class="text-center">
+                                <a href="/information/myInformation/list/1" class="btn btn-primary"> 返回
+                                </a>
+                            </div>
+                        </div>
+                        <!-- /.box-->
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+</body>
+</html>
