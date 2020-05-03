@@ -42,7 +42,7 @@
                                                 th:text="${#dates.format(information.sendDate,'yyyy年MM月dd日 HH:mm:ss')}"></span>
                                         </td>
                                         <td style="text-align: center"><a
-                                                th:href="@{'/information/informationDetails?id='+${information.id}}"><span
+                                                th:href="@{'/information/informationDetails?id='+${information.id}}" th:title="${information.content}"><span
                                                 style="color: red" th:text="${#strings.abbreviate(information.content,35)}"
                                                 th:if="${information.isRead==1}"></span><span
                                                 th:text="${#strings.abbreviate(information.content,35)}"
