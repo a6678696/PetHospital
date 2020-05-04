@@ -1,9 +1,6 @@
 package com.ledao.controller.admin;
 
-import com.ledao.entity.Article;
-import com.ledao.entity.Information;
-import com.ledao.entity.Log;
-import com.ledao.entity.PageBean;
+import com.ledao.entity.*;
 import com.ledao.service.InformationService;
 import com.ledao.service.LogService;
 import com.ledao.util.StringUtil;
@@ -14,6 +11,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import javax.annotation.Resource;
+import javax.servlet.http.HttpSession;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -49,6 +47,10 @@ public class InformationAdminController {
         PageBean pageBean = new PageBean(page, rows);
         Map<String, Object> resultMap = new HashMap<>(16);
         Map<String, Object> map = new HashMap<>(16);
+        if (information.getCustomer() != null) {
+            map.put("customerId", information.getCustomer().getId());
+        }
+        map.put("isRead", information.getIsRead());
         map.put("start", pageBean.getStart());
         map.put("size", pageBean.getPageSize());
         List<Information> informationList = informationService.list(map);
@@ -67,12 +69,19 @@ public class InformationAdminController {
      */
     @RequestMapping("/save")
     @RequiresPermissions(value = "客户消息管理")
-    public Map<String, Object> save(Information information) {
+    public Map<String, Object> save(Information information, HttpSession session) {
         Map<String, Object> resultMap = new HashMap<>(16);
-        int key;
+        int key=0;
         if (information.getId() == null) {
-            logService.add(new Log(Log.ADD_ACTION, "添加客户消息" + information));
-            key = informationService.add(information);
+            information.setIsRead(0);
+            User currentUser = (User) session.getAttribute("currentUser");
+            information.setUser(currentUser);
+            if (information.getUser() == null) {
+                resultMap.put("errorInfo", "长时间无操作,登录状态已到期,请重新登录!!");
+            } else {
+                logService.add(new Log(Log.ADD_ACTION, "添加客户消息" + information));
+                key = informationService.add(information);
+            }
         } else {
             logService.add(new Log(Log.UPDATE_ACTION, "修改客户消息" + information));
             key = informationService.update(information);

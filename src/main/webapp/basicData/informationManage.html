@@ -14,14 +14,15 @@
 
         function searchInformation() {
             $("#dg").datagrid('load',{
-                "name": $("#s_name").val()
+                "isRead": $("#s_isRead").val(),
+                "customer.id": $("#s_customerId").val()
             });
         }
 
         function resetValue() {
 
-            $("#name").val("");
-            $("#remarks").val("");
+            $("#customerId").val("");
+            $("#content").val("");
         }
 
         function closeInformationDialog() {
@@ -43,7 +44,7 @@
                         $("#dlg").dialog("close");
                         $("#dg").datagrid("reload");
                     } else {
-                        $.messager.alert("系统提示", "保存失败!");
+                        $.messager.alert("系统提示", result.errorInfo);
                     }
                 }
             });
@@ -63,6 +64,7 @@
             var row = selectedRows[0];
             $("#dlg").dialog("open").dialog("setTitle", "修改客户消息");
             $("#fm").form("load", row);
+            $("#customerId").combobox("setValue", row.customer.id);
             url = "/admin/information/save?id=" + row.id;
         }
 
@@ -97,11 +99,28 @@
                 onDblClickRow: function (index, row) {
                     $("#dlg").dialog("open").dialog("setTitle", "修改客户消息");
                     $("#fm").form("load", row);
+                    $("#customerId").combobox("setValue", row.customer.id);
                     url = "/admin/information/save?id=" + row.id;
                 }
             });
 
         });
+
+        function formatCustomer(val, row) {
+            return val.contact;
+        }
+
+        function formatUser(val, row) {
+            return val.trueName;
+        }
+
+        function formatIsRead(val,row) {
+            if (val == 0) {
+                return "<span style='color: red'>未读</span>";
+            } else {
+                return "<span style='color: #0c9c6e'>已读</span>";
+            }
+        }
     </script>
 </head>
 <body style="margin: 1px">
@@ -110,9 +129,12 @@
        url="/admin/information/list" fit="true" toolbar="#tb">
     <thead>
     <th field="cb" checkbox="true" align="center"></th>
-    <th field="id" width="20" align="center">编号</th>
-    <th field="name" width="50" align="center">名称</th>
-    <th field="remarks" width="50" align="center">备注</th>
+    <th field="id" width="20" align="center" hidden="true">编号</th>
+    <th field="sendDate" width="30" align="center">发送时间</th>
+    <th field="isRead" width="20" align="center" formatter="formatIsRead">客户是否已读</th>
+    <th field="customer" width="20" align="center" formatter="formatCustomer">所属客户</th>
+    <th field="user" width="20" align="center" formatter="formatUser">发送人</th>
+    <th field="content" width="140" align="center">内容</th>
     </thead>
 </table>
 
@@ -124,26 +146,36 @@
         <a href="javascript:deleteInformation()" class="easyui-linkbutton" iconCls="icon-remove" plain="true">删除</a>
     </div>
     <div>
-        &nbsp;客户消息名称：&nbsp;<input type="text" id="s_name" size="20" onkeydown="if(event.keyCode==13) searchInformation()"/>
+        客户用户名：<input class="easyui-combobox" id="s_customerId" name="customer.id" style="width: 240px"
+                  required="true"
+                  data-options="panelHeight:'auto',valueField:'id',textField:'userName',url:'/admin/customer/comboList'"/>
+        &nbsp;客户是否已读：&nbsp;
+        <select class="easyui-combobox" id="s_isRead" style="width: 154px" editable="false" panelHeight="auto">
+            <option value="">所有类型</option>
+            <option value="0">未读</option>
+            <option value="1">已读</option>
+        </select>
         <a href="javascript:searchInformation()" class="easyui-linkbutton" iconCls="icon-search" plain="true">搜索</a>
     </div>
 </div>
 
 
-<div id="dlg" class="easyui-dialog" style="width: 450px;height: 235px;padding: 10px 20px"
+<div id="dlg" class="easyui-dialog" style="width: 480px;height: 250px;padding: 10px 20px"
      closed="true" buttons="#dlg-buttons" data-options="onClose:function(){resetValue()}">
     <form id="fm" method="post">
         <table cellspacing="8px">
             <tr>
-                <td valign="top">名称:</td>
+                <td valign="top">客户用户名:</td>
                 <td>
-                    <input id="name" name="name" class="easyui-validatebox" required="true" style="width: 100px">
+                   <input class="easyui-combobox" id="customerId" name="customer.id" style="width: 240px"
+                                 required="true"
+                                 data-options="required:true,panelHeight:'auto',valueField:'id',textField:'userName',url:'/admin/customer/comboList'"/>
                 </td>
             </tr>
             <tr>
                 <td valign="top">备注:</td>
                 <td>
-                    <textarea rows="5" cols="40" id="remarks" name="remarks"></textarea>
+                    <textarea rows="5" cols="40" id="content" name="content" class="easyui-validatebox" required="true"></textarea>
                 </td>
             </tr>
         </table>
