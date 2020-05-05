@@ -67,5 +67,13 @@ public interface ReservationMapper {
      *
      * @return
      */
-    List<Reservation> notRemindSixHoursAndReserveSuccessfully();
+    List<Reservation> notRemindAndReserveSuccessfully();
+
+    /**
+     * 预约单创建后2小时没有人接受预约的预约单(并且未到预约时间的)
+     *
+     * @return
+     */
+    List<Reservation> notArrangeTodayWhenCreate();
+
 }

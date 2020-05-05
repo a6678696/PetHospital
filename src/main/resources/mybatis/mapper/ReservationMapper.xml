@@ -108,7 +108,10 @@
     <select id="findById" parameterType="integer" resultMap="ReservationResult">
         select * from t_reservation where id=#{id}
     </select>
-    <select id="notRemindSixHoursAndReserveSuccessfully" resultMap="ReservationResult">
-        SELECT * FROM t_reservation t1 WHERE DATE_ADD(NOW(),INTERVAL -8 HOUR)>reserveDate AND t1.status=1 and isRemind=0;
+    <select id="notRemindAndReserveSuccessfully" resultMap="ReservationResult">
+        select * from t_reservation t1 where DATE_ADD(NOW(),interval -8 hour)>reserveDate and t1.status=1 and isRemind=0;
+    </select>
+    <select id="notArrangeTodayWhenCreate" resultMap="ReservationResult">
+        select * from t_reservation t1 where DATE_ADD(now(),interval -8 hour)>reserveDate and t1.status=0 and  DATE_ADD(reserveDate,interval 24 hour)>now();
     </select>
 </mapper>

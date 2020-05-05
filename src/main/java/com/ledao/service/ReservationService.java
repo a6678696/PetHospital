@@ -66,4 +66,9 @@ public interface ReservationService {
      * 给当天有预约的客户发提醒消息
      */
     void sendInformationToCustomerTodayHaveReservation();
+
+    /**
+     * 系统自动给没有被接受预约的预约单安排医生或美容师
+     */
+    void reservationArrangeUser();
 }
