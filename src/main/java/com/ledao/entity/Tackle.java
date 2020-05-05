@@ -25,7 +25,7 @@ public class Tackle {
      */
     private Integer status;
     /**
-     * 使用设备的用户名称
+     * 使用设备的用户名称(用来检验使用的用户是否存在)
      */
     private String userName;
 }

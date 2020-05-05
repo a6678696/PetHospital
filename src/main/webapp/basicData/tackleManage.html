@@ -138,15 +138,15 @@
         &nbsp;当前状态：&nbsp;
         <select id="s_status" class="easyui-combobox" style="width:130px;" panelHeight="auto">
             <option value="">请选择...</option>
-            <option value="1">在库中</option>
-            <option value="2">出库中</option>
+            <option value="0">在库中</option>
+            <option value="1">已出库</option>
         </select>
         <a href="javascript:searchTackle()" class="easyui-linkbutton" iconCls="icon-search" plain="true">搜索</a>
     </div>
 </div>
 
 
-<div id="dlg" class="easyui-dialog" style="width: 400px;height: 193px;padding: 10px 20px"
+<div id="dlg" class="easyui-dialog" style="width: 400px;height: 143px;padding: 10px 20px"
      closed="true" buttons="#dlg-buttons" data-options="onClose:function(){resetValue()}">
     <form id="fm" method="post">
         <table cellspacing="8px">
@@ -155,16 +155,6 @@
                 <td>
                     <input type="text" id="name" name="name" class="easyui-validatebox" required="true"
                            style="width: 210px"/>
-                </td>
-            </tr>
-            <tr>
-                <td>当前状态：</td>
-                <td>
-                    <select id="status" class="easyui-combobox" name="status" style="width:210px;" panelHeight="auto">
-                        <option value="">请选择...</option>
-                        <option value="1">在库中</option>
-                        <option value="2">出库中</option>
-                    </select>
                 </td>
             </tr>
         </table>

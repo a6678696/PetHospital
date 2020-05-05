@@ -1,4 +1,5 @@
 <!DOCTYPE html>
+<!--suppress ALL-->
 <html>
 <head>
     <meta charset="UTF-8">
@@ -36,7 +37,7 @@
                     var row = rows[i];
                     $("#dg").datagrid('appendRow', {
                         id: row.id,
-                        customerName: row.customer.name,
+                        contact: row.customer.contact,
                         date: row.saleDate,
                         number: row.saleNumber,
                         type: '销售单',
@@ -59,7 +60,7 @@
                     var row = rows[i];
                     $("#dg").datagrid('appendRow', {
                         id: row.id,
-                        customerName: row.customer.name,
+                        contact: row.customer.contact,
                         date: row.customerReturnDate,
                         number: row.customerReturnNumber,
                         type: '退货单',
@@ -79,10 +80,14 @@
         }
 
         function formatState(val, row) {
-            if (val == 1) {
-                return "<span style='color: mediumspringgreen'>已付/退款</span>";
-            } else if (val == 2) {
-                return "<span style='color: red'>未付/退款</span>";
+            if (val == 1 && row.type == "销售单") {
+                return "<span style='color: mediumspringgreen'>已付款</span>";
+            } else if (val == 1 && row.type == "退货单"){
+                return "<span style='color: mediumspringgreen'>已退款</span>";
+            } else if (val == 2 && row.type == "销售单") {
+                return "<span style='color: red'>未付款</span>";
+            } else {
+                return "<span style='color: red'>未退款</span>";
             }
         }
 
@@ -173,7 +178,7 @@
            fit="true" toolbar="#tb">
         <thead>
         <th field="id" width="20" align="center" hidden="true">ID</th>
-        <th field="customerName" width="60" align="center">客户名称</th>
+        <th field="contact" width="60" align="center">客户名称</th>
         <th field="date" width="40" align="center">日期</th>
         <th field="number" width="40" align="center">单号</th>
         <th field="type" width="30" align="center" formatter="formatType">类型</th>
@@ -191,8 +196,8 @@
             <input id="s_begin" class="easyui-datetimebox" editable=false style="width:170px"/>
             &nbsp;&nbsp;-&nbsp;&nbsp;
             <input id="s_end" class="easyui-datetimebox" editable=false style="width:170px"/>
-            &nbsp;&nbsp;&nbsp;客户名称：&nbsp;<input class="easyui-combobox" id="s_customer" style="width: 200px"
-                                                data-options="panelHeight:'auto',valueField:'id',textField:'name',url:'/admin/customer/comboList'"/>
+            &nbsp;&nbsp;&nbsp;客户名称：&nbsp;<input class="easyui-combobox" id="s_customer" style="width: 150px"
+                                                data-options="panelHeight:'auto',valueField:'id',textField:'userName',url:'/admin/customer/comboList'"/>
             &nbsp;&nbsp;&nbsp;是否付/退款&nbsp;
             <select class="easyui-combobox" id="s_state" style="width: 100px" editable="false" panelHeight="auto">
                 <option value="">全部</option>
