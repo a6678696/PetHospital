@@ -30,6 +30,10 @@ public class SaleList {
      */
     private Customer customer;
     /**
+     * 客户id
+     */
+    private Integer customerId;
+    /**
      *销售日期
      */
     private Date saleDate;
@@ -50,7 +54,7 @@ public class SaleList {
      */
     private float amountPaid;
     /**
-     *交易状态 1 已收 2 未收
+     *交易状态 1 已支付 2 未支付 3已发货 4派送中 5客户已收货
      */
     private Integer state;
     /**

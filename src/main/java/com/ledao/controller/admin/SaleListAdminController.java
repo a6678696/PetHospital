@@ -41,6 +41,9 @@ public class SaleListAdminController {
     private UserService userService;
 
     @Resource
+    private CustomerService customerService;
+
+    @Resource
     private GoodsTypeService goodsTypeService;
 
     @Resource
@@ -126,13 +129,17 @@ public class SaleListAdminController {
     public Map<String, Object> list(SaleList saleList) {
         Map<String, Object> resultMap = new HashMap<>(16);
         Map<String, Object> map = new HashMap<>(16);
+        Customer customer = customerService.findById(saleList.getCustomerId());
+        saleList.setCustomer(customer);
         map.put("saleNumber", StringUtil.formatLike(saleList.getSaleNumber()));
         map.put("customer", saleList.getCustomer());
         map.put("state", saleList.getState());
         map.put("bSaleDate", saleList.getBSaleDate());
         map.put("eSaleDate", saleList.getESaleDate());
         List<SaleList> saleListList = saleListService.list(map);
+        Long total = saleListService.getCount(map);
         resultMap.put("rows", saleListList);
+        resultMap.put("total", total);
         logService.add(new Log(Log.SEARCH_ACTION, "销售单查询"));
         return resultMap;
     }
@@ -303,6 +310,16 @@ public class SaleListAdminController {
             saleCountList.add(saleCount);
         }
         resultMap.put("rows", saleCountList);
+        resultMap.put("success", true);
+        return resultMap;
+    }
+
+    @RequestMapping("/handleOrder")
+    public Map<String, Object> handleOrder(Integer id, Integer status) {
+        Map<String,Object> resultMap=new HashMap<>(16);
+        SaleList saleList = saleListService.findById(id);
+        saleList.setState(status);
+        saleListService.update(saleList);
         resultMap.put("success", true);
         return resultMap;
     }

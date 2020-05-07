@@ -1,0 +1,235 @@
+<!DOCTYPE html>
+<!--suppress ALL-->
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>客户订单处理</title>
+    <link rel="stylesheet" type="text/css" href="/static/jquery-easyui-1.7.0/themes/metro-blue/easyui.css">
+    <link rel="stylesheet" type="text/css" href="/static/jquery-easyui-1.7.0/themes/icon.css">
+    <script type="text/javascript" src="/static/jquery-easyui-1.7.0/jquery.min.js"></script>
+    <script type="text/javascript" src="/static/jquery-easyui-1.7.0/jquery.easyui.min.js"></script>
+    <script type="text/javascript" src="/static/jquery-easyui-1.7.0/locale/easyui-lang-zh_CN.js"></script>
+    <script type="text/javascript">
+        var url;
+
+        function searchOrder() {
+            $("#dg").datagrid('load',{
+                "saleNumber": $("#s_saleNumber").val(),
+                "customerId": $("#s_customer").val(),
+                "bSaleDate": $("#s_bSaleDate").val(),
+                "eSaleDate": $("#s_eSaleDate").val(),
+                "state": $("#s_state").val()
+            });
+        }
+
+        function resetValue() {
+
+            $("#name").val("");
+            $("#remarks").val("");
+        }
+
+        function closeOrderDialog() {
+            $("#dlg").dialog("close");
+            resetValue();
+        }
+
+        function saveOrder() {
+            $("#fm").form("submit", {
+                url: url,
+                onSubmit: function () {
+                    return $(this).form("validate");
+                },
+                success: function (result) {
+                    var result = eval('(' + result + ')');
+                    if (result.success) {
+                        $.messager.alert("系统提示", "保存成功！");
+                        resetValue();
+                        $("#dlg").dialog("close");
+                        $("#dg").datagrid("reload");
+                    } else {
+                        $.messager.alert("系统提示", "保存失败!");
+                    }
+                }
+            });
+        }
+
+        function openOrderAddDialog() {
+            $("#dlg").dialog("open").dialog("setTitle", "添加客户订单信息");
+            url = "/admin/saleList/save";
+        }
+
+        function openOrderModifyDialog() {
+            var selectedRows = $("#dg").datagrid("getSelections");
+            if (selectedRows.length != 1) {
+                $.messager.alert("系统提示", "请选择一条要修改的数据！");
+                return;
+            }
+            var row = selectedRows[0];
+            $("#dlg").dialog("open").dialog("setTitle", "修改客户订单信息");
+            $("#fm").form("load", row);
+            url = "/admin/saleList/save?id=" + row.id;
+        }
+
+        function deleteOrder() {
+            var selectedRows = $("#dg").datagrid("getSelections");
+            if (selectedRows.length == 0) {
+                $.messager.alert("系统提示", "请选择要删除的数据！");
+                return;
+            }
+            var strIds = [];
+            for (var i = 0; i < selectedRows.length; i++) {
+                strIds.push(selectedRows[i].id);
+            }
+            var ids = strIds.join(",");
+            $.messager.confirm("系统提示", "您确定要删除这<span style='color: red'>" + selectedRows.length + "</span>条数据吗?", function (r) {
+                if (r) {
+                    $.post("/admin/saleList/delete", {ids: ids}, function (result) {
+                        if (result.success) {
+                            $.messager.alert("系统提示", "数据已成功删除！");
+                            $("#dg").datagrid("reload");
+                        } else {
+                            $.messager.alert("系统提示", result.errorInfo);
+                        }
+                    }, "json");
+                }
+            });
+        }
+
+        $(document).ready(function () {
+
+            $("#dg").datagrid({
+                onDblClickRow: function (index, row) {
+                    $("#dlg").dialog("open").dialog("setTitle", "查看客户订单信息");
+                    $("#fm").form("load", row);
+                    url = "/admin/saleList/save?id=" + row.id;
+                }
+            });
+
+        });
+
+        function formatCustomerContact(val, row) {
+            return val.contact;
+        }
+
+        function formatCustomerUserName(val, row) {
+            return row.customer.userName;
+        }
+
+        function formatState(val,row) {
+            if (val == 1) {
+                return "<span style='color: blue'>已支付</span>";
+            }else if (val == 2) {
+                return "<span style='color: red'>未支付</span>";
+            }else if (val == 3) {
+                return "<span style='color: #e0a800'>已发货</span>";
+            }else if (val == 4) {
+                return "<span style='color: hotpink'>派送中</span>";
+            }else if (val == 5) {
+                return "<span style='color: #0c9c6e'>已收货</span>";
+            }
+        }
+
+        function handleOrder(status) {
+            var selectedRows = $("#dg").datagrid("getSelections");
+            if (selectedRows.length != 1) {
+                $.messager.alert("系统提示", "请选择一个要处理的销售单！");
+                return;
+            }
+            var id = selectedRows[0].id;
+            if (status == 1) {
+                var str = "支付";
+            }else if (status == 3) {
+                var str = "发货";
+            }else if (status == 4) {
+                var str = "派送";
+            }else if (status == 5) {
+                var str = "确认收货";
+            }
+            $.messager.confirm("系统提示","确认要给这个订单"+str+"吗?",function (r) {
+                if (r) {
+                    $.post("/admin/saleList/handleOrder",{id:id,status:status},function (result) {
+                        if (result.success) {
+                            $("#dg").datagrid("reload");
+                        } else {
+                            $.messager.alert("系统提示", result.errorInfo);
+                        }
+                    })
+                }
+            });
+        }
+    </script>
+</head>
+<body style="margin: 1px">
+<table id="dg" title="客户订单处理" class="easyui-datagrid"
+       fitColumns="true" pagination="true" rownumbers="true"
+       url="/admin/saleList/list" fit="true" toolbar="#tb">
+    <thead>
+    <th field="cb" checkbox="true" align="center"></th>
+    <th field="id" width="20" align="center" hidden="true">编号</th>
+    <th field="saleNumber" width="50" align="center">订单号</th>
+    <th field="saleDate" width="50" align="center">销售时间</th>
+    <th field="customer2" width="40" align="center" formatter="formatCustomerUserName">所属客户用户名</th>
+    <th field="customer" width="40" align="center" formatter="formatCustomerContact">所属客户名称</th>
+    <th field="amountPaid" width="50" align="center">订单金额</th>
+    <th field="state" width="50" align="center" formatter="formatState">当前状态</th>
+    </thead>
+</table>
+
+<div id="tb">
+    <div>
+        <a href="javascript:handleOrder(1)" class="easyui-linkbutton" plain="false">支付</a>
+        <a href="javascript:handleOrder(3)" class="easyui-linkbutton" plain="false">发货</a>
+        <a href="javascript:handleOrder(4)" class="easyui-linkbutton" plain="false">派送</a>
+        <a href="javascript:handleOrder(5)" class="easyui-linkbutton" plain="false">确认收货</a>
+    </div>
+    <div>
+        &nbsp;订单号:&nbsp;
+        <input type="text" id="s_saleNumber" size="20" style="height: 25px" onkeydown="if(event.keyCode==13) searchOrder()"/>
+        &nbsp;客户用户名:&nbsp;
+        <input class="easyui-combobox" id="s_customer" name="customer.id"
+               style="width: 180px"
+               data-options="panelHeight:'auto',valueField:'id',textField:'userName',url:'/admin/customer/comboList'"/>
+        &nbsp;日期:
+        <input id="s_bSaleDate" class="easyui-datetimebox" editable=false style="width:180px"/>
+        &nbsp;-&nbsp;
+        <input id="s_eSaleDate" class="easyui-datetimebox" editable=false style="width:180px"/>
+        &nbsp;&nbsp;&nbsp;当前状态:&nbsp;
+        <select class="easyui-combobox" id="s_state" style="width: 80px" editable="false" panelHeight="auto">
+            <option value="">全部</option>
+            <option value="1">已支付</option>
+            <option value="2">未支付</option>
+            <option value="3">已发货</option>
+            <option value="4">派送中</option>
+            <option value="5">已收货</option>
+        </select>
+        <a href="javascript:searchOrder()" class="easyui-linkbutton" iconCls="icon-search" plain="true">搜索</a>
+    </div>
+</div>
+
+
+<div id="dlg" class="easyui-dialog" style="width: 450px;height: 235px;padding: 10px 20px"
+     closed="true" buttons="#dlg-buttons" data-options="onClose:function(){resetValue()}">
+    <form id="fm" method="post">
+        <table cellspacing="8px">
+            <tr>
+                <td valign="top">名称:</td>
+                <td>
+                    <input id="name" name="name" class="easyui-validatebox" required="true" style="width: 100px">
+                </td>
+            </tr>
+            <tr>
+                <td valign="top">备注:</td>
+                <td>
+                    <textarea rows="5" cols="40" id="remarks" name="remarks"></textarea>
+                </td>
+            </tr>
+        </table>
+    </form>
+</div>
+
+<div id="dlg-buttons">
+    <a href="javascript:saveOrder()" class="easyui-linkbutton" iconCls="icon-ok">保存</a>
+    <a href="javascript:closeOrderDialog()" class="easyui-linkbutton" iconCls="icon-cancel">关闭</a>
+</div>
+</body>
+</html>
