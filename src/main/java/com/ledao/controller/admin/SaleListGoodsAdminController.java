@@ -1,6 +1,7 @@
 package com.ledao.controller.admin;
 
 import com.ledao.entity.Goods;
+import com.ledao.entity.PageBean;
 import com.ledao.entity.SaleListGoods;
 import com.ledao.service.GoodsService;
 import com.ledao.service.SaleListGoodsService;
@@ -32,9 +33,12 @@ public class SaleListGoodsAdminController {
 
     @RequestMapping("/list")
     public Map<String, Object> list(SaleListGoods saleListGoods, @RequestParam(value = "page", required = false) Integer page, @RequestParam(value = "rows", required = false) Integer rows) {
+        PageBean pageBean = new PageBean(page, rows);
         Map<String,Object> resultMap=new HashMap<>(16);
         Map<String,Object> map=new HashMap<>(16);
         map.put("saleListId", saleListGoods.getSaleListId());
+        map.put("start", pageBean.getStart());
+        map.put("size", pageBean.getPageSize());
         List<SaleListGoods> saleListGoodsList = saleListGoodsService.list(map);
         for (SaleListGoods listGoods : saleListGoodsList) {
             Goods goods = goodsService.findById(listGoods.getGoodsId());

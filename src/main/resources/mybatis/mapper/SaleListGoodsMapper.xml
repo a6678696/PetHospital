@@ -38,6 +38,9 @@
                 and concat(`code`, `name`) like concat('%',#{codeOrName},'%')
             </if>
         </where>
+        <if test="start!=null and size!=null">
+            limit #{start},#{size}
+        </if>
     </select>
     <insert id="add" parameterType="SaleListGoods">
         insert into t_sale_list_goods (code, goodsId, model, name, num, price, total, unit, saleListId, typeId) values (#{code},#{goodsId},#{model},#{name},#{num},#{price},#{total},#{unit},#{saleList.id},#{type.id});

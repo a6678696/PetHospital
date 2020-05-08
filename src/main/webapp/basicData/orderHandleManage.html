@@ -95,18 +95,6 @@
             });
         }
 
-        $(document).ready(function () {
-
-            $("#dg").datagrid({
-                onDblClickRow: function (index, row) {
-                    $("#dlg").dialog("open").dialog("setTitle", "查看客户订单信息");
-                    $("#fm").form("load", row);
-                    url = "/admin/saleList/save?id=" + row.id;
-                }
-            });
-
-        });
-
         function formatCustomerContact(val, row) {
             return val.contact;
         }
@@ -169,7 +157,7 @@
                 "saleListId":row.id
             });
             $("#saleNumber").val(row.saleNumber);
-            $("#customer").val(row.customer.contact + "(ID:" + row.customer.id + ")");
+            $("#customer").val(row.customer.contact + "(用户名:" + row.customer.userName + ")");
             $("#amountPaid").val(row.amountPaid + "(元)");
             var v=row.state;
             if(v==1){
@@ -187,7 +175,7 @@
         }
 
         function formatGoods(val,row) {
-            return "<img width=66 height=66 src='/static/images/goodsImage/" + row.goods.imageName + "'/>";
+            return "<img width=88 height=88 src='/static/images/goodsImage/" + row.goods.imageName + "'/>";
         }
     </script>
 </head>
@@ -240,42 +228,41 @@
 </div>
 
 
-<div id="dlg" class="easyui-dialog" style="width: 900px;height:555px;padding: 5px 30px"
+<div id="dlg" class="easyui-dialog" style="width: 1200px;height:600px;padding: 5px 30px"
      closed="true" buttons="#dlg-buttons">
     <table cellspacing="8px">
         <tr>
             <td>订单号：</td>
-            <td><input type="text" id="saleNumber" readonly="readonly"/></td>
+            <td><input type="text" id="saleNumber" readonly="readonly" style="width: 200px"/></td>
             <td>&nbsp;</td>
             <td>订单人：</td>
-            <td><input type="text" id="customer" readonly="readonly"/></td>
+            <td><input type="text" id="customer" readonly="readonly" style="width: 200px"/></td>
         </tr>
         <tr>
             <td>总金额：</td>
-            <td><input type="text" id="amountPaid" readonly="readonly"/></td>
+            <td><input type="text" id="amountPaid" readonly="readonly" style="width: 200px"/></td>
             <td>&nbsp;</td>
             <td>订单状态：</td>
-            <td><input type="text" id="status" readonly="readonly"/></td>
+            <td><input type="text" id="status" readonly="readonly" style="width: 200px"/></td>
         </tr>
     </table>
     <br/>
     <table id="dg2" title="订单商品列表"  class="easyui-datagrid"
-           fitColumns="true" pagination="true" rownumbers="true"  pageSize="10" height="55"
-           url="/admin/saleListGoods/list" fit="true" >
+            pagination="true" rownumbers="true"  pageSize="10" height="55"
+           url="/admin/saleListGoods/list" style="height: 400px;width: 1100px">
         <thead>
         <tr>
-            <th field="goods" width="60" align="center" formatter="formatGoods">商品图片</th>
-            <th field="name" width="250" align="center">商品名称</th>
-            <th field="price" width="50" align="center">商品价格</th>
-            <th field="num" width="50" align="center">商品数量</th>
-            <th field="total" width="50" align="center">小计(单位:元)</th>
+            <th field="goods" width="100" align="center" formatter="formatGoods">商品图片</th>
+            <th field="name" width="650" align="center">商品名称</th>
+            <th field="price" width="100" align="center">商品价格</th>
+            <th field="num" width="100" align="center">商品数量</th>
+            <th field="total" width="100" align="center">小计(单位:元)</th>
         </tr>
         </thead>
     </table>
 </div>
 
 <div id="dlg-buttons">
-    <a href="javascript:saveOrder()" class="easyui-linkbutton" iconCls="icon-ok">保存</a>
     <a href="javascript:closeOrderDialog()" class="easyui-linkbutton" iconCls="icon-cancel">关闭</a>
 </div>
 </body>
