@@ -6,57 +6,9 @@
   <component name="ChangeListManager">
     <list default="true" id="0a04dcdb-703f-4bd2-b3be-43a82c777491" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/ledao/controller/admin/SaleListGoodsAdminController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/ledao/controller/admin/SaleListGoodsAdminController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/mybatis/mapper/SaleListGoodsMapper.xml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/mybatis/mapper/SaleListGoodsMapper.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/basicData/articleManage.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/basicData/articleManage.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/basicData/articleTypeManage.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/basicData/articleTypeManage.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/basicData/assayManage.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/basicData/assayManage.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/basicData/carousel.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/basicData/carousel.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/basicData/customer.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/basicData/customer.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/basicData/equipmentManage.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/basicData/equipmentManage.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/basicData/equipmentType.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/basicData/equipmentType.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/basicData/equipmentUseLogManage.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/basicData/equipmentUseLogManage.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/basicData/equipmentUseManage.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/basicData/equipmentUseManage.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/basicData/fosterCareManage.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/basicData/fosterCareManage.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/basicData/goods.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/basicData/goods.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/basicData/informationManage.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/basicData/informationManage.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/basicData/medicalRecordManage.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/basicData/medicalRecordManage.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/basicData/orderHandleManage.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/basicData/orderHandleManage.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/basicData/returnVisitManage.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/basicData/returnVisitManage.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/basicData/stock.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/basicData/stock.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/basicData/suggestionManage.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/basicData/suggestionManage.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/basicData/supplier.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/basicData/supplier.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/basicData/tackleManage.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/basicData/tackleManage.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/basicData/tackleOutLogManage.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/basicData/tackleOutLogManage.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/basicData/tackleOutManage.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/basicData/tackleOutManage.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/basicData/vaccineManage.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/basicData/vaccineManage.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/common/stockSearch.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/common/stockSearch.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/count/customer.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/count/customer.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/count/purchase.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/count/purchase.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/count/sale.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/count/sale.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/count/saleDay.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/count/saleDay.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/count/saleMonth.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/count/saleMonth.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/count/supplier.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/count/supplier.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/inquiry/inquiryManage.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/inquiry/inquiryManage.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/inquiry/inquiryReply.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/inquiry/inquiryReply.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/inquiry/myInquiryReply.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/inquiry/myInquiryReply.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/power/role.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/power/role.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/power/user.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/power/user.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/purchase/purchase.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/purchase/purchase.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/purchase/purchaseSearch.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/purchase/purchaseSearch.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/purchase/return.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/purchase/return.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/purchase/returnSearch.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/purchase/returnSearch.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/reservation/listNotHandleBeautician.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/reservation/listNotHandleBeautician.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/reservation/listNotHandleDoctor.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/reservation/listNotHandleDoctor.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/reservation/myReservation.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/reservation/myReservation.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/reservation/reservationManage.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/reservation/reservationManage.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/sale/returnSearch.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/sale/returnSearch.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/sale/saleSearch.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/sale/saleSearch.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/sale/saleout.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/sale/saleout.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/sale/salereturn.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/sale/salereturn.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/static/jquery-easyui-1.7.0/demo/accordion/tools.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/static/jquery-easyui-1.7.0/demo/accordion/tools.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/static/jquery-easyui-1.7.0/demo/datagrid/aligncolumns.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/static/jquery-easyui-1.7.0/demo/datagrid/aligncolumns.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/static/jquery-easyui-1.7.0/demo/datagrid/basic.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/static/jquery-easyui-1.7.0/demo/datagrid/basic.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/ledao/quartz/SendInformationToCustomerNotRemind.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/ledao/quartz/SendInformationToCustomerNotRemind.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/templates/page/customer/mySaleList.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/templates/page/customer/mySaleList.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/templates/page/saleList/mySaleListDetails.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/templates/page/saleList/mySaleListDetails.html" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -371,14 +323,8 @@
       <workItem from="1588764934422" duration="2118000" />
       <workItem from="1588818268328" duration="9102000" />
       <workItem from="1588854508509" duration="2030000" />
-      <workItem from="1588907230144" duration="7725000" />
-    </task>
-    <task id="LOCAL-00030" summary="LeDao宠物医院管理系统">
-      <created>1580458743629</created>
-      <option name="number" value="00030" />
-      <option name="presentableId" value="LOCAL-00030" />
-      <option name="project" value="LOCAL" />
-      <updated>1580458743629</updated>
+      <workItem from="1588907230144" duration="7794000" />
+      <workItem from="1588930451003" duration="4240000" />
     </task>
     <task id="LOCAL-00031" summary="LeDao宠物医院管理系统">
       <created>1580495658203</created>
@@ -716,7 +662,14 @@
       <option name="project" value="LOCAL" />
       <updated>1588910361678</updated>
     </task>
-    <option name="localTasksCounter" value="79" />
+    <task id="LOCAL-00079" summary="LeDao宠物医院管理系统">
+      <created>1588917209234</created>
+      <option name="number" value="00079" />
+      <option name="presentableId" value="LOCAL-00079" />
+      <option name="project" value="LOCAL" />
+      <updated>1588917209234</updated>
+    </task>
+    <option name="localTasksCounter" value="80" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -753,10 +706,10 @@
       <screen x="0" y="0" width="1536" height="824" />
     </state>
     <state x="548" y="271" width="439" height="291" key="#com.intellij.refactoring.move.moveClassesOrPackages.MoveClassesOrPackagesDialog.classes/0.0.1536.824@0.0.1536.824" timestamp="1580902147971" />
-    <state x="207" y="84" width="1010" height="632" key="CommitChangelistDialog2" timestamp="1588910359318">
+    <state x="207" y="84" width="1010" height="632" key="CommitChangelistDialog2" timestamp="1588917205944">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state x="207" y="84" width="1010" height="632" key="CommitChangelistDialog2/0.0.1536.824@0.0.1536.824" timestamp="1588910359318" />
+    <state x="207" y="84" width="1010" height="632" key="CommitChangelistDialog2/0.0.1536.824@0.0.1536.824" timestamp="1588917205944" />
     <state width="1067" height="466" key="DebuggerActiveHint" timestamp="1588908898690">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
@@ -769,54 +722,54 @@
       <screen x="0" y="0" width="1536" height="824" />
     </state>
     <state x="549" y="168" width="773" height="488" key="FileChooserDialogImpl/0.0.1536.824@0.0.1536.824" timestamp="1588907265410" />
-    <state width="1493" height="175" key="GridCell.Tab.0.bottom" timestamp="1588913514841">
+    <state width="1493" height="175" key="GridCell.Tab.0.bottom" timestamp="1588930624190">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state width="1493" height="175" key="GridCell.Tab.0.bottom/0.0.1536.824@0.0.1536.824" timestamp="1588913514841" />
-    <state width="1493" height="175" key="GridCell.Tab.0.center" timestamp="1588913514841">
+    <state width="1493" height="175" key="GridCell.Tab.0.bottom/0.0.1536.824@0.0.1536.824" timestamp="1588930624190" />
+    <state width="1493" height="175" key="GridCell.Tab.0.center" timestamp="1588930624190">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state width="1493" height="175" key="GridCell.Tab.0.center/0.0.1536.824@0.0.1536.824" timestamp="1588913514841" />
-    <state width="1493" height="175" key="GridCell.Tab.0.left" timestamp="1588913514841">
+    <state width="1493" height="175" key="GridCell.Tab.0.center/0.0.1536.824@0.0.1536.824" timestamp="1588930624190" />
+    <state width="1493" height="175" key="GridCell.Tab.0.left" timestamp="1588930624190">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state width="1493" height="175" key="GridCell.Tab.0.left/0.0.1536.824@0.0.1536.824" timestamp="1588913514841" />
-    <state width="1493" height="175" key="GridCell.Tab.0.right" timestamp="1588913514841">
+    <state width="1493" height="175" key="GridCell.Tab.0.left/0.0.1536.824@0.0.1536.824" timestamp="1588930624190" />
+    <state width="1493" height="175" key="GridCell.Tab.0.right" timestamp="1588930624190">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state width="1493" height="175" key="GridCell.Tab.0.right/0.0.1536.824@0.0.1536.824" timestamp="1588913514841" />
-    <state width="1493" height="175" key="GridCell.Tab.1.bottom" timestamp="1588913514841">
+    <state width="1493" height="175" key="GridCell.Tab.0.right/0.0.1536.824@0.0.1536.824" timestamp="1588930624190" />
+    <state width="1493" height="175" key="GridCell.Tab.1.bottom" timestamp="1588930624190">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state width="1493" height="175" key="GridCell.Tab.1.bottom/0.0.1536.824@0.0.1536.824" timestamp="1588913514841" />
-    <state width="1493" height="175" key="GridCell.Tab.1.center" timestamp="1588913514841">
+    <state width="1493" height="175" key="GridCell.Tab.1.bottom/0.0.1536.824@0.0.1536.824" timestamp="1588930624190" />
+    <state width="1493" height="175" key="GridCell.Tab.1.center" timestamp="1588930624190">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state width="1493" height="175" key="GridCell.Tab.1.center/0.0.1536.824@0.0.1536.824" timestamp="1588913514841" />
-    <state width="1493" height="175" key="GridCell.Tab.1.left" timestamp="1588913514841">
+    <state width="1493" height="175" key="GridCell.Tab.1.center/0.0.1536.824@0.0.1536.824" timestamp="1588930624190" />
+    <state width="1493" height="175" key="GridCell.Tab.1.left" timestamp="1588930624190">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state width="1493" height="175" key="GridCell.Tab.1.left/0.0.1536.824@0.0.1536.824" timestamp="1588913514841" />
-    <state width="1493" height="175" key="GridCell.Tab.1.right" timestamp="1588913514841">
+    <state width="1493" height="175" key="GridCell.Tab.1.left/0.0.1536.824@0.0.1536.824" timestamp="1588930624190" />
+    <state width="1493" height="175" key="GridCell.Tab.1.right" timestamp="1588930624190">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state width="1493" height="175" key="GridCell.Tab.1.right/0.0.1536.824@0.0.1536.824" timestamp="1588913514841" />
-    <state width="1493" height="175" key="GridCell.Tab.2.bottom" timestamp="1588913514841">
+    <state width="1493" height="175" key="GridCell.Tab.1.right/0.0.1536.824@0.0.1536.824" timestamp="1588930624190" />
+    <state width="1493" height="175" key="GridCell.Tab.2.bottom" timestamp="1588930624190">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state width="1493" height="175" key="GridCell.Tab.2.bottom/0.0.1536.824@0.0.1536.824" timestamp="1588913514841" />
-    <state width="1493" height="175" key="GridCell.Tab.2.center" timestamp="1588913514841">
+    <state width="1493" height="175" key="GridCell.Tab.2.bottom/0.0.1536.824@0.0.1536.824" timestamp="1588930624190" />
+    <state width="1493" height="175" key="GridCell.Tab.2.center" timestamp="1588930624190">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state width="1493" height="175" key="GridCell.Tab.2.center/0.0.1536.824@0.0.1536.824" timestamp="1588913514841" />
-    <state width="1493" height="175" key="GridCell.Tab.2.left" timestamp="1588913514841">
+    <state width="1493" height="175" key="GridCell.Tab.2.center/0.0.1536.824@0.0.1536.824" timestamp="1588930624190" />
+    <state width="1493" height="175" key="GridCell.Tab.2.left" timestamp="1588930624190">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state width="1493" height="175" key="GridCell.Tab.2.left/0.0.1536.824@0.0.1536.824" timestamp="1588913514841" />
-    <state width="1493" height="175" key="GridCell.Tab.2.right" timestamp="1588913514841">
+    <state width="1493" height="175" key="GridCell.Tab.2.left/0.0.1536.824@0.0.1536.824" timestamp="1588930624190" />
+    <state width="1493" height="175" key="GridCell.Tab.2.right" timestamp="1588930624190">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state width="1493" height="175" key="GridCell.Tab.2.right/0.0.1536.824@0.0.1536.824" timestamp="1588913514841" />
+    <state width="1493" height="175" key="GridCell.Tab.2.right/0.0.1536.824@0.0.1536.824" timestamp="1588930624190" />
     <state x="299" y="68" key="Maven.ArtifactSearchDialog" timestamp="1580625148690">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
@@ -833,10 +786,10 @@
       <screen x="0" y="0" width="1536" height="824" />
     </state>
     <state width="498" height="498" key="SwitcherDM/0.0.1536.824@0.0.1536.824" timestamp="1588430277766" />
-    <state x="361" y="146" key="Vcs.Push.Dialog.v2" timestamp="1588910363238">
+    <state x="361" y="146" key="Vcs.Push.Dialog.v2" timestamp="1588930494860">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state x="361" y="146" key="Vcs.Push.Dialog.v2/0.0.1536.824@0.0.1536.824" timestamp="1588910363238" />
+    <state x="361" y="146" key="Vcs.Push.Dialog.v2/0.0.1536.824@0.0.1536.824" timestamp="1588930494860" />
     <state width="775" height="419" key="XDebugger.FullValuePopup" timestamp="1588571241007">
       <screen x="0" y="0" width="1536" height="824" />
     </state>

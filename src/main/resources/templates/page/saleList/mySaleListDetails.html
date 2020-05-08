@@ -65,9 +65,12 @@
                                         <p style="margin-left: 20px;font-size: 15px">创建时间:</p>&nbsp;<p
                                             style="font-size: 15px"
                                             th:text="${#dates.format(saleList.saleDate,'yyyy-MM-dd HH:mm:ss')}"></p>
-                                        <p style="margin-left: 20px;font-size: 15px">订单状态:</p>&nbsp;<p
-                                            style="font-size: 15px;color: #0c9c6e" th:if="${saleList.state==1}">已支付</p><p
-                                            style="font-size: 15px;color: red" th:if="${saleList.state==2}">未支付</p>
+                                        <p style="margin-left: 20px;font-size: 15px">订单状态:</p>&nbsp;
+                                        <p style="font-size: 15px" th:if="${saleList.state==1}">已支付</p>
+                                        <p style="font-size: 15px;color: red" th:if="${saleList.state==2}">未支付</p>
+                                        <p style="font-size: 15px" th:if="${saleList.state==3}">已发货</p>
+                                        <p style="font-size: 15px" th:if="${saleList.state==4}">派送中</p>
+                                        <p style="font-size: 15px" th:if="${saleList.state==5}">已收货</p>
                                     </div>
                                     <div class="form-inline">
                                         <p style="font-size: 15px">收货人:</p>&nbsp;<p style="font-size: 15px"

@@ -50,9 +50,15 @@
                                         <td style="text-align: center">￥<span th:text="${mySaleList.amountPaid}"></span>
                                         </td>
                                         <td style="text-align: center" th:if="${mySaleList.state==1}"><span
-                                                class="badge badge-info" style="font-size: 15px">已支付</span></td>
+                                                class="badge badge-warning" style="font-size: 15px">已支付</span></td>
                                         <td style="text-align: center" th:if="${mySaleList.state==2}"><span
                                                 class="badge badge-danger" style="font-size: 15px">未支付</span></td>
+                                        <td style="text-align: center" th:if="${mySaleList.state==3}"><span
+                                                class="badge badge-info" style="font-size: 15px">已发货</span></td>
+                                        <td style="text-align: center" th:if="${mySaleList.state==4}"><span
+                                                class="badge badge-primary" style="font-size: 15px">派送中</span></td>
+                                        <td style="text-align: center" th:if="${mySaleList.state==5}"><span
+                                                class="badge badge-success" style="font-size: 15px">已收货</span></td>
                                         <td style="text-align: center"><a th:href="@{'/saleList/mySaleListDetails?saleListId='+${mySaleList.id}}"
                                                                           class="btn btn-primary"><i
                                                 class="fa fa-search"></i></a><a href="#"
