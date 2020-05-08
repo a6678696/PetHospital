@@ -157,6 +157,38 @@
                 }
             });
         }
+        
+        function openOrderDetailDialog() {
+            var selectedRows = $("#dg").datagrid('getSelections');
+            if (selectedRows.length != 1) {
+                $.messager.alert("系统提示", "请选择一条要查看的数据！");
+                return;
+            }
+            var row = selectedRows[0];
+            $("#dg2").datagrid('load',{
+                "saleListId":row.id
+            });
+            $("#saleNumber").val(row.saleNumber);
+            $("#customer").val(row.customer.contact + "(ID:" + row.customer.id + ")");
+            $("#amountPaid").val(row.amountPaid + "(元)");
+            var v=row.state;
+            if(v==1){
+                $("#status").val("已支付");
+            }else if(v==2){
+                $("#status").val("未支付");
+            }else if(v==3){
+                $("#status").val("已发货");
+            }else if(v==4){
+                $("#status").val("派送中");
+            }else if(v==5){
+                $("#status").val("已收货");
+            }
+            $("#dlg").dialog("open").dialog("setTitle", "订单详情");
+        }
+
+        function formatGoods(val,row) {
+            return "<img width=66 height=66 src='/static/images/goodsImage/" + row.goods.imageName + "'/>";
+        }
     </script>
 </head>
 <body style="margin: 1px">
@@ -177,6 +209,7 @@
 
 <div id="tb">
     <div>
+        <a href="javascript:openOrderDetailDialog()" class="easyui-linkbutton" plain="false">查看订单详情</a>
         <a href="javascript:handleOrder(1)" class="easyui-linkbutton" plain="false">支付</a>
         <a href="javascript:handleOrder(3)" class="easyui-linkbutton" plain="false">发货</a>
         <a href="javascript:handleOrder(4)" class="easyui-linkbutton" plain="false">派送</a>
@@ -207,24 +240,38 @@
 </div>
 
 
-<div id="dlg" class="easyui-dialog" style="width: 450px;height: 235px;padding: 10px 20px"
-     closed="true" buttons="#dlg-buttons" data-options="onClose:function(){resetValue()}">
-    <form id="fm" method="post">
-        <table cellspacing="8px">
-            <tr>
-                <td valign="top">名称:</td>
-                <td>
-                    <input id="name" name="name" class="easyui-validatebox" required="true" style="width: 100px">
-                </td>
-            </tr>
-            <tr>
-                <td valign="top">备注:</td>
-                <td>
-                    <textarea rows="5" cols="40" id="remarks" name="remarks"></textarea>
-                </td>
-            </tr>
-        </table>
-    </form>
+<div id="dlg" class="easyui-dialog" style="width: 900px;height:555px;padding: 5px 30px"
+     closed="true" buttons="#dlg-buttons">
+    <table cellspacing="8px">
+        <tr>
+            <td>订单号：</td>
+            <td><input type="text" id="saleNumber" readonly="readonly"/></td>
+            <td>&nbsp;</td>
+            <td>订单人：</td>
+            <td><input type="text" id="customer" readonly="readonly"/></td>
+        </tr>
+        <tr>
+            <td>总金额：</td>
+            <td><input type="text" id="amountPaid" readonly="readonly"/></td>
+            <td>&nbsp;</td>
+            <td>订单状态：</td>
+            <td><input type="text" id="status" readonly="readonly"/></td>
+        </tr>
+    </table>
+    <br/>
+    <table id="dg2" title="订单商品列表"  class="easyui-datagrid"
+           fitColumns="true" pagination="true" rownumbers="true"  pageSize="10" height="55"
+           url="/admin/saleListGoods/list" fit="true" >
+        <thead>
+        <tr>
+            <th field="goods" width="60" align="center" formatter="formatGoods">商品图片</th>
+            <th field="name" width="250" align="center">商品名称</th>
+            <th field="price" width="50" align="center">商品价格</th>
+            <th field="num" width="50" align="center">商品数量</th>
+            <th field="total" width="50" align="center">小计(单位:元)</th>
+        </tr>
+        </thead>
+    </table>
 </div>
 
 <div id="dlg-buttons">

@@ -47,6 +47,14 @@ public interface SaleListGoodsService {
     List<SaleListGoods> list(Map<String, Object> map);
 
     /**
+     * 获取记录数
+     *
+     * @param map
+     * @return
+     */
+    Long getCount(Map<String, Object> map);
+
+    /**
      * 添加销售单商品
      *
      * @param saleListGoods

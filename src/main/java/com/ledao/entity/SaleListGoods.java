@@ -24,6 +24,10 @@ public class SaleListGoods {
      */
     private SaleList saleList;
     /**
+     * 商品的订单编号
+     */
+    private Integer saleListId;
+    /**
      *商品编码
      */
     private String code;

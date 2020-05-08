@@ -43,6 +43,11 @@ public class SaleListGoodsServiceImpl implements SaleListGoodsService {
     }
 
     @Override
+    public Long getCount(Map<String, Object> map) {
+        return saleListGoodsMapper.getCount(map);
+    }
+
+    @Override
     public Integer add(SaleListGoods saleListGoods) {
         return saleListGoodsMapper.add(saleListGoods);
     }
