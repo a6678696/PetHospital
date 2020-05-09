@@ -233,6 +233,8 @@ public class ShoppingController {
             saleListGoods.setSaleList(saleListService.findById(saleListId));
             saleListGoods.setType(goods.getType());
             saleListGoodsService.add(saleListGoods);
+            goods.setInventoryQuantity(goods.getInventoryQuantity() - saleListGoods.getNum());
+            goodsService.update(goods);
         }
         session.removeAttribute("shoppingCart");
         return "redirect:/shopping/submitSuccess";

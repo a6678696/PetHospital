@@ -124,4 +124,7 @@
             </if>
         </where>
     </select>
+    <select id="findOrderOverOneDay" resultMap="SaleListResult">
+        select * from t_sale_list where DATE_ADD(now(),interval -24 hour)>saleDate and state=2;
+    </select>
 </mapper>

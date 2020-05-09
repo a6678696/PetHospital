@@ -103,4 +103,11 @@ public interface SaleListMapper {
      * @return
      */
     SaleList findCurrentOneOrderByCustomerId(Integer customerId);
+
+    /**
+     * 查找客户提交的超过一天未支付的订单
+     *
+     * @return
+     */
+    List<SaleList> findOrderOverOneDay();
 }

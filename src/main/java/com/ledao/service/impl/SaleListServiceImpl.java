@@ -1,12 +1,18 @@
 package com.ledao.service.impl;
 
+import com.ledao.entity.Goods;
 import com.ledao.entity.SaleCount;
 import com.ledao.entity.SaleList;
+import com.ledao.entity.SaleListGoods;
+import com.ledao.mapper.GoodsMapper;
 import com.ledao.mapper.SaleListMapper;
+import com.ledao.service.GoodsService;
+import com.ledao.service.SaleListGoodsService;
 import com.ledao.service.SaleListService;
 import org.springframework.stereotype.Service;
 
 import javax.annotation.Resource;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -22,6 +28,12 @@ public class SaleListServiceImpl implements SaleListService {
 
     @Resource
     private SaleListMapper saleListMapper;
+
+    @Resource
+    private GoodsMapper goodsMapper;
+
+    @Resource
+    private SaleListGoodsService saleListGoodsService;
 
     @Override
     public String getTodayMaxSaleNumber() {
@@ -76,5 +88,22 @@ public class SaleListServiceImpl implements SaleListService {
     @Override
     public SaleList findCurrentOneOrderByCustomerId(Integer customerId) {
         return saleListMapper.findCurrentOneOrderByCustomerId(customerId);
+    }
+
+    @Override
+    public void cancelOrderOverOneDay() {
+        List<SaleList> saleListList = saleListMapper.findOrderOverOneDay();
+        for (SaleList saleList : saleListList) {
+            Map<String,Object> map=new HashMap<>(16);
+            map.put("saleListId", saleList.getId());
+            List<SaleListGoods> saleListGoodsList = saleListGoodsService.list(map);
+            for (SaleListGoods saleListGoods : saleListGoodsList) {
+                Goods goods = goodsMapper.findById(saleListGoods.getGoodsId());
+                goods.setInventoryQuantity(goods.getInventoryQuantity()+saleListGoods.getNum());
+                goodsMapper.update(goods);
+            }
+            saleList.setState(6);
+            saleListMapper.update(saleList);
+        }
     }
 }

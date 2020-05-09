@@ -14,6 +14,7 @@ import org.springframework.beans.propertyeditors.CustomDateEditor;
 import org.springframework.web.bind.WebDataBinder;
 import org.springframework.web.bind.annotation.InitBinder;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import javax.annotation.Resource;
@@ -126,7 +127,8 @@ public class SaleListAdminController {
      */
     @RequestMapping("/list")
     @RequiresPermissions(value = {"销售单据查询", "供应商统计"}, logical = Logical.OR)
-    public Map<String, Object> list(SaleList saleList) {
+    public Map<String, Object> list(SaleList saleList, @RequestParam(value = "page", required = false) Integer page, @RequestParam(value = "rows", required = false) Integer rows) {
+        PageBean pageBean = new PageBean(page, rows);
         Map<String, Object> resultMap = new HashMap<>(16);
         Map<String, Object> map = new HashMap<>(16);
         Customer customer = customerService.findById(saleList.getCustomerId());
@@ -136,6 +138,8 @@ public class SaleListAdminController {
         map.put("state", saleList.getState());
         map.put("bSaleDate", saleList.getBSaleDate());
         map.put("eSaleDate", saleList.getESaleDate());
+        map.put("start", pageBean.getStart());
+        map.put("size", pageBean.getPageSize());
         List<SaleList> saleListList = saleListService.list(map);
         Long total = saleListService.getCount(map);
         resultMap.put("rows", saleListList);

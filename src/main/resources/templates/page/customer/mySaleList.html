@@ -61,8 +61,9 @@
                                                 class="badge badge-success" style="font-size: 15px">已收货</span></td>
                                         <td style="text-align: center"><a th:href="@{'/saleList/mySaleListDetails?saleListId='+${mySaleList.id}}"
                                                                           class="btn btn-primary"><i
-                                                class="fa fa-search"></i></a><a href="#"
-                                                                                class="btn btn-info">去支付</a>
+                                                class="fa fa-search"></i></a>
+                                            <a href="#" class="btn btn-info" th:if="${mySaleList.state==2}">去支付</a>
+                                            <a href="#" class="btn btn-danger" th:if="${mySaleList.state<3}">取消订单</a>
                                         </td>
                                     </tr>
                                     </tbody>

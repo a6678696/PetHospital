@@ -103,4 +103,9 @@ public interface SaleListService {
      * @return
      */
     SaleList findCurrentOneOrderByCustomerId(Integer customerId);
+
+    /**
+     * 取消客户提交的超过一天未支付的订单
+     */
+    void cancelOrderOverOneDay();
 }

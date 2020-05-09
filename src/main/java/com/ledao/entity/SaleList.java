@@ -54,7 +54,7 @@ public class SaleList {
      */
     private float amountPaid;
     /**
-     *交易状态 1 已支付 2 未支付 3已发货 4派送中 5客户已收货
+     *交易状态 1 已支付 2 未支付 3已发货 4派送中 5客户已收货 6订单已取消
      */
     private Integer state;
     /**

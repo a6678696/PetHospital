@@ -13,7 +13,7 @@
         var url;
 
         function searchOrder() {
-            $("#dg").datagrid('load',{
+            $("#dg").datagrid('load', {
                 "saleNumber": $("#s_saleNumber").val(),
                 "customerId": $("#s_customer").val(),
                 "bSaleDate": $("#s_bSaleDate").val(),
@@ -103,17 +103,19 @@
             return row.customer.userName;
         }
 
-        function formatState(val,row) {
+        function formatState(val, row) {
             if (val == 1) {
                 return "<span style='color: blue'>已支付</span>";
-            }else if (val == 2) {
+            } else if (val == 2) {
                 return "<span style='color: red'>未支付</span>";
-            }else if (val == 3) {
+            } else if (val == 3) {
                 return "<span style='color: #e0a800'>已发货</span>";
-            }else if (val == 4) {
+            } else if (val == 4) {
                 return "<span style='color: hotpink'>派送中</span>";
-            }else if (val == 5) {
+            } else if (val == 5) {
                 return "<span style='color: #0c9c6e'>已收货</span>";
+            } else if (val == 6) {
+                return "<span style='color: rebeccapurple'>订单已取消</span>";
             }
         }
 
@@ -126,16 +128,18 @@
             var id = selectedRows[0].id;
             if (status == 1) {
                 var str = "支付";
-            }else if (status == 3) {
+            } else if (status == 3) {
                 var str = "发货";
-            }else if (status == 4) {
+            } else if (status == 4) {
                 var str = "派送";
-            }else if (status == 5) {
+            } else if (status == 5) {
                 var str = "确认收货";
+            } else if (status == 6) {
+                var str = "取消订单";
             }
-            $.messager.confirm("系统提示","确认要给这个订单"+str+"吗?",function (r) {
+            $.messager.confirm("系统提示", "确认要给这个订单" + str + "吗?", function (r) {
                 if (r) {
-                    $.post("/admin/saleList/handleOrder",{id:id,status:status},function (result) {
+                    $.post("/admin/saleList/handleOrder", {id: id, status: status}, function (result) {
                         if (result.success) {
                             $("#dg").datagrid("reload");
                         } else {
@@ -145,7 +149,7 @@
                 }
             });
         }
-        
+
         function openOrderDetailDialog() {
             var selectedRows = $("#dg").datagrid('getSelections');
             if (selectedRows.length != 1) {
@@ -153,35 +157,37 @@
                 return;
             }
             var row = selectedRows[0];
-            $("#dg2").datagrid('load',{
-                "saleListId":row.id
+            $("#dg2").datagrid('load', {
+                "saleListId": row.id
             });
             $("#saleNumber").val(row.saleNumber);
             $("#customer").val(row.customer.contact + "(用户名:" + row.customer.userName + ")");
             $("#amountPaid").val(row.amountPaid + "(元)");
-            var v=row.state;
-            if(v==1){
+            var v = row.state;
+            if (v == 1) {
                 $("#status").val("已支付");
-            }else if(v==2){
+            } else if (v == 2) {
                 $("#status").val("未支付");
-            }else if(v==3){
+            } else if (v == 3) {
                 $("#status").val("已发货");
-            }else if(v==4){
+            } else if (v == 4) {
                 $("#status").val("派送中");
-            }else if(v==5){
+            } else if (v == 5) {
                 $("#status").val("已收货");
+            } else if (v == 6) {
+                $("#status").val("已取消");
             }
             $("#dlg").dialog("open").dialog("setTitle", "订单详情");
         }
 
-        function formatGoods(val,row) {
+        function formatGoods(val, row) {
             return "<img width=88 height=88 src='/static/images/goodsImage/" + row.goods.imageName + "'/>";
         }
     </script>
 </head>
 <body style="margin: 1px">
 <table id="dg" title="客户订单处理" class="easyui-datagrid"
-       fitColumns="true" pagination="true" rownumbers="true"
+       fitColumns="true" pagination="true" rownumbers="true" singleselect="true"
        url="/admin/saleList/list" fit="true" toolbar="#tb">
     <thead>
     <th field="cb" checkbox="true" align="center"></th>
@@ -202,10 +208,12 @@
         <a href="javascript:handleOrder(3)" class="easyui-linkbutton" plain="false">发货</a>
         <a href="javascript:handleOrder(4)" class="easyui-linkbutton" plain="false">派送</a>
         <a href="javascript:handleOrder(5)" class="easyui-linkbutton" plain="false">确认收货</a>
+        <a href="javascript:handleOrder(6)" class="easyui-linkbutton" plain="false">取消订单</a>
     </div>
     <div>
         &nbsp;订单号:&nbsp;
-        <input type="text" id="s_saleNumber" size="20" style="height: 25px" onkeydown="if(event.keyCode==13) searchOrder()"/>
+        <input type="text" id="s_saleNumber" size="20" style="height: 25px"
+               onkeydown="if(event.keyCode==13) searchOrder()"/>
         &nbsp;客户用户名:&nbsp;
         <input class="easyui-combobox" id="s_customer" name="customer.id"
                style="width: 180px"
@@ -222,6 +230,7 @@
             <option value="3">已发货</option>
             <option value="4">派送中</option>
             <option value="5">已收货</option>
+            <option value="6">已取消</option>
         </select>
         <a href="javascript:searchOrder()" class="easyui-linkbutton" iconCls="icon-search" plain="true">搜索</a>
     </div>
@@ -247,8 +256,8 @@
         </tr>
     </table>
     <br/>
-    <table id="dg2" title="订单商品列表"  class="easyui-datagrid"
-            pagination="true" rownumbers="true"  pageSize="10" height="55"
+    <table id="dg2" title="订单商品列表" class="easyui-datagrid"
+           pagination="true" rownumbers="true" pageSize="10" height="55"
            url="/admin/saleListGoods/list" style="height: 400px;width: 1100px">
         <thead>
         <tr>

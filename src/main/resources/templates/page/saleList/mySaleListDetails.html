@@ -106,8 +106,13 @@
                                 <div class="left"><a href="/saleList/mySaleList/list/1"
                                                      class="btn btn-outline-info"><i
                                         class="	fa fa-reorder"></i>我的订单</a></div>
-                                <div class="right" th:if="${saleList.state==2}">
-                                    <a href="javascript:submitOrder()" class="btn btn-success">马上支付<i
+                                <div class="right">
+                                    <a href="javascript:submitOrder()" class="btn btn-danger" th:if="${saleList.state<3}"><i class="fa fa-close"></i>取消订单</a>
+                                    <a href="javascript:submitOrder()" class="btn btn-success" th:if="${saleList.state==2}">马上支付<i
+                                            class="fa fa-chevron-right"></i></a>
+                                </div>
+                                <div class="right" th:if="${saleList.state==4}">
+                                    <a href="javascript:confirmReceipt()" class="btn btn-success">确认收货<i
                                             class="fa fa-chevron-right"></i></a>
                                 </div>
                             </div>
