@@ -276,6 +276,14 @@
                 window.location.href = "/inquiry/deleteInquiry?inquiryId=" + inquiryId;
             }
         }
+
+        //客户取消未发货的订单
+        function cancelOrder(saleListId) {
+            if (confirm("您确定要取消这个订单吗?")) {
+                window.location.href = "/saleList/cancelOrder?saleListId=" + saleListId;
+                alert("订单已成功取消!");
+            }
+        }
     </script>
 </head>
 <body>

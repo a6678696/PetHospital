@@ -334,16 +334,24 @@ public class SaleListAdminController {
         SaleList saleList = saleListService.findById(id);
         //3代表的是已发货状态
         int shipStatus = 3;
-        if (status >= shipStatus) {
-            resultMap.put("errorInfo", "该订单已发货,不能取消!");
-            return resultMap;
+        if (saleList.getState() >= shipStatus) {
+            if (saleList.getState()==6) {
+                resultMap.put("errorInfo", "该订单已被取消,不能操作!");
+                return resultMap;
+            }
+            if (status==6) {
+                resultMap.put("errorInfo", "该订单已发货,不能取消!");
+                return resultMap;
+            }
         }
         saleList.setState(status);
-        List<SaleListGoods> saleListGoodsList = saleList.getSaleListGoodsList();
-        for (SaleListGoods saleListGoods : saleListGoodsList) {
-            Goods goods = goodsService.findById(saleListGoods.getGoodsId());
-            goods.setInventoryQuantity(goods.getInventoryQuantity() + saleListGoods.getNum());
-            goodsService.update(goods);
+        if (status==6) {
+            List<SaleListGoods> saleListGoodsList = saleList.getSaleListGoodsList();
+            for (SaleListGoods saleListGoods : saleListGoodsList) {
+                Goods goods = goodsService.findById(saleListGoods.getGoodsId());
+                goods.setInventoryQuantity(goods.getInventoryQuantity() + saleListGoods.getNum());
+                goodsService.update(goods);
+            }
         }
         saleListService.update(saleList);
         resultMap.put("success", true);

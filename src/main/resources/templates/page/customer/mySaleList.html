@@ -65,7 +65,7 @@
                                                                           class="btn btn-primary"><i
                                                 class="fa fa-search"></i></a>
                                             <a href="#" class="btn btn-info" th:if="${mySaleList.state==2}">去支付</a>
-                                            <a href="#" class="btn btn-danger" th:if="${mySaleList.state<3}">取消订单</a>
+                                            <a th:href="'javascript:cancelOrder('+${mySaleList.id}+')'" class="btn btn-danger" th:if="${mySaleList.state<3}">取消订单</a>
                                         </td>
                                     </tr>
                                     </tbody>

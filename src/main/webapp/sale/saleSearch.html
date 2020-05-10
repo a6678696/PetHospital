@@ -115,17 +115,17 @@
 
         function formatState(val, row) {
             if (val == 1) {
-                return "<span style='color: mediumspringgreen'>已支付</span>";
+                return "<span style='color: blue'>已支付</span>";
             } else if (val == 2) {
                 return "<span style='color: red'>未支付</span>";
             }else if (val == 3) {
-                return "<span style='color: red'>未支付</span>";
+                return "<span style='color: #e0a800'>已发货</span>";
             }else if (val == 4) {
-                return "<span style='color: red'>未支付</span>";
+                return "<span style='color: hotpink'>派送中</span>";
             }else if (val == 5) {
-                return "<span style='color: red'>未支付</span>";
+                return "<span style='color: #0c9c6e'>已收货</span>";
             }else if (val == 6) {
-                return "<span style='color: red'>未支付</span>";
+                return "<span style='color: rebeccapurple'>订单已取消</span>";
             }
         }
     </script>
@@ -155,11 +155,15 @@
             &nbsp;&nbsp;&nbsp;客户用户名：&nbsp;<input class="easyui-combobox" id="s_customer" name="customer.id"
                                                style="width: 200px"
                                                data-options="panelHeight:'auto',valueField:'id',textField:'userName',url:'/admin/customer/comboList'"/>
-            &nbsp;&nbsp;&nbsp;是否收款&nbsp;
-            <select class="easyui-combobox" id="s_state" style="width: 70px" editable="false" panelHeight="auto">
+            &nbsp;&nbsp;&nbsp;当前状态：&nbsp;
+            <select class="easyui-combobox" id="s_state" style="width: 80px" editable="false" panelHeight="auto">
                 <option value="">全部</option>
-                <option value="1">已收</option>
-                <option value="2">未收</option>
+                <option value="2">未支付</option>
+                <option value="1">已支付</option>
+                <option value="3">已发货</option>
+                <option value="4">派送中</option>
+                <option value="5">已收货</option>
+                <option value="6">已取消</option>
             </select>
             &nbsp;&nbsp;&nbsp;日期：&nbsp;
             <input id="s_bSaleDate" class="easyui-datetimebox" editable=false style="width:180px"/>

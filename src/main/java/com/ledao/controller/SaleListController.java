@@ -1,6 +1,7 @@
 package com.ledao.controller;
 
 import com.ledao.entity.Customer;
+import com.ledao.entity.Goods;
 import com.ledao.entity.SaleList;
 import com.ledao.entity.SaleListGoods;
 import com.ledao.service.GoodsService;
@@ -66,11 +67,17 @@ public class SaleListController {
         return mav;
     }
 
+    /**
+     * 查看订单详情
+     *
+     * @param saleListId
+     * @return
+     */
     @RequestMapping("/mySaleListDetails")
     public ModelAndView mySaleListDetails(Integer saleListId) {
         ModelAndView mav = new ModelAndView();
         SaleList saleList = saleListService.findById(saleListId);
-        Map<String,Object> map=new HashMap<>(16);
+        Map<String, Object> map = new HashMap<>(16);
         map.put("saleListId", saleList.getId());
         saleList.setSaleListGoodsList(saleListGoodsService.list(map));
         for (SaleListGoods saleListGoods : saleList.getSaleListGoodsList()) {
@@ -82,5 +89,27 @@ public class SaleListController {
         mav.addObject("mainPageKey", "#b");
         mav.setViewName("index");
         return mav;
+    }
+
+    /**
+     * 客户取消未发货的订单
+     *
+     * @param saleListId
+     * @return
+     */
+    @RequestMapping("/cancelOrder")
+    public String cancelOrder(Integer saleListId) {
+        SaleList saleList = saleListService.findById(saleListId);
+        Map<String,Object> map=new HashMap<>(16);
+        map.put("saleListId", saleListId);
+        List<SaleListGoods> saleListGoodsList = saleListGoodsService.list(map);
+        for (SaleListGoods saleListGoods : saleListGoodsList) {
+            Goods goods = goodsService.findById(saleListGoods.getGoodsId());
+            goods.setInventoryQuantity(goods.getInventoryQuantity()+saleListGoods.getNum());
+            goodsService.update(goods);
+        }
+        saleList.setState(6);
+        saleListService.update(saleList);
+        return "redirect:/saleList/mySaleListDetails" + "?saleListId=" + saleListId;
     }
 }
