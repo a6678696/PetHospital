@@ -59,6 +59,8 @@
                                                 class="badge badge-primary" style="font-size: 15px">派送中</span></td>
                                         <td style="text-align: center" th:if="${mySaleList.state==5}"><span
                                                 class="badge badge-success" style="font-size: 15px">已收货</span></td>
+                                        <td style="text-align: center" th:if="${mySaleList.state==6}"><span
+                                                class="badge badge-secondary" style="font-size: 15px">已取消</span></td>
                                         <td style="text-align: center"><a th:href="@{'/saleList/mySaleListDetails?saleListId='+${mySaleList.id}}"
                                                                           class="btn btn-primary"><i
                                                 class="fa fa-search"></i></a>

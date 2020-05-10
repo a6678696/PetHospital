@@ -24,10 +24,10 @@
         select max(saleNumber) from t_sale_list where to_days(saleDate)=to_days(now())
     </select>
     <select id="countSaleByDay" parameterType="string" resultMap="SaleCountResult">
-        SELECT SUM(t3.purchasingPrice*t1.num) AS amountCost,SUM(t1.price*t1.num) AS amountSale,DATE(t2.saleDate) AS `date` FROM  t_sale_list_goods t1 LEFT JOIN t_sale_list t2 ON t1.saleListId=t2.id LEFT JOIN t_goods t3 ON t3.id=t1.goodsId WHERE t2.saleDate BETWEEN #{param1} AND ADDDATE(#{param2},1) GROUP BY DATE(t2.saleDate);
+        SELECT SUM(t3.purchasingPrice*t1.num) AS amountCost,SUM(t1.price*t1.num) AS amountSale,DATE(t2.saleDate) AS `date` FROM  t_sale_list_goods t1 LEFT JOIN t_sale_list t2 ON t1.saleListId=t2.id LEFT JOIN t_goods t3 ON t3.id=t1.goodsId WHERE t2.state!=6 and t2.saleDate BETWEEN #{param1} AND ADDDATE(#{param2},1) GROUP BY DATE(t2.saleDate);
     </select>
     <select id="countSaleByMonth" parameterType="string" resultMap="SaleCountResult">
-        SELECT SUM(t3.purchasingPrice*t1.num) AS amountCost,SUM(t1.price*t1.num) AS amountSale,DATE_FORMAT(t2.saleDate,'%Y-%m') AS `date` FROM  t_sale_list_goods t1 LEFT JOIN t_sale_list t2 ON t1.saleListId=t2.`id` LEFT JOIN t_goods t3 ON t3.`id`=t1.goodsId WHERE DATE_FORMAT(t2.saleDate,'%Y-%m') BETWEEN #{param1} AND #{param2} GROUP BY DATE_FORMAT(t2.`saleDate`,'%Y-%m')
+        SELECT SUM(t3.purchasingPrice*t1.num) AS amountCost,SUM(t1.price*t1.num) AS amountSale,DATE_FORMAT(t2.saleDate,'%Y-%m') AS `date` FROM  t_sale_list_goods t1 LEFT JOIN t_sale_list t2 ON t1.saleListId=t2.`id` LEFT JOIN t_goods t3 ON t3.`id`=t1.goodsId WHERE t2.state!=6 and DATE_FORMAT(t2.saleDate,'%Y-%m') BETWEEN #{param1} AND #{param2} GROUP BY DATE_FORMAT(t2.`saleDate`,'%Y-%m')
     </select>
     <select id="findById" parameterType="integer" resultMap="SaleListResult">
         select * from t_sale_list where id=#{id}

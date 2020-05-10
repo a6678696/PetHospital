@@ -5,6 +5,7 @@ import com.ledao.entity.SaleCount;
 import com.ledao.entity.SaleList;
 import com.ledao.entity.SaleListGoods;
 import com.ledao.mapper.GoodsMapper;
+import com.ledao.mapper.SaleListGoodsMapper;
 import com.ledao.mapper.SaleListMapper;
 import com.ledao.service.GoodsService;
 import com.ledao.service.SaleListGoodsService;
@@ -33,7 +34,7 @@ public class SaleListServiceImpl implements SaleListService {
     private GoodsMapper goodsMapper;
 
     @Resource
-    private SaleListGoodsService saleListGoodsService;
+    private SaleListGoodsMapper saleListGoodsMapper;
 
     @Override
     public String getTodayMaxSaleNumber() {
@@ -96,7 +97,7 @@ public class SaleListServiceImpl implements SaleListService {
         for (SaleList saleList : saleListList) {
             Map<String,Object> map=new HashMap<>(16);
             map.put("saleListId", saleList.getId());
-            List<SaleListGoods> saleListGoodsList = saleListGoodsService.list(map);
+            List<SaleListGoods> saleListGoodsList = saleListGoodsMapper.list(map);
             for (SaleListGoods saleListGoods : saleListGoodsList) {
                 Goods goods = goodsMapper.findById(saleListGoods.getGoodsId());
                 goods.setInventoryQuantity(goods.getInventoryQuantity()+saleListGoods.getNum());

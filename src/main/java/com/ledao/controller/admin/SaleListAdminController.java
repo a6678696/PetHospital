@@ -128,7 +128,6 @@ public class SaleListAdminController {
     @RequestMapping("/list")
     @RequiresPermissions(value = {"销售单据查询", "供应商统计"}, logical = Logical.OR)
     public Map<String, Object> list(SaleList saleList, @RequestParam(value = "page", required = false) Integer page, @RequestParam(value = "rows", required = false) Integer rows) {
-        PageBean pageBean = new PageBean(page, rows);
         Map<String, Object> resultMap = new HashMap<>(16);
         Map<String, Object> map = new HashMap<>(16);
         Customer customer = customerService.findById(saleList.getCustomerId());
@@ -138,8 +137,11 @@ public class SaleListAdminController {
         map.put("state", saleList.getState());
         map.put("bSaleDate", saleList.getBSaleDate());
         map.put("eSaleDate", saleList.getESaleDate());
-        map.put("start", pageBean.getStart());
-        map.put("size", pageBean.getPageSize());
+        if (page != null) {
+            PageBean pageBean = new PageBean(page, rows);
+            map.put("start", pageBean.getStart());
+            map.put("size", pageBean.getPageSize());
+        }
         List<SaleList> saleListList = saleListService.list(map);
         Long total = saleListService.getCount(map);
         resultMap.put("rows", saleListList);
@@ -276,11 +278,12 @@ public class SaleListAdminController {
 
     /**
      * 按月统计分析
+     *
      * @return
      * @throws Exception
      */
     @RequestMapping("/countSaleByMonth")
-    @RequiresPermissions(value="按月统计分析")
+    @RequiresPermissions(value = "按月统计分析")
     public Map<String, Object> countSaleByMonth(String begin, String end) throws Exception {
         Map<String, Object> resultMap = new HashMap<>(16);
         List<SaleCount> saleCountList = new ArrayList<>();
@@ -318,11 +321,30 @@ public class SaleListAdminController {
         return resultMap;
     }
 
+    /**
+     * 修改订单的状态,如果是取消订单会将订单商品的数量释放到库存中
+     *
+     * @param id
+     * @param status
+     * @return
+     */
     @RequestMapping("/handleOrder")
     public Map<String, Object> handleOrder(Integer id, Integer status) {
-        Map<String,Object> resultMap=new HashMap<>(16);
+        Map<String, Object> resultMap = new HashMap<>(16);
         SaleList saleList = saleListService.findById(id);
+        //3代表的是已发货状态
+        int shipStatus = 3;
+        if (status >= shipStatus) {
+            resultMap.put("errorInfo", "该订单已发货,不能取消!");
+            return resultMap;
+        }
         saleList.setState(status);
+        List<SaleListGoods> saleListGoodsList = saleList.getSaleListGoodsList();
+        for (SaleListGoods saleListGoods : saleListGoodsList) {
+            Goods goods = goodsService.findById(saleListGoods.getGoodsId());
+            goods.setInventoryQuantity(goods.getInventoryQuantity() + saleListGoods.getNum());
+            goodsService.update(goods);
+        }
         saleListService.update(saleList);
         resultMap.put("success", true);
         return resultMap;
