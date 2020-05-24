@@ -1,0 +1,183 @@
+<!DOCTYPE html>
+<!--suppress ALL-->
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>客户支付记录管理</title>
+    <link rel="stylesheet" type="text/css" href="/static/jquery-easyui-1.7.0/themes/metro-blue/easyui.css">
+    <link rel="stylesheet" type="text/css" href="/static/jquery-easyui-1.7.0/themes/icon.css">
+    <script type="text/javascript" src="/static/jquery-easyui-1.7.0/jquery.min.js"></script>
+    <script type="text/javascript" src="/static/jquery-easyui-1.7.0/jquery.easyui.min.js"></script>
+    <script type="text/javascript" src="/static/jquery-easyui-1.7.0/locale/easyui-lang-zh_CN.js"></script>
+    <script type="text/javascript">
+        var url;
+
+        function searchSaleListPaymentInformation() {
+            $("#dg").datagrid('load',{
+                "saleNumber": $("#s_saleNumber").val(),
+                "type": $("#s_type").val(),
+                "customer.id": $("#s_customerId").val(),
+                "bSaleDate": $("#s_bSaleDate").val(),
+                "eSaleDate": $("#s_eSaleDate").val()
+            });
+        }
+
+        function resetValue() {
+
+            $("#name").val("");
+            $("#remarks").val("");
+        }
+
+        function closeArticleTypeDialog() {
+            $("#dlg").dialog("close");
+            resetValue();
+        }
+
+        function saveArticleType() {
+            $("#fm").form("submit", {
+                url: url,
+                onSubmit: function () {
+                    return $(this).form("validate");
+                },
+                success: function (result) {
+                    var result = eval('(' + result + ')');
+                    if (result.success) {
+                        $.messager.alert("系统提示", "保存成功！");
+                        resetValue();
+                        $("#dlg").dialog("close");
+                        $("#dg").datagrid("reload");
+                    } else {
+                        $.messager.alert("系统提示", "保存失败!");
+                    }
+                }
+            });
+        }
+
+        function openArticleTypeAddDialog() {
+            $("#dlg").dialog("open").dialog("setTitle", "添加文章类型信息");
+            url = "/admin/articleType/save";
+        }
+
+        function openArticleTypeModifyDialog() {
+            var selectedRows = $("#dg").datagrid("getSelections");
+            if (selectedRows.length != 1) {
+                $.messager.alert("系统提示", "请选择一条要修改的数据！");
+                return;
+            }
+            var row = selectedRows[0];
+            $("#dlg").dialog("open").dialog("setTitle", "修改文章类型信息");
+            $("#fm").form("load", row);
+            url = "/admin/articleType/save?id=" + row.id;
+        }
+
+        function deleteArticleType() {
+            var selectedRows = $("#dg").datagrid("getSelections");
+            if (selectedRows.length == 0) {
+                $.messager.alert("系统提示", "请选择要删除的数据！");
+                return;
+            }
+            var strIds = [];
+            for (var i = 0; i < selectedRows.length; i++) {
+                strIds.push(selectedRows[i].id);
+            }
+            var ids = strIds.join(",");
+            $.messager.confirm("系统提示", "您确定要删除这<span style='color: red'>" + selectedRows.length + "</span>条数据吗?", function (r) {
+                if (r) {
+                    $.post("/admin/articleType/delete", {ids: ids}, function (result) {
+                        if (result.success) {
+                            $.messager.alert("系统提示", "数据已成功删除！");
+                            $("#dg").datagrid("reload");
+                        } else {
+                            $.messager.alert("系统提示", result.errorInfo);
+                        }
+                    }, "json");
+                }
+            });
+        }
+
+        $(document).ready(function () {
+
+            $("#dg").datagrid({
+                onDblClickRow: function (index, row) {
+                    $("#dlg").dialog("open").dialog("setTitle", "修改文章类型信息");
+                    $("#fm").form("load", row);
+                    url = "/admin/articleType/save?id=" + row.id;
+                }
+            });
+
+        });
+
+        function formatCustomer(val, row) {
+            return val.contact;
+        }
+
+        function formatType(val,row) {
+            if (val == 1) {
+                return "支付宝支付";
+            } else {
+                return "微信支付";
+            }
+        }
+    </script>
+</head>
+<body style="margin: 1px">
+<table id="dg" title="文章类型管理" class="easyui-datagrid"  striped="true"
+       fitColumns="true" pagination="true" rownumbers="true"
+       url="/admin/saleListPaymentInformation/list" fit="true" toolbar="#tb">
+    <thead>
+    <th field="cb" checkbox="true" align="center"></th>
+    <th field="id" width="20" align="center" hidden="true">编号</th>
+    <th field="saleNumber" width="50" align="center">销售单号</th>
+    <th field="type" width="50" align="center" formatter="formatType">支付方式</th>
+    <th field="amount" width="50" align="center">支付金额</th>
+    <th field="customer" width="50" align="center" formatter="formatCustomer">支付人</th>
+    <th field="payDate" width="50" align="center">支付时间</th>
+    </thead>
+</table>
+
+<div id="tb">
+    <div>
+        &nbsp;销售单号:&nbsp;<input type="text" id="s_saleNumber" size="20" onkeydown="if(event.keyCode==13) searchSaleListPaymentInformation()"/>
+        &nbsp;支付方式:&nbsp;
+        <select class="easyui-combobox" id="s_type" style="width: 154px" editable="false" panelHeight="auto">
+            <option value="">所有类型</option>
+            <option value="1">支付宝支付</option>
+            <option value="2">微信支付</option>
+        </select>
+        客户名称：<input class="easyui-combobox" id="s_customerId" name="customer.id" style="width: 100px"
+                                         data-options="panelHeight:'auto',valueField:'id',textField:'contact',url:'/admin/customer/comboList'"/>
+        &nbsp;日期:
+        <input id="s_bSaleDate" class="easyui-datetimebox" editable=false style="width:180px"/>
+        &nbsp;-&nbsp;
+        <input id="s_eSaleDate" class="easyui-datetimebox" editable=false style="width:180px"/>
+        <a href="javascript:searchSaleListPaymentInformation()" class="easyui-linkbutton" iconCls="icon-search" plain="true">搜索</a>
+    </div>
+</div>
+
+
+<div id="dlg" class="easyui-dialog" style="width: 450px;height: 235px;padding: 10px 20px"
+     closed="true" buttons="#dlg-buttons" data-options="onClose:function(){resetValue()}">
+    <form id="fm" method="post">
+        <table cellspacing="8px">
+            <tr>
+                <td valign="top">名称:</td>
+                <td>
+                    <input id="name" name="name" class="easyui-validatebox" required="true" style="width: 100px">
+                </td>
+            </tr>
+            <tr>
+                <td valign="top">备注:</td>
+                <td>
+                    <textarea rows="5" cols="40" id="remarks" name="remarks"></textarea>
+                </td>
+            </tr>
+        </table>
+    </form>
+</div>
+
+<div id="dlg-buttons">
+    <a href="javascript:saveArticleType()" class="easyui-linkbutton" iconCls="icon-ok">保存</a>
+    <a href="javascript:closeArticleTypeDialog()" class="easyui-linkbutton" iconCls="icon-cancel">关闭</a>
+</div>
+</body>
+</html>

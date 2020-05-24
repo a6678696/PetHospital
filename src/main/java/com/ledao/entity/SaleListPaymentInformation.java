@@ -35,6 +35,10 @@ public class SaleListPaymentInformation {
      */
     private Integer customerId;
     /**
+     * 客户实体
+     */
+    private Customer customer;
+    /**
      * 支付时间
      */
     private Date payDate;
@@ -42,4 +46,12 @@ public class SaleListPaymentInformation {
      * 订单备注
      */
     private String remark;
+    /**
+     *起始日期 搜索用到
+     */
+    private Date bSaleDate;
+    /**
+     *结束日期 搜索用到
+     */
+    private Date eSaleDate;
 }
