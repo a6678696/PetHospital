@@ -10,14 +10,7 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="0a04dcdb-703f-4bd2-b3be-43a82c777491" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/ledao/controller/admin/SaleListPaymentInformationAdmin.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/webapp/basicData/saleListPaymentInformationManage.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/webapp/static/jquery-easyui-1.7.0/themes/usericons/menu-5100.gif" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/ledao/entity/SaleListPaymentInformation.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/ledao/entity/SaleListPaymentInformation.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/mybatis/mapper/SaleListPaymentInformationMapper.xml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/mybatis/mapper/SaleListPaymentInformationMapper.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/basicData/suggestionManage.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/basicData/suggestionManage.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/static/jquery-easyui-1.7.0/themes/icon.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/static/jquery-easyui-1.7.0/themes/icon.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/webapp/basicData/saleListPaymentInformationManage.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/basicData/saleListPaymentInformationManage.html" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -356,14 +349,7 @@
       <workItem from="1590148810288" duration="3560000" />
       <workItem from="1590202030600" duration="2215000" />
       <workItem from="1590245395838" duration="3714000" />
-      <workItem from="1590298334615" duration="9205000" />
-    </task>
-    <task id="LOCAL-00036" summary="LeDao宠物医院管理系统">
-      <created>1580720567283</created>
-      <option name="number" value="00036" />
-      <option name="presentableId" value="LOCAL-00036" />
-      <option name="project" value="LOCAL" />
-      <updated>1580720567283</updated>
+      <workItem from="1590298334615" duration="9528000" />
     </task>
     <task id="LOCAL-00037" summary="LeDao宠物医院管理系统">
       <created>1580747185606</created>
@@ -701,7 +687,14 @@
       <option name="project" value="LOCAL" />
       <updated>1590300404271</updated>
     </task>
-    <option name="localTasksCounter" value="85" />
+    <task id="LOCAL-00085" summary="LeDao宠物医院管理系统">
+      <created>1590334912543</created>
+      <option name="number" value="00085" />
+      <option name="presentableId" value="LOCAL-00085" />
+      <option name="project" value="LOCAL" />
+      <updated>1590334912543</updated>
+    </task>
+    <option name="localTasksCounter" value="86" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -742,10 +735,10 @@
       <screen x="0" y="0" width="1536" height="824" />
     </state>
     <state x="578" y="319" key="#com.intellij.javaee.module.view.web.EditWebRootDialog/0.0.1536.824@0.0.1536.824" timestamp="1590202329722" />
-    <state x="207" y="84" width="1010" height="632" key="CommitChangelistDialog2" timestamp="1590300400563">
+    <state x="207" y="84" width="1010" height="632" key="CommitChangelistDialog2" timestamp="1590334909855">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state x="207" y="84" width="1010" height="632" key="CommitChangelistDialog2/0.0.1536.824@0.0.1536.824" timestamp="1590300400563" />
+    <state x="207" y="84" width="1010" height="632" key="CommitChangelistDialog2/0.0.1536.824@0.0.1536.824" timestamp="1590334909855" />
     <state width="1067" height="466" key="DebuggerActiveHint" timestamp="1590334031177">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
@@ -818,10 +811,10 @@
       <screen x="0" y="0" width="1536" height="824" />
     </state>
     <state width="498" height="498" key="SwitcherDM/0.0.1536.824@0.0.1536.824" timestamp="1588430277766" />
-    <state x="361" y="146" key="Vcs.Push.Dialog.v2" timestamp="1590300446123">
+    <state x="361" y="146" key="Vcs.Push.Dialog.v2" timestamp="1590334930714">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state x="361" y="146" key="Vcs.Push.Dialog.v2/0.0.1536.824@0.0.1536.824" timestamp="1590300446123" />
+    <state x="361" y="146" key="Vcs.Push.Dialog.v2/0.0.1536.824@0.0.1536.824" timestamp="1590334930714" />
     <state width="775" height="419" key="XDebugger.FullValuePopup" timestamp="1589030526398">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
