@@ -106,12 +106,19 @@ public class CustomerController {
             mav.addObject("title", "用户登录");
             mav.addObject("mainPage", "page/login");
         } else {
-            Customer currentCustomer = customerService.findByUserName(customer.getUserName()).get(0);
-            if (currentCustomer.getPassword().equals(customer.getPassword())) {
-                session.setAttribute("currentCustomer", currentCustomer);
-                mav.addObject("successLogin", true);
-                mav.addObject("title", "首页");
-                mav.addObject("mainPage", "page/indexFirst");
+            List<Customer> customerList = customerService.findByUserName(customer.getUserName());
+            if (customerList.size() != 0) {
+                Customer currentCustomer = customerService.findByUserName(customer.getUserName()).get(0);
+                if (currentCustomer.getPassword().equals(customer.getPassword())) {
+                    session.setAttribute("currentCustomer", currentCustomer);
+                    mav.addObject("successLogin", true);
+                    mav.addObject("title", "首页");
+                    mav.addObject("mainPage", "page/indexFirst");
+                } else {
+                    mav.addObject("successLogin", false);
+                    mav.addObject("title", "用户登录");
+                    mav.addObject("mainPage", "page/login");
+                }
             } else {
                 mav.addObject("successLogin", false);
                 mav.addObject("title", "用户登录");

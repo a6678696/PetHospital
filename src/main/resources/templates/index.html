@@ -100,6 +100,7 @@
         function logout() {
             if (confirm("你确定要退出系统吗?")) {
                 window.location.href = "/customer/logout";
+                alert("您已成功退出!");
             }
         }
 
@@ -107,6 +108,7 @@
         function submitOrder() {
             if (confirm("你确定要提交订单吗?(购物车将被清空!)")) {
                 window.location.href = "/shopping/submitOrder";
+                alert("订单提交成功!");
             }
         }
 
@@ -173,6 +175,7 @@
         function removeShoppingCartItem(goodsId) {
             if (confirm("您确定要要从购物车中删除这个商品吗?")) {
                 window.location.href = "/shopping/removeShoppingCartItem?goodsId=" + goodsId;
+                alert("删除成功!");
             }
         }
 
@@ -230,6 +233,7 @@
         function deletePet(petId) {
             if (confirm("您确定要删除这个宠物吗?")) {
                 window.location.href = "/pet/deletePet?petId=" + petId;
+                alert("删除成功!");
             }
         }
 
@@ -267,6 +271,7 @@
         function deleteReservation(reservationId) {
             if (confirm("您确定要删除这个预约单吗?")) {
                 window.location.href = "/reservation/delete?reservationId=" + reservationId;
+                alert("删除成功!");
             }
         }
 
@@ -274,6 +279,7 @@
         function deleteInquiry(inquiryId) {
             if (confirm("您确定要删除这条问诊记录吗?")) {
                 window.location.href = "/inquiry/deleteInquiry?inquiryId=" + inquiryId;
+                alert("删除成功!");
             }
         }
 
@@ -282,6 +288,21 @@
             if (confirm("您确定要取消这个订单吗?")) {
                 window.location.href = "/saleList/cancelOrder?saleListId=" + saleListId;
                 alert("订单已成功取消!");
+            }
+        }
+
+        //客户确认收货
+        function confirmDispatch(saleListId) {
+            if (confirm("您确定要确认收货吗?")) {
+                window.location.href = "/saleList/confirmDispatch?saleListId=" + saleListId;
+                alert("订单已确认收货!");
+            }
+        }
+
+        //客户确认支付订单
+        function pay(saleListId) {
+            if (confirm("您确定要支付吗?")) {
+                window.location.href = "/saleList/payPage?saleListId=" + saleListId;
             }
         }
     </script>

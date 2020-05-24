@@ -29,7 +29,7 @@
                         <div class="box">
                             <div class="table-responsive">
                                 <p class="text-muted">您一共有 <span
-                                        th:text="${total}" style="color: orangered"></span> 个订单</p>
+                                        th:text="${total}" style="color: orangered"></span> 个订单<span style="color: red">(超过一天未支付的订单系统会自动取消,创建超过两周的已支付订单会自动确认收货)</span></p>
                                 <table class="table table-hover">
                                     <thead>
                                     <tr>
@@ -62,9 +62,10 @@
                                         <td style="text-align: center" th:if="${mySaleList.state==6}"><span
                                                 class="badge badge-secondary" style="font-size: 15px">已取消</span></td>
                                         <td style="text-align: center"><a th:href="@{'/saleList/mySaleListDetails?saleListId='+${mySaleList.id}}"
-                                                                          class="btn btn-primary"><i
+                                                                          class="btn btn-primary" title="查看订单详情"><i
                                                 class="fa fa-search"></i></a>
-                                            <a href="#" class="btn btn-info" th:if="${mySaleList.state==2}">去支付</a>
+                                            <a th:href="'javascript:pay('+${mySaleList.id}+')'" class="btn btn-info" th:if="${mySaleList.state==2}">去支付</a>
+                                            <a th:href="'javascript:confirmDispatch('+${mySaleList.id}+')'" class="btn btn-success" th:if="${mySaleList.state==4}">确认收货</a>
                                             <a th:href="'javascript:cancelOrder('+${mySaleList.id}+')'" class="btn btn-danger" th:if="${mySaleList.state<3}">取消订单</a>
                                         </td>
                                     </tr>

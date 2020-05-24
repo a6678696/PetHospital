@@ -112,4 +112,42 @@ public class SaleListController {
         saleListService.update(saleList);
         return "redirect:/saleList/mySaleListDetails" + "?saleListId=" + saleListId;
     }
+
+    /**
+     * 客户确认收货
+     *
+     * @param saleListId
+     * @return
+     */
+    @RequestMapping("/confirmDispatch")
+    public String confirmDispatch(Integer saleListId) {
+        SaleList saleList = saleListService.findById(saleListId);
+        saleList.setState(5);
+        saleListService.update(saleList);
+        return "redirect:/saleList/mySaleListDetails" + "?saleListId=" + saleListId;
+    }
+
+    /**
+     * 查看订单详情
+     *
+     * @param saleListId
+     * @return
+     */
+    @RequestMapping("/payPage")
+    public ModelAndView payPage(Integer saleListId) {
+        ModelAndView mav = new ModelAndView();
+        SaleList saleList = saleListService.findById(saleListId);
+        Map<String, Object> map = new HashMap<>(16);
+        map.put("saleListId", saleList.getId());
+        saleList.setSaleListGoodsList(saleListGoodsService.list(map));
+        for (SaleListGoods saleListGoods : saleList.getSaleListGoodsList()) {
+            saleListGoods.setGoods(goodsService.findById(saleListGoods.getGoodsId()));
+        }
+        mav.addObject("saleList", saleList);
+        mav.addObject("title", "支付订单");
+        mav.addObject("mainPage", "page/saleList/payPage");
+        mav.addObject("mainPageKey", "#b");
+        mav.setViewName("index");
+        return mav;
+    }
 }

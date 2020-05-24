@@ -76,7 +76,7 @@
                                                      class="btn btn-outline-info"><i
                                         class="	fa fa-reorder"></i>我的订单</a></div>
                                 <div class="right">
-                                    <a href="javascript:submitOrder()" class="btn btn-success">马上支付<i
+                                    <a th:href="'javascript:pay('+${saleList.id}+')'" class="btn btn-success">马上支付<i
                                             class="fa fa-chevron-right"></i></a>
                                 </div>
                             </div>

@@ -22,7 +22,7 @@ public class CancelOrderOverOneDay {
     private SaleListService saleListService;
 
     /**
-     * 取消客户提交的超过一天未支付的订单
+     * 取消客户提交的超过一天未支付的订单(每分钟运行一次)
      */
     @Scheduled(cron = "0 */1 * * * ?")
     public void work() {
