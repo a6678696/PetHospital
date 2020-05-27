@@ -2,9 +2,7 @@ package com.ledao.controller;
 
 import com.ledao.entity.*;
 import com.ledao.entity.Goods;
-import com.ledao.service.FavoriteService;
-import com.ledao.service.GoodsService;
-import com.ledao.service.GoodsTypeService;
+import com.ledao.service.*;
 import com.ledao.util.PageUtil;
 import com.ledao.util.StringUtil;
 import org.springframework.stereotype.Controller;
@@ -36,6 +34,12 @@ public class GoodsController {
 
     @Resource
     private FavoriteService favoriteService;
+
+    @Resource
+    private SaleListGoodsService saleListGoodsService;
+
+    @Resource
+    private ReturnListGoodsService returnListGoodsService;
 
     /**
      * 搜索商品
@@ -164,6 +168,7 @@ public class GoodsController {
         List<Goods> goodsList1 = new ArrayList<>();
         goodsList1.add(goods);
         this.setGoodsFavorite(goodsList1,session);
+        mav.addObject("allSaleTotal", saleListGoodsService.getSaleCount(goods.getId()) - returnListGoodsService.getReturnCount(goods.getId()));
         mav.addObject("bigTypeName", goodsTypeService.findById(goodsTypeService.findById(goods.getType().getId()).getPId()).getName());
         mav.addObject("bigTypeId", goodsTypeService.findById(goodsTypeService.findById(goods.getType().getId()).getPId()).getId());
         mav.addObject("goods", goods);

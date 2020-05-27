@@ -13,6 +13,7 @@
         <result property="price" column="price"/>
         <result property="num" column="num"/>
         <result property="total" column="total"/>
+        <result property="status" column="status"/>
         <association property="saleList" column="saleListId" select="com.ledao.mapper.SaleListMapper.findById"></association>
         <association property="type" column="typeId" select="com.ledao.mapper.GoodsTypeMapper.findById"></association>
     </resultMap>
@@ -59,5 +60,10 @@
             </if>
         </where>
     </select>
-
+    <select id="getSaleCount" parameterType="integer" resultType="java.lang.Long">
+        SELECT COUNT(*) AS saleCount FROM t_sale_list_goods WHERE goodsId=#{goodsId};
+    </select>
+    <select id="findById" parameterType="integer" resultMap="SaleListGoodsResult">
+        select * from t_sale_list_goods where id=#{saleListGoodsId}
+    </select>
 </mapper>

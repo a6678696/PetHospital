@@ -45,4 +45,12 @@ public interface ReturnListGoodsService {
      * @return
      */
     Integer add(ReturnListGoods returnListGoods);
+
+    /**
+     * 获取某商品退货数量
+     *
+     * @param goodsId
+     * @return
+     */
+    Long getReturnCount(Integer goodsId);
 }

@@ -41,4 +41,9 @@ public class ReturnListGoodsServiceImpl implements ReturnListGoodsService {
     public Integer add(ReturnListGoods returnListGoods) {
         return returnListGoodsMapper.add(returnListGoods);
     }
+
+    @Override
+    public Long getReturnCount(Integer goodsId) {
+        return returnListGoodsMapper.getReturnCount(goodsId);
+    }
 }

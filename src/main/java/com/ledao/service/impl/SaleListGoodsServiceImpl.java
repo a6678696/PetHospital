@@ -51,4 +51,14 @@ public class SaleListGoodsServiceImpl implements SaleListGoodsService {
     public Integer add(SaleListGoods saleListGoods) {
         return saleListGoodsMapper.add(saleListGoods);
     }
+
+    @Override
+    public Long getSaleCount(Integer goodsId) {
+        return saleListGoodsMapper.getSaleCount(goodsId);
+    }
+
+    @Override
+    public SaleListGoods findById(Integer saleListGoodsId) {
+        return saleListGoodsMapper.findById(saleListGoodsId);
+    }
 }

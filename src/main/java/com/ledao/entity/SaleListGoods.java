@@ -75,4 +75,8 @@ public class SaleListGoods {
      *查询用到 根据商品编码或者商品名称查询
      */
     private String codeOrName;
+    /**
+     * 是否评价 0.未评价 1.已评价
+     */
+    private Integer status;
 }

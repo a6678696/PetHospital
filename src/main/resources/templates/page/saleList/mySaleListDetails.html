@@ -38,6 +38,7 @@
                                         <th style="text-align: center">单价</th>
                                         <th style="text-align: center">折扣</th>
                                         <th style="text-align: center">小计</th>
+                                        <th style="text-align: center" th:if="${saleList.state==5}">操作</th>
                                     </tr>
                                     </thead>
                                     <tbody>
@@ -56,6 +57,10 @@
                                         </td>
                                         <td style="text-align: center">￥0.0</td>
                                         <td style="text-align: center">￥<span th:text="${saleListGoods.total}"></span>
+                                        </td>
+                                        <td style="text-align: center" th:if="${saleList.state==5}">
+                                            <a th:href="'javascript:comment()'" class="btn btn-info" th:if="${saleListGoods.status==0}">评价</a>
+                                            <a href="" class="btn btn-danger">退货</a>
                                         </td>
                                     </tr>
                                     </tbody>
@@ -84,17 +89,31 @@
                                             th:text="${session.currentCustomer.getNumber()}"></p>
                                     </div>
                                     <tfoot>
-                                    <tr>
+                                    <tr th:if="${saleList.state==5}">
+                                        <th colspan="6" class="text-right" style="color: blue">商品总价</th>
+                                        <th th:if="${saleList.amountPaid>=88}">￥<span th:text="${saleList.amountPaid}"></span></th>
+                                        <th th:if="${saleList.amountPaid<88}">￥<span th:text="${saleList.amountPaid+(-10)}"></span></th>
+                                    </tr>
+                                    <tr th:if="${saleList.state==5}">
+                                        <th colspan="6" class="text-right" style="color: #0c9c6e">运费</th>
+                                        <th th:if="${saleList.amountPaid<88}">￥10.0</th>
+                                        <th th:if="${saleList.amountPaid>=88}">￥0.0</th>
+                                    </tr>
+                                    <tr th:if="${saleList.state==5}">
+                                        <th colspan="6" class="text-right" style="color: orangered">总计</th>
+                                        <th>￥<span th:text="${saleList.amountPaid}"></span></th>
+                                    </tr>
+                                    <tr th:if="${saleList.state!=5}">
                                         <th colspan="5" class="text-right" style="color: blue">商品总价</th>
                                         <th th:if="${saleList.amountPaid>=88}">￥<span th:text="${saleList.amountPaid}"></span></th>
                                         <th th:if="${saleList.amountPaid<88}">￥<span th:text="${saleList.amountPaid+(-10)}"></span></th>
                                     </tr>
-                                    <tr>
+                                    <tr th:if="${saleList.state!=5}">
                                         <th colspan="5" class="text-right" style="color: #0c9c6e">运费</th>
                                         <th th:if="${saleList.amountPaid<88}">￥10.0</th>
                                         <th th:if="${saleList.amountPaid>=88}">￥0.0</th>
                                     </tr>
-                                    <tr>
+                                    <tr th:if="${saleList.state!=5}">
                                         <th colspan="5" class="text-right" style="color: orangered">总计</th>
                                         <th>￥<span th:text="${saleList.amountPaid}"></span></th>
                                     </tr>

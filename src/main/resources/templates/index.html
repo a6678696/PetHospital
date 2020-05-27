@@ -305,6 +305,13 @@
                 window.location.href = "/saleList/payPage?saleListId=" + saleListId;
             }
         }
+
+        //客户评价订单商品
+        function comment() {
+            if (confirm("您确定要评价这个商品吗?")) {
+                window.location.href = "/comment/commentPage";
+            }
+        }
     </script>
 </head>
 <body>

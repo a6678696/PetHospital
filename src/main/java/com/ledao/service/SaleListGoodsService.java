@@ -61,4 +61,20 @@ public interface SaleListGoodsService {
      * @return
      */
     Integer add(SaleListGoods saleListGoods);
+
+    /**
+     * 获取商品销售数
+     *
+     * @param goodsId
+     * @return
+     */
+    Long getSaleCount(Integer goodsId);
+
+    /**
+     * 根据id查找订单商品
+     *
+     * @param saleListGoodsId
+     * @return
+     */
+    SaleListGoods findById(Integer saleListGoodsId);
 }
