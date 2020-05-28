@@ -145,7 +145,8 @@
                         </div>
                         <div id="checkout" class="col-lg-13">
                             <div class="box">
-                                <div class="nav flex-column flex-md-row nav-pills text-center"><a th:href="'/goods/'+${goods.id}"
+                                <div class="nav flex-column flex-md-row nav-pills text-center"><a
+                                        th:href="'/goods/'+${goods.id}" title="查看商品详情"
                                         class="nav-link flex-sm-fill text-sm-center">
                                     <i class="fa fa-paw"> </i>商品详情</a><a
                                         class="nav-link flex-sm-fill text-sm-center active">
@@ -153,14 +154,19 @@
                                 </div>
                                 <!-- /.box-->
                                 <div id="comments">
-                                    <h4><span th:text="${total}"></span> 条评论</h4>
+                                    <h4><span>共 </span><span th:text="${total}"></span> 条评论</h4>
                                     <div class="row comment" th:each="comment:${commentList}" th:if="${total>0}">
                                         <div class="col-md-3 col-lg-2 text-center text-md-center">
-                                            <p><img th:src="@{'/static/images/customerImage/'+${comment.customer.imageName}}" alt="" class="img-fluid rounded-circle" style="width: 100px;height: 100px"></p>
+                                            <p>
+                                                <img th:src="@{'/static/images/customerImage/'+${comment.customer.imageName}}"
+                                                     alt="" class="img-fluid rounded-circle"
+                                                     style="width: 100px;height: 100px"></p>
                                         </div>
                                         <div class="col-md-9 col-lg-10">
                                             <h5 th:text="${comment.customer.contact}"></h5>
-                                            <p class="posted"><i class="fa fa-clock-o"></i> <span th:text="${#dates.format(comment.createDate,'yyyy-MM-dd HH:mm:ss')}"></span></p>
+                                            <p class="posted"><i class="fa fa-clock-o"></i> <span
+                                                    th:text="${#dates.format(comment.createDate,'yyyy-MM-dd HH:mm:ss')}"></span>
+                                            </p>
                                             <p th:text="${comment.content}"></p>
                                         </div>
                                     </div>

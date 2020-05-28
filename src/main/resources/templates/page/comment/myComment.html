@@ -48,7 +48,7 @@
                                     <tbody>
                                     <tr th:each="comment:${commentList}">
                                         <td style="text-align: center">
-                                            <a  th:href="'/goods/'+${comment.goods.id}">
+                                            <a th:href="'/goods/'+${comment.goods.id}">
                                                 <img th:src="@{'/static/images/goodsImage/'+${comment.goods.imageName}}"
                                                      style="height: 40px;width: 40px" alt="图片不存在或已删除"></a>
                                         </td>
