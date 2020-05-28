@@ -37,4 +37,12 @@ public interface CommentService {
      * @return
      */
     Integer add(Comment comment);
+
+    /**
+     * 根据id查找实体
+     *
+     * @param id
+     * @return
+     */
+    Comment findById(Integer id);
 }

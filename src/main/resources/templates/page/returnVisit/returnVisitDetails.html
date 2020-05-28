@@ -31,15 +31,15 @@
                             <div>
                                 <h1 style="text-align: center">查看客户回访记录详情</h1>
                                 <div class="form-group">
-                                    <kbd style="font-size: 20px">宠物名称:</kbd>&nbsp;
+                                    <kbd style="font-size: 15px">宠物名称:</kbd>&nbsp;
                                     <span th:text="${returnVisit.petName}" style="font-size: 20px"></span>
                                 </div>
                                 <div class="form-group">
-                                    <kbd style="font-size: 20px">创建日期:</kbd>&nbsp;
+                                    <kbd style="font-size: 15px">创建日期:</kbd>&nbsp;
                                     <span th:text="${#dates.format(returnVisit.createDate,'yyyy年MM月dd日 HH:mm:ss')}" style="font-size: 20px"></span>
                                 </div>
                                 <div class="form-group">
-                                    <kbd style="font-size: 20px">我的满意度:</kbd>&nbsp;
+                                    <kbd style="font-size: 15px">我的满意度:</kbd>&nbsp;
                                     <span th:if="${returnVisit.satisfaction==1}" style="font-size: 20px">⭐</span>
                                     <span th:if="${returnVisit.satisfaction==2}" style="color: #0c9076;font-size: 20px">⭐⭐</span>
                                     <span th:if="${returnVisit.satisfaction==3}" style="color: red;font-size: 20px">⭐⭐⭐</span>
@@ -47,7 +47,7 @@
                                     <span th:if="${returnVisit.satisfaction==5}" style="color: darksalmon;font-size: 20px">⭐⭐⭐⭐⭐</span>
                                 </div>
                                 <div class="form-group">
-                                    <kbd style="font-size: 20px">客户回访描述:</kbd>
+                                    <kbd style="font-size: 15px">客户回访描述:</kbd>
                                     <span th:text="${returnVisit.content}" style="font-size: 20px"></span>
                                 </div>
                             </div>

@@ -54,7 +54,7 @@ public class SaleListController {
         map.put("start", (page - 1) * pageSize);
         map.put("size", pageSize);
         Customer currentCustomer = (Customer) session.getAttribute("currentCustomer");
-        map.put("customerId", currentCustomer.getId());
+        map.put("customer", currentCustomer);
         List<SaleList> mySaleListList = saleListService.list(map);
         Long total = saleListService.getCount(map);
         mav.addObject("mySaleListList", mySaleListList);

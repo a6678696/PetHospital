@@ -39,15 +39,16 @@
                                     <thead>
                                     <tr>
                                         <th style="text-align: center">评论商品图片</th>
-                                        <th style="text-align: center">创建时间</th>
+                                        <th style="text-align: center">评价时间</th>
                                         <th style="text-align: center">所属订单号</th>
+                                        <th style="text-align: center">内容</th>
                                         <th style="text-align: center">操作</th>
                                     </tr>
                                     </thead>
                                     <tbody>
                                     <tr th:each="comment:${commentList}">
                                         <td style="text-align: center">
-                                            <a th:href="@{'/goods/goodsDetails?goodsId='+${comment.goods.id}}">
+                                            <a  th:href="'/goods/'+${comment.goods.id}">
                                                 <img th:src="@{'/static/images/goodsImage/'+${comment.goods.imageName}}"
                                                      style="height: 40px;width: 40px" alt="图片不存在或已删除"></a>
                                         </td>
@@ -56,7 +57,10 @@
                                                       th:text="${#dates.format(comment.createDate,'yyyy-MM-dd HH:mm:ss')}"></span>
                                         </td>
                                         <td style="text-align: center">
-                                            <span th:text="${comment.petName}"></span>
+                                            <span th:text="${comment.saleList.saleNumber}"></span>
+                                        </td>
+                                        <td style="text-align: center">
+                                            <a th:href="@{'/comment/commentDetails?commentId='+${comment.id}}" th:title="${comment.content}"><span th:text="${#strings.abbreviate(comment.content,15)}"></span></a>
                                         </td>
                                         <td style="text-align: center">
                                             <a th:href="@{'/comment/commentDetails?commentId='+${comment.id}}"

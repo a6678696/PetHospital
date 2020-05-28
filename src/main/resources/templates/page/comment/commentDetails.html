@@ -28,8 +28,21 @@
                     <div id="blog-post" class="col-lg-9">
                         <div class="box">
                             <div>
-                                <h2 style="text-align: center">评价商品</h2>
-
+                                <h2 style="text-align: center">评价详情</h2>
+                                    <div class="form-group">
+                                        <kbd style="font-size: 15px">商品名称:</kbd>
+                                        <span style="font-size: 20px"
+                                              th:text="${comment.goods.name}"></span>
+                                    </div>
+                                    <div class="form-group">
+                                        <kbd style="font-size: 15px">商品图片:</kbd>
+                                        <img th:src="@{'/static/images/goodsImage/'+${comment.goods.imageName}}"
+                                             style="height: 100px;width: 100px" alt="图片不存在或已删除">
+                                    </div>
+                                <div class="form-group">
+                                    <kbd style="font-size: 15px">内容:</kbd>
+                                    <span th:text="${comment.content}" style="font-size: 20px"></span>
+                                </div>
                             </div>
                         </div>
                         <!-- /.box-->

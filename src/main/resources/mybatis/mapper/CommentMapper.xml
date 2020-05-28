@@ -43,4 +43,7 @@
     <insert id="add" parameterType="Comment">
         insert into t_comment (goodsId, saleListGoodsId, content, createDate, customerId) values (#{goodsId},#{saleListGoodsId},#{content},now(),#{customerId});
     </insert>
+    <select id="findById" parameterType="integer" resultMap="CommentResult">
+        select * from t_comment where id=#{id}
+    </select>
 </mapper>

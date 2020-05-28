@@ -31,28 +31,28 @@
                             <div>
                                 <h1 style="text-align: center">查看宠物寄养记录详情</h1>
                                 <div class="form-group">
-                                    <kbd style="font-size: 20px">宠物名称:</kbd>&nbsp;
+                                    <kbd style="font-size: 15px">宠物名称:</kbd>&nbsp;
                                     <span th:text="${fosterCare.pet.name}" style="font-size: 20px"></span>
                                 </div>
                                 <div class="form-group">
-                                    <kbd style="font-size: 20px">开始日期:</kbd>&nbsp;
+                                    <kbd style="font-size: 15px">开始日期:</kbd>&nbsp;
                                     <span th:text="${#dates.format(fosterCare.beginDate,'yyyy年MM月dd日 HH:mm')}" style="font-size: 20px"></span>
                                 </div>
                                 <div class="form-group">
-                                    <kbd style="font-size: 20px">结束日期:</kbd>&nbsp;
+                                    <kbd style="font-size: 15px">结束日期:</kbd>&nbsp;
                                     <span th:text="${#dates.format(fosterCare.endDate,'yyyy年MM月dd日 HH:mm')}" style="font-size: 20px"></span>
                                 </div>
                                 <div class="form-group">
-                                    <kbd style="font-size: 20px">寄养价格:</kbd>&nbsp;
+                                    <kbd style="font-size: 15px">寄养价格:</kbd>&nbsp;
                                     <span th:text="${fosterCare.price}+'元'" style="font-size: 20px"></span>
                                 </div>
                                 <div class="form-group">
-                                    <kbd style="font-size: 20px">是否付款:</kbd>&nbsp;
+                                    <kbd style="font-size: 15px">是否付款:</kbd>&nbsp;
                                     <span th:if="${fosterCare.status==0}" style="font-size: 20px">未付款</span>
                                     <span th:if="${fosterCare.status==1}" style="font-size: 20px">已付款</span>
                                 </div>
                                 <div class="form-group">
-                                    <kbd style="font-size: 20px">宠物寄养描述:</kbd>
+                                    <kbd style="font-size: 15px">宠物寄养描述:</kbd>
                                     <span th:text="${fosterCare.description}" style="font-size: 20px"></span>
                                 </div>
                             </div>

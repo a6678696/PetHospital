@@ -53,6 +53,11 @@ public class SaleListGoodsServiceImpl implements SaleListGoodsService {
     }
 
     @Override
+    public Integer update(SaleListGoods saleListGoods) {
+        return saleListGoodsMapper.update(saleListGoods);
+    }
+
+    @Override
     public Long getSaleCount(Integer goodsId) {
         return saleListGoodsMapper.getSaleCount(goodsId);
     }

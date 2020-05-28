@@ -32,33 +32,33 @@
                                 <h2 style="text-align: center">查看问诊详细信息</h2>
                                 <h4 style="text-align: center;color: red">(问诊结果仅供参考,如要治疗请到正规医院,自行治疗所产生的一切后果与我们医院无关!!)</h4>
                                 <div class="form-group">
-                                    <kbd style="font-size: 20px">宠物名称:</kbd>&nbsp;
+                                    <kbd style="font-size: 15px">宠物名称:</kbd>&nbsp;
                                     <span th:text="${inquiry.pet.name}" style="font-size: 20px"></span>
                                 </div>
                                 <div class="form-group">
-                                    <kbd style="font-size: 20px">问诊日期:</kbd>
+                                    <kbd style="font-size: 15px">问诊日期:</kbd>
                                     <span th:text="${#dates.format(inquiry.createDate,'yyyy年MM月dd日 HH:mm:ss')}" style="font-size: 20px"></span>
                                 </div>
                                 <div class="form-group">
-                                    <kbd style="font-size: 20px">病情图片:</kbd>
+                                    <kbd style="font-size: 15px">病情图片:</kbd>
                                     <img th:src="@{'/static/images/inquiryImage/'+${inquiry.imageName}}"
                                          style="height: 200px;width: 200px" alt="图片不存在或已删除">
                                 </div>
                                 <div class="form-group">
-                                    <kbd style="font-size: 20px">病情描述:</kbd>
+                                    <kbd style="font-size: 15px">病情描述:</kbd>
                                     <span th:text="${inquiry.content}" style="font-size: 20px"></span>
                                 </div>
                                 <div class="form-group">
-                                    <kbd style="font-size: 20px">诊断状态:</kbd>
+                                    <kbd style="font-size: 15px">诊断状态:</kbd>
                                     <span th:if="${inquiry.status==0}" style="font-size: 20px">未诊断(⊙﹏⊙)</span>
                                     <span th:if="${inquiry.status==1}" style="color: #0c9076;font-size: 20px">已诊断(๑•̀ㅂ•́)و✧</span>
                                 </div>
                                 <div class="form-group"th:if="${inquiry.user.trueName!=null}">
-                                    <kbd style="font-size: 20px">诊断医生:</kbd>
+                                    <kbd style="font-size: 15px">诊断医生:</kbd>
                                     <span th:text="${inquiry.user.trueName}" style="font-size: 20px"></span>
                                 </div>
                                 <div class="form-group" th:if="${inquiry.reply!=null}">
-                                    <kbd style="font-size: 20px">医生答复:</kbd>
+                                    <kbd style="font-size: 15px">医生答复:</kbd>
                                     <span th:text="${inquiry.reply}" style="font-size: 20px"></span>
                                 </div>
                             </div>

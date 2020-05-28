@@ -31,15 +31,15 @@
                             <div>
                                 <h2 style="text-align: center">查看消息详情</h2>
                                 <div class="form-group">
-                                    <kbd style="font-size: 20px">发送时间:</kbd>
+                                    <kbd style="font-size: 15px">发送时间:</kbd>
                                     <span th:text="${#dates.format(information.sendDate,'yyyy年MM月dd日 HH:mm:ss')}" style="font-size: 20px"></span>
                                 </div>
                                 <div class="form-group">
-                                    <kbd style="font-size: 20px">发送人:</kbd>
+                                    <kbd style="font-size: 15px">发送人:</kbd>
                                     <span th:text="${information.user.trueName}" style="font-size: 20px"></span><span style="font-size: 20px">(系统管理员)</span>
                                 </div>
                                 <div class="form-group">
-                                    <kbd style="font-size: 20px">内容:</kbd>
+                                    <kbd style="font-size: 15px">内容:</kbd>
                                     <span th:text="${information.content}" style="font-size: 20px"></span>
                                 </div>
                             </div>

@@ -36,4 +36,9 @@ public class CommentServiceImpl implements CommentService {
     public Integer add(Comment comment) {
         return commentMapper.add(comment);
     }
+
+    @Override
+    public Comment findById(Integer id) {
+        return commentMapper.findById(id);
+    }
 }

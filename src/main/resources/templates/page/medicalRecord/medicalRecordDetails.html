@@ -31,15 +31,15 @@
                             <div>
                                 <h1 style="text-align: center">查看病例单详情</h1>
                                 <div class="form-group">
-                                    <kbd style="font-size: 20px">宠物名称:</kbd>&nbsp;
+                                    <kbd style="font-size: 15px">宠物名称:</kbd>&nbsp;
                                     <span th:text="${medicalRecord.petName}" style="font-size: 20px"></span>
                                 </div>
                                 <div class="form-group">
-                                    <kbd style="font-size: 20px">创建日期:</kbd>&nbsp;
+                                    <kbd style="font-size: 15px">创建日期:</kbd>&nbsp;
                                     <span th:text="${#dates.format(medicalRecord.createDate,'yyyy年MM月dd日 HH:mm:ss')}" style="font-size: 20px"></span>
                                 </div>
                                 <div class="form-group">
-                                    <kbd style="font-size: 20px">病例描述:</kbd>
+                                    <kbd style="font-size: 15px">病例描述:</kbd>
                                     <span th:text="${medicalRecord.content}" style="font-size: 20px"></span>
                                 </div>
                             </div>

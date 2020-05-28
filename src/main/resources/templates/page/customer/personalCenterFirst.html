@@ -32,23 +32,23 @@
                             </div>
                             <hr>
                             <div class="form-group">
-                                <kbd style="font-size: 20px">用户名:</kbd>
+                                <kbd style="font-size: 15px">用户名:</kbd>
                                 <span style="font-size: 20px" th:text="${session.currentCustomer==null?'':session.currentCustomer.getUserName()}"></span>
                             </div>
                             <div class="form-group">
-                                <kbd style="font-size: 20px">真实姓名:</kbd>
+                                <kbd style="font-size: 15px">真实姓名:</kbd>
                                 <span style="font-size: 20px" th:text="${session.currentCustomer==null?'':session.currentCustomer.getContact()}"></span>
                             </div>
                             <div class="form-group">
-                                <kbd style="font-size: 20px">联系方式:</kbd>
+                                <kbd style="font-size: 15px">联系方式:</kbd>
                                 <span style="font-size: 20px" th:text="${session.currentCustomer==null?'':session.currentCustomer.getNumber()}"></span>
                             </div>
                             <div class="form-group">
-                                <kbd style="font-size: 20px">收货地址:</kbd>
+                                <kbd style="font-size: 15px">收货地址:</kbd>
                                 <span style="font-size: 20px" th:text="${session.currentCustomer==null?'':session.currentCustomer.getAddress()}"></span>
                             </div>
                             <div class="form-group">
-                                <kbd style="font-size: 20px">公司名称:</kbd>
+                                <kbd style="font-size: 15px">公司名称:</kbd>
                                 <span value="无" th:if="${session.currentCustomer.getName()==''}"
                                       style="font-size: 20px"></span>
                                 <span th:if="${session.currentCustomer.getName()!=''}"

@@ -63,6 +63,14 @@ public interface SaleListGoodsService {
     Integer add(SaleListGoods saleListGoods);
 
     /**
+     * 修改销售单商品
+     *
+     * @param saleListGoods
+     * @return
+     */
+    Integer update(SaleListGoods saleListGoods);
+
+    /**
      * 获取商品销售数
      *
      * @param goodsId

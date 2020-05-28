@@ -47,6 +47,10 @@ public class Comment {
      */
     private Integer customerId;
     /**
+     * 评价客户实体
+     */
+    private Customer customer;
+    /**
      * 评论时间
      */
     private Date createDate;
