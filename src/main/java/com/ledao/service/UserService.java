@@ -85,4 +85,11 @@ public interface UserService {
      * @return
      */
     List<User> findByName(String name);
+
+    /**
+     * 查看可以预约的用户(医生或美容师)
+     *
+     * @return
+     */
+    List<User> canReserve();
 }

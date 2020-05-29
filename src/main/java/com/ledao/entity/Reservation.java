@@ -43,6 +43,14 @@ public class Reservation {
      */
     private Date reserveDate;
     /**
+     * 小时
+     */
+    private Integer hour;
+    /**
+     * 分钟
+     */
+    private Integer minute;
+    /**
      * 预约单创建时间
      */
     private Date createDate;

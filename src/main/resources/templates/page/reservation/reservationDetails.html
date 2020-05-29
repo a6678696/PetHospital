@@ -29,7 +29,7 @@
                     <div id="blog-post" class="col-lg-9">
                         <div class="box">
                             <div>
-                                <h1 style="text-align: center">查看预约单</h1>
+                                <h2 style="text-align: center">查看预约单</h2>
                                 <div class="form-group">
                                     <kbd style="font-size: 15px">预约类型:</kbd>&nbsp;
                                     <span th:text="${reservation.type}" style="font-size: 20px"></span>
@@ -40,11 +40,7 @@
                                 </div>
                                 <div class="form-group">
                                     <kbd style="font-size: 15px">预约日期:</kbd>&nbsp;
-                                    <span th:text="${#dates.format(reservation.reserveDate,'yyyy年MM月dd日')}" style="font-size: 20px"></span>
-                                </div>
-                                <div class="form-group">
-                                    <kbd style="font-size: 15px">预约单创建日期:</kbd>
-                                    <span th:text="${#dates.format(reservation.createDate,'yyyy年MM月dd日 HH:mm:ss')}" style="font-size: 20px"></span>
+                                    <span th:text="${#dates.format(reservation.reserveDate,'yyyy年MM月dd日 HH:mm')}" style="font-size: 20px"></span>
                                 </div>
                                 <div class="form-group">
                                     <kbd style="font-size: 15px">预约描述:</kbd>
@@ -64,6 +60,10 @@
                                 <div class="form-group" th:if="${reservation.remarks!=null}">
                                     <kbd style="font-size: 15px">预约失败原因:</kbd>
                                     <span th:text="${reservation.remarks}" style="font-size: 20px"></span>
+                                </div>
+                                <div class="text-center">
+                                    <a href="/reservation/myReservation/list/1" class="btn btn-primary"> 返回我的预约单
+                                    </a>
                                 </div>
                             </div>
                         </div>

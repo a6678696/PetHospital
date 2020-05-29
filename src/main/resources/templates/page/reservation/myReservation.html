@@ -41,6 +41,7 @@
                                         <th style="text-align: center">预约类型</th>
                                         <th style="text-align: center">预约的宠物名</th>
                                         <th style="text-align: center">预约时间</th>
+                                        <th style="text-align: center">预约的医生</th>
                                         <th style="text-align: center">预约状态</th>
                                         <th style="text-align: center">操作</th>
                                     </tr>
@@ -54,7 +55,10 @@
                                             <span th:text="${reservation.pet.name}"></span>
                                         </td>
                                         <td style="text-align: center">
-                                            <span th:text="${#dates.format(reservation.reserveDate,'yyyy-MM-dd')}"></span>
+                                            <span th:text="${#dates.format(reservation.reserveDate,'yyyy-MM-dd HH:mm')}"></span>
+                                        </td>
+                                        <td style="text-align: center">
+                                            <span th:text="${reservation.user.trueName}"></span>
                                         </td>
                                         <td style="text-align: center">
                                             <span th:if="${reservation.status==0}">未处理(⊙﹏⊙)</span>
@@ -79,7 +83,7 @@
                             <!-- /.table-responsive-->
                             <div class="box-footer d-flex justify-content-between flex-column flex-lg-row">
                                 <div>
-                                    <a href="/reservation/addDoctorReservation" type="button"
+                                    <a href="/reservation/doctorCanReserve" type="button"
                                        class="btn btn-primary">去预约</a>
                                 </div>
                             </div>

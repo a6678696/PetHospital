@@ -20,6 +20,12 @@
             <if test="saleListGoodsId!=null">
                 and saleListGoodsId=#{saleListGoodsId}
             </if>
+            <if test="bSaleDate!=null">
+                and date_format(createDate,'%Y-%m-%d %H:%i:%S') &gt;= date_format(#{bSaleDate},'%Y-%m-%d %H:%i:%S')
+            </if>
+            <if test="eSaleDate!=null">
+                and date_format(createDate,'%Y-%m-%d %H:%i:%S') &lt;= date_format(#{eSaleDate},'%Y-%m-%d %H:%i:%S')
+            </if>
         </where>
         order by createDate desc
         <if test="start!=null and size!=null">
@@ -37,6 +43,12 @@
             </if>
             <if test="saleListGoodsId!=null">
                 and saleListGoodsId=#{saleListGoodsId}
+            </if>
+            <if test="bSaleDate!=null">
+                and date_format(createDate,'%Y-%m-%d %H:%i:%S') &gt;= date_format(#{bSaleDate},'%Y-%m-%d %H:%i:%S')
+            </if>
+            <if test="eSaleDate!=null">
+                and date_format(createDate,'%Y-%m-%d %H:%i:%S') &lt;= date_format(#{eSaleDate},'%Y-%m-%d %H:%i:%S')
             </if>
         </where>
     </select>

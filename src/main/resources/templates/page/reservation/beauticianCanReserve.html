@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<!--suppress ALL-->
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<div id="b">
+    <div id="all" style="padding-top: 20px">
+        <div id="content">
+            <div class="container">
+                <div class="row">
+                    <div class="col-lg-12">
+                        <!-- breadcrumb-->
+                        <nav aria-label="breadcrumb">
+                            <ol class="breadcrumb">
+                                <i class="fa fa-eye" style="padding-top: 2px"></i>当前位置:&nbsp;&nbsp;
+                                <li class="breadcrumb-item"><a href="/">主页</a></li>
+                                <li class="breadcrumb-item"><a href="/customer/personalCenter">个人中心</a></li>
+                                <li class="breadcrumb-item"><span th:text="${title}"></span></li>
+                            </ol>
+                        </nav>
+                    </div>
+                    <div class="col-lg-3">
+                        <div th:include="page/customer/menuLeft::#m"></div>
+                    </div>
+                    <div id="basket" class="col-lg-9" th:if="${total<1}">
+                        <div class="box container">
+                            <h3>没有可预约的美容师</a></h3>
+                        </div>
+                    </div>
+                    <div id="basket" class="col-lg-9" th:if="${total>0}">
+                        <div class="box container">
+                            <form method="post" action="checkout1.html">
+                                <p class="text-muted">一共有 <span th:text="${total}" style="color: red"></span> 个可预约的美容师</p>
+                                <div>
+                                    <table class="table">
+                                        <thead>
+                                        <tr>
+                                            <th style="text-align: center">美容师头像</th>
+                                            <th style="text-align: center">名称</th>
+                                            <th style="text-align: center">操作</th>
+                                        </tr>
+                                        </thead>
+                                        <tbody>
+                                        <tr th:each="user:${userList}">
+                                            <div th:if="${user.type!=2}">
+                                                <td style="text-align: center">
+                                                    <a href="#">
+                                                        <img th:src="@{'/static/images/userImage/'+${user.imageName}}"
+                                                             style="height: 40px;width: 40px" alt="图片不存在或已删除"></a>
+                                                </td>
+                                                <td style="text-align: center">
+                                                    <span th:text="${user.trueName}"></span>
+                                                </td>
+                                                <td style="text-align: center">
+                                                    <a th:href="'/reservation/addBeauticianReservation?userId='+${user.getId()}" class="btn btn-info">预约</a>
+                                                </td>
+                                            </div>
+                                        </tr>
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </form>
+                        </div>
+                        <!-- /.box-->
+                    </div>
+                    <!-- /.col-lg-9-->
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+</body>
+</html>

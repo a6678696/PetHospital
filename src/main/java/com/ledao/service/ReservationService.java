@@ -38,6 +38,12 @@ public interface ReservationService {
      */
     Integer add(Reservation reservation);
 
+    /**添加明天的预约单
+     * @param reservation
+     * @return
+     */
+    Integer addReservationForTomorrow(Reservation reservation);
+
     /**
      * 修改预约单
      *
@@ -71,4 +77,9 @@ public interface ReservationService {
      * 系统自动给没有被接受预约的预约单安排医生或美容师
      */
     void reservationArrangeUser();
+
+    /**
+     * 创建明天的预约单
+     */
+    void CreateReservationForTomorrow();
 }

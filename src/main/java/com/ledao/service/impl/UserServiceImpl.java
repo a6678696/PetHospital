@@ -68,4 +68,9 @@ public class UserServiceImpl implements UserService {
     public List<User> findByName(String name) {
         return userMapper.findByName(name);
     }
+
+    @Override
+    public List<User> canReserve() {
+        return userMapper.canReserve();
+    }
 }

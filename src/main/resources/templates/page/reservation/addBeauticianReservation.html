@@ -29,10 +29,10 @@
                             <div class="card-body">
                                 <ul class="nav flex-column nav-pills">
                                     <li>
-                                        <a href="/reservation/addDoctorReservation" class="nav-link">预约医生</a>
+                                        <a href="/reservation/doctorCanReserve" class="nav-link">预约医生</a>
                                     </li>
                                     <li>
-                                        <a href="/reservation/addBeauticianReservation" class="nav-link">预约美容师</a>
+                                        <a href="/reservation/beauticianCanReserve" class="nav-link">预约美容师</a>
                                     </li>
                                     <li>
                                         <a href="/reservation/myReservation/list/1" class="nav-link">返回我的预约记录</a>
@@ -56,8 +56,13 @@
                                     </select>
                                 </div>
                                 <div class="form-group form-inline">
-                                    <label>预约日期:</label>
-                                    <input type="date" id="date" name="date" required="required" class="form-control" style="width: 160px;height: 30px"/>
+                                    <label>可预约日期:</label>&nbsp;
+                                    <select id="id" name="id" required="required" class="form-control">
+                                        <option value="">选择预约时间...</option>
+                                        <div th:each="reservation:${reservationList}">
+                                            <option th:text="${#dates.format(reservation.reserveDate,'yyyy年MM月dd日 HH:mm')}" th:value="${reservation.id}"></option>
+                                        </div>
+                                    </select>
                                 </div>
                                 <div class="form-group">
                                     <label>预约描述:</label>

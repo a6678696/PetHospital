@@ -3,8 +3,10 @@ package com.ledao.controller;
 import com.ledao.entity.Customer;
 import com.ledao.entity.Pet;
 import com.ledao.entity.Reservation;
+import com.ledao.entity.User;
 import com.ledao.service.PetService;
 import com.ledao.service.ReservationService;
+import com.ledao.service.UserService;
 import com.ledao.util.PageUtil;
 import org.springframework.beans.propertyeditors.CustomDateEditor;
 import org.springframework.stereotype.Controller;
@@ -40,6 +42,9 @@ public class ReservationController {
     @Resource
     private PetService petService;
 
+    @Resource
+    private UserService userService;
+
     @InitBinder
     public void initBinder(WebDataBinder binder) {
         SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
@@ -55,25 +60,45 @@ public class ReservationController {
      * @return
      */
     @RequestMapping("/save")
-    public ModelAndView save(Reservation reservation, HttpSession session) throws ParseException {
+    public ModelAndView save(Reservation reservation, HttpSession session) {
         if (reservation.getId() == null) {
             ModelAndView mav = new ModelAndView("redirect:/reservation/reserveSuccess");
-            SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy-MM-dd");
-            Date date = simpleDateFormat.parse(reservation.getDate());
-            reservation.setReserveDate(date);
             reservation.setCustomer((Customer) session.getAttribute("currentCustomer"));
             reservation.setPet(petService.findById(reservation.getPetId()));
             reservationService.add(reservation);
             return mav;
         } else {
             ModelAndView mav = new ModelAndView("redirect:/reservation/myReservation/list/1");
-            SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy-MM-dd");
-            Date date = simpleDateFormat.parse(reservation.getDate());
+            reservation.setCustomer((Customer) session.getAttribute("currentCustomer"));
+            reservation.setStatus(1);
             reservation.setPet(petService.findById(reservation.getPetId()));
-            reservation.setReserveDate(date);
             reservationService.update(reservation);
             return mav;
         }
+    }
+
+    /**
+     * 查看可预约的医生
+     *
+     * @return
+     */
+    @RequestMapping("/doctorCanReserve")
+    public ModelAndView doctorCanReserve() {
+        ModelAndView mav = new ModelAndView();
+        int total=0;
+        List<User> userList = userService.canReserve();
+        for (User user : userList) {
+            if (user.getType()==2) {
+                total++;
+            }
+        }
+        mav.addObject("total", total);
+        mav.addObject("userList", userList);
+        mav.addObject("title", "可预约的医生");
+        mav.addObject("mainPage", "page/reservation/doctorCanReserve");
+        mav.addObject("mainPageKey", "#b");
+        mav.setViewName("index");
+        return mav;
     }
 
     /**
@@ -82,14 +107,44 @@ public class ReservationController {
      * @return
      */
     @RequestMapping("/addDoctorReservation")
-    public ModelAndView addDoctorReservation(HttpSession session) {
+    public ModelAndView addDoctorReservation(HttpSession session, Integer userId) {
         ModelAndView mav = new ModelAndView();
         Map<String, Object> map = new HashMap<>(16);
         map.put("customer", session.getAttribute("currentCustomer"));
         List<Pet> petList = petService.list(map);
+        Map<String, Object> map2 = new HashMap<>(16);
+        map2.put("userId", userId);
+        map2.put("status", 0);
+        map2.put("key", 1);
+        List<Reservation> reservationList = reservationService.list(map2);
+        mav.addObject("reservationList", reservationList);
         mav.addObject("petList", petList);
         mav.addObject("title", "预约医生");
         mav.addObject("mainPage", "page/reservation/addDoctorReservation");
+        mav.addObject("mainPageKey", "#b");
+        mav.setViewName("index");
+        return mav;
+    }
+
+    /**
+     * 查看可预约的医生
+     *
+     * @return
+     */
+    @RequestMapping("/beauticianCanReserve")
+    public ModelAndView beauticianCanReserve() {
+        ModelAndView mav = new ModelAndView();
+        int total=0;
+        List<User> userList = userService.canReserve();
+        for (User user : userList) {
+            if (user.getType()==3) {
+                total++;
+            }
+        }
+        mav.addObject("total", total);
+        mav.addObject("userList", userList);
+        mav.addObject("title", "可预约的美容师");
+        mav.addObject("mainPage", "page/reservation/beauticianCanReserve");
         mav.addObject("mainPageKey", "#b");
         mav.setViewName("index");
         return mav;
@@ -101,11 +156,17 @@ public class ReservationController {
      * @return
      */
     @RequestMapping("/addBeauticianReservation")
-    public ModelAndView addBeauticianReservation(HttpSession session) {
+    public ModelAndView addBeauticianReservation(HttpSession session,Integer userId) {
         ModelAndView mav = new ModelAndView();
         Map<String, Object> map = new HashMap<>(16);
         map.put("customer", session.getAttribute("currentCustomer"));
         List<Pet> petList = petService.list(map);
+        Map<String, Object> map2 = new HashMap<>(16);
+        map2.put("userId", userId);
+        map2.put("status", 0);
+        map2.put("key", 1);
+        List<Reservation> reservationList = reservationService.list(map2);
+        mav.addObject("reservationList", reservationList);
         mav.addObject("petList", petList);
         mav.addObject("title", "预约美容师");
         mav.addObject("mainPage", "page/reservation/addBeauticianReservation");
@@ -135,7 +196,7 @@ public class ReservationController {
      * @return
      */
     @RequestMapping("/myReservation/list/{id}")
-    public ModelAndView myReservation(@PathVariable(value = "id",required = false)Integer page, HttpSession session) {
+    public ModelAndView myReservation(@PathVariable(value = "id", required = false) Integer page, HttpSession session) {
         ModelAndView mav = new ModelAndView();
         Map<String, Object> map = new HashMap<>(16);
         int pageSize = 5;

@@ -8,6 +8,8 @@
         <result property="type" column="type"/>
         <result property="reserveDate" column="reserveDate"/>
         <result property="createDate" column="createDate"/>
+        <result property="hour" column="hour"/>
+        <result property="minute" column="minute"/>
         <result property="description" column="description"/>
         <result property="status" column="status"/>
         <result property="remarks" column="remarks"/>
@@ -30,6 +32,9 @@
             <if test="user!=null">
                 and userId=#{user.id}
             </if>
+            <if test="userId!=null">
+                and userId=#{userId}
+            </if>
             <if test="status!=null">
                 and status=#{status}
             </if>
@@ -37,7 +42,12 @@
                 and isRemind=#{isRemind}
             </if>
         </where>
-        order by reserveDate desc
+        <if test="key==null">
+            order by reserveDate desc
+        </if>
+        <if test="key!=null">
+            order by reserveDate asc
+        </if>
         <if test="start!=null and size!=null">
             limit #{start},#{size}
         </if>
@@ -56,6 +66,9 @@
             </if>
             <if test="user!=null">
                 and userId=#{user.id}
+            </if>
+            <if test="userId!=null">
+                and userId=#{userId}
             </if>
             <if test="status!=null">
                 and status=#{status}
@@ -89,6 +102,9 @@
             <if test="user != null">
                 userId=#{user.id},
             </if>
+            <if test="customer != null">
+                customerId=#{customer.id},
+            </if>
             <if test="remarks != null and remarks != ''">
                 remarks=#{remarks},
             </if>
@@ -114,4 +130,7 @@
     <select id="notArrangeTodayWhenCreate" resultMap="ReservationResult">
         select * from t_reservation t1 where DATE_ADD(now(),interval -8 hour)>reserveDate and t1.status=0 and  DATE_ADD(reserveDate,interval 24 hour)>now();
     </select>
+    <insert id="addReservationForTomorrow" parameterType="Reservation">
+        insert into t_reservation (type, createDate, reserveDate, status, isRemind,hour,minute,userId) values (#{type},now(),concat(DATE_ADD(current_date(),interval 1 day),' ',#{hour},':',#{minute},':00'),0,0,#{hour},#{minute},#{user.id});
+    </insert>
 </mapper>

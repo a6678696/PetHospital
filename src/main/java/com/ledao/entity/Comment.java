@@ -54,4 +54,12 @@ public class Comment {
      * 评论时间
      */
     private Date createDate;
+    /**
+     *起始日期 搜索用到
+     */
+    private Date bSaleDate;
+    /**
+     *结束日期 搜索用到
+     */
+    private Date eSaleDate;
 }

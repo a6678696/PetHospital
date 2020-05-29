@@ -49,6 +49,11 @@ public class ReservationServiceImpl implements ReservationService {
     }
 
     @Override
+    public Integer addReservationForTomorrow(Reservation reservation) {
+        return reservationMapper.add(reservation);
+    }
+
+    @Override
     public Integer update(Reservation reservation) {
         return reservationMapper.update(reservation);
     }
@@ -134,6 +139,34 @@ public class ReservationServiceImpl implements ReservationService {
                 information.setUser(userMapper.findById(1));
                 information.setCustomer(reservation.getCustomer());
                 informationMapper.add(information);
+            }
+        }
+    }
+
+    @Override
+    public void CreateReservationForTomorrow() {
+        int[] userIdentity = {2, 3};
+        int[] hours = {8, 9, 10, 11, 13, 14, 15, 16, 17};
+        int[] minute = {0, 20, 40};
+        Map<String,Object> map=new HashMap<>(16);
+        for (int i = 0; i < userIdentity.length; i++) {
+            map.put("type", userIdentity[i]);
+            List<User> userList = userMapper.list(map);
+            for (User user : userList) {
+                for (int i1 = 0; i1 < hours.length; i1++) {
+                    for (int i2 = 0; i2 < minute.length; i2++) {
+                        Reservation reservation = new Reservation();
+                        if (userIdentity[i]==2) {
+                            reservation.setType("预约医生");
+                        } else if (userIdentity[i]==3) {
+                            reservation.setType("预约美容师");
+                        }
+                        reservation.setUser(user);
+                        reservation.setHour(hours[i1]);
+                        reservation.setMinute(minute[i2]);
+                        reservationMapper.addReservationForTomorrow(reservation);
+                    }
+                }
             }
         }
     }

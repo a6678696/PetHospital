@@ -38,6 +38,12 @@ public interface ReservationMapper {
      */
     Integer add(Reservation reservation);
 
+    /**添加明天的预约单
+     * @param reservation
+     * @return
+     */
+    Integer addReservationForTomorrow(Reservation reservation);
+
     /**
      * 修改预约单
      *

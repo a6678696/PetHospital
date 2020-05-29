@@ -99,5 +99,7 @@
             </if>
         </where>
     </select>
-
+    <select id="canReserve" resultMap="BaseResultMap">
+        SELECT * FROM t_user t1 WHERE t1.id IN(SELECT t2.userId FROM t_reservation t2 WHERE t2.reserveDate>NOW() GROUP BY userId);
+    </select>
 </mapper>

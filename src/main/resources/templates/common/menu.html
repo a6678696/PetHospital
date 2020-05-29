@@ -62,8 +62,8 @@
                                     <div class="col-md-6 col-lg-3">
                                         <h5>预约服务</h5>
                                         <ul class="list-unstyled mb-3" th:if="${session.currentCustomer!=null}">
-                                            <li class="nav-item"><a href="/reservation/addDoctorReservation" class="nav-link">预约医生</a></li>
-                                            <li class="nav-item"><a href="/reservation/addBeauticianReservation" class="nav-link">预约美容师</a></li>
+                                            <li class="nav-item"><a href="/reservation/doctorCanReserve" class="nav-link">预约医生</a></li>
+                                            <li class="nav-item"><a href="/reservation/beauticianCanReserve" class="nav-link">预约美容师</a></li>
                                             <li class="nav-item"><a href="/reservation/myReservation/list/1" class="nav-link">我的预约</a></li>
                                         </ul>
                                         <ul class="list-unstyled mb-3" th:if="${session.currentCustomer==null}">
