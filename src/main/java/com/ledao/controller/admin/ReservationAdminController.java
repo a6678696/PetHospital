@@ -8,12 +8,17 @@ import com.ledao.service.ReservationService;
 import com.ledao.util.StringUtil;
 import org.apache.shiro.authz.annotation.Logical;
 import org.apache.shiro.authz.annotation.RequiresPermissions;
+import org.springframework.beans.propertyeditors.CustomDateEditor;
+import org.springframework.web.bind.WebDataBinder;
+import org.springframework.web.bind.annotation.InitBinder;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import javax.annotation.Resource;
 import javax.servlet.http.HttpSession;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -41,6 +46,14 @@ public class ReservationAdminController {
     @Resource
     private LogService logService;
 
+    @InitBinder
+    public void initBinder(WebDataBinder binder) {
+        SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+        dateFormat.setLenient(true);
+        //true:允许输入空值，false:不能为空值
+        binder.registerCustomEditor(Date.class, new CustomDateEditor(dateFormat, true));
+    }
+
     /**
      * 查看未处理的医生预约单
      *
@@ -51,12 +64,17 @@ public class ReservationAdminController {
      */
     @RequestMapping("/listNotHandleDoctor")
     @RequiresPermissions(value = "医生预约单")
-    public Map<String, Object> listNotHandleDoctor(Reservation reservation, @RequestParam(value = "page", required = false) Integer page, @RequestParam(value = "rows", required = false) Integer rows) {
+    public Map<String, Object> listNotHandleDoctor(Reservation reservation, @RequestParam(value = "page", required = false) Integer page, @RequestParam(value = "rows", required = false) Integer rows, HttpSession session) {
         PageBean pageBean = new PageBean(page, rows);
         Map<String, Object> resultMap = new HashMap<>(16);
         Map<String, Object> map = new HashMap<>(16);
         map.put("status", 0);
         map.put("type", "预约医生");
+        map.put("key", 1);
+        map.put("bSaleDate", reservation.getBSaleDate());
+        map.put("eSaleDate", reservation.getESaleDate());
+        User currentUser = (User) session.getAttribute("currentUser");
+        map.put("userId", currentUser.getId());
         if (reservation.getCustomer() != null) {
             if (!StringUtil.isEmpty(reservation.getCustomer().getContact())) {
                 Customer customer = customerService.findByContact(reservation.getCustomer().getContact());
@@ -141,7 +159,7 @@ public class ReservationAdminController {
      * @return
      */
     @RequestMapping("/dealReservation")
-    @RequiresPermissions(value = {"医生预约单", "美容师预约单", "我的预约单","预约单管理"}, logical = Logical.OR)
+    @RequiresPermissions(value = {"医生预约单", "美容师预约单", "我的预约单", "预约单管理"}, logical = Logical.OR)
     public Map<String, Object> dealReservation(Integer status, Integer reservationId, HttpSession session) {
         Map<String, Object> resultMap = new HashMap<>(16);
         Reservation reservation = reservationService.findById(reservationId);
@@ -176,7 +194,9 @@ public class ReservationAdminController {
         PageBean pageBean = new PageBean(page, rows);
         Map<String, Object> resultMap = new HashMap<>(16);
         Map<String, Object> map = new HashMap<>(16);
-        map.put("user", session.getAttribute("currentUser"));
+        User user = (User) session.getAttribute("currentUser");
+        map.put("key", 1);
+        map.put("userId", user);
         if (reservation.getCustomer() != null) {
             if (!StringUtil.isEmpty(reservation.getCustomer().getContact())) {
                 Customer customer = customerService.findByContact(reservation.getCustomer().getContact());

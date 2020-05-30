@@ -41,6 +41,12 @@
             <if test="isRemind!=null">
                 and isRemind=#{isRemind}
             </if>
+            <if test="bSaleDate!=null">
+                and date_format(reserveDate,'%Y-%m-%d %H:%i:%S') &gt;= date_format(#{bSaleDate},'%Y-%m-%d %H:%i:%S')
+            </if>
+            <if test="eSaleDate!=null">
+                and date_format(reserveDate,'%Y-%m-%d %H:%i:%S') &lt;= date_format(#{eSaleDate},'%Y-%m-%d %H:%i:%S')
+            </if>
         </where>
         <if test="key==null">
             order by reserveDate desc
@@ -75,6 +81,12 @@
             </if>
             <if test="isRemind!=null">
                 and isRemind=#{isRemind}
+            </if>
+            <if test="bSaleDate!=null">
+                and date_format(reserveDate,'%Y-%m-%d %H:%i:%S') &gt;= date_format(#{bSaleDate},'%Y-%m-%d %H:%i:%S')
+            </if>
+            <if test="eSaleDate!=null">
+                and date_format(reserveDate,'%Y-%m-%d %H:%i:%S') &lt;= date_format(#{eSaleDate},'%Y-%m-%d %H:%i:%S')
             </if>
         </where>
     </select>

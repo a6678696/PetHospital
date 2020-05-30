@@ -78,5 +78,12 @@ public class Reservation {
      * 是否提醒客户 0.未提醒 1.已提醒
      */
     private Integer isRemind;
-
+    /**
+     *起始日期 搜索用到
+     */
+    private Date bSaleDate;
+    /**
+     *结束日期 搜索用到
+     */
+    private Date eSaleDate;
 }
