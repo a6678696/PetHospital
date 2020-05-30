@@ -107,4 +107,13 @@ public class SaleListServiceImpl implements SaleListService {
             saleListMapper.update(saleList);
         }
     }
+
+    @Override
+    public void automaticReceiptConfirmation() {
+        List<SaleList> saleListList = saleListMapper.findOrderOverTwoWeeksNotReceipt();
+        for (SaleList saleList : saleListList) {
+            saleList.setState(5);
+            saleListMapper.update(saleList);
+        }
+    }
 }

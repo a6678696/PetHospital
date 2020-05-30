@@ -125,7 +125,7 @@
         select * from t_reservation where id=#{id}
     </select>
     <select id="notRemindAndReserveSuccessfully" resultMap="ReservationResult">
-        select * from t_reservation t1 where DATE_ADD(NOW(),interval -8 hour)>reserveDate and t1.status=1 and isRemind=0;
+        select * from t_reservation t1 where date_format(reserveDate,'%Y-%m-%d')= date_format(now(),'%Y-%m-%d') and t1.status=1 and isRemind=0;
     </select>
     <select id="notArrangeTodayWhenCreate" resultMap="ReservationResult">
         select * from t_reservation t1 where DATE_ADD(now(),interval -8 hour)>reserveDate and t1.status=0 and  DATE_ADD(reserveDate,interval 24 hour)>now();
@@ -133,4 +133,7 @@
     <insert id="addReservationForTomorrow" parameterType="Reservation">
         insert into t_reservation (type, createDate, reserveDate, status, isRemind,hour,minute,userId) values (#{type},now(),concat(DATE_ADD(current_date(),interval 1 day),' ',#{hour},':',#{minute},':00'),0,0,#{hour},#{minute},#{user.id});
     </insert>
+    <select id="expiredReservation" resultMap="ReservationResult">
+        SELECT * FROM t_reservation WHERE id IN(SELECT t1.id AS reservationId FROM t_reservation t1 WHERE DATE_ADD(reserveDate,INTERVAL -5 MINUTE)&lt;=NOW() AND t1.status=0);
+    </select>
 </mapper>

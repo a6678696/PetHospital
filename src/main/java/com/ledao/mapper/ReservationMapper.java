@@ -38,7 +38,9 @@ public interface ReservationMapper {
      */
     Integer add(Reservation reservation);
 
-    /**添加明天的预约单
+    /**
+     * 添加明天的预约单
+     *
      * @param reservation
      * @return
      */
@@ -82,4 +84,10 @@ public interface ReservationMapper {
      */
     List<Reservation> notArrangeTodayWhenCreate();
 
+    /**
+     * 查找过期不可预约的预约单
+     *
+     * @return
+     */
+    List<Reservation> expiredReservation();
 }

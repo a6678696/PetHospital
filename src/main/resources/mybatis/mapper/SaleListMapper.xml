@@ -125,6 +125,9 @@
         </where>
     </select>
     <select id="findOrderOverOneDay" resultMap="SaleListResult">
-        select * from t_sale_list where DATE_ADD(now(),interval -24 hour)>saleDate and state=2;
+        select * from t_sale_list where DATE_ADD(now(),interval -24 hour)&gt;saleDate and state=2;
+    </select>
+    <select id="findOrderOverTwoWeeksNotReceipt" resultMap="SaleListResult">
+        select * from t_sale_list where DATE_ADD(now(),interval -14 day )&gt;saleDate and state=4;
     </select>
 </mapper>

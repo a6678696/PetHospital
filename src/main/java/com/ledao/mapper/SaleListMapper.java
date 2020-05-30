@@ -110,4 +110,11 @@ public interface SaleListMapper {
      * @return
      */
     List<SaleList> findOrderOverOneDay();
+
+    /**
+     * 查找从提交订单开始14天未确认收货的订单
+     *
+     * @return
+     */
+    List<SaleList> findOrderOverTwoWeeksNotReceipt();
 }

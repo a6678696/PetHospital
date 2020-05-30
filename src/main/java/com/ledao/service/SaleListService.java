@@ -108,4 +108,9 @@ public interface SaleListService {
      * 取消客户提交的超过一天未支付的订单
      */
     void cancelOrderOverOneDay();
+
+    /**
+     * 超过14天的订单自动确认收货
+     */
+    void automaticReceiptConfirmation();
 }

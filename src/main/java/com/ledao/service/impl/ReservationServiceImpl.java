@@ -5,6 +5,7 @@ import com.ledao.entity.Reservation;
 import com.ledao.entity.User;
 import com.ledao.mapper.*;
 import com.ledao.service.ReservationService;
+import com.ledao.util.DateUtil;
 import org.springframework.stereotype.Service;
 
 import javax.annotation.Resource;
@@ -74,9 +75,17 @@ public class ReservationServiceImpl implements ReservationService {
         for (Reservation reservation : reservationList) {
             Information information = new Information();
             if (reservation.getType().equals("预约医生")) {
-                information.setContent("您今天为您的宠物(" + reservation.getPet().getName() + ")预约了" + reservation.getUser().getTrueName() + "医生,请在今天医院下班前(20:00)到医院,过期预约作废!!");
+                try {
+                    information.setContent("您今天为您的宠物(" + reservation.getPet().getName() + ")预约了" + reservation.getUser().getTrueName() + "医生,请在"+ DateUtil.dateFormat(reservation.getReserveDate()) +"前到医院,过期预约作废!!");
+                } catch (Exception e) {
+                    e.printStackTrace();
+                }
             } else {
-                information.setContent("您今天为您的宠物(" + reservation.getPet().getName() + ")预约了" + reservation.getUser().getTrueName() + "美容师,请在今天医院下班前(20:00)到医院,过期预约作废!!");
+                try {
+                    information.setContent("您今天为您的宠物(" + reservation.getPet().getName() + ")预约了" + reservation.getUser().getTrueName() + "美容师,请在"+DateUtil.dateFormat(reservation.getReserveDate())+"前到医院,过期预约作废!!");
+                } catch (Exception e) {
+                    e.printStackTrace();
+                }
             }
             information.setIsRead(0);
             information.setUser(userMapper.findById(1));
@@ -168,6 +177,14 @@ public class ReservationServiceImpl implements ReservationService {
                     }
                 }
             }
+        }
+    }
+
+    @Override
+    public void deleteExpiredReservation() {
+        List<Reservation> reservationList = reservationMapper.expiredReservation();
+        for (Reservation reservation : reservationList) {
+            reservationMapper.delete(reservation.getId());
         }
     }
 }

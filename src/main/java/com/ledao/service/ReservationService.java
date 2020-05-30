@@ -82,4 +82,9 @@ public interface ReservationService {
      * 创建明天的预约单
      */
     void CreateReservationForTomorrow();
+
+    /**
+     * 删除过期的预约单
+     */
+    void deleteExpiredReservation();
 }
