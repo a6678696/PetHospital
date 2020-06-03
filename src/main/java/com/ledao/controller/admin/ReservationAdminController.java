@@ -63,7 +63,7 @@ public class ReservationAdminController {
      * @return
      */
     @RequestMapping("/listNotHandleDoctor")
-    @RequiresPermissions(value = "医生预约单")
+    @RequiresPermissions(value = "我的未预约单(医生)")
     public Map<String, Object> listNotHandleDoctor(Reservation reservation, @RequestParam(value = "page", required = false) Integer page, @RequestParam(value = "rows", required = false) Integer rows, HttpSession session) {
         PageBean pageBean = new PageBean(page, rows);
         Map<String, Object> resultMap = new HashMap<>(16);
@@ -114,13 +114,18 @@ public class ReservationAdminController {
      * @return
      */
     @RequestMapping("/listNotHandleBeautician")
-    @RequiresPermissions(value = "美容师预约单")
-    public Map<String, Object> listNotHandleBeautician(Reservation reservation, @RequestParam(value = "page", required = false) Integer page, @RequestParam(value = "rows", required = false) Integer rows) {
+    @RequiresPermissions(value = "我的未预约单(美容师)")
+    public Map<String, Object> listNotHandleBeautician(Reservation reservation, @RequestParam(value = "page", required = false) Integer page, @RequestParam(value = "rows", required = false) Integer rows,HttpSession session) {
         PageBean pageBean = new PageBean(page, rows);
         Map<String, Object> resultMap = new HashMap<>(16);
         Map<String, Object> map = new HashMap<>(16);
         map.put("status", 0);
         map.put("type", "预约美容师");
+        map.put("key", 1);
+        map.put("bSaleDate", reservation.getBSaleDate());
+        map.put("eSaleDate", reservation.getESaleDate());
+        User currentUser = (User) session.getAttribute("currentUser");
+        map.put("userId", currentUser.getId());
         if (reservation.getCustomer() != null) {
             if (!StringUtil.isEmpty(reservation.getCustomer().getContact())) {
                 Customer customer = customerService.findByContact(reservation.getCustomer().getContact());
@@ -159,7 +164,7 @@ public class ReservationAdminController {
      * @return
      */
     @RequestMapping("/dealReservation")
-    @RequiresPermissions(value = {"医生预约单", "美容师预约单", "我的预约单", "预约单管理"}, logical = Logical.OR)
+    @RequiresPermissions(value = {"我的未预约单(医生)", "我的未预约单(美容师)", "我的已预约单", "预约单管理"}, logical = Logical.OR)
     public Map<String, Object> dealReservation(Integer status, Integer reservationId, HttpSession session) {
         Map<String, Object> resultMap = new HashMap<>(16);
         Reservation reservation = reservationService.findById(reservationId);
@@ -180,7 +185,7 @@ public class ReservationAdminController {
     }
 
     /**
-     * 后台获取我的预约单
+     * 后台获取我的已预约单
      *
      * @param reservation
      * @param page
@@ -189,14 +194,64 @@ public class ReservationAdminController {
      * @return
      */
     @RequestMapping("/listMyReservation")
-    @RequiresPermissions(value = "我的预约单")
+    @RequiresPermissions(value = "我的已预约单")
     public Map<String, Object> listMyReservation(Reservation reservation, @RequestParam(value = "page", required = false) Integer page, @RequestParam(value = "rows", required = false) Integer rows, HttpSession session) {
         PageBean pageBean = new PageBean(page, rows);
         Map<String, Object> resultMap = new HashMap<>(16);
         Map<String, Object> map = new HashMap<>(16);
         User user = (User) session.getAttribute("currentUser");
         map.put("key", 1);
-        map.put("userId", user);
+        map.put("userId", user.getId());
+        map.put("status", 1);
+        if (reservation.getCustomer() != null) {
+            if (!StringUtil.isEmpty(reservation.getCustomer().getContact())) {
+                Customer customer = customerService.findByContact(reservation.getCustomer().getContact());
+                if (customer != null) {
+                    int customerId = customer.getId();
+                    map.put("customerId", customerId);
+                } else {
+                    map.put("customerId", -1);
+                }
+            }
+        }
+        if (reservation.getPet() != null) {
+            if (!StringUtil.isEmpty(reservation.getPet().getName())) {
+                Pet pet = petService.findByName(reservation.getPet().getName());
+                if (pet != null) {
+                    int petId = pet.getId();
+                    map.put("petId", petId);
+                } else {
+                    map.put("petId", -1);
+                }
+            }
+        }
+        map.put("start", pageBean.getStart());
+        map.put("size", pageBean.getPageSize());
+        List<Reservation> reservationList = reservationService.list(map);
+        resultMap.put("rows", reservationList);
+        resultMap.put("total", reservationService.getCount(map));
+        return resultMap;
+    }
+
+    /**
+     * 后台获取我的已结束预约单
+     *
+     * @param reservation
+     * @param page
+     * @param rows
+     * @param session
+     * @return
+     */
+    @RequestMapping("/listMyFinishReservation")
+    @RequiresPermissions(value = "我的已结束预约单")
+    public Map<String, Object> listMyFinishReservation(Reservation reservation, @RequestParam(value = "page", required = false) Integer page, @RequestParam(value = "rows", required = false) Integer rows, HttpSession session) {
+        PageBean pageBean = new PageBean(page, rows);
+        Map<String, Object> resultMap = new HashMap<>(16);
+        Map<String, Object> map = new HashMap<>(16);
+        User user = (User) session.getAttribute("currentUser");
+        map.put("key", 1);
+        map.put("userId", user.getId());
+        map.put("status", 3);
         if (reservation.getCustomer() != null) {
             if (!StringUtil.isEmpty(reservation.getCustomer().getContact())) {
                 Customer customer = customerService.findByContact(reservation.getCustomer().getContact());
@@ -241,9 +296,20 @@ public class ReservationAdminController {
         PageBean pageBean = new PageBean(page, rows);
         Map<String, Object> resultMap = new HashMap<>(16);
         Map<String, Object> map = new HashMap<>(16);
+        if (reservation.getUser() != null) {
+            if (reservation.getUser().getId()!=null) {
+                User user = reservation.getUser();
+                if (user != null) {
+                    int userId = user.getId();
+                    map.put("userId", userId);
+                } else {
+                    map.put("userId", -1);
+                }
+            }
+        }
         if (reservation.getCustomer() != null) {
-            if (!StringUtil.isEmpty(reservation.getCustomer().getContact())) {
-                Customer customer = customerService.findByContact(reservation.getCustomer().getContact());
+            if (reservation.getCustomer().getId()!=null) {
+                Customer customer = reservation.getCustomer();
                 if (customer != null) {
                     int customerId = customer.getId();
                     map.put("customerId", customerId);

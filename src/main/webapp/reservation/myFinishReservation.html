@@ -69,7 +69,7 @@
 <body style="margin: 1px">
 <table id="dg" title="预约单管理"    class="easyui-datagrid"
        fitColumns="true" pagination="true" rownumbers="true" singleselect="true"
-       url="/admin/reservation/listMyReservation" fit="true" toolbar="#tb">
+       url="/admin/reservation/listMyFinishReservation" fit="true" toolbar="#tb">
     <thead>
     <th field="id" width="10" align="center">编号</th>
     <th field="customer" width="10" align="center" formatter="formatCustomer">客户名称</th>
@@ -81,11 +81,6 @@
 </table>
 
 <div id="tb">
-    <div>
-        <a href="javascript:endReservation(3)" class="easyui-linkbutton" iconCls="icon-cancel"
-           plain="true">结束预约</a>
-        <strong style="color: orange">(如果要取消预约,请联系系统管理员取消您的预约!!)</strong>
-    </div>
     <div>
         &nbsp;客户名称：&nbsp;<input type="text" id="s_contact" size="20"
                                 onkeydown="if(event.keyCode==13) searchReservation()"/>

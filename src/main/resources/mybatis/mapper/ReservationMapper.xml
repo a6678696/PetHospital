@@ -26,6 +26,9 @@
             <if test="customerId!=null">
                 and customerId=#{customerId}
             </if>
+            <if test="userId!=null">
+                and userId=#{userId}
+            </if>
             <if test="petId!=null">
                 and petId=#{petId}
             </if>

@@ -3,7 +3,7 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>预约美容师</title>
+    <title>预约医生</title>
     <link rel="stylesheet" type="text/css" href="/static/jquery-easyui-1.7.0/themes/metro-blue/easyui.css">
     <link rel="stylesheet" type="text/css" href="/static/jquery-easyui-1.7.0/themes/icon.css">
     <script type="text/javascript" src="/static/jquery-easyui-1.7.0/jquery.min.js"></script>
@@ -14,8 +14,8 @@
 
         function searchReservation() {
             $("#dg").datagrid('load', {
-                "customer.contact": $("#s_contact").val(),
-                "pet.name": $("#s_petName").val()
+                "bSaleDate": $("#s_bSaleDate").val(),
+                "eSaleDate": $("#s_eSaleDate").val()
             });
         }
 
@@ -29,12 +29,12 @@
 
         function formatStatus(val, row) {
             if (val == 0) {
-                return "未处理";
+                return "可以预约";
             }
         }
 
         function formatReserveDate(val, row) {
-            return val.substring(0, 4) + "年" + val.substring(5, 7) + "月" + val.substring(8, 10) + "日";
+            return val.substring(0, 4) + "年" + val.substring(5, 7) + "月" + val.substring(8, 10) + "日 " + val.substring(11, 13) + val.substring(13, 16);
         }
 
         function acceptReservation(status) {
@@ -63,30 +63,22 @@
     </script>
 </head>
 <body style="margin: 1px">
-<table id="dg" title="预约单管理"    class="easyui-datagrid"
+<table id="dg" title="预约单管理" class="easyui-datagrid"
        fitColumns="true" pagination="true" rownumbers="true" singleselect="true"
        url="/admin/reservation/listNotHandleBeautician" fit="true" toolbar="#tb">
     <thead>
     <th field="id" width="10" align="center">编号</th>
-    <th field="customer" width="10" align="center" formatter="formatCustomer">客户名称</th>
-    <th field="pet" width="10" align="center" formatter="formatPet">宠物名称</th>
-    <th field="reserveDate" width="12" align="center" formatter="formatReserveDate">预约日期</th>
+    <th field="reserveDate" width="12" align="center" formatter="formatReserveDate">预约时间</th>
     <th field="status" width="8" align="center" formatter="formatStatus">预约状态</th>
-    <th field="description" width="80" align="center">是否有过敏史</th>
     </thead>
 </table>
 
 <div id="tb">
     <div>
-        <a href="javascript:acceptReservation(1)" class="easyui-linkbutton" iconCls="icon-ok"
-           plain="true">接受预约</a>
-        <strong style="color: orange">(接受预约后无法自行取消预约,请慎重考虑后再接受预约!!)</strong>
-    </div>
-    <div>
-        &nbsp;客户名称：&nbsp;<input type="text" id="s_contact" size="20"
-                                onkeydown="if(event.keyCode==13) searchReservation()"/>
-        &nbsp;宠物名称：&nbsp;<input type="text" id="s_petName" size="20"
-                                onkeydown="if(event.keyCode==13) searchReservation()"/>
+        &nbsp;日期:
+        <input id="s_bSaleDate" class="easyui-datetimebox" editable=false style="width:180px"/>
+        &nbsp;-&nbsp;
+        <input id="s_eSaleDate" class="easyui-datetimebox" editable=false style="width:180px"/>
         <a href="javascript:searchReservation()" class="easyui-linkbutton" iconCls="icon-search" plain="true">搜索</a>
     </div>
 </div>
