@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!--suppress ALL-->
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.ledao.mapper.ReturnApplyMapper">
+    <resultMap id="ReturnApplyResult" type="ReturnApply">
+        <result property="id" column="id"/>
+        <result property="saleListId" column="saleListId"/>
+        <result property="saleListGoodsId" column="saleListGoodsId"/>
+        <result property="num" column="num"/>
+        <result property="saleListNumber" column="saleListNumber"/>
+        <result property="reason" column="reason"/>
+        <result property="applyDate" column="applyDate"/>
+    </resultMap>
+    <select id="list" parameterType="map" resultMap="ReturnApplyResult">
+        select * from t_return_apply
+        <where>
+            <if test="saleListGoodsId!=null">
+                and saleListGoodsId=#{saleListGoodsId}
+            </if>
+            <if test="bSaleDate!=null">
+                and date_format(applyDate,'%Y-%m-%d %H:%i:%S') &gt;= date_format(#{bSaleDate},'%Y-%m-%d %H:%i:%S')
+            </if>
+            <if test="eSaleDate!=null">
+                and date_format(applyDate,'%Y-%m-%d %H:%i:%S') &lt;= date_format(#{eSaleDate},'%Y-%m-%d %H:%i:%S')
+            </if>
+        </where>
+        order by applyDate desc
+        <if test="start!=null and size!=null">
+            limit #{start},#{size}
+        </if>
+    </select>
+    <select id="getCount" parameterType="map" resultType="java.lang.Long">
+        select count(*) from t_return_apply
+        <where>
+            <if test="saleListGoodsId!=null">
+                and saleListGoodsId=#{saleListGoodsId}
+            </if>
+            <if test="bSaleDate!=null">
+                and date_format(applyDate,'%Y-%m-%d %H:%i:%S') &gt;= date_format(#{bSaleDate},'%Y-%m-%d %H:%i:%S')
+            </if>
+            <if test="eSaleDate!=null">
+                and date_format(applyDate,'%Y-%m-%d %H:%i:%S') &lt;= date_format(#{eSaleDate},'%Y-%m-%d %H:%i:%S')
+            </if>
+        </where>
+    </select>
+    <insert id="add" parameterType="ReturnApply">
+        insert into t_return_apply (saleListId, saleListGoodsId, num, applyDate, reason) values (#{saleListId},#{saleListGoodsId},#{num},now(),#{reason});
+    </insert>
+    <update id="update" parameterType="ReturnApply">
+        update t_return_apply
+        <set>
+            <if test="saleListId != null">
+                saleListId=#{saleListId},
+            </if>
+            <if test="saleListGoodsId != null">
+                saleListGoodsId=#{saleListGoodsId},
+            </if>
+            <if test="num != null">
+                num=#{num},
+            </if>
+            <if test="reason != null and reason != ''">
+                reason=#{reason},
+            </if>
+        </set>
+        where id=#{id}
+    </update>
+    <delete id="delete" parameterType="integer">
+        delete from t_return_apply where id=#{id}
+    </delete>
+    <select id="findById" parameterType="integer" resultMap="ReturnApplyResult">
+        select * from t_return_apply where id=#{id}
+    </select>
+</mapper>

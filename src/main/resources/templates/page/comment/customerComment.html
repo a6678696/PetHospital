@@ -82,7 +82,7 @@
                             <div class="col-md-6">
                                 <div class="box">
                                     <h3 class="text-center" th:text="${goods.name}"></h3>
-                                    <p class="goToDescription"><a href="#details" class="scroll-to">查看商品详情</a></p>
+                                    <p class="goToDescription"><a href="#details" class="scroll-to">查看评论详情</a></p>
                                     <p class="price" th:text="'￥'+${goods.sellingPrice}"></p>
                                     <div class="form-inline">
                                         <p>总销量:</p>&nbsp;
@@ -154,20 +154,22 @@
                                 </div>
                                 <!-- /.box-->
                                 <div id="comments">
-                                    <h4><span>共 </span><span th:text="${total}"></span> 条评论</h4>
-                                    <div class="row comment" th:each="comment:${commentList}" th:if="${total>0}">
-                                        <div class="col-md-3 col-lg-2 text-center text-md-center">
-                                            <p>
-                                                <img th:src="@{'/static/images/customerImage/'+${comment.customer.imageName}}"
-                                                     alt="" class="img-fluid rounded-circle"
-                                                     style="width: 100px;height: 100px"></p>
-                                        </div>
-                                        <div class="col-md-9 col-lg-10">
-                                            <h5 th:text="${comment.customer.contact}"></h5>
-                                            <p class="posted"><i class="fa fa-clock-o"></i> <span
-                                                    th:text="${#dates.format(comment.createDate,'yyyy-MM-dd HH:mm:ss')}"></span>
-                                            </p>
-                                            <p th:text="${comment.content}"></p>
+                                    <div id="details">
+                                        <h4><span>共 </span><span th:text="${total}"></span> 条评论</h4>
+                                        <div class="row comment" th:each="comment:${commentList}" th:if="${total>0}">
+                                            <div class="col-md-3 col-lg-2 text-center text-md-center">
+                                                <p>
+                                                    <img th:src="@{'/static/images/customerImage/'+${comment.customer.imageName}}"
+                                                         alt="" class="img-fluid rounded-circle"
+                                                         style="width: 100px;height: 100px"></p>
+                                            </div>
+                                            <div class="col-md-9 col-lg-10">
+                                                <h5 th:text="${comment.customer.contact}"></h5>
+                                                <p class="posted"><i class="fa fa-clock-o"></i> <span
+                                                        th:text="${#dates.format(comment.createDate,'yyyy-MM-dd HH:mm:ss')}"></span>
+                                                </p>
+                                                <p th:text="${comment.content}"></p>
+                                            </div>
                                         </div>
                                     </div>
                                     <!-- /.comment-->

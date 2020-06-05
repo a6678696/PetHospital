@@ -79,4 +79,8 @@ public class SaleListGoods {
      * 是否评价 0.未评价 1.已评价
      */
     private Integer status;
+    /**
+     * 是否可退货 0.不可以  1.可以
+     */
+    private Integer canReturn=0;
 }
