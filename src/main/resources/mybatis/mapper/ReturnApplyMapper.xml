@@ -4,18 +4,26 @@
 <mapper namespace="com.ledao.mapper.ReturnApplyMapper">
     <resultMap id="ReturnApplyResult" type="ReturnApply">
         <result property="id" column="id"/>
+        <result property="customerId" column="customerId"/>
         <result property="saleListId" column="saleListId"/>
         <result property="saleListGoodsId" column="saleListGoodsId"/>
         <result property="num" column="num"/>
         <result property="saleListNumber" column="saleListNumber"/>
         <result property="reason" column="reason"/>
         <result property="applyDate" column="applyDate"/>
+        <result property="status" column="status"/>
     </resultMap>
     <select id="list" parameterType="map" resultMap="ReturnApplyResult">
         select * from t_return_apply
         <where>
             <if test="saleListGoodsId!=null">
                 and saleListGoodsId=#{saleListGoodsId}
+            </if>
+            <if test="customerId!=null">
+                and customerId=#{customerId}
+            </if>
+            <if test="status!=null">
+                and status=#{status}
             </if>
             <if test="bSaleDate!=null">
                 and date_format(applyDate,'%Y-%m-%d %H:%i:%S') &gt;= date_format(#{bSaleDate},'%Y-%m-%d %H:%i:%S')
@@ -35,6 +43,12 @@
             <if test="saleListGoodsId!=null">
                 and saleListGoodsId=#{saleListGoodsId}
             </if>
+            <if test="customerId!=null">
+                and customerId=#{customerId}
+            </if>
+            <if test="status!=null">
+                and status=#{status}
+            </if>
             <if test="bSaleDate!=null">
                 and date_format(applyDate,'%Y-%m-%d %H:%i:%S') &gt;= date_format(#{bSaleDate},'%Y-%m-%d %H:%i:%S')
             </if>
@@ -44,7 +58,7 @@
         </where>
     </select>
     <insert id="add" parameterType="ReturnApply">
-        insert into t_return_apply (saleListId, saleListGoodsId, num, applyDate, reason) values (#{saleListId},#{saleListGoodsId},#{num},now(),#{reason});
+        insert into t_return_apply (customerId,saleListId, saleListGoodsId, num, applyDate, reason,status,saleListNumber) values (#{customerId},#{saleListId},#{saleListGoodsId},#{num},now(),#{reason},0,#{saleListNumber});
     </insert>
     <update id="update" parameterType="ReturnApply">
         update t_return_apply
@@ -60,6 +74,9 @@
             </if>
             <if test="reason != null and reason != ''">
                 reason=#{reason},
+            </if>
+            <if test="status != null">
+                status=#{status},
             </if>
         </set>
         where id=#{id}

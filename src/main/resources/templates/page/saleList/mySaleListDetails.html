@@ -58,9 +58,9 @@
                                         <td style="text-align: center">￥0.0</td>
                                         <td style="text-align: center">￥<span th:text="${saleListGoods.total}"></span>
                                         </td>
-                                        <td style="text-align: center" th:if="${saleList.state==5 and saleListGoods.canReturn==1}">
+                                        <td style="text-align: center" th:if="${saleList.state==5}">
                                             <a th:href="'javascript:comment('+${saleListGoods.id}+')'" class="btn btn-info" th:if="${saleListGoods.status==0}">评价</a>
-                                            <a href="" class="btn btn-danger">退货</a>
+                                            <a th:href="@{'/returnApply/returnApplyAdd?saleListGoodsId='+${saleListGoods.getId()}}" class="btn btn-danger">退货</a>
                                         </td>
                                     </tr>
                                     </tbody>

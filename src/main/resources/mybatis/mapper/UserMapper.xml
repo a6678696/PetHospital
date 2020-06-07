@@ -14,9 +14,9 @@
         <result property="imageName" column="imageName"/>
     </resultMap>
 
-    <select id="findByUserName" parameterType="string" resultType="User">
+    <select id="findByUserName" parameterType="string" resultMap="BaseResultMap">
     select * from t_user where userName=#{userName}
-  </select>
+    </select>
 
     <select id="list" parameterType="map" resultMap="BaseResultMap">
         select * from t_user

@@ -83,4 +83,16 @@ public class SaleListGoods {
      * 是否可退货 0.不可以  1.可以
      */
     private Integer canReturn=0;
+    /**
+     * 可以退货的数量
+     */
+    private Integer canReturnNum;
+    /**
+     * 已退货数量
+     */
+    private Integer returnNum;
+    /**
+     * 上次填写退货信息时的数量
+     */
+    private Integer lastReturnNum;
 }

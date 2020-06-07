@@ -19,17 +19,29 @@ public class ReturnApply {
      */
     private Integer id;
     /**
+     * 客户id
+     */
+    private Integer customerId;
+    /**
+     * 客户实体
+     */
+    private Customer customer;
+    /**
      * 所属订单编号
      */
     private Integer saleListId;
     /**
      * 所属订单号
      */
-    private Integer saleListNumber;
+    private String saleListNumber;
     /**
      * 退货商品的所属订单商品编号
      */
     private Integer saleListGoodsId;
+    /**
+     * 退货商品的所属订单商品
+     */
+    private SaleListGoods saleListGoods;
     /**
      * 退货数量
      */
@@ -42,6 +54,10 @@ public class ReturnApply {
      * 退货理由
      */
     private String reason;
+    /**
+     * 当前状态 0.审核中 1.同意退货 2.不同意退货
+     */
+    private Integer status;
     /**
      *起始日期 搜索用到
      */
