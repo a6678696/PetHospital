@@ -14,6 +14,7 @@
         <result property="total" column="total"/>
         <result property="status" column="status"/>
         <result property="returnNum" column="returnNum"/>
+        <result property="isReturn" column="isReturn"/>
         <association property="saleList" column="saleListId" select="com.ledao.mapper.SaleListMapper.findById"></association>
         <association property="type" column="typeId" select="com.ledao.mapper.GoodsTypeMapper.findById"></association>
     </resultMap>
@@ -44,7 +45,7 @@
         </if>
     </select>
     <insert id="add" parameterType="SaleListGoods">
-        insert into t_sale_list_goods (code, goodsId, model, name, num, price, total, unit, saleListId, typeId,status,returnNum) values (#{code},#{goodsId},#{model},#{name},#{num},#{price},#{total},#{unit},#{saleList.id},#{type.id},0,0);
+        insert into t_sale_list_goods (code, goodsId, model, name, num, price, total, unit, saleListId, typeId,status,returnNum,isReturn) values (#{code},#{goodsId},#{model},#{name},#{num},#{price},#{total},#{unit},#{saleList.id},#{type.id},0,0,0);
     </insert>
     <select id="getCount" parameterType="map" resultType="java.lang.Long">
         select count(*) from t_sale_list_goods
@@ -71,6 +72,12 @@
         <set>
             <if test="status != null">
                 status=#{status},
+            </if>
+            <if test="returnNum != null">
+                returnNum=#{returnNum},
+            </if>
+            <if test="isReturn != null">
+                isReturn=#{isReturn},
             </if>
         </set>
         where id=#{id}

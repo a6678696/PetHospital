@@ -94,7 +94,7 @@ public class ArticleController {
     public ModelAndView view(@PathVariable(value = "id", required = false) Integer id) {
         ModelAndView mav = new ModelAndView();
         Article article = articleService.findById(id);
-        article.setClick(article.getClick() + 1);
+        article.setClick(article.getClick()+1);
         articleService.update(article);
         mav.addObject("typeName", articleTypeService.findById(article.getTypeId()).getName());
         mav.addObject("article", article);

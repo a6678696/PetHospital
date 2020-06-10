@@ -49,7 +49,7 @@
                                     <tbody>
                                     <tr th:each="returnApply:${returnApplyList}">
                                         <td style="text-align: center">
-                                            <span th:text="${#strings.abbreviate(returnApply.saleListGoods.name,15)}"></span>
+                                            <a href="#" th:text="${#strings.abbreviate(returnApply.saleListGoods.name,15)}" th:title="${returnApply.saleListGoods.name}"></a>
                                         </td>
                                         <td style="text-align: center">
                                             <span th:text="${returnApply.num}"></span>
@@ -68,12 +68,12 @@
                                         </td>
                                         <td style="text-align: center">
                                             <a th:href="@{'/returnApply/returnApplyDetails?returnApplyId='+${returnApply.id}}"><i
-                                                    class="fa fa-search" style="font-size: 20px;color: #0099FF"></i></a>
+                                                    class="fa fa-search" style="font-size: 20px;color: #0099FF" title="查看"></i></a>
                                             <a th:href="@{'/returnApply/returnApplyModify?returnApplyId='+${returnApply.id}}"
                                                th:if="${returnApply.status==0}"><i class="fa fa-pencil"
-                                                                                   style="font-size: 20px"></i></a>
-                                            <a th:href="@{'javascript:deleteReservation('+${returnApply.id}+')'}" th:if="${returnApply.status==0}"><i class="fa fa-trash-o"
-                                                                                            style="color: red;font-size: 20px"></i></a>
+                                                                                   style="font-size: 20px" title="修改" th:if="${returnApply.status==0}"></i></a>
+                                            <a th:href="@{'javascript:deleteReturnApply('+${returnApply.id}+')'}" th:if="${returnApply.status==0}"><i class="fa fa-trash-o"
+                                                                                            style="color: red;font-size: 20px" title="删除"></i></a>
                                         </td>
                                     </tr>
                                     </tbody>

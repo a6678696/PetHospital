@@ -80,9 +80,9 @@ public class SaleListGoods {
      */
     private Integer status;
     /**
-     * 是否可退货 0.不可以  1.可以
+     * 是否可退货 0.未退货  1.已退货
      */
-    private Integer canReturn=0;
+    private Integer isReturn=0;
     /**
      * 可以退货的数量
      */

@@ -65,6 +65,9 @@ public class ReturnApplyController {
     public ModelAndView returnApplyModify(Integer returnApplyId) {
         ModelAndView mav = new ModelAndView();
         ReturnApply returnApply = returnApplyService.findById(returnApplyId);
+        returnApply.setSaleListGoods(saleListGoodsService.findById(returnApply.getSaleListGoodsId()));
+        returnApply.getSaleListGoods().setGoods(goodsService.findById(returnApply.getSaleListGoods().getGoodsId()));
+        mav.addObject("key", 1);
         mav.addObject("returnApply", returnApply);
         mav.addObject("title", "退货信息修改");
         mav.addObject("mainPage", "page/returnApply/returnApplyModify");
@@ -82,14 +85,15 @@ public class ReturnApplyController {
      */
     @RequestMapping("/save")
     public ModelAndView save(ReturnApply returnApply, HttpSession session) {
-        ModelAndView mav = new ModelAndView("redirect:/reservation/myReservation/list/1");
+        ModelAndView mav = new ModelAndView("redirect:/returnApply/myReturnApply/list/1");
         Customer currentCustomer = (Customer) session.getAttribute("currentCustomer");
         returnApply.setCustomerId(currentCustomer.getId());
         if (returnApply.getId() == null) {
             returnApply.setCustomerId(currentCustomer.getId());
             returnApplyService.add(returnApply);
             SaleListGoods saleListGoods = saleListGoodsService.findById(returnApply.getSaleListGoodsId());
-            saleListGoods.setReturnNum(saleListGoods.getReturnNum()+returnApply.getNum());
+            saleListGoods.setReturnNum(saleListGoods.getReturnNum() + returnApply.getNum());
+            saleListGoods.setIsReturn(1);
             saleListGoodsService.update(saleListGoods);
         } else {
             returnApplyService.update(returnApply);
@@ -98,7 +102,7 @@ public class ReturnApplyController {
     }
 
     /**
-     * 我的预约
+     * 我的退货信息
      *
      * @return
      */
@@ -121,6 +125,26 @@ public class ReturnApplyController {
         mav.addObject("pageCode", PageUtil.genPagination2("/returnApply/myReturnApply/list", total, page, pageSize));
         mav.addObject("title", "我的预约");
         mav.addObject("mainPage", "page/returnApply/myReturnApply");
+        mav.addObject("mainPageKey", "#b");
+        mav.setViewName("index");
+        return mav;
+    }
+
+    /**
+     * 客户参考退货信息详情
+     *
+     * @param returnApplyId
+     * @return
+     */
+    @RequestMapping("/returnApplyDetails")
+    public ModelAndView returnApplyDetails(Integer returnApplyId) {
+        ModelAndView mav = new ModelAndView();
+        ReturnApply returnApply = returnApplyService.findById(returnApplyId);
+        returnApply.setSaleListGoods(saleListGoodsService.findById(returnApply.getSaleListGoodsId()));
+        returnApply.getSaleListGoods().setGoods(goodsService.findById(returnApply.getSaleListGoods().getGoodsId()));
+        mav.addObject("returnApply", returnApply);
+        mav.addObject("title", "退货信息详情");
+        mav.addObject("mainPage", "page/returnApply/returnApplyDetails");
         mav.addObject("mainPageKey", "#b");
         mav.setViewName("index");
         return mav;

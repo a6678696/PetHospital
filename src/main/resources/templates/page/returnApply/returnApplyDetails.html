@@ -41,26 +41,16 @@
                                         th:src="@{'/static/images/goodsImage/'+${returnApply.saleListGoods.goods.imageName}}"
                                         style="height: 100px;width: 100px" alt="图片不存在或已删除"></a>
                             </div>
-                            <form action="/returnApply/save" method="post" enctype="multipart/form-data">
-                                <input type="hidden" id="saleListGoodsId" name="saleListGoodsId" th:value="${returnApply.saleListGoods.id}">
-                                <input type="hidden" id="saleListId" name="saleListId" th:value="${returnApply.saleListGoods.saleList.id}">
-                                <input type="hidden" id="saleListNumber" name="saleListNumber" th:value="${returnApply.saleListGoods.saleList.saleNumber}">
-                                <div class="form-group form-inline">
-                                    <label>修改退货数量:</label>&nbsp;
-                                    <select id="num" name="num" required="required" class="form-control">
-                                        <option th:value="${returnApply.num}" th:text="${returnApply.num}"></option>
-                                        <option th:each="i:${#numbers.sequence(1,returnApply.saleListGoods.num)}" th:value="${i}" th:text="${i}" th:if="${i!=returnApply.num}"></option>
-                                    </select>
-                                </div>
-                                <div class="form-group">
-                                    <label>退货原因:</label>
-                                    <textarea id="reason" name="reason" th:text="${returnApply.reason}" rows="3" class="form-control" required="required" placeholder="必填"></textarea>
-                                </div>
-                                <input type="hidden" id="id" name="id" th:value="${returnApply.id}">
-                                <div class="text-center">
-                                    <button type="submit" class="btn btn-primary"><i class="fa fa-edit"></i>修改</button>
-                                </div>
-                            </form>
+                            <div class="form-group">
+                                <kbd style="font-size: 15px">退货数量:</kbd>
+                                <span style="font-size: 20px"
+                                      th:text="${returnApply.num}"></span>
+                            </div>
+                            <div class="form-group">
+                                <kbd style="font-size: 15px">退货理由:</kbd>
+                                <span style="font-size: 20px"
+                                      th:text="${returnApply.reason}"></span>
+                            </div>
                         </div>
                         <!-- /.box-->
                     </div>

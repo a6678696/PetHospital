@@ -313,6 +313,14 @@
                 window.location.href = "/comment/commentPage?saleListGoodsId="+saleListGoodsId;
             }
         }
+
+        //客户删除自己的退货信息
+        function deleteReturnApply(reservationId) {
+            if (confirm("您确定要删除这个退货信息吗?")) {
+                window.location.href = "/reservation/delete?reservationId=" + reservationId;
+                alert("删除成功!");
+            }
+        }
     </script>
 </head>
 <body>

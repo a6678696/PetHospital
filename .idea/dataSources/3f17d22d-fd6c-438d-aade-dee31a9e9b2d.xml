@@ -2961,7 +2961,7 @@
       <DataType>int(11)|0s</DataType>
       <ColumnKind>normal</ColumnKind>
     </column>
-    <column id="674" parent="286" name="lastreturnNum">
+    <column id="674" parent="286" name="isReturn">
       <Position>14</Position>
       <DataType>int(11)|0s</DataType>
       <ColumnKind>normal</ColumnKind>
