@@ -315,9 +315,9 @@
         }
 
         //客户删除自己的退货信息
-        function deleteReturnApply(reservationId) {
+        function deleteReturnApply(returnApplyId) {
             if (confirm("您确定要删除这个退货信息吗?")) {
-                window.location.href = "/reservation/delete?reservationId=" + reservationId;
+                window.location.href = "/returnApply/delete?returnApplyId=" + returnApplyId;
                 alert("删除成功!");
             }
         }

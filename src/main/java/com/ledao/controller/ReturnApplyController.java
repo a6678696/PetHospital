@@ -92,10 +92,13 @@ public class ReturnApplyController {
             returnApply.setCustomerId(currentCustomer.getId());
             returnApplyService.add(returnApply);
             SaleListGoods saleListGoods = saleListGoodsService.findById(returnApply.getSaleListGoodsId());
-            saleListGoods.setReturnNum(saleListGoods.getReturnNum() + returnApply.getNum());
+            saleListGoods.setReturnNum(returnApply.getNum());
             saleListGoods.setIsReturn(1);
             saleListGoodsService.update(saleListGoods);
         } else {
+            SaleListGoods saleListGoods = saleListGoodsService.findById(returnApply.getSaleListGoodsId());
+            saleListGoods.setReturnNum(returnApply.getNum());
+            saleListGoodsService.update(saleListGoods);
             returnApplyService.update(returnApply);
         }
         return mav;
@@ -148,5 +151,22 @@ public class ReturnApplyController {
         mav.addObject("mainPageKey", "#b");
         mav.setViewName("index");
         return mav;
+    }
+
+    /**
+     * 删除退货申请信息(取消退货申请)
+     *
+     * @param returnApplyId
+     * @return
+     */
+    @RequestMapping("/delete")
+    public String delete(Integer returnApplyId) {
+        ReturnApply returnApply = returnApplyService.findById(returnApplyId);
+        SaleListGoods saleListGoods = saleListGoodsService.findById(returnApply.getSaleListGoodsId());
+        saleListGoods.setIsReturn(0);
+        saleListGoods.setReturnNum(0);
+        saleListGoodsService.update(saleListGoods);
+        returnApplyService.delete(returnApplyId);
+        return "redirect:/returnApply/myReturnApply/list/1";
     }
 }

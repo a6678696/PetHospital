@@ -27,13 +27,13 @@
                     </div>
                     <div id="basket" class="col-lg-9" th:if="${returnApplyList.size()<1}">
                         <div class="box container">
-                            <h3>您还没有申请退货单,<a href="/returnApply/addDoctorReservation">点我去添加</a></h3>
+                            <h3>您还没有申请退货单,<a href="/saleList/mySaleList/list/1">查看我的订单</a></h3>
                         </div>
                     </div>
                     <div id="basket" class="col-lg-9" th:if="${returnApplyList.size()>=1}">
                         <div class="box container">
                             <p class="text-muted">您一共有 <span
-                                    th:text="${returnApplyList.size()}" style="color: red"></span> 条申请退货记录</p>
+                                    th:text="${returnApplyList.size()}" style="color: red"></span> 条申请退货记录<span style="color: red">(未被管理员处理的退货申请客户可自行删除(即取消),已处理的不能删除)</span></p>
                             <div>
                                 <table class="table">
                                     <thead>
