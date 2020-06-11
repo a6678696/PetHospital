@@ -25,6 +25,9 @@
             <if test="status!=null">
                 and status=#{status}
             </if>
+            <if test="saleListNumber!=null and saleListNumber!=''">
+                and saleListNumber like #{saleListNumber}
+            </if>
             <if test="bSaleDate!=null">
                 and date_format(applyDate,'%Y-%m-%d %H:%i:%S') &gt;= date_format(#{bSaleDate},'%Y-%m-%d %H:%i:%S')
             </if>
@@ -48,6 +51,9 @@
             </if>
             <if test="status!=null">
                 and status=#{status}
+            </if>
+            <if test="saleListNumber!=null and saleListNumber!=''">
+                and saleListNumber like #{saleListNumber}
             </if>
             <if test="bSaleDate!=null">
                 and date_format(applyDate,'%Y-%m-%d %H:%i:%S') &gt;= date_format(#{bSaleDate},'%Y-%m-%d %H:%i:%S')
