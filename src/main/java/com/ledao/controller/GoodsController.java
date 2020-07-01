@@ -109,7 +109,6 @@ public class GoodsController {
             mav.addObject("goodsList", goodsList);
             mav.addObject("total", total);
             mav.addObject("pageCode", PageUtil.genPagination("/goods/list", total, page, pageSize, typeId));
-
         }
         //获取商品分类
         List<GoodsType> goodsTypeList = goodsTypeService.findByParentId(1);
