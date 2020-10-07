@@ -85,6 +85,7 @@ public class TackleAdminController {
         int key;
         if (tackle.getId() == null) {
             logService.add(new Log(Log.ADD_ACTION, "添加医院用品" + tackle));
+            tackle.setStatus(0);
             key = tackleService.add(tackle);
         } else {
             logService.add(new Log(Log.UPDATE_ACTION, "修改医院用品" + tackle));

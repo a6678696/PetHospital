@@ -1,7 +1,5 @@
 package com.ledao.entity;
 
-import lombok.Data;
-
 import java.util.Date;
 
 /**
@@ -11,7 +9,6 @@ import java.util.Date;
  * @company
  * @create 2020-03-20 18:45
  */
-@Data
 public class FosterCare {
 
     /**
@@ -54,4 +51,100 @@ public class FosterCare {
      * 描述
      */
     private String description;
+
+    public Integer getId() {
+        return id;
+    }
+
+    public void setId(Integer id) {
+        this.id = id;
+    }
+
+    public Date getBeginDate() {
+        return beginDate;
+    }
+
+    public void setBeginDate(Date beginDate) {
+        this.beginDate = beginDate;
+    }
+
+    public Date getEndDate() {
+        return endDate;
+    }
+
+    public void setEndDate(Date endDate) {
+        this.endDate = endDate;
+    }
+
+    public Customer getCustomer() {
+        return customer;
+    }
+
+    public void setCustomer(Customer customer) {
+        this.customer = customer;
+    }
+
+    public String getCustomerName() {
+        return customerName;
+    }
+
+    public void setCustomerName(String customerName) {
+        this.customerName = customerName;
+    }
+
+    public Pet getPet() {
+        return pet;
+    }
+
+    public void setPet(Pet pet) {
+        this.pet = pet;
+    }
+
+    public String getPetName() {
+        return petName;
+    }
+
+    public void setPetName(String petName) {
+        this.petName = petName;
+    }
+
+    public float getPrice() {
+        return price;
+    }
+
+    public void setPrice(float price) {
+        this.price = price;
+    }
+
+    public Integer getStatus() {
+        return status;
+    }
+
+    public void setStatus(Integer status) {
+        this.status = status;
+    }
+
+    public String getDescription() {
+        return description;
+    }
+
+    public void setDescription(String description) {
+        this.description = description;
+    }
+
+    @Override
+    public String toString() {
+        return "FosterCare{" +
+                "id=" + id +
+                ", beginDate=" + beginDate +
+                ", endDate=" + endDate +
+                ", customer=" + customer +
+                ", customerName='" + customerName + '\'' +
+                ", pet=" + pet +
+                ", petName='" + petName + '\'' +
+                ", price=" + price +
+                ", status=" + status +
+                ", description='" + description + '\'' +
+                '}';
+    }
 }

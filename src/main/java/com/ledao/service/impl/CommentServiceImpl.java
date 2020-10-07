@@ -38,6 +38,11 @@ public class CommentServiceImpl implements CommentService {
     }
 
     @Override
+    public Integer delete(Integer id) {
+        return commentMapper.delete(id);
+    }
+
+    @Override
     public Comment findById(Integer id) {
         return commentMapper.findById(id);
     }

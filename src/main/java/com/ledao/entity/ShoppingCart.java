@@ -1,7 +1,5 @@
 package com.ledao.entity;
 
-import lombok.Data;
-
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
@@ -13,7 +11,6 @@ import java.util.List;
  * @company
  * @create 2020-01-31 13:33
  */
-@Data
 public class ShoppingCart implements Serializable {
 
     private static final long serialVersionUID = 1L;
@@ -32,4 +29,37 @@ public class ShoppingCart implements Serializable {
      * 购物车内商品总金额
      */
     private Integer total;
+
+    public Integer getCustomerId() {
+        return customerId;
+    }
+
+    public void setCustomerId(Integer customerId) {
+        this.customerId = customerId;
+    }
+
+    public List<ShoppingCartItem> getShoppingCartItems() {
+        return shoppingCartItems;
+    }
+
+    public void setShoppingCartItems(List<ShoppingCartItem> shoppingCartItems) {
+        this.shoppingCartItems = shoppingCartItems;
+    }
+
+    public Integer getTotal() {
+        return total;
+    }
+
+    public void setTotal(Integer total) {
+        this.total = total;
+    }
+
+    @Override
+    public String toString() {
+        return "ShoppingCart{" +
+                "customerId=" + customerId +
+                ", shoppingCartItems=" + shoppingCartItems +
+                ", total=" + total +
+                '}';
+    }
 }

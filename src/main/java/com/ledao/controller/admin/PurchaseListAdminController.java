@@ -136,8 +136,8 @@ public class PurchaseListAdminController {
         map.put("purchaseNumber", StringUtil.formatLike(purchaseList.getPurchaseNumber()));
         map.put("supplier", purchaseList.getSupplier());
         map.put("state", purchaseList.getState());
-        map.put("bPurchaseDate", purchaseList.getBPurchaseDate());
-        map.put("ePurchaseDate", purchaseList.getEPurchaseDate());
+        map.put("bPurchaseDate", purchaseList.getbPurchaseDate());
+        map.put("ePurchaseDate", purchaseList.getePurchaseDate());
         List<PurchaseList> purchaseListList = purchaseListService.list(map);
         resultMap.put("rows", purchaseListList);
         logService.add(new Log(Log.SEARCH_ACTION, "进货单查询"));
@@ -156,8 +156,8 @@ public class PurchaseListAdminController {
     public Map<String, Object> listCount(PurchaseList purchaseList, PurchaseListGoods purchaseListGoods) {
         Map<String, Object> resultMap = new HashMap<>(16);
         Map<String, Object> map = new HashMap<>(16);
-        map.put("bPurchaseDate", purchaseList.getBPurchaseDate());
-        map.put("ePurchaseDate", purchaseList.getEPurchaseDate());
+        map.put("bPurchaseDate", purchaseList.getbPurchaseDate());
+        map.put("ePurchaseDate", purchaseList.getePurchaseDate());
         List<PurchaseList> purchaseListList = purchaseListService.list(map);
         for (PurchaseList pl : purchaseListList) {
             Map<String, Object> map2 = new HashMap<>(16);

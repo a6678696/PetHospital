@@ -62,8 +62,8 @@ public class SaleListPaymentInformationAdmin {
             map.put("customerId", saleListPaymentInformation.getCustomer().getId());
         }
         map.put("saleNumber", StringUtil.formatLike(saleListPaymentInformation.getSaleNumber()));
-        map.put("bSaleDate", saleListPaymentInformation.getBSaleDate());
-        map.put("eSaleDate", saleListPaymentInformation.getESaleDate());
+        map.put("bSaleDate", saleListPaymentInformation.getbSaleDate());
+        map.put("eSaleDate", saleListPaymentInformation.geteSaleDate());
         map.put("start", pageBean.getStart());
         map.put("size", pageBean.getPageSize());
         List<SaleListPaymentInformation> saleListPaymentInformationList = saleListPaymentInformationService.list(map);

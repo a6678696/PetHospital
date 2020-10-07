@@ -3,6 +3,7 @@ package com.ledao.controller.admin;
 import com.ledao.entity.Comment;
 import com.ledao.entity.Log;
 import com.ledao.entity.PageBean;
+import com.ledao.entity.SaleListGoods;
 import com.ledao.service.*;
 import org.apache.shiro.authz.annotation.RequiresPermissions;
 import org.springframework.beans.propertyeditors.CustomDateEditor;
@@ -58,8 +59,8 @@ public class CommentAdminController {
         Map<String,Object> resultMap=new HashMap<>(16);
         Map<String,Object> map=new HashMap<>(16);
         map.put("customerId", comment.getCustomerId());
-        map.put("bSaleDate", comment.getBSaleDate());
-        map.put("eSaleDate", comment.getESaleDate());
+        map.put("bSaleDate", comment.getbSaleDate());
+        map.put("eSaleDate", comment.geteSaleDate());
         map.put("start", pageBean.getStart());
         map.put("size", pageBean.getPageSize());
         List<Comment> commentList = commentService.list(map);

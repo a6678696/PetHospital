@@ -71,8 +71,8 @@ public class ReservationAdminController {
         map.put("status", 0);
         map.put("type", "预约医生");
         map.put("key", 1);
-        map.put("bSaleDate", reservation.getBSaleDate());
-        map.put("eSaleDate", reservation.getESaleDate());
+        map.put("bSaleDate", reservation.getbSaleDate());
+        map.put("eSaleDate", reservation.geteSaleDate());
         User currentUser = (User) session.getAttribute("currentUser");
         map.put("userId", currentUser.getId());
         if (reservation.getCustomer() != null) {
@@ -122,8 +122,8 @@ public class ReservationAdminController {
         map.put("status", 0);
         map.put("type", "预约美容师");
         map.put("key", 1);
-        map.put("bSaleDate", reservation.getBSaleDate());
-        map.put("eSaleDate", reservation.getESaleDate());
+        map.put("bSaleDate", reservation.getbSaleDate());
+        map.put("eSaleDate", reservation.geteSaleDate());
         User currentUser = (User) session.getAttribute("currentUser");
         map.put("userId", currentUser.getId());
         if (reservation.getCustomer() != null) {

@@ -1,7 +1,5 @@
 package com.ledao.entity;
 
-import lombok.Data;
-
 import java.io.Serializable;
 
 /**
@@ -11,7 +9,6 @@ import java.io.Serializable;
  * @company
  * @create 2020-01-31 13:34
  */
-@Data
 public class ShoppingCartItem implements Serializable {
 
     private static final long serialVersionUID = 1L;
@@ -28,4 +25,37 @@ public class ShoppingCartItem implements Serializable {
      * 商品数量
      */
     private Integer count;
+
+    public Integer getId() {
+        return id;
+    }
+
+    public void setId(Integer id) {
+        this.id = id;
+    }
+
+    public Goods getGoods() {
+        return goods;
+    }
+
+    public void setGoods(Goods goods) {
+        this.goods = goods;
+    }
+
+    public Integer getCount() {
+        return count;
+    }
+
+    public void setCount(Integer count) {
+        this.count = count;
+    }
+
+    @Override
+    public String toString() {
+        return "ShoppingCartItem{" +
+                "id=" + id +
+                ", goods=" + goods +
+                ", count=" + count +
+                '}';
+    }
 }

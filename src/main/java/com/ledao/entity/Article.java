@@ -1,7 +1,5 @@
 package com.ledao.entity;
 
-import lombok.Data;
-
 import javax.validation.constraints.NotEmpty;
 import java.util.Date;
 
@@ -12,7 +10,6 @@ import java.util.Date;
  * @company
  * @create 2020-01-26 19:30
  */
-@Data
 public class Article {
 
     /**
@@ -44,6 +41,62 @@ public class Article {
      * 文章内容
      */
     private String content;
+
+    public Integer getId() {
+        return id;
+    }
+
+    public void setId(Integer id) {
+        this.id = id;
+    }
+
+    public String getTitle() {
+        return title;
+    }
+
+    public void setTitle(String title) {
+        this.title = title;
+    }
+
+    public Date getReleaseDate() {
+        return releaseDate;
+    }
+
+    public void setReleaseDate(Date releaseDate) {
+        this.releaseDate = releaseDate;
+    }
+
+    public Integer getClick() {
+        return click;
+    }
+
+    public void setClick(Integer click) {
+        this.click = click;
+    }
+
+    public Integer getTypeId() {
+        return typeId;
+    }
+
+    public void setTypeId(Integer typeId) {
+        this.typeId = typeId;
+    }
+
+    public ArticleType getArticleType() {
+        return articleType;
+    }
+
+    public void setArticleType(ArticleType articleType) {
+        this.articleType = articleType;
+    }
+
+    public String getContent() {
+        return content;
+    }
+
+    public void setContent(String content) {
+        this.content = content;
+    }
 
     @Override
     public String toString() {

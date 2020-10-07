@@ -1,7 +1,6 @@
 package com.ledao.entity;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
-import lombok.Data;
 
 import java.util.Date;
 
@@ -12,7 +11,6 @@ import java.util.Date;
  * @company
  * @create 2020-01-17 15:16
  */
-@Data
 public class Log {
 
     public final static String LOGIN_ACTION="登录操作";
@@ -58,5 +56,74 @@ public class Log {
     public Log(String type, String content) {
         this.type = type;
         this.content = content;
+    }
+
+    public Integer getId() {
+        return id;
+    }
+
+    public void setId(Integer id) {
+        this.id = id;
+    }
+
+    public String getType() {
+        return type;
+    }
+
+    public void setType(String type) {
+        this.type = type;
+    }
+
+    public User getUser() {
+        return user;
+    }
+
+    public void setUser(User user) {
+        this.user = user;
+    }
+
+    public String getContent() {
+        return content;
+    }
+
+    public void setContent(String content) {
+        this.content = content;
+    }
+
+    public Date getTime() {
+        return time;
+    }
+
+    public void setTime(Date time) {
+        this.time = time;
+    }
+
+    public Date getbTime() {
+        return bTime;
+    }
+
+    public void setbTime(Date bTime) {
+        this.bTime = bTime;
+    }
+
+    public Date geteTime() {
+        return eTime;
+    }
+
+    public void seteTime(Date eTime) {
+        this.eTime = eTime;
+    }
+
+    @Override
+    public String toString() {
+        return "Log{" +
+                "id=" + id +
+                ", type='" + type + '\'' +
+                ", user=" + user +
+                ", content='" + content + '\'' +
+                ", time=" + time +
+                ", bTime=" + bTime +
+                ", eTime=" + eTime +
+                '}';
     }
 }

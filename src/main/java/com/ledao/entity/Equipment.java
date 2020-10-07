@@ -1,7 +1,5 @@
 package com.ledao.entity;
 
-import lombok.Data;
-
 /**
  * 设备实体
  *
@@ -9,7 +7,6 @@ import lombok.Data;
  * @company
  * @create 2020-03-24 18:28
  */
-@Data
 public class Equipment {
 
     /**
@@ -36,4 +33,64 @@ public class Equipment {
      * 使用设备的用户名称
      */
     private String userName;
+
+    public Integer getId() {
+        return id;
+    }
+
+    public void setId(Integer id) {
+        this.id = id;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public EquipmentType getEquipmentType() {
+        return equipmentType;
+    }
+
+    public void setEquipmentType(EquipmentType equipmentType) {
+        this.equipmentType = equipmentType;
+    }
+
+    public Integer getEquipmentTypeId() {
+        return equipmentTypeId;
+    }
+
+    public void setEquipmentTypeId(Integer equipmentTypeId) {
+        this.equipmentTypeId = equipmentTypeId;
+    }
+
+    public Integer getStatus() {
+        return status;
+    }
+
+    public void setStatus(Integer status) {
+        this.status = status;
+    }
+
+    public String getUserName() {
+        return userName;
+    }
+
+    public void setUserName(String userName) {
+        this.userName = userName;
+    }
+
+    @Override
+    public String toString() {
+        return "Equipment{" +
+                "id=" + id +
+                ", name='" + name + '\'' +
+                ", equipmentType=" + equipmentType +
+                ", equipmentTypeId=" + equipmentTypeId +
+                ", status=" + status +
+                ", userName='" + userName + '\'' +
+                '}';
+    }
 }

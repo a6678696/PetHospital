@@ -135,8 +135,8 @@ public class ReturnListAdminController {
         map.put("returnNumber", StringUtil.formatLike(returnList.getReturnNumber()));
         map.put("supplier", returnList.getSupplier());
         map.put("state", returnList.getState());
-        map.put("bReturnDate", returnList.getBReturnDate());
-        map.put("eReturnDate", returnList.getEReturnDate());
+        map.put("bReturnDate", returnList.getbReturnDate());
+        map.put("eReturnDate", returnList.geteReturnDate());
         List<ReturnList> returnListList = returnListService.list(map);
         resultMap.put("rows", returnListList);
         logService.add(new Log(Log.SEARCH_ACTION, "退货单查询"));
@@ -155,8 +155,8 @@ public class ReturnListAdminController {
     public Map<String, Object> listCount(ReturnList returnList, ReturnListGoods returnListGoods) {
         Map<String, Object> resultMap = new HashMap<>(16);
         Map<String, Object> map = new HashMap<>(16);
-        map.put("bReturnDate", returnList.getBReturnDate());
-        map.put("eReturnDate", returnList.getEReturnDate());
+        map.put("bReturnDate", returnList.getbReturnDate());
+        map.put("eReturnDate", returnList.geteReturnDate());
         List<ReturnList> returnListList = returnListService.list(map);
         for (ReturnList pl : returnListList) {
             Map<String, Object> map2 = new HashMap<>(16);

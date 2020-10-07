@@ -1,7 +1,5 @@
 package com.ledao.entity;
 
-import lombok.Data;
-
 import java.util.Date;
 
 /**
@@ -11,7 +9,6 @@ import java.util.Date;
  * @company
  * @create 2020-04-04 14:47
  */
-@Data
 public class UseEquipmentLog {
 
     /**
@@ -50,4 +47,91 @@ public class UseEquipmentLog {
      * 标签,用来插入结束日期
      */
     private Integer key;
+
+    public Integer getId() {
+        return id;
+    }
+
+    public void setId(Integer id) {
+        this.id = id;
+    }
+
+    public Date getBeginDate() {
+        return beginDate;
+    }
+
+    public void setBeginDate(Date beginDate) {
+        this.beginDate = beginDate;
+    }
+
+    public Date getEndDate() {
+        return endDate;
+    }
+
+    public void setEndDate(Date endDate) {
+        this.endDate = endDate;
+    }
+
+    public User getUser() {
+        return user;
+    }
+
+    public void setUser(User user) {
+        this.user = user;
+    }
+
+    public Integer getUserId() {
+        return userId;
+    }
+
+    public void setUserId(Integer userId) {
+        this.userId = userId;
+    }
+
+    public Equipment getEquipment() {
+        return equipment;
+    }
+
+    public void setEquipment(Equipment equipment) {
+        this.equipment = equipment;
+    }
+
+    public Integer getEquipmentId() {
+        return equipmentId;
+    }
+
+    public void setEquipmentId(Integer equipmentId) {
+        this.equipmentId = equipmentId;
+    }
+
+    public String getUserName() {
+        return userName;
+    }
+
+    public void setUserName(String userName) {
+        this.userName = userName;
+    }
+
+    public Integer getKey() {
+        return key;
+    }
+
+    public void setKey(Integer key) {
+        this.key = key;
+    }
+
+    @Override
+    public String toString() {
+        return "UseEquipmentLog{" +
+                "id=" + id +
+                ", beginDate=" + beginDate +
+                ", endDate=" + endDate +
+                ", user=" + user +
+                ", userId=" + userId +
+                ", equipment=" + equipment +
+                ", equipmentId=" + equipmentId +
+                ", userName='" + userName + '\'' +
+                ", key=" + key +
+                '}';
+    }
 }

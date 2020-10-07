@@ -131,8 +131,8 @@ public class CustomerReturnListAdminController {
         map.put("customerReturnNumber", StringUtil.formatLike(customerReturnList.getCustomerReturnNumber()));
         map.put("customer", customerReturnList.getCustomer());
         map.put("state", customerReturnList.getState());
-        map.put("bCustomerReturnDate", customerReturnList.getBCustomerReturnDate());
-        map.put("eCustomerReturnDate", customerReturnList.getECustomerReturnDate());
+        map.put("bCustomerReturnDate", customerReturnList.getbCustomerReturnDate());
+        map.put("eCustomerReturnDate", customerReturnList.geteCustomerReturnDate());
         List<CustomerReturnList> customerReturnListList = customerReturnListService.list(map);
         resultMap.put("rows", customerReturnListList);
         logService.add(new Log(Log.SEARCH_ACTION, "客户退货单查询"));
@@ -154,8 +154,8 @@ public class CustomerReturnListAdminController {
         map.put("customerReturnNumber", StringUtil.formatLike(customerReturnList.getCustomerReturnNumber()));
         map.put("customer", customerReturnList.getCustomer());
         map.put("state", customerReturnList.getState());
-        map.put("bCustomerReturnDate", customerReturnList.getBCustomerReturnDate());
-        map.put("eCustomerReturnDate", customerReturnList.getECustomerReturnDate());
+        map.put("bCustomerReturnDate", customerReturnList.getbCustomerReturnDate());
+        map.put("eCustomerReturnDate", customerReturnList.geteCustomerReturnDate());
         List<CustomerReturnList> customerReturnListList = customerReturnListService.list(map);
         for (CustomerReturnList pl : customerReturnListList) {
             Map<String, Object> map2 = new HashMap<>(16);

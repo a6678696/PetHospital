@@ -132,8 +132,8 @@ public class OverflowListAdminController {
         Map<String, Object> resultMap = new HashMap<>(16);
         Map<String, Object> map = new HashMap<>(16);
         map.put("overflowNumber", StringUtil.formatLike(overflowList.getOverflowNumber()));
-        map.put("bOverflowDate", overflowList.getBOverflowDate());
-        map.put("eOverflowDate", overflowList.getEOverflowDate());
+        map.put("bOverflowDate", overflowList.getbOverflowDate());
+        map.put("eOverflowDate", overflowList.geteOverflowDate());
         List<OverflowList> overflowListList = overflowListService.list(map);
         resultMap.put("rows", overflowListList);
         logService.add(new Log(Log.SEARCH_ACTION, "报溢单查询"));

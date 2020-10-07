@@ -88,7 +88,7 @@ public class ArticleTypeAdminController {
      */
     @RequestMapping("/save")
     @RequiresPermissions(value = "文章类型管理")
-    public Map<String, Object> save(ArticleType articleType) {
+    public Map<String, Object> save(ArticleType articleType){
         Map<String, Object> resultMap = new HashMap<>(16);
         int key;
         if (articleType.getId() == null) {
@@ -115,7 +115,7 @@ public class ArticleTypeAdminController {
      */
     @RequestMapping("/delete")
     @RequiresPermissions(value = "文章类型管理")
-    public Map<String, Object> delete(String ids) {
+    public Map<String, Object> delete(String ids){
         Map<String, Object> resultMap = new HashMap<>(16);
         String[] idsStr = ids.split(",");
         for (int i = 0; i < idsStr.length; i++) {

@@ -1,7 +1,5 @@
 package com.ledao.entity;
 
-import lombok.Data;
-
 import java.util.Date;
 
 /**
@@ -11,7 +9,6 @@ import java.util.Date;
  * @company
  * @create 2020-03-18 23:39
  */
-@Data
 public class ReturnVisit {
 
     /**
@@ -42,4 +39,73 @@ public class ReturnVisit {
      * 客户回访记录描述
      */
     private String content;
+
+    public Integer getId() {
+        return id;
+    }
+
+    public void setId(Integer id) {
+        this.id = id;
+    }
+
+    public Date getCreateDate() {
+        return createDate;
+    }
+
+    public void setCreateDate(Date createDate) {
+        this.createDate = createDate;
+    }
+
+    public String getCustomerName() {
+        return customerName;
+    }
+
+    public void setCustomerName(String customerName) {
+        this.customerName = customerName;
+    }
+
+    public String getPetName() {
+        return petName;
+    }
+
+    public void setPetName(String petName) {
+        this.petName = petName;
+    }
+
+    public Pet getPet() {
+        return pet;
+    }
+
+    public void setPet(Pet pet) {
+        this.pet = pet;
+    }
+
+    public Integer getSatisfaction() {
+        return satisfaction;
+    }
+
+    public void setSatisfaction(Integer satisfaction) {
+        this.satisfaction = satisfaction;
+    }
+
+    public String getContent() {
+        return content;
+    }
+
+    public void setContent(String content) {
+        this.content = content;
+    }
+
+    @Override
+    public String toString() {
+        return "ReturnVisit{" +
+                "id=" + id +
+                ", createDate=" + createDate +
+                ", customerName='" + customerName + '\'' +
+                ", petName='" + petName + '\'' +
+                ", pet=" + pet +
+                ", satisfaction=" + satisfaction +
+                ", content='" + content + '\'' +
+                '}';
+    }
 }

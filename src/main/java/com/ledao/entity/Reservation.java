@@ -1,7 +1,5 @@
 package com.ledao.entity;
 
-import lombok.Data;
-
 import java.util.Date;
 
 /**
@@ -11,7 +9,6 @@ import java.util.Date;
  * @company
  * @create 2020-02-03 20:12
  */
-@Data
 public class Reservation {
 
     /**
@@ -86,4 +83,172 @@ public class Reservation {
      *结束日期 搜索用到
      */
     private Date eSaleDate;
+
+    public Integer getId() {
+        return id;
+    }
+
+    public void setId(Integer id) {
+        this.id = id;
+    }
+
+    public String getType() {
+        return type;
+    }
+
+    public void setType(String type) {
+        this.type = type;
+    }
+
+    public Customer getCustomer() {
+        return customer;
+    }
+
+    public void setCustomer(Customer customer) {
+        this.customer = customer;
+    }
+
+    public Pet getPet() {
+        return pet;
+    }
+
+    public void setPet(Pet pet) {
+        this.pet = pet;
+    }
+
+    public Integer getPetId() {
+        return petId;
+    }
+
+    public void setPetId(Integer petId) {
+        this.petId = petId;
+    }
+
+    public String getDate() {
+        return date;
+    }
+
+    public void setDate(String date) {
+        this.date = date;
+    }
+
+    public Date getReserveDate() {
+        return reserveDate;
+    }
+
+    public void setReserveDate(Date reserveDate) {
+        this.reserveDate = reserveDate;
+    }
+
+    public Integer getHour() {
+        return hour;
+    }
+
+    public void setHour(Integer hour) {
+        this.hour = hour;
+    }
+
+    public Integer getMinute() {
+        return minute;
+    }
+
+    public void setMinute(Integer minute) {
+        this.minute = minute;
+    }
+
+    public Date getCreateDate() {
+        return createDate;
+    }
+
+    public void setCreateDate(Date createDate) {
+        this.createDate = createDate;
+    }
+
+    public String getDescription() {
+        return description;
+    }
+
+    public void setDescription(String description) {
+        this.description = description;
+    }
+
+    public User getUser() {
+        return user;
+    }
+
+    public void setUser(User user) {
+        this.user = user;
+    }
+
+    public Integer getStatus() {
+        return status;
+    }
+
+    public void setStatus(Integer status) {
+        this.status = status;
+    }
+
+    public String getRemarks() {
+        return remarks;
+    }
+
+    public void setRemarks(String remarks) {
+        this.remarks = remarks;
+    }
+
+    public Integer getIsCancel() {
+        return isCancel;
+    }
+
+    public void setIsCancel(Integer isCancel) {
+        this.isCancel = isCancel;
+    }
+
+    public Integer getIsRemind() {
+        return isRemind;
+    }
+
+    public void setIsRemind(Integer isRemind) {
+        this.isRemind = isRemind;
+    }
+
+    public Date getbSaleDate() {
+        return bSaleDate;
+    }
+
+    public void setbSaleDate(Date bSaleDate) {
+        this.bSaleDate = bSaleDate;
+    }
+
+    public Date geteSaleDate() {
+        return eSaleDate;
+    }
+
+    public void seteSaleDate(Date eSaleDate) {
+        this.eSaleDate = eSaleDate;
+    }
+
+    @Override
+    public String toString() {
+        return "Reservation{" +
+                "id=" + id +
+                ", type='" + type + '\'' +
+                ", customer=" + customer +
+                ", pet=" + pet +
+                ", petId=" + petId +
+                ", date='" + date + '\'' +
+                ", reserveDate=" + reserveDate +
+                ", hour=" + hour +
+                ", minute=" + minute +
+                ", createDate=" + createDate +
+                ", description='" + description + '\'' +
+                ", user=" + user +
+                ", status=" + status +
+                ", remarks='" + remarks + '\'' +
+                ", isCancel=" + isCancel +
+                ", isRemind=" + isRemind +
+                ", bSaleDate=" + bSaleDate +
+                ", eSaleDate=" + eSaleDate +
+                '}';
+    }
 }

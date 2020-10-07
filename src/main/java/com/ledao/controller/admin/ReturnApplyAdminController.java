@@ -59,8 +59,8 @@ public class ReturnApplyAdminController {
         map.put("saleListNumber", StringUtil.formatLike(returnApply.getSaleListNumber()));
         map.put("customerId", returnApply.getCustomerId());
         map.put("status", returnApply.getStatus());
-        map.put("bSaleDate", returnApply.getBSaleDate());
-        map.put("eSaleDate", returnApply.getESaleDate());
+        map.put("bSaleDate", returnApply.getbSaleDate());
+        map.put("eSaleDate", returnApply.geteSaleDate());
         map.put("start", pageBean.getStart());
         map.put("size", pageBean.getPageSize());
         List<ReturnApply> returnApplyList = returnApplyService.list(map);

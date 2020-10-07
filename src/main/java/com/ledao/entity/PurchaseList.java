@@ -1,11 +1,7 @@
 package com.ledao.entity;
 
-import com.fasterxml.jackson.annotation.JsonFormat;
 import com.ledao.util.DateUtil;
-import lombok.Data;
-import lombok.SneakyThrows;
 
-import java.beans.Transient;
 import java.util.Date;
 import java.util.List;
 
@@ -16,7 +12,6 @@ import java.util.List;
  * @company
  * @create 2020-01-17 15:23
  */
-@Data
 public class PurchaseList {
 
     /**
@@ -68,15 +63,117 @@ public class PurchaseList {
      */
     private List<PurchaseListGoods> purchaseListGoodsList=null;
 
-    @SneakyThrows
+    public Integer getId() {
+        return id;
+    }
+
+    public void setId(Integer id) {
+        this.id = id;
+    }
+
+    public String getPurchaseNumber() {
+        return purchaseNumber;
+    }
+
+    public void setPurchaseNumber(String purchaseNumber) {
+        this.purchaseNumber = purchaseNumber;
+    }
+
+    public Supplier getSupplier() {
+        return supplier;
+    }
+
+    public void setSupplier(Supplier supplier) {
+        this.supplier = supplier;
+    }
+
+    public Date getPurchaseDate() {
+        return purchaseDate;
+    }
+
+    public void setPurchaseDate(Date purchaseDate) {
+        this.purchaseDate = purchaseDate;
+    }
+
+    public Date getbPurchaseDate() {
+        return bPurchaseDate;
+    }
+
+    public void setbPurchaseDate(Date bPurchaseDate) {
+        this.bPurchaseDate = bPurchaseDate;
+    }
+
+    public Date getePurchaseDate() {
+        return ePurchaseDate;
+    }
+
+    public void setePurchaseDate(Date ePurchaseDate) {
+        this.ePurchaseDate = ePurchaseDate;
+    }
+
+    public float getAmountPayable() {
+        return amountPayable;
+    }
+
+    public void setAmountPayable(float amountPayable) {
+        this.amountPayable = amountPayable;
+    }
+
+    public float getAmountPaid() {
+        return amountPaid;
+    }
+
+    public void setAmountPaid(float amountPaid) {
+        this.amountPaid = amountPaid;
+    }
+
+    public Integer getState() {
+        return state;
+    }
+
+    public void setState(Integer state) {
+        this.state = state;
+    }
+
+    public User getUser() {
+        return user;
+    }
+
+    public void setUser(User user) {
+        this.user = user;
+    }
+
+    public String getRemarks() {
+        return remarks;
+    }
+
+    public void setRemarks(String remarks) {
+        this.remarks = remarks;
+    }
+
+    public List<PurchaseListGoods> getPurchaseListGoodsList() {
+        return purchaseListGoodsList;
+    }
+
+    public void setPurchaseListGoodsList(List<PurchaseListGoods> purchaseListGoodsList) {
+        this.purchaseListGoodsList = purchaseListGoodsList;
+    }
+
     @Override
     public String toString() {
-        return "--{" +
-                "编号=" + id +
-                ", 退货单号='" + purchaseNumber + '\'' +
-                ", 供应商=" + supplier.getName() +
-                ", 退货日期=" + DateUtil.dateFormat(purchaseDate) +
-                ", 操作员=" + user.getUserName() +
+        return "PurchaseList{" +
+                "id=" + id +
+                ", purchaseNumber='" + purchaseNumber + '\'' +
+                ", supplier=" + supplier +
+                ", purchaseDate=" + purchaseDate +
+                ", bPurchaseDate=" + bPurchaseDate +
+                ", ePurchaseDate=" + ePurchaseDate +
+                ", amountPayable=" + amountPayable +
+                ", amountPaid=" + amountPaid +
+                ", state=" + state +
+                ", user=" + user +
+                ", remarks='" + remarks + '\'' +
+                ", purchaseListGoodsList=" + purchaseListGoodsList +
                 '}';
     }
 }

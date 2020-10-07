@@ -1,7 +1,5 @@
 package com.ledao.entity;
 
-import lombok.Data;
-
 /**
  * 用户角色关联实体
  *
@@ -9,7 +7,6 @@ import lombok.Data;
  * @company
  * @create 2020-01-16 21:45
  */
-@Data
 public class UserRole {
     /**
      * 编号
@@ -23,4 +20,37 @@ public class UserRole {
      *角色
      */
     private Role role;
+
+    public Integer getId() {
+        return id;
+    }
+
+    public void setId(Integer id) {
+        this.id = id;
+    }
+
+    public User getUser() {
+        return user;
+    }
+
+    public void setUser(User user) {
+        this.user = user;
+    }
+
+    public Role getRole() {
+        return role;
+    }
+
+    public void setRole(Role role) {
+        this.role = role;
+    }
+
+    @Override
+    public String toString() {
+        return "UserRole{" +
+                "id=" + id +
+                ", user=" + user +
+                ", role=" + role +
+                '}';
+    }
 }

@@ -82,16 +82,16 @@
                                     <div class="flipper">
                                         <div class="front"><a href="detail.html"><img
                                                 th:src="@{'/static/images/userImage/'+${doctor.getImageName()}}"
-                                                alt="" class="img-fluid"></a>
+                                                alt="" class="img-fluid" style="height: 250px"></a>
                                         </div>
                                         <div class="back"><a href="detail.html"><img
                                                 th:src="@{'/static/images/userImage/'+${doctor.getImageName()}}"
-                                                alt="" class="img-fluid"></a></div>
+                                                alt="" class="img-fluid" style="height: 250px"></a></div>
                                     </div>
                                 </div>
                                 <a href="detail.html" class="invisible"><img
                                         th:src="@{'/static/images/userImage/'+${doctor.getImageName()}}" alt=""
-                                        class="img-fluid"></a>
+                                        class="img-fluid" style="height: 250px"></a>
                                 <div class="text">
                                     <h3><a href="detail.html" th:text="${doctor.getTrueName()}"></a></h3>
                                 </div>
@@ -154,17 +154,17 @@
                                     <div class="flipper">
                                         <div class="front"><img
                                                 th:src="@{'/static/images/equipmentTypeImage/' + ${equipmentType.getImageName()}}"
-                                                alt="" class="img-fluid">
+                                                alt="" class="img-fluid" style="height: 250px">
                                         </div>
                                         <div class="back"><a href="#"><img
                                                 th:src="@{'/static/images/equipmentTypeImage/' + ${equipmentType.getImageName()}}"
-                                                alt="" class="img-fluid"></a></div>
+                                                alt="" class="img-fluid" style="height: 250px"></a></div>
                                     </div>
                                 </div>
                                 <a class="invisible"><img
                                         th:src="@{'/static/images/equipmentTypeImage/' + ${equipmentType.getImageName()}}"
                                         alt=""
-                                        class="img-fluid"></a>
+                                        class="img-fluid" style="height: 250px"></a>
                                 <div class="text">
                                     <h3 th:text="${equipmentType.getName()}"><a href="detail.html"></a></h3>
                                 </div>

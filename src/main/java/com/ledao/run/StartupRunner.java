@@ -46,11 +46,11 @@ public class StartupRunner implements CommandLineRunner, ServletContextListener 
 
     @Override
     public void run(String... args) throws Exception {
-        this.loadData();
+
     }
 
     /**
-     * 加载数据到applicaton缓存中
+     * 加载数据到application缓存中
      */
     public void loadData() {
 

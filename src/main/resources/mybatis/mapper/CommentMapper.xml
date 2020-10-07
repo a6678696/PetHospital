@@ -59,4 +59,7 @@
     <select id="findById" parameterType="integer" resultMap="CommentResult">
         select * from t_comment where id=#{id}
     </select>
+    <delete id="delete" parameterType="integer">
+        delete from t_comment where id=#{id}
+    </delete>
 </mapper>

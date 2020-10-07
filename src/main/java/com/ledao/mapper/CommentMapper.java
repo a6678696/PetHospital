@@ -39,6 +39,14 @@ public interface CommentMapper {
     Integer add(Comment comment);
 
     /**
+     * 删除评论
+     *
+     * @param id
+     * @return
+     */
+    Integer delete(Integer id);
+
+    /**
      * 根据id查找实体
      *
      * @param id

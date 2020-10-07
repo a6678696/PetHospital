@@ -1,8 +1,6 @@
 package com.ledao.entity;
 
 import com.ledao.util.DateUtil;
-import lombok.Data;
-import lombok.SneakyThrows;
 
 import java.util.Date;
 import java.util.List;
@@ -14,7 +12,6 @@ import java.util.List;
  * @company
  * @create 2020-01-17 15:38
  */
-@Data
 public class SaleList {
 
     /**
@@ -70,15 +67,126 @@ public class SaleList {
      */
     private List<SaleListGoods> saleListGoodsList=null;
 
-    @SneakyThrows
+    public Integer getId() {
+        return id;
+    }
+
+    public void setId(Integer id) {
+        this.id = id;
+    }
+
+    public String getSaleNumber() {
+        return saleNumber;
+    }
+
+    public void setSaleNumber(String saleNumber) {
+        this.saleNumber = saleNumber;
+    }
+
+    public Customer getCustomer() {
+        return customer;
+    }
+
+    public void setCustomer(Customer customer) {
+        this.customer = customer;
+    }
+
+    public Integer getCustomerId() {
+        return customerId;
+    }
+
+    public void setCustomerId(Integer customerId) {
+        this.customerId = customerId;
+    }
+
+    public Date getSaleDate() {
+        return saleDate;
+    }
+
+    public void setSaleDate(Date saleDate) {
+        this.saleDate = saleDate;
+    }
+
+    public Date getbSaleDate() {
+        return bSaleDate;
+    }
+
+    public void setbSaleDate(Date bSaleDate) {
+        this.bSaleDate = bSaleDate;
+    }
+
+    public Date geteSaleDate() {
+        return eSaleDate;
+    }
+
+    public void seteSaleDate(Date eSaleDate) {
+        this.eSaleDate = eSaleDate;
+    }
+
+    public float getAmountPayable() {
+        return amountPayable;
+    }
+
+    public void setAmountPayable(float amountPayable) {
+        this.amountPayable = amountPayable;
+    }
+
+    public float getAmountPaid() {
+        return amountPaid;
+    }
+
+    public void setAmountPaid(float amountPaid) {
+        this.amountPaid = amountPaid;
+    }
+
+    public Integer getState() {
+        return state;
+    }
+
+    public void setState(Integer state) {
+        this.state = state;
+    }
+
+    public User getUser() {
+        return user;
+    }
+
+    public void setUser(User user) {
+        this.user = user;
+    }
+
+    public String getRemarks() {
+        return remarks;
+    }
+
+    public void setRemarks(String remarks) {
+        this.remarks = remarks;
+    }
+
+    public List<SaleListGoods> getSaleListGoodsList() {
+        return saleListGoodsList;
+    }
+
+    public void setSaleListGoodsList(List<SaleListGoods> saleListGoodsList) {
+        this.saleListGoodsList = saleListGoodsList;
+    }
+
     @Override
     public String toString() {
-        return "--{" +
-                "编号=" + id +
-                ", 销售单号='" + saleNumber + '\'' +
-                ", 客户=" + customer.getName() +
-                ", 销售日期=" + DateUtil.dateFormat(saleDate) +
-                ", 实付金额=" + amountPaid +
+        return "SaleList{" +
+                "id=" + id +
+                ", saleNumber='" + saleNumber + '\'' +
+                ", customer=" + customer +
+                ", customerId=" + customerId +
+                ", saleDate=" + saleDate +
+                ", bSaleDate=" + bSaleDate +
+                ", eSaleDate=" + eSaleDate +
+                ", amountPayable=" + amountPayable +
+                ", amountPaid=" + amountPaid +
+                ", state=" + state +
+                ", user=" + user +
+                ", remarks='" + remarks + '\'' +
+                ", saleListGoodsList=" + saleListGoodsList +
                 '}';
     }
 }

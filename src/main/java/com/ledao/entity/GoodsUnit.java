@@ -1,7 +1,5 @@
 package com.ledao.entity;
 
-import lombok.Data;
-
 /**
  * 商品单位实体
  *
@@ -9,7 +7,6 @@ import lombok.Data;
  * @company
  * @create 2020-01-17 15:14
  */
-@Data
 public class GoodsUnit {
 
     /**
@@ -20,6 +17,22 @@ public class GoodsUnit {
      * 商品单位名称
      */
     private String name;
+
+    public Integer getId() {
+        return id;
+    }
+
+    public void setId(Integer id) {
+        this.id = id;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
 
     @Override
     public String toString() {

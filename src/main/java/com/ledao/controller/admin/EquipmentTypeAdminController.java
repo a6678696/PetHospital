@@ -135,7 +135,7 @@ public class EquipmentTypeAdminController {
      */
     @RequestMapping("/delete")
     @RequiresPermissions(value = "设备类型管理")
-    public Map<String, Object> delete(String ids) {
+    public Map<String, Object> delete(String ids){
         Map<String, Object> resultMap = new HashMap<>(16);
         String[] idsStr = ids.split(",");
         for (int i = 0; i < idsStr.length; i++) {

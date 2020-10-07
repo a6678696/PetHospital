@@ -38,15 +38,15 @@
                                         <div class="flipper">
                                             <div class="front"><a th:href="'/goods/'+${favorite.goods.id}"><img
                                                     th:src="@{'/static/images/goodsImage/'+${favorite.goods.imageName}}"
-                                                    alt="" class="img-fluid"></a></div>
+                                                    alt="" class="img-fluid" style="height: 350px;width: 290px"></a></div>
                                             <div class="back"><a th:href="'/goods/'+${favorite.goods.id}"><img
                                                     th:src="@{'/static/images/goodsImage/'+${favorite.goods.imageName}}"
-                                                    alt="" class="img-fluid"></a></div>
+                                                    alt="" class="img-fluid" style="height: 350px;width: 290px"></a></div>
                                         </div>
                                     </div>
                                     <a th:href="'/goods/'+${favorite.goods.id}" class="invisible"><img
                                             th:src="@{'/static/images/goodsImage/'+${favorite.goods.imageName}}" alt=""
-                                            class="img-fluid"></a>
+                                            class="img-fluid" style="height: 350px;width: 290px"></a>
                                     <div class="text">
                                         <h3><a th:href="'/goods/'+${favorite.goods.id}"
                                                th:title="${favorite.goods.name}" th:text="${favorite.goods.name}"></a>

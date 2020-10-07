@@ -1,10 +1,5 @@
 package com.ledao.entity;
 
-import com.ledao.util.DateUtil;
-import lombok.Data;
-import lombok.SneakyThrows;
-
-import java.beans.Transient;
 import java.util.Date;
 import java.util.List;
 
@@ -15,7 +10,6 @@ import java.util.List;
  * @company
  * @create 2020-01-17 15:31
  */
-@Data
 public class ReturnList {
 
     /**
@@ -67,15 +61,117 @@ public class ReturnList {
      */
     public List<ReturnListGoods> returnListGoodsList=null;
 
-    @SneakyThrows
+    public Integer getId() {
+        return id;
+    }
+
+    public void setId(Integer id) {
+        this.id = id;
+    }
+
+    public String getReturnNumber() {
+        return returnNumber;
+    }
+
+    public void setReturnNumber(String returnNumber) {
+        this.returnNumber = returnNumber;
+    }
+
+    public Supplier getSupplier() {
+        return supplier;
+    }
+
+    public void setSupplier(Supplier supplier) {
+        this.supplier = supplier;
+    }
+
+    public Date getReturnDate() {
+        return returnDate;
+    }
+
+    public void setReturnDate(Date returnDate) {
+        this.returnDate = returnDate;
+    }
+
+    public Date getbReturnDate() {
+        return bReturnDate;
+    }
+
+    public void setbReturnDate(Date bReturnDate) {
+        this.bReturnDate = bReturnDate;
+    }
+
+    public Date geteReturnDate() {
+        return eReturnDate;
+    }
+
+    public void seteReturnDate(Date eReturnDate) {
+        this.eReturnDate = eReturnDate;
+    }
+
+    public float getAmountPayable() {
+        return amountPayable;
+    }
+
+    public void setAmountPayable(float amountPayable) {
+        this.amountPayable = amountPayable;
+    }
+
+    public float getAmountPaid() {
+        return amountPaid;
+    }
+
+    public void setAmountPaid(float amountPaid) {
+        this.amountPaid = amountPaid;
+    }
+
+    public Integer getState() {
+        return state;
+    }
+
+    public void setState(Integer state) {
+        this.state = state;
+    }
+
+    public User getUser() {
+        return user;
+    }
+
+    public void setUser(User user) {
+        this.user = user;
+    }
+
+    public String getRemarks() {
+        return remarks;
+    }
+
+    public void setRemarks(String remarks) {
+        this.remarks = remarks;
+    }
+
+    public List<ReturnListGoods> getReturnListGoodsList() {
+        return returnListGoodsList;
+    }
+
+    public void setReturnListGoodsList(List<ReturnListGoods> returnListGoodsList) {
+        this.returnListGoodsList = returnListGoodsList;
+    }
+
     @Override
     public String toString() {
-        return "--{" +
-                "编号=" + id +
-                ", 退货单号='" + returnNumber + '\'' +
-                ", 供应商=" + supplier.getName() +
-                ", 退货日期=" + DateUtil.dateFormat(returnDate) +
-                ", 操作员=" + user.getUserName() +
+        return "ReturnList{" +
+                "id=" + id +
+                ", returnNumber='" + returnNumber + '\'' +
+                ", supplier=" + supplier +
+                ", returnDate=" + returnDate +
+                ", bReturnDate=" + bReturnDate +
+                ", eReturnDate=" + eReturnDate +
+                ", amountPayable=" + amountPayable +
+                ", amountPaid=" + amountPaid +
+                ", state=" + state +
+                ", user=" + user +
+                ", remarks='" + remarks + '\'' +
+                ", returnListGoodsList=" + returnListGoodsList +
                 '}';
     }
 }

@@ -176,17 +176,19 @@ public class InquiryAdminController {
      * @return
      */
     @RequestMapping("/managerSave")
-    @RequiresPermissions(value = "问诊管理")
+    @RequiresPermissions(value = "问诊记录管理")
     public Map<String, Object> managerSave(Inquiry inquiry) {
         Map<String, Object> resultMap = new HashMap<>(16);
+        Inquiry inquiry1 = inquiryService.findById(inquiry.getId());
         int key=0;
-        if (inquiry.getCustomer() != null) {
+        if (inquiry1.getUser() != null) {
             logService.add(new Log(Log.UPDATE_ACTION, "修改客户问诊" + inquiry));
             key = inquiryService.update(inquiry);
         }
         if (key > 0) {
             resultMap.put("success", true);
         } else {
+            resultMap.put("errorInfo", "该客户问诊未被医生回复,不能修改!!");
             resultMap.put("success", false);
         }
         return resultMap;
@@ -199,7 +201,7 @@ public class InquiryAdminController {
      * @return
      */
     @RequestMapping("/delete")
-    @RequiresPermissions(value = "问诊管理")
+    @RequiresPermissions(value = "问诊记录管理")
     public Map<String, Object> delete(String ids) {
         Map<String, Object> resultMap = new HashMap<>(16);
         String[] idsStr = ids.split(",");

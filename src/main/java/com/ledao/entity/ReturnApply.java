@@ -1,7 +1,5 @@
 package com.ledao.entity;
 
-import lombok.Data;
-
 import java.util.Date;
 
 /**
@@ -11,7 +9,6 @@ import java.util.Date;
  * @company
  * @create 2020-06-05 21:34
  */
-@Data
 public class ReturnApply {
 
     /**
@@ -66,4 +63,127 @@ public class ReturnApply {
      *结束日期 搜索用到
      */
     private Date eSaleDate;
+
+    public Integer getId() {
+        return id;
+    }
+
+    public void setId(Integer id) {
+        this.id = id;
+    }
+
+    public Integer getCustomerId() {
+        return customerId;
+    }
+
+    public void setCustomerId(Integer customerId) {
+        this.customerId = customerId;
+    }
+
+    public Customer getCustomer() {
+        return customer;
+    }
+
+    public void setCustomer(Customer customer) {
+        this.customer = customer;
+    }
+
+    public Integer getSaleListId() {
+        return saleListId;
+    }
+
+    public void setSaleListId(Integer saleListId) {
+        this.saleListId = saleListId;
+    }
+
+    public String getSaleListNumber() {
+        return saleListNumber;
+    }
+
+    public void setSaleListNumber(String saleListNumber) {
+        this.saleListNumber = saleListNumber;
+    }
+
+    public Integer getSaleListGoodsId() {
+        return saleListGoodsId;
+    }
+
+    public void setSaleListGoodsId(Integer saleListGoodsId) {
+        this.saleListGoodsId = saleListGoodsId;
+    }
+
+    public SaleListGoods getSaleListGoods() {
+        return saleListGoods;
+    }
+
+    public void setSaleListGoods(SaleListGoods saleListGoods) {
+        this.saleListGoods = saleListGoods;
+    }
+
+    public Integer getNum() {
+        return num;
+    }
+
+    public void setNum(Integer num) {
+        this.num = num;
+    }
+
+    public Date getApplyDate() {
+        return applyDate;
+    }
+
+    public void setApplyDate(Date applyDate) {
+        this.applyDate = applyDate;
+    }
+
+    public String getReason() {
+        return reason;
+    }
+
+    public void setReason(String reason) {
+        this.reason = reason;
+    }
+
+    public Integer getStatus() {
+        return status;
+    }
+
+    public void setStatus(Integer status) {
+        this.status = status;
+    }
+
+    public Date getbSaleDate() {
+        return bSaleDate;
+    }
+
+    public void setbSaleDate(Date bSaleDate) {
+        this.bSaleDate = bSaleDate;
+    }
+
+    public Date geteSaleDate() {
+        return eSaleDate;
+    }
+
+    public void seteSaleDate(Date eSaleDate) {
+        this.eSaleDate = eSaleDate;
+    }
+
+    @Override
+    public String toString() {
+        return "ReturnApply{" +
+                "id=" + id +
+                ", customerId=" + customerId +
+                ", customer=" + customer +
+                ", saleListId=" + saleListId +
+                ", saleListNumber='" + saleListNumber + '\'' +
+                ", saleListGoodsId=" + saleListGoodsId +
+                ", saleListGoods=" + saleListGoods +
+                ", num=" + num +
+                ", applyDate=" + applyDate +
+                ", reason='" + reason + '\'' +
+                ", status=" + status +
+                ", bSaleDate=" + bSaleDate +
+                ", eSaleDate=" + eSaleDate +
+                '}';
+    }
 }

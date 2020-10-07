@@ -130,13 +130,11 @@ public class SaleListAdminController {
     public Map<String, Object> list(SaleList saleList, @RequestParam(value = "page", required = false) Integer page, @RequestParam(value = "rows", required = false) Integer rows) {
         Map<String, Object> resultMap = new HashMap<>(16);
         Map<String, Object> map = new HashMap<>(16);
-        Customer customer = customerService.findById(saleList.getCustomerId());
-        saleList.setCustomer(customer);
         map.put("saleNumber", StringUtil.formatLike(saleList.getSaleNumber()));
-        map.put("customer", saleList.getCustomer());
+        map.put("customer", customerService.findById(saleList.getCustomerId()));
         map.put("state", saleList.getState());
-        map.put("bSaleDate", saleList.getBSaleDate());
-        map.put("eSaleDate", saleList.getESaleDate());
+        map.put("bSaleDate", saleList.getbSaleDate());
+        map.put("eSaleDate", saleList.geteSaleDate());
         if (page != null) {
             PageBean pageBean = new PageBean(page, rows);
             map.put("start", pageBean.getStart());
@@ -162,8 +160,8 @@ public class SaleListAdminController {
     public Map<String, Object> listCount(SaleList saleList, SaleListGoods saleListGoods) {
         Map<String, Object> resultMap = new HashMap<>(16);
         Map<String, Object> map = new HashMap<>(16);
-        map.put("bSaleDate", saleList.getBSaleDate());
-        map.put("eSaleDate", saleList.getESaleDate());
+        map.put("bSaleDate", saleList.getbSaleDate());
+        map.put("eSaleDate", saleList.geteSaleDate());
         List<SaleList> saleListList = saleListService.list(map);
         for (SaleList pl : saleListList) {
             Map<String, Object> map2 = new HashMap<>(16);

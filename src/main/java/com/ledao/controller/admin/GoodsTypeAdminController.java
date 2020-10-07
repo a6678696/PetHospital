@@ -43,7 +43,7 @@ public class GoodsTypeAdminController {
         Map<String, Object> resultMap = new HashMap<>(16);
         GoodsType goodsType = new GoodsType();
         goodsType.setName(name);
-        goodsType.setPId(parentId);
+        goodsType.setpId(parentId);
         goodsType.setIcon("icon-folder");
         goodsType.setState(0);
         goodsTypeService.add(goodsType);
@@ -69,8 +69,8 @@ public class GoodsTypeAdminController {
         Map<String, Object> resultMap = new HashMap<>(16);
         if (goodsService.findByTypeId(id).size() == 0) {
             GoodsType goodsType = goodsTypeService.findById(id);
-            if (goodsTypeService.findByParentId(goodsType.getPId()).size() == 1) {
-                GoodsType parentGoodsType = goodsTypeService.findById(goodsType.getPId());
+            if (goodsTypeService.findByParentId(goodsType.getpId()).size() == 1) {
+                GoodsType parentGoodsType = goodsTypeService.findById(goodsType.getpId());
                 parentGoodsType.setState(0);
                 goodsTypeService.update(parentGoodsType);
             }

@@ -113,7 +113,7 @@ public class CarouselAdminController {
      */
     @RequestMapping("/delete")
     @RequiresPermissions(value = "轮播图管理")
-    public Map<String, Object> delete(String ids) {
+    public Map<String, Object> delete(String ids){
         Map<String, Object> resultMap = new HashMap<>(16);
         String[] idsStr = ids.split(",");
         for (int i = 0; i < idsStr.length; i++) {

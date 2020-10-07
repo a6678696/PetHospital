@@ -49,10 +49,10 @@
                                 <div class="product">
                                     <div class="flip-container">
                                         <div class="flipper">
-                                            <div class="front"><a th:href="'/goods/'+${goods.id}"><img th:src="@{'/static/images/goodsImage/'+${goods.imageName}}" alt="" class="img-fluid"></a></div>
-                                            <div class="back"><a th:href="'/goods/'+${goods.id}"><img th:src="@{'/static/images/goodsImage/'+${goods.imageName}}" alt="" class="img-fluid"></a></div>
+                                            <div class="front"><a th:href="'/goods/'+${goods.id}"><img th:src="@{'/static/images/goodsImage/'+${goods.imageName}}" alt="" class="img-fluid" style="height: 350px;width: 290px"></a></div>
+                                            <div class="back"><a th:href="'/goods/'+${goods.id}"><img th:src="@{'/static/images/goodsImage/'+${goods.imageName}}" alt="" class="img-fluid" style="height: 350px;width: 290px"></a></div>
                                         </div>
-                                    </div><a th:href="'/goods/'+${goods.id}" class="invisible"><img th:src="@{'/static/images/goodsImage/'+${goods.imageName}}" alt="" class="img-fluid"></a>
+                                    </div><a th:href="'/goods/'+${goods.id}" class="invisible"><img th:src="@{'/static/images/goodsImage/'+${goods.imageName}}" alt="" class="img-fluid" style="height: 350px;width: 290px"></a>
                                     <div class="text">
                                         <h3><a th:href="'/goods/'+${goods.id}" th:title="${goods.name}" th:text="${goods.name}"></a></h3>
                                         <p class="price">

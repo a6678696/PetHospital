@@ -133,8 +133,8 @@ public class DamageListAdminController {
         Map<String, Object> resultMap = new HashMap<>(16);
         Map<String, Object> map = new HashMap<>(16);
         map.put("damageNumber", StringUtil.formatLike(damageList.getDamageNumber()));
-        map.put("bDamageDate", damageList.getBDamageDate());
-        map.put("eDamageDate", damageList.getEDamageDate());
+        map.put("bDamageDate", damageList.getbDamageDate());
+        map.put("eDamageDate", damageList.geteDamageDate());
         List<DamageList> damageListList = damageListService.list(map);
         resultMap.put("rows", damageListList);
         logService.add(new Log(Log.SEARCH_ACTION, "报损单查询"));

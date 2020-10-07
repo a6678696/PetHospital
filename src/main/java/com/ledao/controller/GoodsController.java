@@ -115,8 +115,8 @@ public class GoodsController {
         for (GoodsType goodsType : goodsTypeList) {
             goodsType.setSmallGoodsTypeList(goodsTypeService.findByParentId(goodsType.getId()));
         }
-        mav.addObject("bigTypeName", goodsTypeService.findById(goodsTypeService.findById(typeId).getPId()).getName());
-        mav.addObject("bigTypeId", goodsTypeService.findById(goodsTypeService.findById(typeId).getPId()).getId());
+        mav.addObject("bigTypeName", goodsTypeService.findById(goodsTypeService.findById(typeId).getpId()).getName());
+        mav.addObject("bigTypeId", goodsTypeService.findById(goodsTypeService.findById(typeId).getpId()).getId());
         mav.addObject("typeName", goodsTypeService.findById(typeId).getName());
         mav.addObject("title", "商品列表(" + goodsTypeService.findById(typeId).getName() + ")");
         mav.addObject("goodsTypeList", goodsTypeList);
@@ -168,8 +168,8 @@ public class GoodsController {
         goodsList1.add(goods);
         this.setGoodsFavorite(goodsList1,session);
         mav.addObject("allSaleTotal", saleListGoodsService.getSaleCount(goods.getId()) - returnListGoodsService.getReturnCount(goods.getId()));
-        mav.addObject("bigTypeName", goodsTypeService.findById(goodsTypeService.findById(goods.getType().getId()).getPId()).getName());
-        mav.addObject("bigTypeId", goodsTypeService.findById(goodsTypeService.findById(goods.getType().getId()).getPId()).getId());
+        mav.addObject("bigTypeName", goodsTypeService.findById(goodsTypeService.findById(goods.getType().getId()).getpId()).getName());
+        mav.addObject("bigTypeId", goodsTypeService.findById(goodsTypeService.findById(goods.getType().getId()).getpId()).getId());
         mav.addObject("goods", goods);
         mav.addObject("recommendGoodsList", goodsList);
         mav.addObject("goodsTypeList", goodsTypeList);

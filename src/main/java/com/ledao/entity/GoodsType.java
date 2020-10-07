@@ -1,7 +1,5 @@
 package com.ledao.entity;
 
-import lombok.Data;
-
 import java.io.Serializable;
 import java.util.List;
 
@@ -12,7 +10,6 @@ import java.util.List;
  * @company
  * @create 2020-01-17 15:13
  */
-@Data
 public class GoodsType implements Serializable {
 
     private static final long serialVersionUID = 1L;
@@ -41,6 +38,54 @@ public class GoodsType implements Serializable {
      * 商品大类下的商品小类
      */
     private List<GoodsType> smallGoodsTypeList = null;
+
+    public Integer getId() {
+        return id;
+    }
+
+    public void setId(Integer id) {
+        this.id = id;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public Integer getState() {
+        return state;
+    }
+
+    public void setState(Integer state) {
+        this.state = state;
+    }
+
+    public String getIcon() {
+        return icon;
+    }
+
+    public void setIcon(String icon) {
+        this.icon = icon;
+    }
+
+    public Integer getpId() {
+        return pId;
+    }
+
+    public void setpId(Integer pId) {
+        this.pId = pId;
+    }
+
+    public List<GoodsType> getSmallGoodsTypeList() {
+        return smallGoodsTypeList;
+    }
+
+    public void setSmallGoodsTypeList(List<GoodsType> smallGoodsTypeList) {
+        this.smallGoodsTypeList = smallGoodsTypeList;
+    }
 
     @Override
     public String toString() {

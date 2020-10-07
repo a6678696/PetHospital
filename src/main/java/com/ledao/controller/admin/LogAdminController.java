@@ -72,8 +72,8 @@ public class LogAdminController {
                 }
             }
         }
-        map.put("bTime", searchLog.getBTime());
-        map.put("eTime", searchLog.getETime());
+        map.put("bTime", searchLog.getbTime());
+        map.put("eTime", searchLog.geteTime());
         map.put("start", pageBean.getStart());
         map.put("size", pageBean.getPageSize());
         List<Log> logList = logService.list(map);

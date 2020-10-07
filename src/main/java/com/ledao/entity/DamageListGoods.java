@@ -1,7 +1,5 @@
 package com.ledao.entity;
 
-import lombok.Data;
-
 /**
  * 商品报损单商品实体
  *
@@ -9,7 +7,6 @@ import lombok.Data;
  * @company
  * @create 2020-01-17 15:08
  */
-@Data
 public class DamageListGoods {
 
     /**
@@ -60,4 +57,118 @@ public class DamageListGoods {
      * 总金额
      */
     private float total;
+
+    public Integer getId() {
+        return id;
+    }
+
+    public void setId(Integer id) {
+        this.id = id;
+    }
+
+    public DamageList getDamageList() {
+        return damageList;
+    }
+
+    public void setDamageList(DamageList damageList) {
+        this.damageList = damageList;
+    }
+
+    public String getCode() {
+        return code;
+    }
+
+    public void setCode(String code) {
+        this.code = code;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public String getModel() {
+        return model;
+    }
+
+    public void setModel(String model) {
+        this.model = model;
+    }
+
+    public GoodsType getType() {
+        return type;
+    }
+
+    public void setType(GoodsType type) {
+        this.type = type;
+    }
+
+    public Integer getTypeId() {
+        return typeId;
+    }
+
+    public void setTypeId(Integer typeId) {
+        this.typeId = typeId;
+    }
+
+    public Integer getGoodsId() {
+        return goodsId;
+    }
+
+    public void setGoodsId(Integer goodsId) {
+        this.goodsId = goodsId;
+    }
+
+    public String getUnit() {
+        return unit;
+    }
+
+    public void setUnit(String unit) {
+        this.unit = unit;
+    }
+
+    public float getPrice() {
+        return price;
+    }
+
+    public void setPrice(float price) {
+        this.price = price;
+    }
+
+    public int getNum() {
+        return num;
+    }
+
+    public void setNum(int num) {
+        this.num = num;
+    }
+
+    public float getTotal() {
+        return total;
+    }
+
+    public void setTotal(float total) {
+        this.total = total;
+    }
+
+    @Override
+    public String toString() {
+        return "DamageListGoods{" +
+                "id=" + id +
+                ", damageList=" + damageList +
+                ", code='" + code + '\'' +
+                ", name='" + name + '\'' +
+                ", model='" + model + '\'' +
+                ", type=" + type +
+                ", typeId=" + typeId +
+                ", goodsId=" + goodsId +
+                ", unit='" + unit + '\'' +
+                ", price=" + price +
+                ", num=" + num +
+                ", total=" + total +
+                '}';
+    }
 }

@@ -1,7 +1,5 @@
 package com.ledao.entity;
 
-import lombok.Data;
-
 import java.util.Date;
 
 /**
@@ -11,7 +9,6 @@ import java.util.Date;
  * @company
  * @create 2020-01-17 15:07
  */
-@Data
 public class DamageList {
 
     /**
@@ -43,4 +40,72 @@ public class DamageList {
      */
     private String remarks;
 
+    public Integer getId() {
+        return id;
+    }
+
+    public void setId(Integer id) {
+        this.id = id;
+    }
+
+    public String getDamageNumber() {
+        return damageNumber;
+    }
+
+    public void setDamageNumber(String damageNumber) {
+        this.damageNumber = damageNumber;
+    }
+
+    public Date getDamageDate() {
+        return damageDate;
+    }
+
+    public void setDamageDate(Date damageDate) {
+        this.damageDate = damageDate;
+    }
+
+    public Date getbDamageDate() {
+        return bDamageDate;
+    }
+
+    public void setbDamageDate(Date bDamageDate) {
+        this.bDamageDate = bDamageDate;
+    }
+
+    public Date geteDamageDate() {
+        return eDamageDate;
+    }
+
+    public void seteDamageDate(Date eDamageDate) {
+        this.eDamageDate = eDamageDate;
+    }
+
+    public User getUser() {
+        return user;
+    }
+
+    public void setUser(User user) {
+        this.user = user;
+    }
+
+    public String getRemarks() {
+        return remarks;
+    }
+
+    public void setRemarks(String remarks) {
+        this.remarks = remarks;
+    }
+
+    @Override
+    public String toString() {
+        return "DamageList{" +
+                "id=" + id +
+                ", damageNumber='" + damageNumber + '\'' +
+                ", damageDate=" + damageDate +
+                ", bDamageDate=" + bDamageDate +
+                ", eDamageDate=" + eDamageDate +
+                ", user=" + user +
+                ", remarks='" + remarks + '\'' +
+                '}';
+    }
 }

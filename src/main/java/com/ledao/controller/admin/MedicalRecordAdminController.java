@@ -88,7 +88,13 @@ public class MedicalRecordAdminController {
             Map<String,Object> map=new HashMap<>(16);
             map.put("customer", customer);
             List<Pet> petList = petService.list(map);
-            boolean flag=petList.contains(pet);
+            boolean flag=false;
+            for (Pet pet1 : petList) {
+                if (pet1.getName().equals(pet.getName())) {
+                    flag = true;
+                    break;
+                }
+            }
             if (flag==false) {
                 resultMap.put("success", false);
                 resultMap.put("errorInfo", "该客户没有这个宠物,请核实!!");
