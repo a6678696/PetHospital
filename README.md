@@ -1,9 +1,11 @@
 # PetHospital
 宠物医院管理系统的设计与实现
 
-1.项目演示地址:
+1.项目地址:
 
-http://pethospital.zoutl.cn/  
+介绍地址:http://www.zoutl.cn/blog/37
+
+演示地址:http://pethospital.zoutl.cn/  
 
 2.使用的技术：
 
