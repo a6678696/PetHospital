@@ -3,6 +3,4 @@
 
 介绍地址:http://www.zoutl.cn/blog/37
 
-演示地址:http://pethospital.zoutl.cn/  
-
 
