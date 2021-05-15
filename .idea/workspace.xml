@@ -12,136 +12,7 @@
     <option name="autoReloadType" value="ALL" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="0a04dcdb-703f-4bd2-b3be-43a82c777491" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/src/main/webapp/static/ckeditor/plugins/codesnippet/dialogs/codesnippet.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/webapp/static/ckeditor/plugins/codesnippet/icons/codesnippet.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/webapp/static/ckeditor/plugins/codesnippet/icons/hidpi/codesnippet.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/webapp/static/ckeditor/plugins/codesnippet/lang/ar.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/webapp/static/ckeditor/plugins/codesnippet/lang/az.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/webapp/static/ckeditor/plugins/codesnippet/lang/bg.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/webapp/static/ckeditor/plugins/codesnippet/lang/ca.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/webapp/static/ckeditor/plugins/codesnippet/lang/cs.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/webapp/static/ckeditor/plugins/codesnippet/lang/da.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/webapp/static/ckeditor/plugins/codesnippet/lang/de-ch.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/webapp/static/ckeditor/plugins/codesnippet/lang/de.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/webapp/static/ckeditor/plugins/codesnippet/lang/el.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/webapp/static/ckeditor/plugins/codesnippet/lang/en-au.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/webapp/static/ckeditor/plugins/codesnippet/lang/en-gb.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/webapp/static/ckeditor/plugins/codesnippet/lang/en.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/webapp/static/ckeditor/plugins/codesnippet/lang/eo.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/webapp/static/ckeditor/plugins/codesnippet/lang/es-mx.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/webapp/static/ckeditor/plugins/codesnippet/lang/es.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/webapp/static/ckeditor/plugins/codesnippet/lang/et.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/webapp/static/ckeditor/plugins/codesnippet/lang/eu.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/webapp/static/ckeditor/plugins/codesnippet/lang/fa.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/webapp/static/ckeditor/plugins/codesnippet/lang/fi.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/webapp/static/ckeditor/plugins/codesnippet/lang/fr-ca.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/webapp/static/ckeditor/plugins/codesnippet/lang/fr.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/webapp/static/ckeditor/plugins/codesnippet/lang/gl.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/webapp/static/ckeditor/plugins/codesnippet/lang/he.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/webapp/static/ckeditor/plugins/codesnippet/lang/hr.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/webapp/static/ckeditor/plugins/codesnippet/lang/hu.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/webapp/static/ckeditor/plugins/codesnippet/lang/id.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/webapp/static/ckeditor/plugins/codesnippet/lang/it.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/webapp/static/ckeditor/plugins/codesnippet/lang/ja.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/webapp/static/ckeditor/plugins/codesnippet/lang/km.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/webapp/static/ckeditor/plugins/codesnippet/lang/ko.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/webapp/static/ckeditor/plugins/codesnippet/lang/ku.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/webapp/static/ckeditor/plugins/codesnippet/lang/lt.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/webapp/static/ckeditor/plugins/codesnippet/lang/lv.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/webapp/static/ckeditor/plugins/codesnippet/lang/nb.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/webapp/static/ckeditor/plugins/codesnippet/lang/nl.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/webapp/static/ckeditor/plugins/codesnippet/lang/no.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/webapp/static/ckeditor/plugins/codesnippet/lang/oc.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/webapp/static/ckeditor/plugins/codesnippet/lang/pl.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/webapp/static/ckeditor/plugins/codesnippet/lang/pt-br.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/webapp/static/ckeditor/plugins/codesnippet/lang/pt.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/webapp/static/ckeditor/plugins/codesnippet/lang/ro.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/webapp/static/ckeditor/plugins/codesnippet/lang/ru.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/webapp/static/ckeditor/plugins/codesnippet/lang/sk.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/webapp/static/ckeditor/plugins/codesnippet/lang/sl.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/webapp/static/ckeditor/plugins/codesnippet/lang/sq.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/webapp/static/ckeditor/plugins/codesnippet/lang/sr-latn.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/webapp/static/ckeditor/plugins/codesnippet/lang/sr.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/webapp/static/ckeditor/plugins/codesnippet/lang/sv.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/webapp/static/ckeditor/plugins/codesnippet/lang/th.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/webapp/static/ckeditor/plugins/codesnippet/lang/tr.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/webapp/static/ckeditor/plugins/codesnippet/lang/tt.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/webapp/static/ckeditor/plugins/codesnippet/lang/ug.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/webapp/static/ckeditor/plugins/codesnippet/lang/uk.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/webapp/static/ckeditor/plugins/codesnippet/lang/vi.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/webapp/static/ckeditor/plugins/codesnippet/lang/zh-cn.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/webapp/static/ckeditor/plugins/codesnippet/lang/zh.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/webapp/static/ckeditor/plugins/codesnippet/lib/highlight/CHANGES.md" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/webapp/static/ckeditor/plugins/codesnippet/lib/highlight/LICENSE" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/webapp/static/ckeditor/plugins/codesnippet/lib/highlight/README.md" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/webapp/static/ckeditor/plugins/codesnippet/lib/highlight/README.ru.md" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/webapp/static/ckeditor/plugins/codesnippet/lib/highlight/highlight.pack.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/webapp/static/ckeditor/plugins/codesnippet/lib/highlight/styles/arta.css" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/webapp/static/ckeditor/plugins/codesnippet/lib/highlight/styles/ascetic.css" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/webapp/static/ckeditor/plugins/codesnippet/lib/highlight/styles/atelier-dune.dark.css" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/webapp/static/ckeditor/plugins/codesnippet/lib/highlight/styles/atelier-dune.light.css" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/webapp/static/ckeditor/plugins/codesnippet/lib/highlight/styles/atelier-forest.dark.css" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/webapp/static/ckeditor/plugins/codesnippet/lib/highlight/styles/atelier-forest.light.css" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/webapp/static/ckeditor/plugins/codesnippet/lib/highlight/styles/atelier-heath.dark.css" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/webapp/static/ckeditor/plugins/codesnippet/lib/highlight/styles/atelier-heath.light.css" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/webapp/static/ckeditor/plugins/codesnippet/lib/highlight/styles/atelier-lakeside.dark.css" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/webapp/static/ckeditor/plugins/codesnippet/lib/highlight/styles/atelier-lakeside.light.css" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/webapp/static/ckeditor/plugins/codesnippet/lib/highlight/styles/atelier-seaside.dark.css" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/webapp/static/ckeditor/plugins/codesnippet/lib/highlight/styles/atelier-seaside.light.css" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/webapp/static/ckeditor/plugins/codesnippet/lib/highlight/styles/brown_paper.css" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/webapp/static/ckeditor/plugins/codesnippet/lib/highlight/styles/brown_papersq.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/webapp/static/ckeditor/plugins/codesnippet/lib/highlight/styles/dark.css" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/webapp/static/ckeditor/plugins/codesnippet/lib/highlight/styles/default.css" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/webapp/static/ckeditor/plugins/codesnippet/lib/highlight/styles/docco.css" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/webapp/static/ckeditor/plugins/codesnippet/lib/highlight/styles/far.css" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/webapp/static/ckeditor/plugins/codesnippet/lib/highlight/styles/foundation.css" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/webapp/static/ckeditor/plugins/codesnippet/lib/highlight/styles/github.css" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/webapp/static/ckeditor/plugins/codesnippet/lib/highlight/styles/googlecode.css" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/webapp/static/ckeditor/plugins/codesnippet/lib/highlight/styles/idea.css" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/webapp/static/ckeditor/plugins/codesnippet/lib/highlight/styles/ir_black.css" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/webapp/static/ckeditor/plugins/codesnippet/lib/highlight/styles/magula.css" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/webapp/static/ckeditor/plugins/codesnippet/lib/highlight/styles/mono-blue.css" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/webapp/static/ckeditor/plugins/codesnippet/lib/highlight/styles/monokai.css" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/webapp/static/ckeditor/plugins/codesnippet/lib/highlight/styles/monokai_sublime.css" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/webapp/static/ckeditor/plugins/codesnippet/lib/highlight/styles/obsidian.css" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/webapp/static/ckeditor/plugins/codesnippet/lib/highlight/styles/paraiso.dark.css" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/webapp/static/ckeditor/plugins/codesnippet/lib/highlight/styles/paraiso.light.css" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/webapp/static/ckeditor/plugins/codesnippet/lib/highlight/styles/pojoaque.css" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/webapp/static/ckeditor/plugins/codesnippet/lib/highlight/styles/pojoaque.jpg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/webapp/static/ckeditor/plugins/codesnippet/lib/highlight/styles/railscasts.css" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/webapp/static/ckeditor/plugins/codesnippet/lib/highlight/styles/rainbow.css" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/webapp/static/ckeditor/plugins/codesnippet/lib/highlight/styles/school_book.css" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/webapp/static/ckeditor/plugins/codesnippet/lib/highlight/styles/school_book.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/webapp/static/ckeditor/plugins/codesnippet/lib/highlight/styles/solarized_dark.css" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/webapp/static/ckeditor/plugins/codesnippet/lib/highlight/styles/solarized_light.css" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/webapp/static/ckeditor/plugins/codesnippet/lib/highlight/styles/sunburst.css" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/webapp/static/ckeditor/plugins/codesnippet/lib/highlight/styles/tomorrow-night-blue.css" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/webapp/static/ckeditor/plugins/codesnippet/lib/highlight/styles/tomorrow-night-bright.css" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/webapp/static/ckeditor/plugins/codesnippet/lib/highlight/styles/tomorrow-night-eighties.css" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/webapp/static/ckeditor/plugins/codesnippet/lib/highlight/styles/tomorrow-night.css" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/webapp/static/ckeditor/plugins/codesnippet/lib/highlight/styles/tomorrow.css" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/webapp/static/ckeditor/plugins/codesnippet/lib/highlight/styles/vs.css" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/webapp/static/ckeditor/plugins/codesnippet/lib/highlight/styles/xcode.css" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/webapp/static/ckeditor/plugins/codesnippet/lib/highlight/styles/zenburn.css" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/webapp/static/ckeditor/plugins/codesnippet/plugin.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/webapp/static/ckeditor/plugins/codesnippet/samples/codesnippet.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/webapp/static/images/articleImage/20201009192028.jpg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/webapp/static/images/articleImage/20201009192945.gif" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/webapp/static/images/articleImage/20201009193000.jpg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/webapp/static/images/articleImage/20201009194515.jpg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/webapp/static/images/articleImage/20210515101742.jpg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/webapp/static/images/articleImage/20210515101825.PNG" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/webapp/static/images/beian.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/webapp/static/images/customerImage/20210515103205.jpg" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/PetHospital.iml" beforeDir="false" afterPath="$PROJECT_DIR$/PetHospital.iml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/application-dev.yml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/application-dev.yml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/mybatis/mapper/SaleListMapper.xml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/mybatis/mapper/SaleListMapper.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/templates/common/foot2.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/templates/common/foot2.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/static/images/customerImage/20200528223719.jpg" beforeDir="false" />
-    </list>
+    <list default="true" id="0a04dcdb-703f-4bd2-b3be-43a82c777491" name="Default Changelist" comment="" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -256,7 +127,7 @@
     <property name="project.structure.last.edited" value="Project" />
     <property name="project.structure.proportion" value="0.15" />
     <property name="project.structure.side.proportion" value="0.24252874" />
-    <property name="settings.editor.selected.configurable" value="preferences.pluginManager" />
+    <property name="settings.editor.selected.configurable" value="org.jetbrains.plugins.github.ui.GithubSettingsConfigurable" />
   </component>
   <component name="RecentsManager">
     <key name="MoveClassesOrPackagesDialog.RECENTS_KEY">
@@ -843,14 +714,7 @@
       <workItem from="1613192766316" duration="239000" />
       <workItem from="1619068388903" duration="155000" />
       <workItem from="1619324155168" duration="621000" />
-      <workItem from="1621043808242" duration="2289000" />
-    </task>
-    <task id="LOCAL-00053" summary="LeDao宠物医院管理系统">
-      <created>1584198763307</created>
-      <option name="number" value="00053" />
-      <option name="presentableId" value="LOCAL-00053" />
-      <option name="project" value="LOCAL" />
-      <updated>1584198763317</updated>
+      <workItem from="1621043808242" duration="2651000" />
     </task>
     <task id="LOCAL-00054" summary="LeDao宠物医院管理系统">
       <created>1584198896565</created>
@@ -1188,7 +1052,14 @@
       <option name="project" value="LOCAL" />
       <updated>1602081934430</updated>
     </task>
-    <option name="localTasksCounter" value="102" />
+    <task id="LOCAL-00102" summary="LeDao宠物医院管理系统">
+      <created>1621047540535</created>
+      <option name="number" value="00102" />
+      <option name="presentableId" value="LOCAL-00102" />
+      <option name="project" value="LOCAL" />
+      <updated>1621047540535</updated>
+    </task>
+    <option name="localTasksCounter" value="103" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
