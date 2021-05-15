@@ -8,143 +8,139 @@
       <artifact name="PetHospital:war exploded" />
     </artifacts-to-build>
   </component>
+  <component name="AutoImportSettings">
+    <option name="autoReloadType" value="ALL" />
+  </component>
   <component name="ChangeListManager">
     <list default="true" id="0a04dcdb-703f-4bd2-b3be-43a82c777491" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/src/main/resources/templates/common/foot2.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/webapp/static/images/articleImage/20200730160221.PNG" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/webapp/static/images/equipmentTypeImage/20200723135317.jpg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/webapp/static/images/goodsImage/20200723135546.jpg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/webapp/static/images/goodsImage/20200730220733.jpg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/webapp/static/images/inquiryImage/20200723175525.jpg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/webapp/static/images/inquiryImage/20200723191400.jpg" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/libraries/Maven__org_projectlombok_lombok_1_18_10.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/libraries/Maven__org_springframework_spring_test_5_2_2_RELEASE.xml" beforeDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/webapp/static/ckeditor/plugins/codesnippet/dialogs/codesnippet.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/webapp/static/ckeditor/plugins/codesnippet/icons/codesnippet.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/webapp/static/ckeditor/plugins/codesnippet/icons/hidpi/codesnippet.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/webapp/static/ckeditor/plugins/codesnippet/lang/ar.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/webapp/static/ckeditor/plugins/codesnippet/lang/az.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/webapp/static/ckeditor/plugins/codesnippet/lang/bg.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/webapp/static/ckeditor/plugins/codesnippet/lang/ca.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/webapp/static/ckeditor/plugins/codesnippet/lang/cs.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/webapp/static/ckeditor/plugins/codesnippet/lang/da.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/webapp/static/ckeditor/plugins/codesnippet/lang/de-ch.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/webapp/static/ckeditor/plugins/codesnippet/lang/de.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/webapp/static/ckeditor/plugins/codesnippet/lang/el.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/webapp/static/ckeditor/plugins/codesnippet/lang/en-au.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/webapp/static/ckeditor/plugins/codesnippet/lang/en-gb.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/webapp/static/ckeditor/plugins/codesnippet/lang/en.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/webapp/static/ckeditor/plugins/codesnippet/lang/eo.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/webapp/static/ckeditor/plugins/codesnippet/lang/es-mx.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/webapp/static/ckeditor/plugins/codesnippet/lang/es.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/webapp/static/ckeditor/plugins/codesnippet/lang/et.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/webapp/static/ckeditor/plugins/codesnippet/lang/eu.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/webapp/static/ckeditor/plugins/codesnippet/lang/fa.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/webapp/static/ckeditor/plugins/codesnippet/lang/fi.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/webapp/static/ckeditor/plugins/codesnippet/lang/fr-ca.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/webapp/static/ckeditor/plugins/codesnippet/lang/fr.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/webapp/static/ckeditor/plugins/codesnippet/lang/gl.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/webapp/static/ckeditor/plugins/codesnippet/lang/he.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/webapp/static/ckeditor/plugins/codesnippet/lang/hr.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/webapp/static/ckeditor/plugins/codesnippet/lang/hu.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/webapp/static/ckeditor/plugins/codesnippet/lang/id.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/webapp/static/ckeditor/plugins/codesnippet/lang/it.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/webapp/static/ckeditor/plugins/codesnippet/lang/ja.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/webapp/static/ckeditor/plugins/codesnippet/lang/km.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/webapp/static/ckeditor/plugins/codesnippet/lang/ko.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/webapp/static/ckeditor/plugins/codesnippet/lang/ku.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/webapp/static/ckeditor/plugins/codesnippet/lang/lt.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/webapp/static/ckeditor/plugins/codesnippet/lang/lv.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/webapp/static/ckeditor/plugins/codesnippet/lang/nb.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/webapp/static/ckeditor/plugins/codesnippet/lang/nl.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/webapp/static/ckeditor/plugins/codesnippet/lang/no.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/webapp/static/ckeditor/plugins/codesnippet/lang/oc.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/webapp/static/ckeditor/plugins/codesnippet/lang/pl.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/webapp/static/ckeditor/plugins/codesnippet/lang/pt-br.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/webapp/static/ckeditor/plugins/codesnippet/lang/pt.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/webapp/static/ckeditor/plugins/codesnippet/lang/ro.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/webapp/static/ckeditor/plugins/codesnippet/lang/ru.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/webapp/static/ckeditor/plugins/codesnippet/lang/sk.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/webapp/static/ckeditor/plugins/codesnippet/lang/sl.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/webapp/static/ckeditor/plugins/codesnippet/lang/sq.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/webapp/static/ckeditor/plugins/codesnippet/lang/sr-latn.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/webapp/static/ckeditor/plugins/codesnippet/lang/sr.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/webapp/static/ckeditor/plugins/codesnippet/lang/sv.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/webapp/static/ckeditor/plugins/codesnippet/lang/th.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/webapp/static/ckeditor/plugins/codesnippet/lang/tr.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/webapp/static/ckeditor/plugins/codesnippet/lang/tt.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/webapp/static/ckeditor/plugins/codesnippet/lang/ug.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/webapp/static/ckeditor/plugins/codesnippet/lang/uk.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/webapp/static/ckeditor/plugins/codesnippet/lang/vi.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/webapp/static/ckeditor/plugins/codesnippet/lang/zh-cn.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/webapp/static/ckeditor/plugins/codesnippet/lang/zh.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/webapp/static/ckeditor/plugins/codesnippet/lib/highlight/CHANGES.md" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/webapp/static/ckeditor/plugins/codesnippet/lib/highlight/LICENSE" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/webapp/static/ckeditor/plugins/codesnippet/lib/highlight/README.md" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/webapp/static/ckeditor/plugins/codesnippet/lib/highlight/README.ru.md" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/webapp/static/ckeditor/plugins/codesnippet/lib/highlight/highlight.pack.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/webapp/static/ckeditor/plugins/codesnippet/lib/highlight/styles/arta.css" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/webapp/static/ckeditor/plugins/codesnippet/lib/highlight/styles/ascetic.css" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/webapp/static/ckeditor/plugins/codesnippet/lib/highlight/styles/atelier-dune.dark.css" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/webapp/static/ckeditor/plugins/codesnippet/lib/highlight/styles/atelier-dune.light.css" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/webapp/static/ckeditor/plugins/codesnippet/lib/highlight/styles/atelier-forest.dark.css" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/webapp/static/ckeditor/plugins/codesnippet/lib/highlight/styles/atelier-forest.light.css" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/webapp/static/ckeditor/plugins/codesnippet/lib/highlight/styles/atelier-heath.dark.css" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/webapp/static/ckeditor/plugins/codesnippet/lib/highlight/styles/atelier-heath.light.css" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/webapp/static/ckeditor/plugins/codesnippet/lib/highlight/styles/atelier-lakeside.dark.css" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/webapp/static/ckeditor/plugins/codesnippet/lib/highlight/styles/atelier-lakeside.light.css" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/webapp/static/ckeditor/plugins/codesnippet/lib/highlight/styles/atelier-seaside.dark.css" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/webapp/static/ckeditor/plugins/codesnippet/lib/highlight/styles/atelier-seaside.light.css" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/webapp/static/ckeditor/plugins/codesnippet/lib/highlight/styles/brown_paper.css" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/webapp/static/ckeditor/plugins/codesnippet/lib/highlight/styles/brown_papersq.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/webapp/static/ckeditor/plugins/codesnippet/lib/highlight/styles/dark.css" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/webapp/static/ckeditor/plugins/codesnippet/lib/highlight/styles/default.css" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/webapp/static/ckeditor/plugins/codesnippet/lib/highlight/styles/docco.css" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/webapp/static/ckeditor/plugins/codesnippet/lib/highlight/styles/far.css" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/webapp/static/ckeditor/plugins/codesnippet/lib/highlight/styles/foundation.css" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/webapp/static/ckeditor/plugins/codesnippet/lib/highlight/styles/github.css" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/webapp/static/ckeditor/plugins/codesnippet/lib/highlight/styles/googlecode.css" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/webapp/static/ckeditor/plugins/codesnippet/lib/highlight/styles/idea.css" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/webapp/static/ckeditor/plugins/codesnippet/lib/highlight/styles/ir_black.css" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/webapp/static/ckeditor/plugins/codesnippet/lib/highlight/styles/magula.css" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/webapp/static/ckeditor/plugins/codesnippet/lib/highlight/styles/mono-blue.css" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/webapp/static/ckeditor/plugins/codesnippet/lib/highlight/styles/monokai.css" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/webapp/static/ckeditor/plugins/codesnippet/lib/highlight/styles/monokai_sublime.css" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/webapp/static/ckeditor/plugins/codesnippet/lib/highlight/styles/obsidian.css" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/webapp/static/ckeditor/plugins/codesnippet/lib/highlight/styles/paraiso.dark.css" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/webapp/static/ckeditor/plugins/codesnippet/lib/highlight/styles/paraiso.light.css" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/webapp/static/ckeditor/plugins/codesnippet/lib/highlight/styles/pojoaque.css" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/webapp/static/ckeditor/plugins/codesnippet/lib/highlight/styles/pojoaque.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/webapp/static/ckeditor/plugins/codesnippet/lib/highlight/styles/railscasts.css" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/webapp/static/ckeditor/plugins/codesnippet/lib/highlight/styles/rainbow.css" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/webapp/static/ckeditor/plugins/codesnippet/lib/highlight/styles/school_book.css" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/webapp/static/ckeditor/plugins/codesnippet/lib/highlight/styles/school_book.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/webapp/static/ckeditor/plugins/codesnippet/lib/highlight/styles/solarized_dark.css" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/webapp/static/ckeditor/plugins/codesnippet/lib/highlight/styles/solarized_light.css" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/webapp/static/ckeditor/plugins/codesnippet/lib/highlight/styles/sunburst.css" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/webapp/static/ckeditor/plugins/codesnippet/lib/highlight/styles/tomorrow-night-blue.css" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/webapp/static/ckeditor/plugins/codesnippet/lib/highlight/styles/tomorrow-night-bright.css" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/webapp/static/ckeditor/plugins/codesnippet/lib/highlight/styles/tomorrow-night-eighties.css" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/webapp/static/ckeditor/plugins/codesnippet/lib/highlight/styles/tomorrow-night.css" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/webapp/static/ckeditor/plugins/codesnippet/lib/highlight/styles/tomorrow.css" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/webapp/static/ckeditor/plugins/codesnippet/lib/highlight/styles/vs.css" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/webapp/static/ckeditor/plugins/codesnippet/lib/highlight/styles/xcode.css" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/webapp/static/ckeditor/plugins/codesnippet/lib/highlight/styles/zenburn.css" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/webapp/static/ckeditor/plugins/codesnippet/plugin.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/webapp/static/ckeditor/plugins/codesnippet/samples/codesnippet.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/webapp/static/images/articleImage/20201009192028.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/webapp/static/images/articleImage/20201009192945.gif" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/webapp/static/images/articleImage/20201009193000.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/webapp/static/images/articleImage/20201009194515.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/webapp/static/images/articleImage/20210515101742.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/webapp/static/images/articleImage/20210515101825.PNG" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/webapp/static/images/beian.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/webapp/static/images/customerImage/20210515103205.jpg" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/PetHospital.iml" beforeDir="false" afterPath="$PROJECT_DIR$/PetHospital.iml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/ledao/controller/DrawImageController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/ledao/controller/DrawImageController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/ledao/controller/GoodsController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/ledao/controller/GoodsController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/ledao/controller/IndexController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/ledao/controller/IndexController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/ledao/controller/admin/ArticleTypeAdminController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/ledao/controller/admin/ArticleTypeAdminController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/ledao/controller/admin/AssayAdminController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/ledao/controller/admin/AssayAdminController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/ledao/controller/admin/CarouselAdminController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/ledao/controller/admin/CarouselAdminController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/ledao/controller/admin/CommentAdminController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/ledao/controller/admin/CommentAdminController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/ledao/controller/admin/CustomerReturnListAdminController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/ledao/controller/admin/CustomerReturnListAdminController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/ledao/controller/admin/DamageListAdminController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/ledao/controller/admin/DamageListAdminController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/ledao/controller/admin/EquipmentTypeAdminController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/ledao/controller/admin/EquipmentTypeAdminController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/ledao/controller/admin/FosterCareAdminController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/ledao/controller/admin/FosterCareAdminController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/ledao/controller/admin/GoodsTypeAdminController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/ledao/controller/admin/GoodsTypeAdminController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/ledao/controller/admin/InquiryAdminController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/ledao/controller/admin/InquiryAdminController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/ledao/controller/admin/LogAdminController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/ledao/controller/admin/LogAdminController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/ledao/controller/admin/MedicalRecordAdminController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/ledao/controller/admin/MedicalRecordAdminController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/ledao/controller/admin/OverflowListAdminController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/ledao/controller/admin/OverflowListAdminController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/ledao/controller/admin/PurchaseListAdminController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/ledao/controller/admin/PurchaseListAdminController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/ledao/controller/admin/ReservationAdminController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/ledao/controller/admin/ReservationAdminController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/ledao/controller/admin/ReturnApplyAdminController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/ledao/controller/admin/ReturnApplyAdminController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/ledao/controller/admin/ReturnListAdminController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/ledao/controller/admin/ReturnListAdminController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/ledao/controller/admin/ReturnVisitAdminController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/ledao/controller/admin/ReturnVisitAdminController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/ledao/controller/admin/SaleListAdminController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/ledao/controller/admin/SaleListAdminController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/ledao/controller/admin/SaleListPaymentInformationAdmin.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/ledao/controller/admin/SaleListPaymentInformationAdmin.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/ledao/controller/admin/TackleAdminController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/ledao/controller/admin/TackleAdminController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/ledao/controller/admin/VaccineAdminController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/ledao/controller/admin/VaccineAdminController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/ledao/entity/Article.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/ledao/entity/Article.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/ledao/entity/ArticleType.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/ledao/entity/ArticleType.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/ledao/entity/Assay.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/ledao/entity/Assay.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/ledao/entity/Carousel.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/ledao/entity/Carousel.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/ledao/entity/Comment.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/ledao/entity/Comment.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/ledao/entity/Customer.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/ledao/entity/Customer.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/ledao/entity/CustomerReturnList.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/ledao/entity/CustomerReturnList.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/ledao/entity/CustomerReturnListGoods.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/ledao/entity/CustomerReturnListGoods.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/ledao/entity/DamageList.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/ledao/entity/DamageList.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/ledao/entity/DamageListGoods.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/ledao/entity/DamageListGoods.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/ledao/entity/Equipment.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/ledao/entity/Equipment.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/ledao/entity/EquipmentType.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/ledao/entity/EquipmentType.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/ledao/entity/Favorite.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/ledao/entity/Favorite.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/ledao/entity/FosterCare.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/ledao/entity/FosterCare.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/ledao/entity/Goods.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/ledao/entity/Goods.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/ledao/entity/GoodsType.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/ledao/entity/GoodsType.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/ledao/entity/GoodsUnit.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/ledao/entity/GoodsUnit.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/ledao/entity/Information.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/ledao/entity/Information.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/ledao/entity/Inquiry.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/ledao/entity/Inquiry.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/ledao/entity/Log.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/ledao/entity/Log.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/ledao/entity/MedicalRecord.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/ledao/entity/MedicalRecord.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/ledao/entity/Menu.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/ledao/entity/Menu.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/ledao/entity/OverflowList.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/ledao/entity/OverflowList.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/ledao/entity/OverflowListGoods.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/ledao/entity/OverflowListGoods.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/ledao/entity/Pet.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/ledao/entity/Pet.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/ledao/entity/PurchaseList.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/ledao/entity/PurchaseList.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/ledao/entity/PurchaseListGoods.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/ledao/entity/PurchaseListGoods.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/ledao/entity/Reservation.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/ledao/entity/Reservation.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/ledao/entity/ReturnApply.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/ledao/entity/ReturnApply.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/ledao/entity/ReturnList.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/ledao/entity/ReturnList.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/ledao/entity/ReturnListGoods.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/ledao/entity/ReturnListGoods.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/ledao/entity/ReturnVisit.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/ledao/entity/ReturnVisit.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/ledao/entity/Role.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/ledao/entity/Role.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/ledao/entity/RoleMenu.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/ledao/entity/RoleMenu.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/ledao/entity/SaleCount.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/ledao/entity/SaleCount.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/ledao/entity/SaleList.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/ledao/entity/SaleList.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/ledao/entity/SaleListGoods.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/ledao/entity/SaleListGoods.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/ledao/entity/SaleListPaymentInformation.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/ledao/entity/SaleListPaymentInformation.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/ledao/entity/ShoppingCart.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/ledao/entity/ShoppingCart.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/ledao/entity/ShoppingCartItem.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/ledao/entity/ShoppingCartItem.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/ledao/entity/Suggestion.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/ledao/entity/Suggestion.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/ledao/entity/Supplier.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/ledao/entity/Supplier.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/ledao/entity/Tackle.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/ledao/entity/Tackle.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/ledao/entity/TackleOutLog.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/ledao/entity/TackleOutLog.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/ledao/entity/UseEquipmentLog.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/ledao/entity/UseEquipmentLog.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/ledao/entity/User.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/ledao/entity/User.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/ledao/entity/UserRole.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/ledao/entity/UserRole.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/ledao/entity/Vaccine.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/ledao/entity/Vaccine.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/ledao/mapper/CommentMapper.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/ledao/mapper/CommentMapper.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/ledao/run/StartupRunner.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/ledao/run/StartupRunner.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/ledao/service/CommentService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/ledao/service/CommentService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/ledao/service/impl/CommentServiceImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/ledao/service/impl/CommentServiceImpl.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/resources/application-dev.yml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/application-dev.yml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/mybatis/mapper/CommentMapper.xml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/mybatis/mapper/CommentMapper.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/templates/common/head.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/templates/common/head.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/templates/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/templates/index.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/templates/page/goods/goodsList.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/templates/page/goods/goodsList.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/templates/page/goods/goodsResult.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/templates/page/goods/goodsResult.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/templates/page/goods/myFavorite.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/templates/page/goods/myFavorite.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/templates/page/indexFirst.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/templates/page/indexFirst.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/basicData/orderHandleManage.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/basicData/orderHandleManage.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/basicData/returnApplyManage.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/basicData/returnApplyManage.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/inquiry/inquiryManage.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/inquiry/inquiryManage.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/sale/returnSearch.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/sale/returnSearch.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/static/images/inquiryImage/20200314185431.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/static/images/inquiryImage/20200511145606.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/java/com/ledao/PethospitalApplicationTests.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/application-dev.yml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/application-prod.yml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/application-test.yml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/application.yml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/ledao/PetHospitalApplication.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/ledao/config/ShiroConfig.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/ledao/controller/DrawImageController.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/ledao/controller/IndexController.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/ledao/controller/UserController.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/ledao/controller/admin/UserAdminController.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/ledao/entity/Menu.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/ledao/entity/PageBean.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/ledao/entity/Role.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/ledao/entity/RoleMenu.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/ledao/entity/User.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/ledao/entity/UserRole.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/ledao/mapper/MenuMapper.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/ledao/mapper/RoleMapper.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/ledao/mapper/UserMapper.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/ledao/mapper/UserRoleMapper.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/ledao/realm/MyRealm.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/ledao/service/MenuService.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/ledao/service/RoleService.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/ledao/service/UserRoleService.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/ledao/service/UserService.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/ledao/util/StringUtil.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/mybatis/mapper/MenuMapper.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/mybatis/mapper/RoleMapper.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/mybatis/mapper/UserMapper.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/mybatis/mapper/UserRoleMapper.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/test-classes/com/ledao/PethospitalApplicationTests.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/mybatis/mapper/SaleListMapper.xml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/mybatis/mapper/SaleListMapper.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/templates/common/foot2.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/templates/common/foot2.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/webapp/static/images/customerImage/20200528223719.jpg" beforeDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -181,9 +177,6 @@
     </expand>
     <select />
   </component>
-  <component name="FavoritesManager">
-    <favorites_list name="PetHospital" />
-  </component>
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
       <list>
@@ -205,6 +198,14 @@
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
     <option name="UPDATE_TYPE" value="MERGE" />
   </component>
+  <component name="GitSEFilterConfiguration">
+    <file-type-list>
+      <filtered-out-file-type name="LOCAL_BRANCH" />
+      <filtered-out-file-type name="REMOTE_BRANCH" />
+      <filtered-out-file-type name="TAG" />
+      <filtered-out-file-type name="COMMIT_BY_MESSAGE" />
+    </file-type-list>
+  </component>
   <component name="JsFlowSettings">
     <service-enabled>true</service-enabled>
     <exe-path />
@@ -219,10 +220,10 @@
     <option name="CUSTOM_FILTER" />
   </component>
   <component name="MavenImportPreferences">
-    <option name="importingSettings">
-      <MavenImportingSettings>
-        <option name="importAutomatically" value="true" />
-      </MavenImportingSettings>
+    <option name="generalSettings">
+      <MavenGeneralSettings>
+        <option name="mavenHome" value="D:\Java\maven\apache-maven-3.6.3" />
+      </MavenGeneralSettings>
     </option>
   </component>
   <component name="ProjectId" id="1WRQdNlHu1FA4dEFY6te0n7K9Br" />
@@ -232,7 +233,6 @@
   <component name="ProjectViewState">
     <option name="flattenPackages" value="true" />
     <option name="hideEmptyMiddlePackages" value="true" />
-    <option name="showExcludedFiles" value="true" />
     <option name="showLibraryContents" value="true" />
     <option name="showMembers" value="true" />
     <option name="sortByType" value="true" />
@@ -248,25 +248,26 @@
     <property name="RequestMappingsPanelOrder1" value="1" />
     <property name="RequestMappingsPanelWidth0" value="75" />
     <property name="RequestMappingsPanelWidth1" value="75" />
+    <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="aspect.path.notification.shown" value="true" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/../MyBlog" />
     <property name="project.structure.last.edited" value="Project" />
     <property name="project.structure.proportion" value="0.15" />
     <property name="project.structure.side.proportion" value="0.24252874" />
-    <property name="settings.editor.selected.configurable" value="MavenSettings" />
+    <property name="settings.editor.selected.configurable" value="preferences.pluginManager" />
   </component>
   <component name="RecentsManager">
-    <key name="MoveFile.RECENT_KEYS">
-      <recent name="F:\idea workspase for Actual combat\PetHospital\src\main\resources\templates\page" />
-      <recent name="F:\idea workspase for Actual combat\PetHospital\src\main\resources\templates\page\article" />
-      <recent name="F:\idea workspase for Actual combat\PetHospital\src\main\webapp\static\images" />
-      <recent name="F:\idea workspase for Actual combat\PetHospital\src\main\resources\templates" />
-      <recent name="F:\idea workspase for Actual combat\PetHospital\src\main\resources\templates\mypages" />
-    </key>
     <key name="MoveClassesOrPackagesDialog.RECENTS_KEY">
       <recent name="com.ledao" />
+    </key>
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="E:\IdeaProjects\ActualCombat\PetHospital\src\main\webapp\static\images" />
+      <recent name="F:\idea workspase for Actual combat\PetHospital\src\main\webapp\static\ckeditor\plugins" />
+      <recent name="F:\idea workspase for Actual combat\PetHospital\src\main\resources\templates\common" />
+      <recent name="F:\idea workspase for Actual combat\PetHospital\target\pethospital\static\images\inquiryImage" />
+      <recent name="F:\idea workspase for Actual combat\PetHospital\out\artifacts\PetHospital_war_exploded\static\images\inquiryImage" />
     </key>
     <key name="CopyClassDialog.RECENTS_KEY">
       <recent name="com.ledao.controller.admin" />
@@ -275,12 +276,12 @@
       <recent name="com.ledao.controller" />
       <recent name="com.ledao.service" />
     </key>
-    <key name="CopyFile.RECENT_KEYS">
-      <recent name="F:\idea workspase for Actual combat\PetHospital\src\main\resources\templates\common" />
-      <recent name="F:\idea workspase for Actual combat\PetHospital\target\pethospital\static\images\inquiryImage" />
-      <recent name="F:\idea workspase for Actual combat\PetHospital\out\artifacts\PetHospital_war_exploded\static\images\inquiryImage" />
-      <recent name="F:\idea workspase for Actual combat\PetHospital\out\artifacts\PetHospital_war_exploded\static\images\goodsImage" />
-      <recent name="F:\idea workspase for Actual combat\PetHospital\out\artifacts\PetHospital_war_exploded\static\images\equipmentTypeImage" />
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="F:\idea workspase for Actual combat\PetHospital\src\main\resources\templates\page" />
+      <recent name="F:\idea workspase for Actual combat\PetHospital\src\main\resources\templates\page\article" />
+      <recent name="F:\idea workspase for Actual combat\PetHospital\src\main\webapp\static\images" />
+      <recent name="F:\idea workspase for Actual combat\PetHospital\src\main\resources\templates" />
+      <recent name="F:\idea workspase for Actual combat\PetHospital\src\main\resources\templates\mypages" />
     </key>
   </component>
   <component name="RestServicesNavigator">
@@ -297,7 +298,7 @@
       <select />
     </treeState>
   </component>
-  <component name="RunManager" selected="Tomcat Server.Tomcat 9.0.221">
+  <component name="RunManager" selected="Spring Boot.PethospitalApplication">
     <configuration name="DateUtil" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="com.ledao.util.DateUtil" />
       <module name="PetHospital" />
@@ -311,6 +312,17 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
+    <configuration default="true" type="ArquillianJUnit" factoryName="" nameIsGenerated="true">
+      <option name="arquillianRunConfiguration">
+        <value>
+          <option name="containerStateName" value="" />
+        </value>
+      </option>
+      <option name="TEST_OBJECT" value="class" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
     <configuration name="PethospitalApplication" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot">
       <module name="PetHospital" />
       <option name="SPRING_BOOT_MAIN_CLASS" value="com.ledao.PetHospitalApplication" />
@@ -319,6 +331,79 @@
       <option name="FRAME_DEACTIVATION_UPDATE_POLICY" value="UpdateClassesAndResources" />
       <method v="2">
         <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="Tomcat 8.5.43" type="#com.intellij.j2ee.web.tomcat.TomcatRunConfigurationFactory" factoryName="Local" APPLICATION_SERVER_NAME="Tomcat 8.5.43" ALTERNATIVE_JRE_ENABLED="false" nameIsGenerated="true">
+      <option name="BROWSER_ID" value="b2a9dca7-9d0b-4e1e-98a8-afb19c1328d2" />
+      <option name="UPDATING_POLICY" value="restart-server" />
+      <deployment>
+        <artifact name="PetHospital:war exploded">
+          <settings>
+            <option name="CONTEXT_PATH" value="/" />
+          </settings>
+        </artifact>
+      </deployment>
+      <server-settings>
+        <option name="BASE_DIRECTORY_NAME" value="Tomcat_9_0_221_(1)_PetHospital" />
+      </server-settings>
+      <predefined_log_file enabled="true" id="Tomcat" />
+      <predefined_log_file enabled="true" id="Tomcat Catalina" />
+      <predefined_log_file id="Tomcat Manager" />
+      <predefined_log_file id="Tomcat Host Manager" />
+      <predefined_log_file id="Tomcat Localhost Access" />
+      <RunnerSettings RunnerId="Debug">
+        <option name="DEBUG_PORT" value="9174" />
+      </RunnerSettings>
+      <ConfigurationWrapper VM_VAR="JAVA_OPTS" RunnerId="Cover">
+        <option name="USE_ENV_VARIABLES" value="true" />
+        <STARTUP>
+          <option name="USE_DEFAULT" value="true" />
+          <option name="SCRIPT" value="" />
+          <option name="VM_PARAMETERS" value="" />
+          <option name="PROGRAM_PARAMETERS" value="" />
+        </STARTUP>
+        <SHUTDOWN>
+          <option name="USE_DEFAULT" value="true" />
+          <option name="SCRIPT" value="" />
+          <option name="VM_PARAMETERS" value="" />
+          <option name="PROGRAM_PARAMETERS" value="" />
+        </SHUTDOWN>
+      </ConfigurationWrapper>
+      <ConfigurationWrapper VM_VAR="JAVA_OPTS" RunnerId="Debug">
+        <option name="USE_ENV_VARIABLES" value="true" />
+        <STARTUP>
+          <option name="USE_DEFAULT" value="true" />
+          <option name="SCRIPT" value="" />
+          <option name="VM_PARAMETERS" value="" />
+          <option name="PROGRAM_PARAMETERS" value="" />
+        </STARTUP>
+        <SHUTDOWN>
+          <option name="USE_DEFAULT" value="true" />
+          <option name="SCRIPT" value="" />
+          <option name="VM_PARAMETERS" value="" />
+          <option name="PROGRAM_PARAMETERS" value="" />
+        </SHUTDOWN>
+      </ConfigurationWrapper>
+      <ConfigurationWrapper VM_VAR="JAVA_OPTS" RunnerId="Run">
+        <option name="USE_ENV_VARIABLES" value="true" />
+        <STARTUP>
+          <option name="USE_DEFAULT" value="true" />
+          <option name="SCRIPT" value="" />
+          <option name="VM_PARAMETERS" value="" />
+          <option name="PROGRAM_PARAMETERS" value="" />
+        </STARTUP>
+        <SHUTDOWN>
+          <option name="USE_DEFAULT" value="true" />
+          <option name="SCRIPT" value="" />
+          <option name="VM_PARAMETERS" value="" />
+          <option name="PROGRAM_PARAMETERS" value="" />
+        </SHUTDOWN>
+      </ConfigurationWrapper>
+      <method v="2">
+        <option name="Make" enabled="true" />
+        <option name="BuildArtifacts" enabled="true">
+          <artifact name="PetHospital:war exploded" />
+        </option>
       </method>
     </configuration>
     <configuration name="Tomcat 9.0.221" type="#com.intellij.j2ee.web.tomcat.TomcatRunConfigurationFactory" factoryName="Local" APPLICATION_SERVER_NAME="Tomcat 9.0.221" ALTERNATIVE_JRE_ENABLED="false" nameIsGenerated="true">
@@ -465,12 +550,14 @@
         <option name="Make" enabled="true" />
         <option name="BuildArtifacts" enabled="true">
           <artifact name="PetHospital:war exploded" />
+          <artifact name="PetHospital:war" />
         </option>
       </method>
     </configuration>
     <list>
       <item itemvalue="Application.DateUtil" />
       <item itemvalue="Spring Boot.PethospitalApplication" />
+      <item itemvalue="Tomcat Server.Tomcat 8.5.43" />
       <item itemvalue="Tomcat Server.Tomcat 9.0.221" />
     </list>
     <recent_temporary>
@@ -479,24 +566,7 @@
       </list>
     </recent_temporary>
   </component>
-  <component name="ServiceViewManager">
-    <option name="viewStates">
-      <list>
-        <serviceView>
-          <option name="contentProportion" value="0.14685792" />
-          <treeState>
-            <expand>
-              <path>
-                <item name="services root" type="e789fda9:ObjectUtils$Sentinel" />
-                <item name="Tomcat Server" type="7427dc5b:ServiceModel$ServiceGroupNode" />
-              </path>
-            </expand>
-            <select />
-          </treeState>
-        </serviceView>
-      </list>
-    </option>
-  </component>
+  <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
   <component name="SshConsoleOptionsProvider">
     <option name="myEncoding" value="UTF-8" />
   </component>
@@ -721,14 +791,59 @@
       <workItem from="1600740089189" duration="3262000" />
       <workItem from="1600774166336" duration="4035000" />
       <workItem from="1600831565053" duration="9462000" />
-      <workItem from="1602069402034" duration="1279000" />
-    </task>
-    <task id="LOCAL-00052" summary="LeDao宠物医院管理系统">
-      <created>1584198590956</created>
-      <option name="number" value="00052" />
-      <option name="presentableId" value="LOCAL-00052" />
-      <option name="project" value="LOCAL" />
-      <updated>1584198590956</updated>
+      <workItem from="1602069402034" duration="1842000" />
+      <workItem from="1602082092732" duration="1321000" />
+      <workItem from="1602137089614" duration="615000" />
+      <workItem from="1602233987489" duration="5379000" />
+      <workItem from="1602254498155" duration="644000" />
+      <workItem from="1602257709480" duration="1092000" />
+      <workItem from="1602681354928" duration="6548000" />
+      <workItem from="1602701968152" duration="9000" />
+      <workItem from="1603014508606" duration="1388000" />
+      <workItem from="1603024425060" duration="672000" />
+      <workItem from="1603031782179" duration="3413000" />
+      <workItem from="1603281051385" duration="890000" />
+      <workItem from="1603286650043" duration="4435000" />
+      <workItem from="1603334558873" duration="19000" />
+      <workItem from="1604501592986" duration="16000" />
+      <workItem from="1604514346550" duration="113000" />
+      <workItem from="1604514471095" duration="145000" />
+      <workItem from="1604514684124" duration="283000" />
+      <workItem from="1604556618537" duration="147000" />
+      <workItem from="1607261993972" duration="690000" />
+      <workItem from="1607334247375" duration="1196000" />
+      <workItem from="1607424793683" duration="607000" />
+      <workItem from="1607429071770" duration="576000" />
+      <workItem from="1607698705379" duration="784000" />
+      <workItem from="1607752955680" duration="2192000" />
+      <workItem from="1607764507434" duration="1373000" />
+      <workItem from="1609518910739" duration="3745000" />
+      <workItem from="1609680585402" duration="5000" />
+      <workItem from="1609680604244" duration="2455000" />
+      <workItem from="1609696784770" duration="1465000" />
+      <workItem from="1609737311613" duration="23000" />
+      <workItem from="1609743430829" duration="773000" />
+      <workItem from="1609766625344" duration="650000" />
+      <workItem from="1609773044487" duration="2019000" />
+      <workItem from="1609775594755" duration="548000" />
+      <workItem from="1609776346643" duration="448000" />
+      <workItem from="1609816059448" duration="1471000" />
+      <workItem from="1609934050609" duration="54000" />
+      <workItem from="1609934300600" duration="8417000" />
+      <workItem from="1610019050189" duration="5096000" />
+      <workItem from="1610111658500" duration="6093000" />
+      <workItem from="1610558828570" duration="23000" />
+      <workItem from="1610559011268" duration="650000" />
+      <workItem from="1610611165758" duration="7000" />
+      <workItem from="1610652557047" duration="4597000" />
+      <workItem from="1610700930899" duration="6650000" />
+      <workItem from="1610779797221" duration="4384000" />
+      <workItem from="1613100380777" duration="1371000" />
+      <workItem from="1613141398229" duration="9000" />
+      <workItem from="1613192766316" duration="239000" />
+      <workItem from="1619068388903" duration="155000" />
+      <workItem from="1619324155168" duration="621000" />
+      <workItem from="1621043808242" duration="2289000" />
     </task>
     <task id="LOCAL-00053" summary="LeDao宠物医院管理系统">
       <created>1584198763307</created>
@@ -1066,158 +1181,34 @@
       <option name="project" value="LOCAL" />
       <updated>1593603404569</updated>
     </task>
-    <option name="localTasksCounter" value="101" />
+    <task id="LOCAL-00101" summary="LeDao宠物医院管理系统">
+      <created>1602081934420</created>
+      <option name="number" value="00101" />
+      <option name="presentableId" value="LOCAL-00101" />
+      <option name="project" value="LOCAL" />
+      <updated>1602081934430</updated>
+    </task>
+    <option name="localTasksCounter" value="102" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
-    <option name="version" value="1" />
+    <option name="version" value="3" />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
     <option name="TAB_STATES">
       <map>
         <entry key="MAIN">
           <value>
-            <State>
-              <option name="COLUMN_ORDER" />
-            </State>
+            <State />
           </value>
         </entry>
       </map>
     </option>
+    <option name="oldMeFiltersMigrated" value="true" />
   </component>
   <component name="VcsManagerConfiguration">
     <option name="ADD_EXTERNAL_FILES_SILENTLY" value="true" />
     <MESSAGE value="LeDao宠物医院管理系统" />
     <option name="LAST_COMMIT_MESSAGE" value="LeDao宠物医院管理系统" />
-  </component>
-  <component name="WindowStateProjectService">
-    <state x="360" y="71" key="#Tomcat_Server" timestamp="1595402580018">
-      <screen x="0" y="0" width="1536" height="824" />
-    </state>
-    <state x="360" y="71" key="#Tomcat_Server/0.0.1536.824@0.0.1536.824" timestamp="1595402580018" />
-    <state x="223" y="68" width="1089" height="755" key="#com.intellij.execution.impl.EditConfigurationsDialog" timestamp="1600854878050">
-      <screen x="0" y="0" width="1536" height="824" />
-    </state>
-    <state x="223" y="68" width="1089" height="755" key="#com.intellij.execution.impl.EditConfigurationsDialog/0.0.1536.824@0.0.1536.824" timestamp="1600854878050" />
-    <state x="574" y="122" key="#com.intellij.ide.util.MemberChooser" timestamp="1595479203415">
-      <screen x="0" y="0" width="1536" height="824" />
-    </state>
-    <state x="574" y="122" key="#com.intellij.ide.util.MemberChooser/0.0.1536.824@0.0.1536.824" timestamp="1595479203415" />
-    <state x="360" y="104" key="#com.intellij.j2ee.appServerIntegrations.ApplicationServersConfigurable" timestamp="1600854876991">
-      <screen x="0" y="0" width="1536" height="824" />
-    </state>
-    <state x="360" y="104" key="#com.intellij.j2ee.appServerIntegrations.ApplicationServersConfigurable/0.0.1536.824@0.0.1536.824" timestamp="1600854876991" />
-    <state x="695" y="264" key="#com.intellij.javaee.module.view.web.EditWebRootDialog" timestamp="1599571367165">
-      <screen x="0" y="0" width="1536" height="824" />
-    </state>
-    <state x="695" y="264" key="#com.intellij.javaee.module.view.web.EditWebRootDialog/0.0.1536.824@0.0.1536.824" timestamp="1599571367165" />
-    <state x="373" y="338" key="#com.intellij.refactoring.move.MoveHandler.SelectRefactoringDialog" timestamp="1595489429784">
-      <screen x="0" y="0" width="1536" height="824" />
-    </state>
-    <state x="373" y="338" key="#com.intellij.refactoring.move.MoveHandler.SelectRefactoringDialog/0.0.1536.824@0.0.1536.824" timestamp="1595489429784" />
-    <state x="637" y="113" key="#com.intellij.util.ui.classpath.ChooseLibrariesDialog" timestamp="1594902776669">
-      <screen x="0" y="0" width="1536" height="824" />
-    </state>
-    <state x="637" y="113" key="#com.intellij.util.ui.classpath.ChooseLibrariesDialog/0.0.1536.824@0.0.1536.824" timestamp="1594902776669" />
-    <state x="207" y="84" width="1010" height="632" key="CommitChangelistDialog2" timestamp="1593603401589">
-      <screen x="0" y="0" width="1536" height="824" />
-    </state>
-    <state x="207" y="84" width="1010" height="632" key="CommitChangelistDialog2/0.0.1536.824@0.0.1536.824" timestamp="1593603401589" />
-    <state width="1067" height="466" key="DebuggerActiveHint" timestamp="1595504209343">
-      <screen x="0" y="0" width="1536" height="824" />
-    </state>
-    <state width="1067" height="466" key="DebuggerActiveHint/0.0.1536.824@0.0.1536.824" timestamp="1595504209343" />
-    <state x="549" y="168" width="773" height="488" key="FileChooserDialogImpl" timestamp="1600010245160">
-      <screen x="0" y="0" width="1536" height="824" />
-    </state>
-    <state x="549" y="168" width="773" height="488" key="FileChooserDialogImpl/0.0.1536.824@0.0.1536.824" timestamp="1600010245160" />
-    <state width="1493" height="234" key="GridCell.Tab.0.bottom" timestamp="1602069433505">
-      <screen x="0" y="0" width="1536" height="824" />
-    </state>
-    <state width="1493" height="234" key="GridCell.Tab.0.bottom/0.0.1536.824@0.0.1536.824" timestamp="1602069433505" />
-    <state width="1493" height="234" key="GridCell.Tab.0.center" timestamp="1602069433505">
-      <screen x="0" y="0" width="1536" height="824" />
-    </state>
-    <state width="1493" height="234" key="GridCell.Tab.0.center/0.0.1536.824@0.0.1536.824" timestamp="1602069433505" />
-    <state width="1493" height="234" key="GridCell.Tab.0.left" timestamp="1602069433505">
-      <screen x="0" y="0" width="1536" height="824" />
-    </state>
-    <state width="1493" height="234" key="GridCell.Tab.0.left/0.0.1536.824@0.0.1536.824" timestamp="1602069433505" />
-    <state width="1493" height="234" key="GridCell.Tab.0.right" timestamp="1602069433505">
-      <screen x="0" y="0" width="1536" height="824" />
-    </state>
-    <state width="1493" height="234" key="GridCell.Tab.0.right/0.0.1536.824@0.0.1536.824" timestamp="1602069433505" />
-    <state width="1248" height="352" key="GridCell.Tab.1.bottom" timestamp="1600879164195">
-      <screen x="0" y="0" width="1536" height="824" />
-    </state>
-    <state width="1248" height="352" key="GridCell.Tab.1.bottom/0.0.1536.824@0.0.1536.824" timestamp="1600879164195" />
-    <state width="1248" height="352" key="GridCell.Tab.1.center" timestamp="1600879164195">
-      <screen x="0" y="0" width="1536" height="824" />
-    </state>
-    <state width="1248" height="352" key="GridCell.Tab.1.center/0.0.1536.824@0.0.1536.824" timestamp="1600879164195" />
-    <state width="1248" height="352" key="GridCell.Tab.1.left" timestamp="1600879164195">
-      <screen x="0" y="0" width="1536" height="824" />
-    </state>
-    <state width="1248" height="352" key="GridCell.Tab.1.left/0.0.1536.824@0.0.1536.824" timestamp="1600879164195" />
-    <state width="1248" height="352" key="GridCell.Tab.1.right" timestamp="1600879164195">
-      <screen x="0" y="0" width="1536" height="824" />
-    </state>
-    <state width="1248" height="352" key="GridCell.Tab.1.right/0.0.1536.824@0.0.1536.824" timestamp="1600879164195" />
-    <state width="1248" height="352" key="GridCell.Tab.2.bottom" timestamp="1600879164195">
-      <screen x="0" y="0" width="1536" height="824" />
-    </state>
-    <state width="1248" height="352" key="GridCell.Tab.2.bottom/0.0.1536.824@0.0.1536.824" timestamp="1600879164195" />
-    <state width="1248" height="352" key="GridCell.Tab.2.center" timestamp="1600879164195">
-      <screen x="0" y="0" width="1536" height="824" />
-    </state>
-    <state width="1248" height="352" key="GridCell.Tab.2.center/0.0.1536.824@0.0.1536.824" timestamp="1600879164195" />
-    <state width="1248" height="352" key="GridCell.Tab.2.left" timestamp="1600879164195">
-      <screen x="0" y="0" width="1536" height="824" />
-    </state>
-    <state width="1248" height="352" key="GridCell.Tab.2.left/0.0.1536.824@0.0.1536.824" timestamp="1600879164195" />
-    <state width="1248" height="352" key="GridCell.Tab.2.right" timestamp="1600879164195">
-      <screen x="0" y="0" width="1536" height="824" />
-    </state>
-    <state width="1248" height="352" key="GridCell.Tab.2.right/0.0.1536.824@0.0.1536.824" timestamp="1600879164195" />
-    <state width="1248" height="353" key="GridCell.Tab.3.bottom" timestamp="1596119772491">
-      <screen x="0" y="0" width="1536" height="824" />
-    </state>
-    <state width="1248" height="353" key="GridCell.Tab.3.bottom/0.0.1536.824@0.0.1536.824" timestamp="1596119772491" />
-    <state width="1248" height="353" key="GridCell.Tab.3.center" timestamp="1596119772491">
-      <screen x="0" y="0" width="1536" height="824" />
-    </state>
-    <state width="1248" height="353" key="GridCell.Tab.3.center/0.0.1536.824@0.0.1536.824" timestamp="1596119772491" />
-    <state width="1248" height="353" key="GridCell.Tab.3.left" timestamp="1596119772491">
-      <screen x="0" y="0" width="1536" height="824" />
-    </state>
-    <state width="1248" height="353" key="GridCell.Tab.3.left/0.0.1536.824@0.0.1536.824" timestamp="1596119772491" />
-    <state width="1248" height="353" key="GridCell.Tab.3.right" timestamp="1596119772491">
-      <screen x="0" y="0" width="1536" height="824" />
-    </state>
-    <state width="1248" height="353" key="GridCell.Tab.3.right/0.0.1536.824@0.0.1536.824" timestamp="1596119772491" />
-    <state x="408" y="1" width="997" height="713" key="SettingsEditor" timestamp="1600850181781">
-      <screen x="0" y="0" width="1536" height="824" />
-    </state>
-    <state x="408" y="1" width="997" height="713" key="SettingsEditor/0.0.1536.824@0.0.1536.824" timestamp="1600850181781" />
-    <state x="361" y="146" key="Vcs.Push.Dialog.v2" timestamp="1593603411899">
-      <screen x="0" y="0" width="1536" height="824" />
-    </state>
-    <state x="361" y="146" key="Vcs.Push.Dialog.v2/0.0.1536.824@0.0.1536.824" timestamp="1593603411899" />
-    <state x="35" y="114" width="1441" height="668" key="find.popup" timestamp="1600787435887">
-      <screen x="0" y="0" width="1536" height="824" />
-    </state>
-    <state x="35" y="114" width="1441" height="668" key="find.popup/0.0.1536.824@0.0.1536.824" timestamp="1600787435887" />
-    <state x="178" y="114" key="new project wizard" timestamp="1598179171063">
-      <screen x="0" y="0" width="1536" height="824" />
-    </state>
-    <state x="178" y="114" key="new project wizard/0.0.1536.824@0.0.1536.824" timestamp="1598179171063" />
-    <state x="445" y="259" width="715" height="305" key="org.intellij.images.editor.actions.BackgroundImageDialog" timestamp="1594897620125">
-      <screen x="0" y="0" width="1536" height="824" />
-    </state>
-    <state x="445" y="259" width="715" height="305" key="org.intellij.images.editor.actions.BackgroundImageDialog/0.0.1536.824@0.0.1536.824" timestamp="1594897620125" />
-    <state x="431" y="145" width="672" height="678" key="search.everywhere.popup" timestamp="1600848196493">
-      <screen x="0" y="0" width="1536" height="824" />
-    </state>
-    <state x="431" y="145" width="672" height="678" key="search.everywhere.popup/0.0.1536.824@0.0.1536.824" timestamp="1600848196493" />
   </component>
 </project>
