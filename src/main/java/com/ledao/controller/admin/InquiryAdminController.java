@@ -87,7 +87,6 @@ public class InquiryAdminController {
         PageBean pageBean = new PageBean(page, rows);
         Map<String, Object> resultMap = new HashMap<>(16);
         Map<String, Object> map = new HashMap<>(16);
-        //搜索条件,
         if (inquiry.getCustomer() != null) {
             if (!StringUtil.isEmpty(inquiry.getCustomer().getContact())) {
                 Customer customer = customerService.findByContact(inquiry.getCustomer().getContact());
