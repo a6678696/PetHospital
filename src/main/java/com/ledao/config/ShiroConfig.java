@@ -104,8 +104,7 @@ public class ShiroConfig {
      */
     @Bean
     public MyRealm myRealm() {
-        MyRealm myRealm = new MyRealm();
-        return myRealm;
+        return new MyRealm();
     }
 
     /**

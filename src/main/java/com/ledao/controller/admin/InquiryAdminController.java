@@ -83,10 +83,11 @@ public class InquiryAdminController {
      */
     @RequestMapping("/myInquiryAnswer")
     @RequiresPermissions(value = "我的问诊")
-    public Map<String, Object> myInquiryAnswer(Inquiry inquiry, @RequestParam(value = "page", required = false) Integer page, @RequestParam(value = "rows", required = false) Integer rows) {
+    public Map<String, Object> myInquiryAnswer(Inquiry inquiry, @RequestParam(value = "page", required = false) Integer page, @RequestParam(value = "rows", required = false) Integer rows,HttpSession session) {
         PageBean pageBean = new PageBean(page, rows);
         Map<String, Object> resultMap = new HashMap<>(16);
         Map<String, Object> map = new HashMap<>(16);
+        //搜索条件,
         if (inquiry.getCustomer() != null) {
             if (!StringUtil.isEmpty(inquiry.getCustomer().getContact())) {
                 Customer customer = customerService.findByContact(inquiry.getCustomer().getContact());
@@ -98,6 +99,9 @@ public class InquiryAdminController {
                 }
             }
         }
+        //获取当前登录用户
+        User user = (User) session.getAttribute("currentUser");
+        map.put("userId", user.getId());
         map.put("status", 1);
         map.put("start", pageBean.getStart());
         map.put("size", pageBean.getPageSize());
