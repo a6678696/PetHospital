@@ -12,8 +12,10 @@
     <option name="autoReloadType" value="ALL" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="0a04dcdb-703f-4bd2-b3be-43a82c777491" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/ledao/controller/admin/InquiryAdminController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/ledao/controller/admin/InquiryAdminController.java" afterDir="false" />
+    <list default="true" id="0a04dcdb-703f-4bd2-b3be-43a82c777491" name="Default Changelist" comment="LeDao宠物医院管理系统">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/PetHospital.iml" beforeDir="false" afterPath="$PROJECT_DIR$/PetHospital.iml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -107,7 +109,9 @@
   <component name="MavenImportPreferences">
     <option name="generalSettings">
       <MavenGeneralSettings>
-        <option name="mavenHome" value="D:\Java\maven\apache-maven-3.6.3" />
+        <option name="localRepository" value="D:\Java\apache-maven-3.8.1-bin\apache-maven-3.8.1\repository" />
+        <option name="mavenHome" value="D:/Java/apache-maven-3.8.1-bin/apache-maven-3.8.1" />
+        <option name="userSettingsFile" value="D:\Java\apache-maven-3.8.1-bin\apache-maven-3.8.1\conf\settings.xml" />
       </MavenGeneralSettings>
     </option>
   </component>
@@ -138,10 +142,11 @@
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="aspect.path.notification.shown" value="true" />
     <property name="last_opened_file_path" value="$PROJECT_DIR$" />
+    <property name="nodejs_package_manager_path" value="npm" />
     <property name="project.structure.last.edited" value="Project" />
     <property name="project.structure.proportion" value="0.15" />
     <property name="project.structure.side.proportion" value="0.24252874" />
-    <property name="settings.editor.selected.configurable" value="editor.preferences.fonts.default" />
+    <property name="settings.editor.selected.configurable" value="terminal" />
   </component>
   <component name="RecentsManager">
     <key name="MoveClassesOrPackagesDialog.RECENTS_KEY">
@@ -183,7 +188,7 @@
       <select />
     </treeState>
   </component>
-  <component name="RunManager" selected="Spring Boot.PethospitalApplication">
+  <component name="RunManager" selected="Maven.pethospital [mvn,dependency:analyze]">
     <configuration name="DateUtil" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="com.ledao.util.DateUtil" />
       <module name="PetHospital" />
@@ -197,10 +202,37 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
+    <configuration name="pethospital [mvn,dependency:analyze]" type="MavenRunConfiguration" factoryName="Maven" nameIsGenerated="true">
+      <MavenSettings>
+        <option name="myGeneralSettings" />
+        <option name="myRunnerSettings" />
+        <option name="myRunnerParameters">
+          <MavenRunnerParameters>
+            <option name="profiles">
+              <set />
+            </option>
+            <option name="goals">
+              <list>
+                <option value="mvn" />
+                <option value="dependency:analyze" />
+              </list>
+            </option>
+            <option name="pomFileName" />
+            <option name="profilesMap">
+              <map />
+            </option>
+            <option name="resolveToWorkspace" value="false" />
+            <option name="workingDirPath" value="$PROJECT_DIR$" />
+          </MavenRunnerParameters>
+        </option>
+      </MavenSettings>
+      <method v="2" />
+    </configuration>
     <configuration name="PethospitalApplication" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot">
       <module name="PetHospital" />
       <option name="SPRING_BOOT_MAIN_CLASS" value="com.ledao.PetHospitalApplication" />
       <option name="ALTERNATIVE_JRE_PATH" />
+      <option name="SHORTEN_COMMAND_LINE" value="NONE" />
       <option name="UPDATE_ACTION_UPDATE_POLICY" value="UpdateClassesAndResources" />
       <option name="FRAME_DEACTIVATION_UPDATE_POLICY" value="UpdateClassesAndResources" />
       <method v="2">
@@ -430,6 +462,7 @@
     </configuration>
     <list>
       <item itemvalue="Application.DateUtil" />
+      <item itemvalue="Maven.pethospital [mvn,dependency:analyze]" />
       <item itemvalue="Spring Boot.PethospitalApplication" />
       <item itemvalue="Tomcat Server.Tomcat 8.5.43" />
       <item itemvalue="Tomcat Server.Tomcat 9.0.221" />
@@ -735,14 +768,14 @@
       <workItem from="1635173963962" duration="2350000" />
       <workItem from="1636554031006" duration="746000" />
       <workItem from="1637219510991" duration="325000" />
-      <workItem from="1639061082576" duration="2685000" />
-    </task>
-    <task id="LOCAL-00055" summary="LeDao宠物医院管理系统">
-      <created>1584457100316</created>
-      <option name="number" value="00055" />
-      <option name="presentableId" value="LOCAL-00055" />
-      <option name="project" value="LOCAL" />
-      <updated>1584457100317</updated>
+      <workItem from="1639061082576" duration="4621000" />
+      <workItem from="1639370763058" duration="10000" />
+      <workItem from="1641191362633" duration="1241000" />
+      <workItem from="1641231585898" duration="81000" />
+      <workItem from="1641231685759" duration="98000" />
+      <workItem from="1641231801448" duration="785000" />
+      <workItem from="1641267641084" duration="9000" />
+      <workItem from="1641472080320" duration="3129000" />
     </task>
     <task id="LOCAL-00056" summary="LeDao宠物医院管理系统">
       <created>1584547357984</created>
@@ -1080,7 +1113,14 @@
       <option name="project" value="LOCAL" />
       <updated>1639063193942</updated>
     </task>
-    <option name="localTasksCounter" value="104" />
+    <task id="LOCAL-00104" summary="LeDao宠物医院管理系统">
+      <created>1639063801746</created>
+      <option name="number" value="00104" />
+      <option name="presentableId" value="LOCAL-00104" />
+      <option name="project" value="LOCAL" />
+      <updated>1639063801746</updated>
+    </task>
+    <option name="localTasksCounter" value="105" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
