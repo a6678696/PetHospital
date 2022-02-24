@@ -48,15 +48,15 @@ public class MyRealm extends AuthorizingRealm {
      */
     @Override
     protected AuthorizationInfo doGetAuthorizationInfo(PrincipalCollection principalCollection) {
-        String userName=(String) SecurityUtils.getSubject().getPrincipal();
-        User user=userService.findByUserName(userName);
-        SimpleAuthorizationInfo info=new SimpleAuthorizationInfo();
-        List<Role> roleList=roleService.findByUserId(user.getId());
-        Set<String> roles=new HashSet<>(16);
-        for(Role role:roleList){
+        String userName = (String) SecurityUtils.getSubject().getPrincipal();
+        User user = userService.findByUserName(userName);
+        SimpleAuthorizationInfo info = new SimpleAuthorizationInfo();
+        List<Role> roleList = roleService.findByUserId(user.getId());
+        Set<String> roles = new HashSet<>(16);
+        for (Role role : roleList) {
             roles.add(role.getName());
-            List<Menu> menuList=menuService.findByRoleId(role.getId());
-            for(Menu menu:menuList){
+            List<Menu> menuList = menuService.findByRoleId(role.getId());
+            for (Menu menu : menuList) {
                 info.addStringPermission(menu.getName());
             }
         }
