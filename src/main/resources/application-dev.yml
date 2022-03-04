@@ -25,22 +25,22 @@ spring:
   thymeleaf:
     cache: false
 
-#轮播图图片存储地址
-carouselImageFilePath: E://IdeaProjects/ActualCombat/PetHospital/src/main/webapp/static/images/carouselImage/
+#轮播图图片存储地址 E://MyProject/IDEA/ActualCombat/PetHospital\src\main\webapp\static\images\customerImage
+carouselImageFilePath: E://MyProject/IDEA/ActualCombat/PetHospital/src/main/webapp/static/images/carouselImage/
 #设备类型图片存储地址
-equipmentTypeImageFilePath: E://IdeaProjects/ActualCombat/PetHospital/src/main/webapp/static/images/equipmentTypeImage/
+equipmentTypeImageFilePath: E://MyProject/IDEA/ActualCombat/PetHospital/src/main/webapp/static/images/equipmentTypeImage/
 #文章正文图片存储地址
-articleImageFilePath: E://IdeaProjects/ActualCombat/PetHospital/src/main/webapp/static/images/articleImage/
+articleImageFilePath: E://MyProject/IDEA/ActualCombat/PetHospital/src/main/webapp/static/images/articleImage/
 #客户头像图片存储地址
-customerImageFilePath: E://IdeaProjects/ActualCombat/PetHospital/src/main/webapp/static/images/customerImage/
+customerImageFilePath: E://MyProject/IDEA/ActualCombat/PetHospital/src/main/webapp/static/images/customerImage/
 #医院人员头像图片存储地址
-userImageFilePath: E://IdeaProjects/ActualCombat/PetHospital/src/main/webapp/static/images/userImage/
+userImageFilePath: E://MyProject/IDEA/ActualCombat/PetHospital/src/main/webapp/static/images/userImage/
 #商品图片存储地址
-goodsImageFilePath: E://IdeaProjects/ActualCombat/PetHospital/src/main/webapp/static/images/goodsImage/
+goodsImageFilePath: E://MyProject/IDEA/ActualCombat/PetHospital/src/main/webapp/static/images/goodsImage/
 #宠物图片存储地址
-petImageFilePath: E://IdeaProjects/ActualCombat/PetHospital/src/main/webapp/static/images/petImage/
+petImageFilePath: E://MyProject/IDEA/ActualCombat/PetHospital/src/main/webapp/static/images/petImage/
 #宠物病情图片存储地址
-inquiryImageFilePath: E://IdeaProjects/ActualCombat/PetHospital/src/main/webapp/static/images/inquiryImage/
+inquiryImageFilePath: E://MyProject/IDEA/ActualCombat/PetHospital/src/main/webapp/static/images/inquiryImage/
 
 #mybatis的相关配置
 mybatis:
