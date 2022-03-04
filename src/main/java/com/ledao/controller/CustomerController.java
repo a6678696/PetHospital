@@ -58,7 +58,10 @@ public class CustomerController {
     public ModelAndView save(Customer customer, @RequestParam("customerImage") MultipartFile file, HttpSession session) throws Exception {
         if (!file.isEmpty()) {
             if (customer.getId() != null) {
-                FileUtils.deleteQuietly(new File(customerImageFilePath + customerService.findById(customer.getId()).getImageName()));
+                File file1 = new File(String.valueOf(new File(customerImageFilePath + customerService.findById(customer.getId()).getImageName())));
+                if (file1.exists()) {
+                    FileUtils.deleteQuietly(file1);
+                }
             }
             // 获取上传的文件名
             String fileName = file.getOriginalFilename();
