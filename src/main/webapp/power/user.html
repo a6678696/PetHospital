@@ -224,13 +224,7 @@
             <tr>
                 <td>人员类型:</td>
                 <td>
-                    <select id="type" class="easyui-combobox" name="type" style="width:210px;" panelHeight="auto">
-                        <option value="">请选择...</option>
-                        <option value="1">系统维护人员</option>
-                        <option value="2">医生</option>
-                        <option value="3">美容师</option>
-                        <option value="4">维修员</option>
-                    </select>
+                    <input id="type" class="easyui-combobox" name="type" style="width:210px" data-options="valueField:'id',textField:'name',url:'/admin/role/comboList'">
                 </td>
             </tr>
             <tr>

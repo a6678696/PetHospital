@@ -75,6 +75,11 @@ public class UserController {
             User currentUser = userService.findByUserName(userName);
             session.setAttribute("currentUser", currentUser);
             List<Role> roleList = roleService.findByUserId(currentUser.getId());
+            if (roleList.size() == 0) {
+                resultMap.put("success", false);
+                resultMap.put("errorInfo", "你登录的账号还有被管理员分配角色,请联系管理员");
+                return resultMap;
+            }
             resultMap.put("roleList", roleList);
             resultMap.put("roleSize", roleList.size());
             resultMap.put("success", true);

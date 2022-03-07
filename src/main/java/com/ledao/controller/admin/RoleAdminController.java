@@ -12,10 +12,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import javax.annotation.Resource;
-import java.util.HashMap;
-import java.util.LinkedList;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 
 /**
  * 后台管理角色Controller
@@ -44,6 +41,25 @@ public class RoleAdminController {
     private LogService logService;
 
     /**
+     * 下拉框模糊查询
+     *
+     * @return
+     */
+    @RequestMapping("/comboList")
+    @RequiresPermissions(value = "设备使用记录管理")
+    public List<Role> comboList() {
+        List<Role> roleList = roleService.list(null);
+        ListIterator<Role> listIterator = roleList.listIterator();
+        while (listIterator.hasNext()) {
+            Role role = listIterator.next();
+            if (role.getId() == 1) {
+                listIterator.remove();
+            }
+        }
+        return roleList;
+    }
+
+    /**
      * 查询所有角色
      *
      * @return
@@ -53,7 +69,7 @@ public class RoleAdminController {
     public Map<String, Object> listAll() {
         Map<String, Object> resultMap = new HashMap<>(16);
         resultMap.put("rows", roleService.listAll());
-        logService.add(new Log(Log.SEARCH_ACTION,"查询所有角色信息"));
+        logService.add(new Log(Log.SEARCH_ACTION, "查询所有角色信息"));
         return resultMap;
     }
 
@@ -79,7 +95,7 @@ public class RoleAdminController {
         Long total = roleService.getCount(map);
         resultMap.put("rows", roleList);
         resultMap.put("total", total);
-        logService.add(new Log(Log.SEARCH_ACTION,"查询角色信息"));
+        logService.add(new Log(Log.SEARCH_ACTION, "查询角色信息"));
         return resultMap;
     }
 
@@ -102,10 +118,10 @@ public class RoleAdminController {
                 return resultMap;
             }
             key = roleService.add(role);
-            logService.add(new Log(Log.ADD_ACTION,"添加角色信息"+role));
+            logService.add(new Log(Log.ADD_ACTION, "添加角色信息" + role));
         } else {
             key = roleService.update(role);
-            logService.add(new Log(Log.UPDATE_ACTION,"修改角色信息"+role));
+            logService.add(new Log(Log.UPDATE_ACTION, "修改角色信息" + role));
         }
         if (key > 0) {
             resultMap.put("success", true);
@@ -125,7 +141,7 @@ public class RoleAdminController {
     @RequestMapping("/delete")
     @RequiresPermissions(value = "角色管理")
     public Map<String, Object> delete(Integer id) {
-        logService.add(new Log(Log.DELETE_ACTION,"删除角色信息"+roleService.findById(id)));
+        logService.add(new Log(Log.DELETE_ACTION, "删除角色信息" + roleService.findById(id)));
         Map<String, Object> resultMap = new HashMap<>(16);
         roleMenuService.deleteByRoleId(id);
         userRoleService.deleteByRoleId(id);
