@@ -782,14 +782,7 @@
       <workItem from="1645718457329" duration="569000" />
       <workItem from="1646393002704" duration="2382000" />
       <workItem from="1646490707697" duration="4000" />
-      <workItem from="1646657885755" duration="7235000" />
-    </task>
-    <task id="LOCAL-00060" summary="LeDao宠物医院管理系统">
-      <created>1584720611679</created>
-      <option name="number" value="00060" />
-      <option name="presentableId" value="LOCAL-00060" />
-      <option name="project" value="LOCAL" />
-      <updated>1584720611679</updated>
+      <workItem from="1646657885755" duration="7684000" />
     </task>
     <task id="LOCAL-00061" summary="LeDao宠物医院管理系统">
       <created>1584805081565</created>
@@ -1127,7 +1120,14 @@
       <option name="project" value="LOCAL" />
       <updated>1646665411519</updated>
     </task>
-    <option name="localTasksCounter" value="109" />
+    <task id="LOCAL-00109" summary="如果登录的时候,选择的用户没有角色,就无法登录">
+      <created>1646665943421</created>
+      <option name="number" value="00109" />
+      <option name="presentableId" value="LOCAL-00109" />
+      <option name="project" value="LOCAL" />
+      <updated>1646665943421</updated>
+    </task>
+    <option name="localTasksCounter" value="110" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -1149,6 +1149,7 @@
     <option name="ADD_EXTERNAL_FILES_SILENTLY" value="true" />
     <MESSAGE value="LeDao宠物医院管理系统" />
     <MESSAGE value="如果登录选择的用户没有角色,就无法登录" />
-    <option name="LAST_COMMIT_MESSAGE" value="如果登录选择的用户没有角色,就无法登录" />
+    <MESSAGE value="如果登录的时候,选择的用户没有角色,就无法登录" />
+    <option name="LAST_COMMIT_MESSAGE" value="如果登录的时候,选择的用户没有角色,就无法登录" />
   </component>
 </project>
