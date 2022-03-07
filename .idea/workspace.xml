@@ -12,13 +12,7 @@
     <option name="autoReloadType" value="ALL" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="0a04dcdb-703f-4bd2-b3be-43a82c777491" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/ledao/controller/UserController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/ledao/controller/UserController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/ledao/controller/admin/RoleAdminController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/ledao/controller/admin/RoleAdminController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/ledao/controller/admin/UserAdminController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/ledao/controller/admin/UserAdminController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/power/user.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/power/user.html" afterDir="false" />
-    </list>
+    <list default="true" id="0a04dcdb-703f-4bd2-b3be-43a82c777491" name="Default Changelist" comment="" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -788,14 +782,7 @@
       <workItem from="1645718457329" duration="569000" />
       <workItem from="1646393002704" duration="2382000" />
       <workItem from="1646490707697" duration="4000" />
-      <workItem from="1646657885755" duration="6873000" />
-    </task>
-    <task id="LOCAL-00059" summary="LeDao宠物医院管理系统">
-      <created>1584633695730</created>
-      <option name="number" value="00059" />
-      <option name="presentableId" value="LOCAL-00059" />
-      <option name="project" value="LOCAL" />
-      <updated>1584633695730</updated>
+      <workItem from="1646657885755" duration="7235000" />
     </task>
     <task id="LOCAL-00060" summary="LeDao宠物医院管理系统">
       <created>1584720611679</created>
@@ -1133,7 +1120,14 @@
       <option name="project" value="LOCAL" />
       <updated>1646394743278</updated>
     </task>
-    <option name="localTasksCounter" value="108" />
+    <task id="LOCAL-00108" summary="如果登录选择的用户没有角色,就无法登录">
+      <created>1646665411518</created>
+      <option name="number" value="00108" />
+      <option name="presentableId" value="LOCAL-00108" />
+      <option name="project" value="LOCAL" />
+      <updated>1646665411519</updated>
+    </task>
+    <option name="localTasksCounter" value="109" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -1154,6 +1148,7 @@
   <component name="VcsManagerConfiguration">
     <option name="ADD_EXTERNAL_FILES_SILENTLY" value="true" />
     <MESSAGE value="LeDao宠物医院管理系统" />
-    <option name="LAST_COMMIT_MESSAGE" value="LeDao宠物医院管理系统" />
+    <MESSAGE value="如果登录选择的用户没有角色,就无法登录" />
+    <option name="LAST_COMMIT_MESSAGE" value="如果登录选择的用户没有角色,就无法登录" />
   </component>
 </project>
