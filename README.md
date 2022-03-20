@@ -1,5 +1,9 @@
 ## 有问题请到我的博客下留言，博客链接为：https://blog.zoutl.cn/23.html ，如果本项目对你有帮助，就请你Star一下吧!!
 
+### 提问要求
+
+查看博客：https://blog.zoutl.cn/6670.html ，一定要看，不规范的提问会让我不舒服，会导致我看到你的问题也不想回答
+
 ### 项目地址
 
 GitHub地址：https://github.com/a6678696/PetHospital
