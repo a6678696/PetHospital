@@ -63,7 +63,7 @@ public class InquiryController {
     }
 
     /**
-     * 添加或者修改客户信息
+     * 添加或者修改问诊单信息
      *
      * @param inquiry
      * @return

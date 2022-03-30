@@ -6,6 +6,8 @@ server:
     uri-encoding: utf-8
 
 spring:
+  main:
+    banner-mode: off
   servlet:
     multipart:
       enabled: true

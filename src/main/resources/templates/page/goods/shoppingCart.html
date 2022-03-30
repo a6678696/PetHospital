@@ -7,185 +7,186 @@
 </head>
 <body>
 <div id="b">
-    <h1 style="text-align: center;padding-top: 100px"  th:if="${session.shoppingCart==null}">当前购物车有<span style="color: red">0</span>种商品,<a href="/goods/list/1?typeId=21">点我去购物!</a></h1>
-    <h1 style="text-align: center;padding-top: 100px"  th:if="${session.shoppingCart.getShoppingCartItems().size()==0}">当前购物车有<span style="color: red">0</span>种商品,<a href="/goods/list/1?typeId=21">点我去购物!</a></h1>
-    <div id="all" style="padding-top: 20px" th:if="${session.shoppingCart.getShoppingCartItems().size()>0&&session.shoppingCart!=null}">
-        <div id="content">
-            <div class="container">
-                <div class="row">
-                    <div class="col-lg-12">
-                        <!-- breadcrumb-->
-                        <nav aria-label="breadcrumb">
-                            <ol class="breadcrumb">
-                                <i class="fa fa-eye" style="padding-top: 2px"></i>当前位置:&nbsp;&nbsp;
-                                <li class="breadcrumb-item"><a href="/">主页</a></li>
-                                <li aria-current="page" class="breadcrumb-item active">我的购物车</li>
-                            </ol>
-                        </nav>
-                    </div>
-                    <div class="col-lg-3">
-                        <div id="order-summary" class="box">
-                            <div class="box-header">
-                                <h3 class="mb-0">订单摘要</h3>
-                            </div>
-                            <div class="table-responsive">
-                                <table class="table">
-                                    <tbody>
-                                    <tr>
-                                        <td>商品总计</td>
-                                        <th th:if="${session.freight>0}">￥<span th:text="${session.shoppingCart.getTotal()-session.freight}"></span></th>
-                                        <th th:if="${session.freight==0}">￥<span th:text="${session.shoppingCart.getTotal()}"></span></th>
-                                    </tr>
-                                    <tr>
-                                        <td>运费</td>
-                                        <th th:text="'￥'+${session.freight}"></th>
-                                    </tr>
-                                    <tr class="total">
-                                        <td>总金额</td>
-                                        <th style="color: orangered">￥<span th:text="${session.shoppingCart.getTotal()}" style="color: orangered"></span></th>
-                                    </tr>
-                                    </tbody>
-                                </table>
-                            </div>
+    <h1 style="text-align: center;padding-top: 100px"  th:if="${session.shoppingCart==null||session.shoppingCart.getShoppingCartItems().size()==0}">当前购物车有<span style="color: red">0</span>种商品,<a href="/goods/list/1?typeId=21">点我去购物!</a></h1>
+    <div th:if="${session.shoppingCart!=null}">
+        <div id="all" style="padding-top: 20px" th:if="${session.shoppingCart.getShoppingCartItems().size()>0}">
+            <div id="content">
+                <div class="container">
+                    <div class="row">
+                        <div class="col-lg-12">
+                            <!-- breadcrumb-->
+                            <nav aria-label="breadcrumb">
+                                <ol class="breadcrumb">
+                                    <i class="fa fa-eye" style="padding-top: 2px"></i>当前位置:&nbsp;&nbsp;
+                                    <li class="breadcrumb-item"><a href="/">主页</a></li>
+                                    <li aria-current="page" class="breadcrumb-item active">我的购物车</li>
+                                </ol>
+                            </nav>
                         </div>
-                    </div>
-                    <!-- /.col-md-3-->
-                    <div id="basket" class="col-lg-9">
-                        <div class="box container">
-                            <form method="post" action="/shoppingCart">
-                                <p class="text-muted">当前有 <span th:text="${session.shoppingCart.getShoppingCartItems().size()}" style="color: red;font-size: 20px"></span> 种商品  <span style="color: red;font-size: 20px" th:if="${session.freight>0}">(当前未满88元,需要追加10元运费)</span></p>
+                        <div class="col-lg-3">
+                            <div id="order-summary" class="box">
+                                <div class="box-header">
+                                    <h3 class="mb-0">订单摘要</h3>
+                                </div>
                                 <div class="table-responsive">
                                     <table class="table">
-                                        <thead>
-                                        <tr>
-                                            <th style="text-align: center">商品信息</th>
-                                            <th style="text-align: center">商品名称</th>
-                                            <th style="text-align: center">数量</th>
-                                            <th style="text-align: center">库存</th>
-                                            <th style="text-align: center">单价</th>
-                                            <th style="text-align: center">折扣</th>
-                                            <th style="text-align: center">小计</th>
-                                            <th style="text-align: center">删除</th>
-                                        </tr>
-                                        </thead>
                                         <tbody>
-                                        <tr th:each="shoppingCartItems:${session.shoppingCart.getShoppingCartItems()}">
-                                            <td style="text-align: center"><a th:href="@{'/goods/'+${shoppingCartItems.getGoods().getId()}}"><img
-                                                    th:src="@{'/static/images/goodsImage/'+${shoppingCartItems.getGoods().getImageName()}}"
-                                                    style="height: 40px;width: 40px" alt="图片不存在或已删除"></a></td>
-                                            <td style="text-align: center"><a th:href="@{'/goods/'+${shoppingCartItems.getGoods().getId()}}"
-                                                   th:title="${shoppingCartItems.getGoods().getName()}"><span
-                                                    th:text="${#strings.abbreviate(shoppingCartItems.getGoods().getName(),12)}"></span></a></td>
-                                            <td style="text-align: center">
+                                        <tr>
+                                            <td>商品总计</td>
+                                            <th th:if="${session.freight>0}">￥<span th:text="${session.shoppingCart.getTotal()-session.freight}"></span></th>
+                                            <th th:if="${session.freight==0}">￥<span th:text="${session.shoppingCart.getTotal()}"></span></th>
+                                        </tr>
+                                        <tr>
+                                            <td>运费</td>
+                                            <th th:text="'￥'+${session.freight}"></th>
+                                        </tr>
+                                        <tr class="total">
+                                            <td>总金额</td>
+                                            <th style="color: orangered">￥<span th:text="${session.shoppingCart.getTotal()}" style="color: orangered"></span></th>
+                                        </tr>
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- /.col-md-3-->
+                        <div id="basket" class="col-lg-9">
+                            <div class="box container">
+                                <form method="post" action="/shoppingCart">
+                                    <p class="text-muted">当前有 <span th:text="${session.shoppingCart.getShoppingCartItems().size()}" style="color: red;font-size: 20px"></span> 种商品  <span style="color: red;font-size: 20px" th:if="${session.freight>0}">(当前未满88元,需要追加10元运费)</span></p>
+                                    <div class="table-responsive">
+                                        <table class="table">
+                                            <thead>
+                                            <tr>
+                                                <th style="text-align: center">商品信息</th>
+                                                <th style="text-align: center">商品名称</th>
+                                                <th style="text-align: center">数量</th>
+                                                <th style="text-align: center">库存</th>
+                                                <th style="text-align: center">单价</th>
+                                                <th style="text-align: center">折扣</th>
+                                                <th style="text-align: center">小计</th>
+                                                <th style="text-align: center">删除</th>
+                                            </tr>
+                                            </thead>
+                                            <tbody>
+                                            <tr th:each="shoppingCartItems:${session.shoppingCart.getShoppingCartItems()}">
+                                                <td style="text-align: center"><a th:href="@{'/goods/'+${shoppingCartItems.getGoods().getId()}}"><img
+                                                        th:src="@{'/static/images/goodsImage/'+${shoppingCartItems.getGoods().getImageName()}}"
+                                                        style="height: 40px;width: 40px" alt="图片不存在或已删除"></a></td>
+                                                <td style="text-align: center"><a th:href="@{'/goods/'+${shoppingCartItems.getGoods().getId()}}"
+                                                                                  th:title="${shoppingCartItems.getGoods().getName()}"><span
+                                                        th:text="${#strings.abbreviate(shoppingCartItems.getGoods().getName(),12)}"></span></a></td>
+                                                <td style="text-align: center">
                                                     <input type="hidden" id="goods_id" th:value="${shoppingCartItems.getGoods().getId()}"/>
                                                     <input type="hidden" id="goods_stock" th:value="${shoppingCartItems.getGoods().getInventoryQuantity()}"/>
                                                     <button id="minCount" class="btn-danger min" style="width: 24px">-</button>&nbsp;
                                                     <input id="count" type="text"
-                                                                          th:value="${shoppingCartItems.getCount()}"
-                                                                          class="text_box"
-                                                                          style="width: 50px;text-align:center;">&nbsp;
-<!--                                                    <input type="number" class="text_box" th:value="${shoppingCartItems.getCount()}" min="1" th:max="${shoppingCartItems.getGoods().getInventoryQuantity()}" style="width: 50px;text-align:center;">-->
+                                                           th:value="${shoppingCartItems.getCount()}"
+                                                           class="text_box"
+                                                           style="width: 50px;text-align:center;">&nbsp;
+                                                    <!--                                                    <input type="number" class="text_box" th:value="${shoppingCartItems.getCount()}" min="1" th:max="${shoppingCartItems.getGoods().getInventoryQuantity()}" style="width: 50px;text-align:center;">-->
                                                     <button id="addCount" class="btn-success add" style="width: 24px">+</button>
-                                            </td>
-                                            <td style="text-align: center"><span
-                                                    th:text="${shoppingCartItems.getGoods().getInventoryQuantity()}"
-                                                    style="color: blue"></span></td>
-                                            <td style="text-align: center">￥<span
-                                                    th:text="${shoppingCartItems.getGoods().getSellingPrice()}"></span>
-                                            </td>
-                                            <td style="text-align: center">￥0.00</td>
-                                            <td style="text-align: center">￥<span
-                                                    th:text="${shoppingCartItems.getGoods().getSellingPrice()}*${shoppingCartItems.getCount()}"></span>
-                                            </td>
-                                            <td style="text-align: center">
-                                                <a th:href="'javascript:removeShoppingCartItem('+${shoppingCartItems.getGoods().getId()}+')'"
-                                                   title="从购物车中移除该商品"><i class="fa fa-trash-o"
-                                                                         style="color: red;font-size: 20px"></i></a>
-                                            </td>
-                                        </tr>
-                                        </tbody>
-                                        <tfoot>
-                                        <tr>
-                                            <th colspan="5"></th>
-                                            <th style="text-align: center;color: orangered">总金额</th>
-                                            <th style="text-align: center;color: orangered">￥<span th:text="${session.shoppingCart.getTotal()}"></span></th>
-                                            <th></th>
-                                        </tr>
-                                        </tfoot>
-                                    </table>
-                                </div>
-                                <div class="form-inline">
-                                    <p style="font-size: 17px">收货人:</p>&nbsp;<p style="font-size: 17px" th:text="${session.currentCustomer.getContact()}"></p>
-                                    <p style="margin-left: 20px;font-size: 17px">收货地址:</p>&nbsp;<p style="font-size: 17px" th:text="${session.currentCustomer.getAddress()}"></p>
-                                    <p style="margin-left: 20px;font-size: 17px">联系电话:</p>&nbsp;<p style="font-size: 17px" th:text="${session.currentCustomer.getNumber()}"></p>
-                                </div>
-                                <!-- /.table-responsive-->
-                                <div class="box-footer d-flex justify-content-between flex-column flex-lg-row">
-                                    <div class="left"><a href="/goods/list/1?typeId=21"
-                                                         class="btn btn-outline-secondary"><i
-                                            class="fa fa-chevron-left"></i>继续购物</a></div>
-                                    <div class="right">
-                                        <a href="/shopping/updateShoppingCartItem" class="btn btn-outline-success"><i
-                                                class="fa fa-refresh"></i>刷新购物车</a>
-                                        <a href="javascript:submitOrder()" class="btn btn-primary">提交订单<i
-                                                class="fa fa-chevron-right"></i></a>
+                                                </td>
+                                                <td style="text-align: center"><span
+                                                        th:text="${shoppingCartItems.getGoods().getInventoryQuantity()}"
+                                                        style="color: blue"></span></td>
+                                                <td style="text-align: center">￥<span
+                                                        th:text="${shoppingCartItems.getGoods().getSellingPrice()}"></span>
+                                                </td>
+                                                <td style="text-align: center">￥0.00</td>
+                                                <td style="text-align: center">￥<span
+                                                        th:text="${shoppingCartItems.getGoods().getSellingPrice()}*${shoppingCartItems.getCount()}"></span>
+                                                </td>
+                                                <td style="text-align: center">
+                                                    <a th:href="'javascript:removeShoppingCartItem('+${shoppingCartItems.getGoods().getId()}+')'"
+                                                       title="从购物车中移除该商品"><i class="fa fa-trash-o"
+                                                                             style="color: red;font-size: 20px"></i></a>
+                                                </td>
+                                            </tr>
+                                            </tbody>
+                                            <tfoot>
+                                            <tr>
+                                                <th colspan="5"></th>
+                                                <th style="text-align: center;color: orangered">总金额</th>
+                                                <th style="text-align: center;color: orangered">￥<span th:text="${session.shoppingCart.getTotal()}"></span></th>
+                                                <th></th>
+                                            </tr>
+                                            </tfoot>
+                                        </table>
                                     </div>
-                                </div>
-                            </form>
-                        </div>
-                        <!-- /.box-->
-                        <div class="row same-height-row" th:if="${session.currentBrowse.size()>0}">
-                            <div class="col-md-3 col-sm-6">
-                                <div class="box same-height">
-                                    <h3><i class="fa fa-history"></i>最近浏览</h3>
-                                </div>
-                            </div>
-                            <div class="col-md-3 col-sm-6" th:each="currentBrowse:${session.currentBrowse}">
-                                <div class="product same-height">
-                                    <div class="flip-container">
-                                        <div class="flipper">
-                                            <div class="front"><a th:href="@{'/goods/'+${currentBrowse.id}}"><img
-                                                    th:src="@{'/static/images/goodsImage/'+${currentBrowse.imageName}}"
-                                                    alt="" class="img-fluid"></a></div>
-                                            <div class="back"><a th:href="@{'/goods/'+${currentBrowse.id}}"><img
-                                                    th:src="@{'/static/images/goodsImage/'+${currentBrowse.imageName}}"
-                                                    alt="" class="img-fluid"></a></div>
+                                    <div class="form-inline">
+                                        <p style="font-size: 17px">收货人:</p>&nbsp;<p style="font-size: 17px" th:text="${session.currentCustomer.getContact()}"></p>
+                                        <p style="margin-left: 20px;font-size: 17px">收货地址:</p>&nbsp;<p style="font-size: 17px" th:text="${session.currentCustomer.getAddress()}"></p>
+                                        <p style="margin-left: 20px;font-size: 17px">联系电话:</p>&nbsp;<p style="font-size: 17px" th:text="${session.currentCustomer.getNumber()}"></p>
+                                    </div>
+                                    <!-- /.table-responsive-->
+                                    <div class="box-footer d-flex justify-content-between flex-column flex-lg-row">
+                                        <div class="left"><a href="/goods/list/1?typeId=21"
+                                                             class="btn btn-outline-secondary"><i
+                                                class="fa fa-chevron-left"></i>继续购物</a></div>
+                                        <div class="right">
+                                            <a href="/shopping/updateShoppingCartItem" class="btn btn-outline-success"><i
+                                                    class="fa fa-refresh"></i>刷新购物车</a>
+                                            <a href="javascript:submitOrder()" class="btn btn-primary">提交订单<i
+                                                    class="fa fa-chevron-right"></i></a>
                                         </div>
                                     </div>
-                                    <a th:href="@{'/goods/'+${currentBrowse.id}}" class="invisible"><img
-                                            th:src="@{'/static/images/goodsImage/'+${currentBrowse.imageName}}" alt=""
-                                            class="img-fluid"></a>
-                                    <div class="text">
-                                        <a th:href="@{'/goods/'+${currentBrowse.id}}" style="color: black"><h3
-                                                th:text="${currentBrowse.name}" th:title="${currentBrowse.name}"></h3></a>
-                                        <p class="price" th:text="'￥'+${currentBrowse.sellingPrice}"></p>
+                                </form>
+                            </div>
+                            <!-- /.box-->
+                            <div class="row same-height-row" th:if="${session.currentBrowse!=null}">
+                                <div class="col-md-3 col-sm-6">
+                                    <div class="box same-height">
+                                        <h3><i class="fa fa-history"></i>最近浏览</h3>
                                     </div>
                                 </div>
-                                <!-- /.product-->
-                                <div class="ribbon new" th:if="${currentBrowse.isNew==1}">
-                                    <div class="theribbon">新品</div>
-                                    <div class="ribbon-background"></div>
+                                <div class="col-md-3 col-sm-6" th:each="currentBrowse:${session.currentBrowse}">
+                                    <div class="product same-height">
+                                        <div class="flip-container">
+                                            <div class="flipper">
+                                                <div class="front"><a th:href="@{'/goods/'+${currentBrowse.id}}"><img
+                                                        th:src="@{'/static/images/goodsImage/'+${currentBrowse.imageName}}"
+                                                        alt="" class="img-fluid"></a></div>
+                                                <div class="back"><a th:href="@{'/goods/'+${currentBrowse.id}}"><img
+                                                        th:src="@{'/static/images/goodsImage/'+${currentBrowse.imageName}}"
+                                                        alt="" class="img-fluid"></a></div>
+                                            </div>
+                                        </div>
+                                        <a th:href="@{'/goods/'+${currentBrowse.id}}" class="invisible"><img
+                                                th:src="@{'/static/images/goodsImage/'+${currentBrowse.imageName}}" alt=""
+                                                class="img-fluid"></a>
+                                        <div class="text">
+                                            <a th:href="@{'/goods/'+${currentBrowse.id}}" style="color: black"><h3
+                                                    th:text="${currentBrowse.name}" th:title="${currentBrowse.name}"></h3></a>
+                                            <p class="price" th:text="'￥'+${currentBrowse.sellingPrice}"></p>
+                                        </div>
+                                    </div>
+                                    <!-- /.product-->
+                                    <div class="ribbon new" th:if="${currentBrowse.isNew==1}">
+                                        <div class="theribbon">新品</div>
+                                        <div class="ribbon-background"></div>
+                                    </div>
+                                    <!-- /.ribbon-->
+                                    <div class="ribbon sale" th:if="${currentBrowse.hot==1}">
+                                        <div class="theribbon">热卖</div>
+                                        <div class="ribbon-background"></div>
+                                    </div>
+                                    <!-- /.ribbon-->
+                                    <div class="ribbon gift" th:if="${currentBrowse.specialPrice==1}">
+                                        <div class="theribbon">特价</div>
+                                        <div class="ribbon-background"></div>
+                                    </div>
+                                    <!-- /.ribbon-->
+                                    <div class="ribbon noStock" th:if="${currentBrowse.inventoryQuantity<1}">
+                                        <div class="theribbon">售罄</div>
+                                        <div class="ribbon-background"></div>
+                                    </div>
+                                    <!-- /.ribbon-->
                                 </div>
-                                <!-- /.ribbon-->
-                                <div class="ribbon sale" th:if="${currentBrowse.hot==1}">
-                                    <div class="theribbon">热卖</div>
-                                    <div class="ribbon-background"></div>
-                                </div>
-                                <!-- /.ribbon-->
-                                <div class="ribbon gift" th:if="${currentBrowse.specialPrice==1}">
-                                    <div class="theribbon">特价</div>
-                                    <div class="ribbon-background"></div>
-                                </div>
-                                <!-- /.ribbon-->
-                                <div class="ribbon noStock" th:if="${currentBrowse.inventoryQuantity<1}">
-                                    <div class="theribbon">售罄</div>
-                                    <div class="ribbon-background"></div>
-                                </div>
-                                <!-- /.ribbon-->
                             </div>
                         </div>
+                        <!-- /.col-lg-9-->
                     </div>
-                    <!-- /.col-lg-9-->
                 </div>
             </div>
         </div>
