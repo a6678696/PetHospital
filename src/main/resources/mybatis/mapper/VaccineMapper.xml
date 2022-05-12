@@ -18,6 +18,12 @@
             <if test="petName!=null and petName!=''">
                 and petName like #{petName}
             </if>
+            <if test="customerName2!=null and customerName2!=''">
+                and customerName = #{customerName2}
+            </if>
+            <if test="petName2!=null and petName2!=''">
+                and petName = #{petName2}
+            </if>
         </where>
         order by createDate desc
         <if test="start!=null and size!=null">
@@ -32,6 +38,12 @@
             </if>
             <if test="petName!=null and petName!=''">
                 and petName like #{petName}
+            </if>
+            <if test="customerName2!=null and customerName2!=''">
+                and customerName = #{customerName2}
+            </if>
+            <if test="petName2!=null and petName2!=''">
+                and petName = #{petName2}
             </if>
         </where>
     </select>

@@ -16,10 +16,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import javax.annotation.Resource;
 import java.text.SimpleDateFormat;
-import java.util.Date;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 
 /**
  * 后台管理寄养记录Controller层
@@ -67,21 +64,28 @@ public class FosterCareAdminController {
         Map<String, Object> resultMap = new HashMap<>(16);
         Map<String, Object> map = new HashMap<>(16);
         if (StringUtil.isNotEmpty(fosterCare.getCustomerName())) {
-            Customer customer = customerService.findByContact(fosterCare.getCustomerName());
-            fosterCare.setCustomer(customer);
-            if (fosterCare.getCustomer() == null) {
-                map.put("customerId", -1);
-            } else {
-                map.put("customerId", fosterCare.getCustomer().getId());
+            map.put("contact", StringUtil.formatLike(fosterCare.getCustomerName()));
+            List<Customer> customerList = customerService.list(map);
+            List<Integer> customerIdList = new ArrayList<>();
+            for (Customer customer : customerList) {
+                customerIdList.add(customer.getId());
             }
+            if (customerIdList.size()==0) {
+                customerIdList.add(-1);
+            }
+            map.put("customerIdList", customerIdList);
         }
         if (StringUtil.isNotEmpty(fosterCare.getPetName())) {
-            fosterCare.setPet(petService.findByName(fosterCare.getPetName()));
-            if (fosterCare.getPet() == null) {
-                map.put("petId", -1);
-            } else {
-                map.put("petId", fosterCare.getPet().getId());
+            map.put("petName", StringUtil.formatLike(fosterCare.getPetName()));
+            List<Pet> petList = petService.list(map);
+            List<Integer> petIdList = new ArrayList<>();
+            for (Pet pet : petList) {
+                petIdList.add(pet.getId());
             }
+            if (petIdList.size()==0) {
+                petIdList.add(-1);
+            }
+            map.put("petIdList", petIdList);
         }
         map.put("status", fosterCare.getStatus());
         map.put("start", pageBean.getStart());

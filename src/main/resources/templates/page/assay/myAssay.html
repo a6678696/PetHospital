@@ -51,12 +51,12 @@
                                                     <img th:src="@{'/static/images/petImage/'+${assay.pet.imageName}}"
                                                          style="height: 40px;width: 40px" alt="图片不存在或已删除"></a>
                                             </td>
+                                            <td style="text-align: center">
+                                                <span th:text="${assay.petName}"></span>
+                                            </td>
                                             <td style="text-align: center;margin-top: 1px">
                                                 <span style="padding-top: 2px"
                                                       th:text="${#dates.format(assay.createDate,'yyyy-MM-dd HH:mm:ss')}"></span>
-                                            </td>
-                                            <td style="text-align: center">
-                                                <span th:text="${assay.petName}"></span>
                                             </td>
                                             <td style="text-align: center">
                                                 <a th:href="@{'/assay/assayDetails?assayId='+${assay.id}}"

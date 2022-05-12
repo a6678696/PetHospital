@@ -45,30 +45,32 @@
                                         </tr>
                                         </thead>
                                         <tbody>
-                                        <tr th:each="inquiry:${inquiryList}">
-                                            <td style="text-align: center">
-                                                <a th:href="@{'/inquiry/inquiryDetails?inquiryId='+${inquiry.id}}">
-                                                    <img th:src="@{'/static/images/petImage/'+${inquiry.pet.imageName}}"
-                                                         style="height: 40px;width: 40px" alt="图片不存在或已删除"></a>
-                                            </td>
-                                            <td style="text-align: center">
-                                                <span th:text="${inquiry.pet.name}"></span>
-                                            </td>
-                                            <td style="text-align: center;margin-top: 1px">
+                                        <tr>
+                                            <div th:each="inquiry:${inquiryList}">
+                                                <td style="text-align: center">
+                                                    <a th:href="@{'/inquiry/inquiryDetails?inquiryId='+${inquiry.id}}">
+                                                        <img th:src="@{'/static/images/petImage/'+${inquiry.pet.imageName}}"
+                                                             style="height: 40px;width: 40px" alt="图片不存在或已删除"></a>
+                                                </td>
+                                                <td style="text-align: center">
+                                                    <span th:text="${inquiry.pet.name}"></span>
+                                                </td>
+                                                <td style="text-align: center;margin-top: 1px">
                                                 <span style="padding-top: 2px"
                                                       th:text="${#dates.format(inquiry.createDate,'yyyy-MM-dd HH:mm:ss')}"></span>
-                                            </td>
-                                            <td style="text-align: center">
-                                                <a th:href="@{'/inquiry/inquiryDetails?inquiryId='+${inquiry.id}}"
-                                                   title="查看详情"><i class="fa fa-search"
-                                                                   style="font-size: 20px;color: #0099FF"></i></a>
-                                                <a th:href="@{'/inquiry/inquiryModify?inquiryId='+${inquiry.id}}"
-                                                   th:if="${inquiry.status==0}" title="修改"><i class="fa fa-pencil"
-                                                                                   style="font-size: 20px"></i></a>
-                                                <a th:href="@{'javascript:deleteInquiry('+${inquiry.id}+')'}"
-                                                   th:if="${inquiry.status==0}" title="删除"><i class="fa fa-trash-o"
-                                                                                       style="color: red;font-size: 20px"></i></a>
-                                            </td>
+                                                </td>
+                                                <td style="text-align: center">
+                                                    <a th:href="@{'/inquiry/inquiryDetails?inquiryId='+${inquiry.id}}"
+                                                       title="查看详情"><i class="fa fa-search"
+                                                                       style="font-size: 20px;color: #0099FF"></i></a>
+                                                    <a th:href="@{'/inquiry/inquiryModify?inquiryId='+${inquiry.id}}"
+                                                       th:if="${inquiry.status==0}" title="修改"><i class="fa fa-pencil"
+                                                                                                  style="font-size: 20px"></i></a>
+                                                    <a th:href="@{'javascript:deleteInquiry('+${inquiry.id}+')'}"
+                                                       th:if="${inquiry.status==0}" title="删除"><i class="fa fa-trash-o"
+                                                                                                  style="color: red;font-size: 20px"></i></a>
+                                                </td>
+                                            </div>
                                         </tr>
                                         </tbody>
                                     </table>

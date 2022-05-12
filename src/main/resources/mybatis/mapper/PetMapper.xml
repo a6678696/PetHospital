@@ -3,7 +3,7 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
 <mapper namespace="com.ledao.mapper.PetMapper">
 
-    <resultMap id="PetResult" type="Pet">
+    <resultMap id="PetResult" type="com.ledao.entity.Pet">
         <result property="id" column="id"/>
         <result property="name" column="name"/>
         <result property="age" column="age"/>
@@ -17,6 +17,9 @@
             <if test="customer!=null">
                 and customerId=#{customer.id}
             </if>
+            <if test="petName != null and petName != ''">
+                and name like #{petName}
+            </if>
         </where>
         <if test="start!=null and size!=null">
             limit #{start},#{size}
@@ -27,6 +30,9 @@
         <where>
             <if test="customer!=null">
                 and customerId=#{customer.id}
+            </if>
+            <if test="petName != null and petName != ''">
+                and name like #{petName}
             </if>
         </where>
     </select>

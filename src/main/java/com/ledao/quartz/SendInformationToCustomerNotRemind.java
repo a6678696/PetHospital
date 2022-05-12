@@ -24,7 +24,7 @@ public class SendInformationToCustomerNotRemind {
     /**
      * 医院上班后系统自动给当天有预约的客户发送提醒消息(假定医院8点开始上班)
      */
-    @Scheduled(cron = "*/20 * * * * ?")
+    @Scheduled(cron = "0 0 8 * * ?")
     public void work() {
         reservationService.sendInformationToCustomerTodayHaveReservation();
     }

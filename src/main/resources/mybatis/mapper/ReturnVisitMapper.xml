@@ -2,7 +2,7 @@
 <!--suppress ALL-->
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
 <mapper namespace="com.ledao.mapper.ReturnVisitMapper">
-    <resultMap id="ReturnVisitResult" type="ReturnVisit">
+    <resultMap id="ReturnVisitResult" type="com.ledao.entity.ReturnVisit">
         <result column="id" property="id"/>
         <result column="createDate" property="createDate"/>
         <result column="customerName" property="customerName"/>
@@ -19,6 +19,12 @@
             <if test="petName!=null and petName!=''">
                 and petName like #{petName}
             </if>
+            <if test="customerName2!=null and customerName2!=''">
+                and customerName = #{customerName2}
+            </if>
+            <if test="petName2!=null and petName2!=''">
+                and petName = #{petName2}
+            </if>
         </where>
         order by createDate desc
         <if test="start!=null and size!=null">
@@ -33,6 +39,12 @@
             </if>
             <if test="petName!=null and petName!=''">
                 and petName like #{petName}
+            </if>
+            <if test="customerName2!=null and customerName2!=''">
+                and customerName = #{customerName2}
+            </if>
+            <if test="petName2!=null and petName2!=''">
+                and petName = #{petName2}
             </if>
         </where>
     </select>
@@ -62,5 +74,9 @@
     </delete>
     <select id="findById" parameterType="integer" resultMap="ReturnVisitResult">
         select * from t_return_visit where id=#{id}
+    </select>
+
+    <select id="findByCustomerContact" parameterType="string" resultMap="ReturnVisitResult">
+        select * from t_return_visit where customerName=#{contact}
     </select>
 </mapper>

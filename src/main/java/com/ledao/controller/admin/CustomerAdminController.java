@@ -1,10 +1,7 @@
 package com.ledao.controller.admin;
 
-import com.ledao.entity.Customer;
-import com.ledao.entity.Log;
-import com.ledao.entity.PageBean;
-import com.ledao.service.CustomerService;
-import com.ledao.service.LogService;
+import com.ledao.entity.*;
+import com.ledao.service.*;
 import com.ledao.util.DateUtil;
 import com.ledao.util.StringUtil;
 import org.apache.commons.io.FileUtils;
@@ -41,6 +38,21 @@ public class CustomerAdminController {
 
     @Resource
     private LogService logService;
+
+    @Resource
+    private ReturnVisitService returnVisitService;
+
+    @Resource
+    private AssayService assayService;
+
+    @Resource
+    private FosterCareService fosterCareService;
+
+    @Resource
+    private MedicalRecordService medicalRecordService;
+
+    @Resource
+    private VaccineService vaccineService;
 
     /**
      * 下拉框模糊查询
@@ -108,7 +120,38 @@ public class CustomerAdminController {
             key = customerService.add(customer);
             logService.add(new Log(Log.ADD_ACTION, "添加客户信息" + customer));
         } else {
+            String contact1 = customerService.findById(customer.getId()).getContact();
             key = customerService.update(customer);
+            String contact2 = customerService.findById(customer.getId()).getContact();
+            if (!contact1.equals(contact2)) {
+                List<ReturnVisit> returnVisitList = returnVisitService.findByCustomerContact(contact1);
+                for (ReturnVisit returnVisit : returnVisitList) {
+                    returnVisit.setCustomerName(contact2);
+                    returnVisitService.update(returnVisit);
+                }
+                Map<String, Object> map = new HashMap<>(16);
+                map.put("customerName2", contact1);
+                List<Assay> assayList = assayService.list(map);
+                for (Assay assay : assayList) {
+                    assay.setCustomerName(contact2);
+                    assayService.update(assay);
+                }
+                List<FosterCare> fosterCareList = fosterCareService.list(map);
+                for (FosterCare fosterCare : fosterCareList) {
+                    fosterCare.setCustomerName(contact2);
+                    fosterCareService.update(fosterCare);
+                }
+                List<MedicalRecord> medicalRecordList = medicalRecordService.list(map);
+                for (MedicalRecord medicalRecord : medicalRecordList) {
+                    medicalRecord.setCustomerName(contact2);
+                    medicalRecordService.update(medicalRecord);
+                }
+                List<Vaccine> vaccineList = vaccineService.list(map);
+                for (Vaccine vaccine : vaccineList) {
+                    vaccine.setCustomerName(contact2);
+                    vaccineService.update(vaccine);
+                }
+            }
             logService.add(new Log(Log.UPDATE_ACTION, "修改客户信息" + customer));
         }
         if (key > 0) {

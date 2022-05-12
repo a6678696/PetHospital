@@ -61,4 +61,12 @@ public interface ReturnVisitMapper {
      * @return
      */
     ReturnVisit findById(Integer id);
+
+    /**
+     * 根据用户的联系人信息查找回访记录
+     *
+     * @param contact
+     * @return
+     */
+    List<ReturnVisit> findByCustomerContact(String contact);
 }

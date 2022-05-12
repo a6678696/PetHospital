@@ -34,6 +34,9 @@
             <if test="userName!=null and userName!=''">
                 and userName like #{userName}
             </if>
+            <if test="contact!=null and contact!=''">
+                and contact like #{contact}
+            </if>
         </where>
         <if test="start!=null and size!=null ">
             limit #{start},#{size}
@@ -48,6 +51,9 @@
             </if>
             <if test="userName!=null and userName!=''">
                 and userName like #{userName}
+            </if>
+            <if test="contact!=null and contact!=''">
+                and contact like #{contact}
             </if>
         </where>
     </select>

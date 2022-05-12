@@ -51,4 +51,9 @@ public class ReturnVisitServiceImpl implements ReturnVisitService {
     public ReturnVisit findById(Integer id) {
         return returnVisitMapper.findById(id);
     }
+
+    @Override
+    public List<ReturnVisit> findByCustomerContact(String contact) {
+        return returnVisitMapper.findByCustomerContact(contact);
+    }
 }

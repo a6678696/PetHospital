@@ -50,7 +50,6 @@ public class FosterCareController {
         map.put("start", (page - 1) * pageSize);
         map.put("size", pageSize);
         Customer currentCustomer = (Customer) session.getAttribute("currentCustomer");
-        map.put("customerName", StringUtil.formatLike(currentCustomer.getContact()));
         map.put("customerId", currentCustomer.getId());
         List<FosterCare> fosterCareList = fosterCareService.list(map);
         Long total = fosterCareService.getCount(map);

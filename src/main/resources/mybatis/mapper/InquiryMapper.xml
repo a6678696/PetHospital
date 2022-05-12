@@ -2,7 +2,7 @@
 <!--suppress ALL-->
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
 <mapper namespace="com.ledao.mapper.InquiryMapper">
-    <resultMap id="InquiryResult" type="Inquiry">
+    <resultMap id="InquiryResult" type="com.ledao.entity.Inquiry">
         <result property="id" column="id"/>
         <result property="createDate" column="createDate"/>
         <result property="content" column="content"/>

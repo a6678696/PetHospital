@@ -30,9 +30,14 @@ public class Pet {
      */
     private String imageName;
     /**
-     * 所属客户
+     * 所属客户实体
      */
     private Customer customer;
+
+    /**
+     * 所属客户id
+     */
+    private Integer customerId;
 
     public Integer getId() {
         return id;
@@ -82,6 +87,14 @@ public class Pet {
         this.customer = customer;
     }
 
+    public Integer getCustomerId() {
+        return customerId;
+    }
+
+    public void setCustomerId(Integer customerId) {
+        this.customerId = customerId;
+    }
+
     @Override
     public String toString() {
         return "Pet{" +
@@ -91,6 +104,7 @@ public class Pet {
                 ", typeName='" + typeName + '\'' +
                 ", imageName='" + imageName + '\'' +
                 ", customer=" + customer +
+                ", customerId=" + customerId +
                 '}';
     }
 }

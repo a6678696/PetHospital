@@ -50,7 +50,7 @@ public class ReturnVisitController {
         map.put("start", (page - 1) * pageSize);
         map.put("size", pageSize);
         Customer currentCustomer = (Customer) session.getAttribute("currentCustomer");
-        map.put("customerName", StringUtil.formatLike(currentCustomer.getContact()));
+        map.put("customerName2", currentCustomer.getContact());
         List<ReturnVisit> returnVisitList = returnVisitService.list(map);
         for (ReturnVisit returnVisit : returnVisitList) {
             Pet pet = petService.findByName(returnVisit.getPetName());

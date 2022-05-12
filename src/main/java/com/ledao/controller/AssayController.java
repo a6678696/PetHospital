@@ -4,6 +4,7 @@ import com.ledao.entity.Customer;
 import com.ledao.entity.Assay;
 import com.ledao.entity.Pet;
 import com.ledao.service.AssayService;
+import com.ledao.service.CustomerService;
 import com.ledao.service.PetService;
 import com.ledao.util.PageUtil;
 import com.ledao.util.StringUtil;
@@ -35,6 +36,9 @@ public class AssayController {
     @Resource
     private PetService petService;
 
+    @Resource
+    private CustomerService customerService;
+
     /**
      * 我的化验记录
      *
@@ -50,7 +54,7 @@ public class AssayController {
         map.put("start", (page - 1) * pageSize);
         map.put("size", pageSize);
         Customer currentCustomer = (Customer) session.getAttribute("currentCustomer");
-        map.put("customerName", StringUtil.formatLike(currentCustomer.getContact()));
+        map.put("customerName2", customerService.findById(currentCustomer.getId()).getContact());
         List<Assay> assayList = assayService.list(map);
         for (Assay assay : assayList) {
             Pet pet = petService.findByName(assay.getPetName());

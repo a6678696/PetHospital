@@ -21,6 +21,18 @@
             <if test="petId!=null">
                 and petId=#{petId}
             </if>
+            <if test="customerIdList != null">
+                and customerId in
+                <foreach item="item" index="index" collection="customerIdList" open="(" separator="," close=")">
+                    #{item}
+                </foreach>
+            </if>
+            <if test="petIdList != null">
+                and petId in
+                <foreach item="item" index="index" collection="petIdList" open="(" separator="," close=")">
+                    #{item}
+                </foreach>
+            </if>
             <if test="status!=null">
                 and status=#{status}
             </if>
@@ -38,6 +50,18 @@
             </if>
             <if test="petId!=null">
                 and petId=#{petId}
+            </if>
+            <if test="customerIdList != null">
+                and customerId in
+                <foreach item="item" index="index" collection="customerIdList" open="(" separator="," close=")">
+                    #{item}
+                </foreach>
+            </if>
+            <if test="petIdList != null">
+                and petId in
+                <foreach item="item" index="index" collection="petIdList" open="(" separator="," close=")">
+                    #{item}
+                </foreach>
             </if>
             <if test="status!=null">
                 and status=#{status}

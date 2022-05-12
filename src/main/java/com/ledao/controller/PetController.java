@@ -1,8 +1,7 @@
 package com.ledao.controller;
 
-import com.ledao.entity.Customer;
-import com.ledao.entity.Pet;
-import com.ledao.service.PetService;
+import com.ledao.entity.*;
+import com.ledao.service.*;
 import com.ledao.util.DateUtil;
 import org.apache.commons.io.FileUtils;
 import org.springframework.beans.factory.annotation.Value;
@@ -36,8 +35,23 @@ public class PetController {
     @Resource
     private PetService petService;
 
+    @Resource
+    private ReturnVisitService returnVisitService;
+
+    @Resource
+    private AssayService assayService;
+
+    @Resource
+    private FosterCareService fosterCareService;
+
+    @Resource
+    private MedicalRecordService medicalRecordService;
+
+    @Resource
+    private VaccineService vaccineService;
+
     /**
-     * 添加或者修改客户信息
+     * 添加或者修改宠物信息
      *
      * @param pet
      * @return
@@ -60,7 +74,38 @@ public class PetController {
             pet.setCustomer((Customer) session.getAttribute("currentCustomer"));
             petService.add(pet);
         } else {
+            String petName1 = petService.findById(pet.getId()).getName();
             petService.update(pet);
+            String petName2 = petService.findById(pet.getId()).getName();
+            if (!petName1.equals(petName2)) {
+                Map<String, Object> map = new HashMap<>(16);
+                map.put("petName2", petName1);
+                List<ReturnVisit> returnVisitList = returnVisitService.list(map);
+                for (ReturnVisit returnVisit : returnVisitList) {
+                    returnVisit.setPetName(petName2);
+                    returnVisitService.update(returnVisit);
+                }
+                List<Assay> assayList = assayService.list(map);
+                for (Assay assay : assayList) {
+                    assay.setPetName(petName2);
+                    assayService.update(assay);
+                }
+                List<FosterCare> fosterCareList = fosterCareService.list(map);
+                for (FosterCare fosterCare : fosterCareList) {
+                    fosterCare.setPetName(petName2);
+                    fosterCareService.update(fosterCare);
+                }
+                List<MedicalRecord> medicalRecordList = medicalRecordService.list(map);
+                for (MedicalRecord medicalRecord : medicalRecordList) {
+                    medicalRecord.setPetName(petName2);
+                    medicalRecordService.update(medicalRecord);
+                }
+                List<Vaccine> vaccineList = vaccineService.list(map);
+                for (Vaccine vaccine : vaccineList) {
+                    vaccine.setPetName(petName2);
+                    vaccineService.update(vaccine);
+                }
+            }
         }
         return "redirect:/customer/myPet/list/1";
     }

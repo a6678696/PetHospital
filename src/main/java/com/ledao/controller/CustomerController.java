@@ -1,11 +1,7 @@
 package com.ledao.controller;
 
-import com.ledao.entity.Customer;
-import com.ledao.entity.Log;
-import com.ledao.entity.Pet;
-import com.ledao.service.CustomerService;
-import com.ledao.service.LogService;
-import com.ledao.service.PetService;
+import com.ledao.entity.*;
+import com.ledao.service.*;
 import com.ledao.util.DateUtil;
 import com.ledao.util.PageUtil;
 import org.apache.commons.io.FileUtils;
@@ -48,6 +44,21 @@ public class CustomerController {
     @Resource
     private PetService petService;
 
+    @Resource
+    private ReturnVisitService returnVisitService;
+
+    @Resource
+    private AssayService assayService;
+
+    @Resource
+    private FosterCareService fosterCareService;
+
+    @Resource
+    private MedicalRecordService medicalRecordService;
+
+    @Resource
+    private VaccineService vaccineService;
+
     /**
      * 添加或者修改客户信息
      *
@@ -80,7 +91,38 @@ public class CustomerController {
             mav.addObject("mainPageKey", "#b");
             return mav;
         } else {
+            String contact1 = customerService.findById(customer.getId()).getContact();
             customerService.update(customer);
+            String contact2 = customerService.findById(customer.getId()).getContact();
+            if (!contact1.equals(contact2)) {
+                List<ReturnVisit> returnVisitList = returnVisitService.findByCustomerContact(contact1);
+                for (ReturnVisit returnVisit : returnVisitList) {
+                    returnVisit.setCustomerName(contact2);
+                    returnVisitService.update(returnVisit);
+                }
+                Map<String, Object> map = new HashMap<>(16);
+                map.put("customerName2", contact1);
+                List<Assay> assayList = assayService.list(map);
+                for (Assay assay : assayList) {
+                    assay.setCustomerName(contact2);
+                    assayService.update(assay);
+                }
+                List<FosterCare> fosterCareList = fosterCareService.list(map);
+                for (FosterCare fosterCare : fosterCareList) {
+                    fosterCare.setCustomerName(contact2);
+                    fosterCareService.update(fosterCare);
+                }
+                List<MedicalRecord> medicalRecordList = medicalRecordService.list(map);
+                for (MedicalRecord medicalRecord : medicalRecordList) {
+                    medicalRecord.setCustomerName(contact2);
+                    medicalRecordService.update(medicalRecord);
+                }
+                List<Vaccine> vaccineList = vaccineService.list(map);
+                for (Vaccine vaccine : vaccineList) {
+                    vaccine.setCustomerName(contact2);
+                    vaccineService.update(vaccine);
+                }
+            }
             ModelAndView mav = new ModelAndView("redirect:/customer/personalCenter");
             mav.addObject("successModify", true);
             mav.addObject("title", "个人中心");
@@ -141,7 +183,7 @@ public class CustomerController {
      */
     @RequestMapping("/logout")
     public ModelAndView logout(HttpSession session) {
-        session.invalidate();
+        session.removeAttribute("currentCustomer");
         ModelAndView mav = new ModelAndView("");
         mav.addObject("title", "用户登录");
         mav.addObject("mainPage", "page/indexFirst");

@@ -3,6 +3,7 @@ package com.ledao.controller;
 import com.ledao.entity.Customer;
 import com.ledao.entity.MedicalRecord;
 import com.ledao.entity.Pet;
+import com.ledao.service.CustomerService;
 import com.ledao.service.MedicalRecordService;
 import com.ledao.service.PetService;
 import com.ledao.util.PageUtil;
@@ -35,6 +36,9 @@ public class MedicalRecordController {
     @Resource
     private PetService petService;
 
+    @Resource
+    private CustomerService customerService;
+
     /**
      * 我的病例单
      *
@@ -50,7 +54,7 @@ public class MedicalRecordController {
         map.put("start", (page - 1) * pageSize);
         map.put("size", pageSize);
         Customer currentCustomer = (Customer) session.getAttribute("currentCustomer");
-        map.put("customerName", StringUtil.formatLike(currentCustomer.getContact()));
+        map.put("customerName2", customerService.findById(currentCustomer.getId()).getContact());
         List<MedicalRecord> medicalRecordList = medicalRecordService.list(map);
         for (MedicalRecord medicalRecord : medicalRecordList) {
             Pet pet = petService.findByName(medicalRecord.getPetName());
