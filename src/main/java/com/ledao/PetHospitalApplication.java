@@ -12,12 +12,7 @@ import org.springframework.boot.web.servlet.support.SpringBootServletInitializer
 
 @SpringBootApplication
 @MapperScan("com.ledao.mapper")
-public class PetHospitalApplication extends SpringBootServletInitializer {
-
-    @Override
-    protected SpringApplicationBuilder configure(SpringApplicationBuilder application) {
-        return application.sources(PetHospitalApplication.class);
-    }
+public class PetHospitalApplication {
 
     public static void main(String[] args) {
         SpringApplication.run(PetHospitalApplication.class, args);
