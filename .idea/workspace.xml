@@ -12,21 +12,11 @@
     <option name="autoReloadType" value="ALL" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="0a04dcdb-703f-4bd2-b3be-43a82c777491" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/src/main/webapp/static/images/customerImage/20230225144442.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/webapp/static/images/customerImage/20230225145612.jpg" afterDir="false" />
+    <list default="true" id="0a04dcdb-703f-4bd2-b3be-43a82c777491" name="Default Changelist" comment="删除多余依赖以及统一管理配置文件的重复路径">
       <change beforePath="$PROJECT_DIR$/.idea/dataSources.local.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dataSources.local.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/libraries/Maven__com_vaadin_external_google_android_json_0_0_20131108_vaadin1.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/libraries/Maven__org_opentest4j_opentest4j_1_2_0.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/libraries/Maven__org_skyscreamer_jsonassert_1_5_0.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/dataSources/3f17d22d-fd6c-438d-aade-dee31a9e9b2d.xml" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/PetHospital.iml" beforeDir="false" afterPath="$PROJECT_DIR$/PetHospital.iml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/db_pethospital.sql" beforeDir="false" afterPath="$PROJECT_DIR$/db_pethospital.sql" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/ledao/PetHospitalApplication.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/ledao/PetHospitalApplication.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/application-dev.yml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/application-dev.yml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/banner.txt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/static/images/customerImage/20200501010625.jpg" beforeDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -92,16 +82,16 @@
     </file-type-list>
   </component>
   <component name="HighlightingSettingsPerFile">
-    <setting file="file://$PROJECT_DIR$/src/main/resources/application-dev.yml" root0="FORCE_HIGHLIGHTING" />
-    <setting file="file://$PROJECT_DIR$/src/main/java/com/ledao/quartz/CancelOrderOverOneDay.java" root0="FORCE_HIGHLIGHTING" />
-    <setting file="file://$PROJECT_DIR$/src/main/java/com/ledao/service/impl/ReservationServiceImpl.java" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/src/main/java/com/ledao/quartz/CreateReservationForTomorrow.java" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/src/main/webapp/static/js/verifyCode.js" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/src/main/java/com/ledao/quartz/AutomaticReceiptConfirmation.java" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/src/main/java/com/ledao/service/ReservationService.java" root0="FORCE_HIGHLIGHTING" />
-    <setting file="file://$PROJECT_DIR$/src/main/java/com/ledao/quartz/CreateReservationForTomorrow.java" root0="FORCE_HIGHLIGHTING" />
-    <setting file="file://$PROJECT_DIR$/src/main/java/com/ledao/quartz/ArrangeUserForReservation.java" root0="FORCE_HIGHLIGHTING" />
-    <setting file="file://$PROJECT_DIR$/src/main/webapp/static/js/verifyCode.js" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/src/main/java/com/ledao/mapper/UserRoleMapper.java" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/src/main/webapp/login.html" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/src/main/resources/application-dev.yml" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/src/main/java/com/ledao/quartz/CancelOrderOverOneDay.java" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/src/main/java/com/ledao/quartz/ArrangeUserForReservation.java" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/src/main/java/com/ledao/service/impl/ReservationServiceImpl.java" root0="FORCE_HIGHLIGHTING" />
   </component>
   <component name="JsFlowSettings">
     <service-enabled>true</service-enabled>
@@ -118,15 +108,6 @@
   </component>
   <component name="MarkdownSettingsMigration">
     <option name="stateVersion" value="1" />
-  </component>
-  <component name="MavenImportPreferences">
-    <option name="generalSettings">
-      <MavenGeneralSettings>
-        <option name="localRepository" value="D:\Java\apache-maven-3.8.1-bin\apache-maven-3.8.1\repository" />
-        <option name="mavenHome" value="D:/Java/apache-maven-3.8.1-bin/apache-maven-3.8.1" />
-        <option name="userSettingsFile" value="D:\Java\apache-maven-3.8.1-bin\apache-maven-3.8.1\conf\settings.xml" />
-      </MavenGeneralSettings>
-    </option>
   </component>
   <component name="ProjectId" id="1WRQdNlHu1FA4dEFY6te0n7K9Br" />
   <component name="ProjectLevelVcsManager" settingsEditedManually="true">
@@ -145,7 +126,8 @@
     <property name="RequestMappingsPanelWidth1" value="75" />
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="aspect.path.notification.shown" value="true" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/../BookManageSystem" />
+    <property name="settings.editor.selected.configurable" value="MavenSettings" />
   </component>
   <component name="RebelAgentSelection">
     <selection>jr</selection>
@@ -200,17 +182,6 @@
           <option name="ENABLED" value="true" />
         </pattern>
       </extension>
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
-    <configuration default="true" type="ArquillianJUnit" factoryName="" nameIsGenerated="true">
-      <option name="arquillianRunConfiguration">
-        <value>
-          <option name="containerStateName" value="" />
-        </value>
-      </option>
-      <option name="TEST_OBJECT" value="class" />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
@@ -823,14 +794,13 @@
       <workItem from="1668585953460" duration="43000" />
       <workItem from="1675571642432" duration="597000" />
       <workItem from="1675603343436" duration="15000" />
-      <workItem from="1677306449067" duration="2590000" />
-    </task>
-    <task id="LOCAL-00061" summary="LeDao宠物医院管理系统">
-      <created>1584805081565</created>
-      <option name="number" value="00061" />
-      <option name="presentableId" value="LOCAL-00061" />
-      <option name="project" value="LOCAL" />
-      <updated>1584805081566</updated>
+      <workItem from="1677306449067" duration="2938000" />
+      <workItem from="1677311878946" duration="256000" />
+      <workItem from="1682603603752" duration="1637000" />
+      <workItem from="1682650934021" duration="578000" />
+      <workItem from="1683122754324" duration="637000" />
+      <workItem from="1683196669401" duration="19000" />
+      <workItem from="1683458165625" duration="260000" />
     </task>
     <task id="LOCAL-00062" summary="LeDao宠物医院管理系统">
       <created>1584805256987</created>
@@ -1168,7 +1138,14 @@
       <option name="project" value="LOCAL" />
       <updated>1667024283594</updated>
     </task>
-    <option name="localTasksCounter" value="110" />
+    <task id="LOCAL-00110" summary="删除多余依赖以及统一管理配置文件的重复路径">
+      <created>1677309180264</created>
+      <option name="number" value="00110" />
+      <option name="presentableId" value="LOCAL-00110" />
+      <option name="project" value="LOCAL" />
+      <updated>1677309180264</updated>
+    </task>
+    <option name="localTasksCounter" value="111" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -1184,7 +1161,6 @@
         </entry>
       </map>
     </option>
-    <option name="oldMeFiltersMigrated" value="true" />
   </component>
   <component name="VcsManagerConfiguration">
     <option name="ADD_EXTERNAL_FILES_SILENTLY" value="true" />
@@ -1193,7 +1169,8 @@
     <MESSAGE value="2022-03-30 18:37:43" />
     <MESSAGE value="给外键关联添加了删除关系,修复了修改客户的联系人以及宠物名会带来一些错误的BUG" />
     <MESSAGE value="链接跳转改动" />
-    <option name="LAST_COMMIT_MESSAGE" value="链接跳转改动" />
+    <MESSAGE value="删除多余依赖以及统一管理配置文件的重复路径" />
+    <option name="LAST_COMMIT_MESSAGE" value="删除多余依赖以及统一管理配置文件的重复路径" />
   </component>
   <component name="XSLT-Support.FileAssociations.UIState">
     <expand />
